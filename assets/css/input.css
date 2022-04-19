@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* ubuntu-regular - latin */
+    @font-face {
+        font-family: 'Railway';
+        src: url('../fonts/Raleway-Thin.ttf');
+    }
+        
+    body{
+        font-family: "Railway";
+        /*background-color: #f1f1f1; */
+    }
+
+    p {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+
+}

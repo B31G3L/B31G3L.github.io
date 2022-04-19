@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div class="lg:mx-20 xl:mx-40  mt-16">
+  <div class="mx-20   overflow-x-auto ">
+    {{ $projects := site.GetPage "projects" }}
+    {{ range $projects.RegularPages}}
+      <div class="card lg:card-side bg-base-100 my-11">
+        <figure>
+          <img class="w-48 h-48" src="{{ .Params.images }}" alt="Album">
+        </figure>
+        <div class="card-body">
+          <h1 class="card-title text-3xl">{{ .Title}}</h1>
+          {{.Content}}
+          <div class="card-actions">
+            {{ range .Params.frameworks}}
+            <div class="badge"> {{ . }}</div>
+            {{end}}
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div> 
+    {{ end }}
+  </div>
+</div>
+
+{{ end }}
+
