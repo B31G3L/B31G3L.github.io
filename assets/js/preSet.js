@@ -19,7 +19,7 @@ var width = "";
 
 const bgColor = "bgC",
   markerColor = "mC",
-  markerDensity = "mS",
+  markerDensity = "mD",
   markerSize = "mS",
   markerType = "mT";
 
