@@ -37,12 +37,10 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <button id="testMethode">Test</button>
-            <p id="demo">
-
-        </div>
+        <button type="button" id="testClipboard">
+            Test Clipboard
+          </button>
+          <button onclick="window.plugins.socialsharing.share('Message only')">message only</button>
         <script src="cordova.js"></script>
         <script src="js/index.js"></script>
     </body>
