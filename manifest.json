@@ -1,11 +1,11 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "HelloCordova",
-  "short_name": "HelloCordova",
-  "version": "io.cordova.hellocordova",
-  "description": "Sample Apache Cordova App",
-  "author": "Apache Cordova Team",
+  "name": "ScreenTrackr",
+  "short_name": "ScreenTrackr",
+  "version": "com.beigel.screenTracker",
+  "description": "A simple Tool to track the screen.",
+  "author": "Beigel",
   "icons": [],
   "start_url": "index.html"
 }

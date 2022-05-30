@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+    .cover-container {
+        max-width: 42em;
+    }
+
+    .marker {
+        position: absolute;
+    }
+
+    @media (min-width: 768px) {
+        #preview {
+            height: 300px;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        #preview {
+            height: 200px;
+        }
+    }
+}

@@ -1,47 +1,128 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<!doctype html>
+<html lang="en">
 
-    http://www.apache.org/licenses/LICENSE-2.0
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
-            https://cordova.apache.org/docs/en/latest/
-        Some notes:
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <button type="button" id="testClipboard">
-            Test Clipboard
+  <title>ScreenTrackr</title>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <!-- Bootstrap core CSS -->
+  <link href="assets/dist/css/output.css" rel="stylesheet">
+</head>
+
+<body class="flex text-center">
+
+  <div class="cover-container max-w-screen-md p-3 mx-auto">
+    <header class="mb-8 mt-4 w-5/6 mx-auto">
+        <img class="mx-auto w-5/6" src="assets/img/InAppLogo.png" alt="">
+    </header>
+
+    <main class="mb-8 md:w-5/6 mx-auto">
+      <table id="preSetTable" class="table mx-auto w-full md:w-5/6">
+        <tbody>
+          <tr>
+            <td scope="row" class="py-2">Background color</td>
+            <td class="text-right py-2">
+              <input id="BGColor" name="BGColor" type="color" value="#000000">
+            </td>
+          </tr>
+          <tr>
+            <td scope="row" class="py-2">Marker color</td>
+            <td class="text-right py-2">
+              <input id="MarkerColor" name="MarkerColor" type="color" value="#ffffff">
+            </td>
+          </tr>
+          <tr>
+            <td scope="row" class="py-2">Marker density</td>
+            <td class="text-right py-2">
+              <select id="MarkerDensity" name="MarkerDensity" class="select select-primary select-sm">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td scope="row" class="py-2">Marker size</td>
+            <td class="text-right  py-2">
+              <select id="MarkerSize" name="MarkerSize" class="select select-primary select-sm">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td scope="row" class="py-2">Marker type</td>
+            <td class="text-right py-2">
+              <select id="MarkerType" class="select select-primary select-sm" aria-label="Default select example">
+                <option value="pie" selected>Pie</option>
+                <option value="circle">Circle</option>
+                <option value="triangle">Triangle</option>
+                <option value="cross">Cross</option>
+              </select>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-2 mb-4 md:w-5/6 mx-auto" id="preview"></div>
+      <div class="md:w-5/6 mx-auto mb-2 mt-4">
+        <label id="brightnessLabel" for="brightnessInput">Overall brightness: </label>
+        <input id="brightnessInput" type="range" class="range range-primary range-xs" min="1" max="200" value="100">
+      </div>
+      <div class="flex md:w-5/6 mx-auto mt-4 gap-2">
+        <div class="w-full">
+          <button id="startButton" class="btn btn-primary text-black w-full" type="submit"
+            onclick="startPreSet()">Start
           </button>
-          <button onclick="window.plugins.socialsharing.share('Message only')">message only</button>
-        <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
-    </body>
+        </div>
+        <div class="">
+          <button id="copyURLwithParams" class="btn btn-primary btn-full text-black" type="submit"
+            onclick="copyURLwithParams()">
+            <svg width="75%" height="75%" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+              style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;fill:black">
+              <path
+                d="M197.866,48.94C197.026,45.912 196.578,42.724 196.578,39.432C196.578,19.812 212.507,3.883 232.126,3.883C251.746,3.883 267.675,19.812 267.675,39.432C267.675,59.051 251.746,74.98 232.126,74.98C222.485,74.98 213.735,71.134 207.33,64.894L91.401,136.39C92.124,139.213 92.508,142.171 92.508,145.218C92.508,149.419 91.778,153.45 90.437,157.195L208.461,229.983C214.75,224.367 223.042,220.952 232.126,220.952C251.746,220.952 267.675,236.881 267.675,256.5C267.675,276.12 251.746,292.049 232.126,292.049C212.507,292.049 196.578,276.12 196.578,256.5C196.578,252.667 197.186,248.974 198.311,245.514L79.817,172.436C73.637,177.634 65.661,180.767 56.96,180.767C37.34,180.767 21.411,164.838 21.411,145.218C21.411,125.599 37.34,109.67 56.96,109.67C66.85,109.67 75.803,113.718 82.248,120.244L197.866,48.94Z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <input type="checkbox" id="my-modal-6" class="modal-toggle">
+      <div class="modal modal-bottom sm:modal-middle" id="confirmcopy">
+        <div class="modal-box">
+          <p class="py-4">Link copied to clipboard</p>
+          <div class="modal-action">
+            <button for="my-modal-6" class="btn btn-primary text-black" onclick="closeconfirm()">Ok</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="mt-auto text-slate-500">
+
+      <p>
+        <div class="mb-4">
+          &copy;
+          <span id="copyright">
+            <script>
+              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+            </script>
+          </span>
+          <a href="https://www.beigel-dev.com/" class="text-white">Beigel</a>
+          <br>
+
+          in cooperation with
+          <a href="https://www.overmind-studios.de/" class="text-white">Overmind Studios</a><br>
+        </div>
+    </footer>
+  </div>
+
+  <script src="cordova.js"></script>
+  <script src="assets/js/preSet.js"></script>
+
+</body>
+
 </html>
