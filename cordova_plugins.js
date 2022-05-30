@@ -35,6 +35,14 @@ module.exports = [
         "id": "cordova-plugin-device.DeviceProxy",
         "pluginId": "cordova-plugin-device",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-powermanagement/www/powermanagement.js",
+        "id": "cordova-plugin-powermanagement.powermanagement",
+        "pluginId": "cordova-plugin-powermanagement",
+        "clobbers": [
+            "window.powermanagement"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -43,7 +51,8 @@ module.exports.metadata =
     "cordova-clipboard": "1.3.0",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "6.0.3",
-    "cordova-plugin-device": "2.1.0"
+    "cordova-plugin-device": "2.1.0",
+    "cordova-plugin-powermanagement": "1.0.5"
 }
 // BOTTOM OF METADATA
 });

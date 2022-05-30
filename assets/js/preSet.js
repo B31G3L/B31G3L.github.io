@@ -9,7 +9,7 @@ let brightnessInput = document.getElementById("brightnessInput"),
   MarkerType = document.getElementById("MarkerType"),
   confirmcopy = document.getElementById("confirmcopy");
 
-let marker_circle = "assets/img/marker_circle.svg",
+const marker_circle = "assets/img/marker_circle.svg",
   marker_cross = "assets/img/marker_cross.svg",
   marker_pie = "assets/img/marker_pie.svg",
   marker_triangle = "assets/img/marker_triangle.svg";
@@ -17,16 +17,23 @@ let marker_circle = "assets/img/marker_circle.svg",
 var imgPath = "";
 var width = "";
 
+const bgColor = "bgC",
+  markerColor = "mC",
+  markerDensity = "mS",
+  markerSize = "mS",
+  markerType = "mT";
+
+let isFullScreen = false;
 // Default Values
 brightnessLabel.innerHTML = "Overall brightness: " + brightnessInput.value;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 if(queryString !== '' && queryString !== null && queryString !== undefined){
-  BGColor.value = urlParams.get('bgColor')
-  MarkerColor.value = urlParams.get('markerColor')
-  MarkerDensity.value = urlParams.get('markerDensity')
-  MarkerSize.value = urlParams.get('markerSize')
-  MarkerType.value = urlParams.get('markerType')
+  BGColor.value = urlParams.get(bgColor)
+  MarkerColor.value = urlParams.get(markerColor)
+  MarkerDensity.value = urlParams.get(markerDensity)
+  MarkerSize.value = urlParams.get(markerSize)
+  MarkerType.value = urlParams.get(markerType)
 }
 
 
@@ -128,6 +135,19 @@ function updatePreview() {
   }, 500);
 }
 
+function handlerfunktion(event) {
+  
+if(device.platform != 'browser'){
+  if (!isFullScreen) {
+    isFullScreen = true;
+    window.powermanagement.acquire();
+  } else {
+    isFullScreen = false;
+    window.powermanagement.release();
+
+  }
+}
+}
 
 function startPreSet() {
   if (preview.requestFullscreen) {
@@ -138,6 +158,8 @@ function startPreSet() {
     preview.webkitRequestFullscreen();
   }
 }
+
+  preview.onfullscreenchange = handlerfunktion;
 
 
 function setDefaultTracker(imgPath) {
@@ -275,40 +297,3 @@ function setDefaultTracker3(imgPath){
   preview.append(imgBetweenLeftTop, imgBetweenRightTop, imgBetweenLeftBottom, imgBetweenRightBottom);
   
 }
-
-function copyURLwithParams(){
-  const myUrlWithParams = new URL(window.location.href);
-  
-
-  myUrlWithParams.searchParams.append("bgColor", BGColor.value);
-  myUrlWithParams.searchParams.append("markerColor", MarkerColor.value);
-  myUrlWithParams.searchParams.append("markerDensity", MarkerDensity.value);
-  myUrlWithParams.searchParams.append("markerSize", MarkerSize.value);
-  myUrlWithParams.searchParams.append("markerType", MarkerType.value);
-  if(device.platform === 'browser'){
-    
-    var shareData = {
-      title: 'screentrackr',
-      text: 'Link to screentrackr',
-      url: myUrlWithParams.href
-    }
-    try {
-      navigator.share(shareData)
-    } catch(err) {
-    }
-  }else{
-    var options = {
-      subject: 'Link to screentrackr',
-      url: myUrlWithParams.href,
-      chooserTitle: 'Pick an app', 
-    };
-    window.plugins.socialsharing.shareWithOptions(options);
-  }
-
-}
-
-
-function closeconfirm() {
-  confirmcopy.classList.remove("modal-open");
-}
-//share this https://localhost/index.html?bgColor=%23000000&markerColor=%23ffffff&markerDensity=1&markerSize=2&markerType=pie
