@@ -1,121 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
+	<meta name="generator" content="Hugo 0.76.5" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width">
+    <base href="https://b31g3l.github.io/">
+    <title>
+        Beigel
+        
+    </title>
 
-  <title>ScreenTrackr</title>
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-  <!-- Bootstrap core CSS -->
-  <link href="assets/dist/css/output.css" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://b31g3l.github.io/css/tailwind.min.e33a078d10f1198fa4c3b7bd572a59abb658377d84ee88df508dfc4196cbb150.css" as="style">
 </head>
 
-<body class="flex text-center">
+<body class="min-h-screen  ">
+    <div class="navbar bg-base-100 rounded-box z-10 fixed top-0">
+    <a class="btn btn-ghost normal-case text-xl" href="https://b31g3l.github.io/ ">beigel</a>
+</div>
+    
+<div class="lg:mx-20 xl:mx-40  mt-16">
+  <div class="mx-20   overflow-x-auto ">
+    
+    
+      <div class="card lg:card-side bg-base-100 my-11">
+        <figure>
+          <img class="w-48 h-48" src="/img/projects/Beigel_512.png" alt="Album">
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title text-3xl">Leetspeak</h2>
+          <p>is an app that can be used to translate letters into similar looking numbers.<br>
+It doesn&rsquo;t matter whether a letter, a word or more is entered</p>
+<p>There are three ways to use the Leetspeak Generator:</p>
+<ul>
+<li>simple leet (predefined)</li>
+<li>extended leet (predefined)</li>
+<li>custom leet (create your own leet)</li>
+</ul>
 
-  <div class="cover-container max-w-screen-md p-3 mx-auto">
-    <header class="mb-8 mt-4 w-5/6 mx-auto">
-        <img class="mx-auto w-5/6" src="assets/img/InAppLogo.png" alt="">
-    </header>
-
-    <main class="mb-8 md:w-5/6 mx-auto">
-      <table id="preSetTable" class="table mx-auto w-full md:w-5/6">
-        <tbody>
-          <tr>
-            <td scope="row" class="py-2">Background color</td>
-            <td class="text-right py-2">
-              <input id="BGColor" name="BGColor" type="color" value="#000000">
-            </td>
-          </tr>
-          <tr>
-            <td scope="row" class="py-2">Marker color</td>
-            <td class="text-right py-2">
-              <input id="MarkerColor" name="MarkerColor" type="color" value="#ffffff">
-            </td>
-          </tr>
-          <tr>
-            <td scope="row" class="py-2">Marker density</td>
-            <td class="text-right py-2">
-              <select id="MarkerDensity" name="MarkerDensity" class="select select-primary select-sm">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td scope="row" class="py-2">Marker size</td>
-            <td class="text-right  py-2">
-              <select id="MarkerSize" name="MarkerSize" class="select select-primary select-sm">
-                <option value="1">1</option>
-                <option value="2" selected>2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td scope="row" class="py-2">Marker type</td>
-            <td class="text-right py-2">
-              <select id="MarkerType" class="select select-primary select-sm" aria-label="Default select example">
-                <option value="pie" selected>Pie</option>
-                <option value="circle">Circle</option>
-                <option value="triangle">Triangle</option>
-                <option value="cross">Cross</option>
-              </select>
-          </tr>
-        </tbody>
-      </table>
-      <div class="mt-2 mb-4 md:w-5/6 mx-auto" id="preview"></div>
-      <div class="md:w-5/6 mx-auto mb-2 mt-4">
-        <label id="brightnessLabel" for="brightnessInput">Overall brightness: </label>
-        <input id="brightnessInput" type="range" class="range range-primary range-xs" min="1" max="200" value="100">
-      </div>
-      <div class="flex md:w-5/6 mx-auto mt-4 gap-2">
-        <div class="w-full">
-          <button id="startButton" class="btn btn-primary text-black w-full" type="submit"
-            onclick="startPreSet()">Start
-          </button>
-        </div>
-        <div class="">
-          <button id="copyURLwithParams" class="btn btn-primary btn-full text-black" type="submit"
-            onclick="copyURLwithParams()">
-            <svg width="75%" height="75%" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
-              style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;fill:black">
-              <path
-                d="M197.866,48.94C197.026,45.912 196.578,42.724 196.578,39.432C196.578,19.812 212.507,3.883 232.126,3.883C251.746,3.883 267.675,19.812 267.675,39.432C267.675,59.051 251.746,74.98 232.126,74.98C222.485,74.98 213.735,71.134 207.33,64.894L91.401,136.39C92.124,139.213 92.508,142.171 92.508,145.218C92.508,149.419 91.778,153.45 90.437,157.195L208.461,229.983C214.75,224.367 223.042,220.952 232.126,220.952C251.746,220.952 267.675,236.881 267.675,256.5C267.675,276.12 251.746,292.049 232.126,292.049C212.507,292.049 196.578,276.12 196.578,256.5C196.578,252.667 197.186,248.974 198.311,245.514L79.817,172.436C73.637,177.634 65.661,180.767 56.96,180.767C37.34,180.767 21.411,164.838 21.411,145.218C21.411,125.599 37.34,109.67 56.96,109.67C66.85,109.67 75.803,113.718 82.248,120.244L197.866,48.94Z" />
-            </svg>
-          </button>
+          <div class="card-actions">
+            
+            <div class="badge"> skeleton.css</div>
+            
+            <div class="badge"> bitrise.io</div>
+            
+            <div class="badge"> cordova</div>
+            
+          </div>
         </div>
       </div>
-      <input type="checkbox" id="my-modal-6" class="modal-toggle">
-    </main>
-    <footer class="mt-auto text-slate-500">
+      <div class="divider"></div> 
+    
+      <div class="card lg:card-side bg-base-100 my-11">
+        <figure>
+          <img class="w-48 h-48" src="/img/projects/Icon.png" alt="Album">
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title text-3xl">screentrackr</h2>
+          <p>Coming Soon</p>
 
-      <p>
-        <div class="mb-4">
-          &copy;
-          <span id="copyright">
-            <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>
-          </span>
-          <a href="https://www.beigel-dev.com/" class="text-white">Beigel</a>
-          <br>
-
-          in cooperation with
-          <a href="https://www.overmind-studios.de/" class="text-white">Overmind Studios</a><br>
+          <div class="card-actions">
+            
+            <div class="badge"> tailwind CSS</div>
+            
+            <div class="badge"> daisyUI</div>
+            
+            <div class="badge"> bitrise.io</div>
+            
+            <div class="badge"> cordova</div>
+            
+          </div>
         </div>
-    </footer>
+      </div>
+      <div class="divider"></div> 
+    
   </div>
+</div>
 
-  <script src="assets/js/preSet.js"></script>
-  <script src="assets/js/share.js"></script>
-  <script src="cordova.js"></script>
 
+    <footer class="footer footer-center p-4 text-base-content">
+    <div class="grid grid-flow-col gap-4">
+      <a class="link link-hover" href="datenschutz">Datenschutz</a> 
+      <a class="link link-hover" href="impressum">Impressum</a> 
+    </div>
+    <div>
+      <a href='https://ko-fi.com/Q5Q61XW2Y' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+    
+      <p>Copyright © 2022 - All right reserved by Beigel</p>
+    </div>
+  </footer>
 </body>
 
 </html>
