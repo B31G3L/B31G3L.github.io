@@ -25,7 +25,7 @@
     <p class="meta">Stand: [Datum einfügen]</p>
 
     <div class="callout">
-      Entwurf auf Basis der in Dotlist verwendeten Firebase-Dienste (Authentication, Firestore, Cloud Messaging, Cloud Functions). Bitte Platzhalter in eckigen Klammern ausfüllen und Inhalt vor Veröffentlichung prüfen.
+      Entwurf auf Basis der tatsächlich in Dotlist verwendeten Firebase-Dienste (Authentication, Firestore, Cloud Messaging, Cloud Functions). Bitte Platzhalter in eckigen Klammern ausfüllen und Inhalt vor Veröffentlichung prüfen.
     </div>
 
     <article class="policy">
@@ -43,24 +43,30 @@
 
       <h2>3. Registrierung und Anmeldung</h2>
       <p>
-        Beim ersten Start wird automatisch ein anonymes Nutzerkonto über Firebase Authentication angelegt. Optional kannst du dich zusätzlich über Google Sign-In anmelden; dabei werden Name, E-Mail-Adresse und Profilbild deines Google-Kontos verarbeitet, um dein Konto zuzuordnen und eine Anmeldung auf mehreren Geräten zu ermöglichen.
+        Beim ersten Start wird automatisch und ohne weiteres Zutun ein anonymes Nutzerkonto über Firebase Authentication angelegt. Die dabei vergebene Nutzer-ID (UID) dient als eindeutige Kennung deines Geräts und wird verwendet, um deine Listen, Aufgaben und Zuordnungen zu speichern.
+      </p>
+      <p>
+        Optional kannst du dein anonymes Konto zusätzlich mit einem Google-Konto verknüpfen (Google Sign-In). Deine UID bleibt dabei unverändert, sodass alle bisherigen Listen erhalten bleiben. Bei der Verknüpfung werden deine E-Mail-Adresse und dein bei Google hinterlegter Anzeigename verarbeitet; Letzterer wird als Anzeigename innerhalb geteilter Listen genutzt. Ein Profilbild wird nicht verarbeitet.
       </p>
 
       <h2>4. In der App gespeicherte Daten</h2>
       <p>Über Cloud Firestore werden folgende Daten gespeichert:</p>
       <ul>
-        <li>Listen, Aufgaben und deren Inhalte (Titel, Beschreibung, Status, Icon, Farbe)</li>
-        <li>Mitgliedschaften und Rollen bei geteilten Listen (Besitzer, Admin, Bearbeiter)</li>
-        <li>Einladungscodes zum Teilen von Listen</li>
-        <li>Geräte-Token für Push-Benachrichtigungen (Firebase Cloud Messaging)</li>
+        <li>Listen und deren Eigenschaften (Name, Farbe, Icon)</li>
+        <li>Aufgaben innerhalb einer Liste (Titel, Beschreibung, Priorität, Fälligkeitsdatum, Erinnerungszeitpunkt, Erledigt-Status samt Zeitpunkt und ausführender Person, Unteraufgaben)</li>
+        <li>Kommentare zu Aufgaben (Text, Verfasser, Zeitpunkt)</li>
+        <li>Mitgliedschaften und Rollen bei geteilten Listen (Besitzer, Admin, Bearbeiter) sowie die für Mitglieder hinterlegten Anzeigenamen</li>
+        <li>Die Liste selbst dient als Einladungsmittel: Wer die Listen-ID kennt (z. B. per Teilen-Funktion), kann der Liste beitreten</li>
+        <li>Geräte-Token für Push-Benachrichtigungen (Firebase Cloud Messaging), gespeichert je Nutzer-ID</li>
+        <li>Einstellungen zur Stummschaltung von Push-Benachrichtigungen je Liste</li>
       </ul>
       <p>
-        Werden Listen mit anderen Personen geteilt, sind die dort hinterlegten Inhalte auch für diese Personen einsehbar.
+        Werden Listen mit anderen Personen geteilt, sind die dort hinterlegten Inhalte (Aufgaben, Kommentare, Anzeigenamen) auch für diese Personen einsehbar.
       </p>
 
       <h2>5. Push-Benachrichtigungen</h2>
       <p>
-        Für Erinnerungen und Hinweise zu geteilten Listen wird Firebase Cloud Messaging genutzt. Dazu wird ein Geräte-Token an Firebase übermittelt. Benachrichtigungen lassen sich pro Liste in den App-Einstellungen stummschalten.
+        Für Hinweise zu geteilten Listen (z. B. Zuweisung einer Aufgabe, Erledigung, neuer Kommentar, Einladung, Erinnerung an ein Fälligkeitsdatum) wird Firebase Cloud Messaging genutzt. Dazu wird ein Geräte-Token an Firebase übermittelt und mit deiner Nutzer-ID verknüpft. Zusätzlich werden entsprechende In-App-Benachrichtigungen (u. a. Art der Benachrichtigung, Name der auslösenden Person, betroffene Aufgabe) in Firestore gespeichert. Benachrichtigungen lassen sich pro Liste in den App-Einstellungen stummschalten.
       </p>
 
       <h2>6. Serverseitige Verarbeitung (Cloud Functions)</h2>
