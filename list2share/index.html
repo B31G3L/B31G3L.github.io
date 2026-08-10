@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung – List2Share</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">B31G3L<span>.dev</span></div>
+    <nav><a href="../">Alle Apps</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <a class="back-link" href="../">← Zur Übersicht</a>
+    <div class="eyebrow">List2Share</div>
+    <h1>Datenschutzerklärung</h1>
+    <p class="meta">Stand: 12.07.2026</p>
+
+    <div class="callout">
+      List2Share hieß bis vor Kurzem „Dotlist" und wurde nach einer markenrechtlichen Abmahnung umbenannt. Funktionsumfang und Datenverarbeitung sind unverändert.
+    </div>
+
+    <article class="policy">
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Christian Beigelbeck<br>
+        Lusie-Hainlen-Weg 2/3, 73312 Gesilingen, GERMANY<br>
+        E-Mail: beigel.dev@gmail.com
+      </p>
+
+      <h2>2. Überblick der Verarbeitung</h2>
+      <p>
+        List2Share ist eine App zum gemeinsamen Verwalten von Listen und Aufgaben. Zur Bereitstellung dieser Funktionen werden Daten über Google Firebase verarbeitet und gespeichert. Ohne diese Verarbeitung ist die Synchronisation von Listen zwischen Geräten und Nutzern nicht möglich.
+      </p>
+
+      <h2>3. Registrierung und Anmeldung</h2>
+      <p>
+        Beim ersten Start wird automatisch und ohne weiteres Zutun ein anonymes Nutzerkonto über Firebase Authentication angelegt. Die dabei vergebene Nutzer-ID (UID) dient als eindeutige Kennung deines Geräts und wird verwendet, um deine Listen, Aufgaben und Zuordnungen zu speichern.
+      </p>
+      <p>
+        Optional kannst du dein anonymes Konto zusätzlich mit einem Google-Konto verknüpfen (Google Sign-In). Deine UID bleibt dabei unverändert, sodass alle bisherigen Listen erhalten bleiben. Bei der Verknüpfung werden deine E-Mail-Adresse und dein bei Google hinterlegter Anzeigename verarbeitet; Letzterer wird als Anzeigename innerhalb geteilter Listen genutzt. Ein Profilbild wird nicht verarbeitet.
+      </p>
+
+      <h2>4. In der App gespeicherte Daten</h2>
+      <p>Über Cloud Firestore werden folgende Daten gespeichert:</p>
+      <ul>
+        <li>Listen und deren Eigenschaften (Name, Farbe, Icon)</li>
+        <li>Aufgaben innerhalb einer Liste (Titel, Beschreibung, Priorität, Fälligkeitsdatum, Erinnerungszeitpunkt, Erledigt-Status samt Zeitpunkt und ausführender Person, Unteraufgaben)</li>
+        <li>Kommentare zu Aufgaben (Text, Verfasser, Zeitpunkt)</li>
+        <li>Mitgliedschaften und Rollen bei geteilten Listen (Besitzer, Admin, Bearbeiter) sowie die für Mitglieder hinterlegten Anzeigenamen</li>
+        <li>Die Liste selbst dient als Einladungsmittel: Wer die Listen-ID kennt (z. B. per Teilen-Funktion), kann der Liste beitreten</li>
+        <li>Geräte-Token für Push-Benachrichtigungen (Firebase Cloud Messaging), gespeichert je Nutzer-ID</li>
+        <li>Einstellungen zur Stummschaltung von Push-Benachrichtigungen je Liste</li>
+      </ul>
+      <p>
+        Werden Listen mit anderen Personen geteilt, sind die dort hinterlegten Inhalte (Aufgaben, Kommentare, Anzeigenamen) auch für diese Personen einsehbar.
+      </p>
+
+      <h2>5. Push-Benachrichtigungen</h2>
+      <p>
+        Für Hinweise zu geteilten Listen (z. B. Zuweisung einer Aufgabe, Erledigung, neuer Kommentar, Einladung, Erinnerung an ein Fälligkeitsdatum) wird Firebase Cloud Messaging genutzt. Dazu wird ein Geräte-Token an Firebase übermittelt und mit deiner Nutzer-ID verknüpft. Zusätzlich werden entsprechende In-App-Benachrichtigungen (u. a. Art der Benachrichtigung, Name der auslösenden Person, betroffene Aufgabe) in Firestore gespeichert. Benachrichtigungen lassen sich pro Liste in den App-Einstellungen stummschalten.
+      </p>
+
+      <h2>6. Serverseitige Verarbeitung (Cloud Functions)</h2>
+      <p>
+        Bestimmte Funktionen, etwa der Versand von Push-Benachrichtigungen bei Änderungen an geteilten Listen, laufen über Firebase Cloud Functions und greifen dafür auf die in Firestore gespeicherten Daten zu.
+      </p>
+
+      <h2>7. Empfänger und Drittanbieter</h2>
+      <p>
+        List2Share nutzt Dienste von Google Firebase (Google Ireland Limited bzw. Google LLC). Es kann dabei zu einer Übermittlung von Daten in Länder außerhalb der EU/des EWR kommen. Google stellt hierfür Standardvertragsklauseln bereit. Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>.
+      </p>
+
+      <h2>8. Rechtsgrundlage</h2>
+      <p>
+        Die Verarbeitung erfolgt zur Erfüllung des Nutzungsvertrags (Art. 6 Abs. 1 lit. b DSGVO) sowie, soweit du dich über Google anmeldest, auf Basis deiner Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).
+      </p>
+
+      <h2>9. Speicherdauer</h2>
+      <p>
+        Daten werden gespeichert, solange dein Konto bzw. deine Listen bestehen. Nach Löschung deines Kontos oder einzelner Listen werden die zugehörigen Daten entfernt, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+      </p>
+
+      <h2>10. Deine Rechte</h2>
+      <ul>
+        <li>Auskunft über die zu dir gespeicherten Daten (Art. 15 DSGVO)</li>
+        <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
+        <li>Löschung deiner Daten (Art. 17 DSGVO)</li>
+        <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        <li>Beschwerde bei einer Datenschutz-Aufsichtsbehörde</li>
+      </ul>
+      <p>
+        Konto und Listen kannst du direkt in der App löschen. Für weitergehende Anfragen wende dich an die oben genannte Kontaktadresse.
+      </p>
+
+      <h2>11. Kontakt</h2>
+      <p>Bei Fragen zum Datenschutz erreichst du mich unter beigel.dev@gmail.com.</p>
+
+      <h2>12. Änderungen dieser Datenschutzerklärung</h2>
+      <p>
+        Diese Datenschutzerklärung kann bei Änderungen an der App angepasst werden. Die jeweils aktuelle Version findest du auf dieser Seite.
+      </p>
+    </article>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">© <span id="year"></span> B31G3L</div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
