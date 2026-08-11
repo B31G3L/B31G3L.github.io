@@ -22,7 +22,7 @@
     <a class="back-link" href="../">← Zur Übersicht</a>
     <div class="eyebrow">List2Share</div>
     <h1>Datenschutzerklärung</h1>
-    <p class="meta">Stand: 12.07.2026</p>
+    <p class="meta">Stand: 11.08.2026</p>
 
     <div class="callout">
       List2Share hieß bis vor Kurzem „Dotlist" und wurde nach einer markenrechtlichen Abmahnung umbenannt. Funktionsumfang und Datenverarbeitung sind unverändert.
@@ -38,7 +38,7 @@
 
       <h2>2. Überblick der Verarbeitung</h2>
       <p>
-        List2Share ist eine App zum gemeinsamen Verwalten von Listen und Aufgaben. Zur Bereitstellung dieser Funktionen werden Daten über Google Firebase verarbeitet und gespeichert. Ohne diese Verarbeitung ist die Synchronisation von Listen zwischen Geräten und Nutzern nicht möglich.
+        List2Share ist eine App zum Verwalten von Listen und Aufgaben. Neu erstellte Listen werden standardmäßig ausschließlich lokal auf deinem Gerät gespeichert und nicht übertragen. Erst wenn du eine Liste über den „Teilen"-Regler aktiv freigibst, wird sie zur geräteübergreifenden Synchronisation über Google Firebase verarbeitet und gespeichert. Deaktivierst du das Teilen wieder, wird die Liste aus Firebase gelöscht und verbleibt nur noch lokal auf deinem Gerät.
       </p>
 
       <h2>3. Registrierung und Anmeldung</h2>
@@ -49,8 +49,13 @@
         Optional kannst du dein anonymes Konto zusätzlich mit einem Google-Konto verknüpfen (Google Sign-In). Deine UID bleibt dabei unverändert, sodass alle bisherigen Listen erhalten bleiben. Bei der Verknüpfung werden deine E-Mail-Adresse und dein bei Google hinterlegter Anzeigename verarbeitet; Letzterer wird als Anzeigename innerhalb geteilter Listen genutzt. Ein Profilbild wird nicht verarbeitet.
       </p>
 
-      <h2>4. In der App gespeicherte Daten</h2>
-      <p>Über Cloud Firestore werden folgende Daten gespeichert:</p>
+      <h2>4. Lokal gespeicherte Daten (nicht geteilte Listen)</h2>
+      <p>
+        Listen, die du nicht über den „Teilen"-Regler freigibst, werden ausschließlich in einer lokalen Datenbank auf deinem Gerät gespeichert (Name, Farbe, Icon, enthaltene Aufgaben inkl. Beschreibung, Priorität, Fälligkeitsdatum, Unteraufgaben). Diese Daten verlassen dein Gerät nicht, werden nicht an Firebase oder sonstige Server übertragen und sind für niemand anderen einsehbar. Bei einer Deinstallation der App oder Löschung der App-Daten gehen sie verloren.
+      </p>
+
+      <h2>5. In Firestore gespeicherte Daten (geteilte Listen)</h2>
+      <p>Aktivierst du für eine Liste den „Teilen"-Regler, werden über Cloud Firestore folgende Daten gespeichert:</p>
       <ul>
         <li>Listen und deren Eigenschaften (Name, Farbe, Icon)</li>
         <li>Aufgaben innerhalb einer Liste (Titel, Beschreibung, Priorität, Fälligkeitsdatum, Erinnerungszeitpunkt, Erledigt-Status samt Zeitpunkt und ausführender Person, Unteraufgaben)</li>
@@ -61,35 +66,35 @@
         <li>Einstellungen zur Stummschaltung von Push-Benachrichtigungen je Liste</li>
       </ul>
       <p>
-        Werden Listen mit anderen Personen geteilt, sind die dort hinterlegten Inhalte (Aufgaben, Kommentare, Anzeigenamen) auch für diese Personen einsehbar.
+        Werden Listen mit anderen Personen geteilt, sind die dort hinterlegten Inhalte (Aufgaben, Kommentare, Anzeigenamen) auch für diese Personen einsehbar. Deaktivierst du das Teilen wieder, werden diese Daten aus Firestore gelöscht; die Inhalte bleiben dabei lokal auf deinem Gerät erhalten (siehe Punkt 4).
       </p>
 
-      <h2>5. Push-Benachrichtigungen</h2>
+      <h2>6. Push-Benachrichtigungen</h2>
       <p>
-        Für Hinweise zu geteilten Listen (z. B. Zuweisung einer Aufgabe, Erledigung, neuer Kommentar, Einladung, Erinnerung an ein Fälligkeitsdatum) wird Firebase Cloud Messaging genutzt. Dazu wird ein Geräte-Token an Firebase übermittelt und mit deiner Nutzer-ID verknüpft. Zusätzlich werden entsprechende In-App-Benachrichtigungen (u. a. Art der Benachrichtigung, Name der auslösenden Person, betroffene Aufgabe) in Firestore gespeichert. Benachrichtigungen lassen sich pro Liste in den App-Einstellungen stummschalten.
+        Für Hinweise zu geteilten Listen (z. B. Zuweisung einer Aufgabe, Erledigung, neuer Kommentar, Einladung, Erinnerung an ein Fälligkeitsdatum) wird Firebase Cloud Messaging genutzt. Dazu wird ein Geräte-Token an Firebase übermittelt und mit deiner Nutzer-ID verknüpft. Zusätzlich werden entsprechende In-App-Benachrichtigungen (u. a. Art der Benachrichtigung, Name der auslösenden Person, betroffene Aufgabe) in Firestore gespeichert. Benachrichtigungen lassen sich pro Liste in den App-Einstellungen stummschalten. Für rein lokale (nicht geteilte) Listen entstehen keine Push-Benachrichtigungen.
       </p>
 
-      <h2>6. Serverseitige Verarbeitung (Cloud Functions)</h2>
+      <h2>7. Serverseitige Verarbeitung (Cloud Functions)</h2>
       <p>
         Bestimmte Funktionen, etwa der Versand von Push-Benachrichtigungen bei Änderungen an geteilten Listen, laufen über Firebase Cloud Functions und greifen dafür auf die in Firestore gespeicherten Daten zu.
       </p>
 
-      <h2>7. Empfänger und Drittanbieter</h2>
+      <h2>8. Empfänger und Drittanbieter</h2>
       <p>
-        List2Share nutzt Dienste von Google Firebase (Google Ireland Limited bzw. Google LLC). Es kann dabei zu einer Übermittlung von Daten in Länder außerhalb der EU/des EWR kommen. Google stellt hierfür Standardvertragsklauseln bereit. Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>.
+        List2Share nutzt für geteilte Listen Dienste von Google Firebase (Google Ireland Limited bzw. Google LLC). Es kann dabei zu einer Übermittlung von Daten in Länder außerhalb der EU/des EWR kommen. Google stellt hierfür Standardvertragsklauseln bereit. Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>.
       </p>
 
-      <h2>8. Rechtsgrundlage</h2>
+      <h2>9. Rechtsgrundlage</h2>
       <p>
         Die Verarbeitung erfolgt zur Erfüllung des Nutzungsvertrags (Art. 6 Abs. 1 lit. b DSGVO) sowie, soweit du dich über Google anmeldest, auf Basis deiner Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).
       </p>
 
-      <h2>9. Speicherdauer</h2>
+      <h2>10. Speicherdauer</h2>
       <p>
-        Daten werden gespeichert, solange dein Konto bzw. deine Listen bestehen. Nach Löschung deines Kontos oder einzelner Listen werden die zugehörigen Daten entfernt, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+        Lokale Daten bleiben bestehen, bis du sie in der App löschst oder die App deinstallierst. In Firestore gespeicherte Daten (geteilte Listen) bleiben bestehen, solange dein Konto bzw. die jeweilige Liste geteilt ist. Nach Löschung deines Kontos, Deaktivieren des Teilens oder Löschen einzelner Listen werden die zugehörigen Firestore-Daten entfernt, soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
       </p>
 
-      <h2>10. Deine Rechte</h2>
+      <h2>11. Deine Rechte</h2>
       <ul>
         <li>Auskunft über die zu dir gespeicherten Daten (Art. 15 DSGVO)</li>
         <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
@@ -103,10 +108,10 @@
         Konto und Listen kannst du direkt in der App löschen. Für weitergehende Anfragen wende dich an die oben genannte Kontaktadresse.
       </p>
 
-      <h2>11. Kontakt</h2>
+      <h2>12. Kontakt</h2>
       <p>Bei Fragen zum Datenschutz erreichst du mich unter beigel.dev@gmail.com.</p>
 
-      <h2>12. Änderungen dieser Datenschutzerklärung</h2>
+      <h2>13. Änderungen dieser Datenschutzerklärung</h2>
       <p>
         Diese Datenschutzerklärung kann bei Änderungen an der App angepasst werden. Die jeweils aktuelle Version findest du auf dieser Seite.
       </p>
