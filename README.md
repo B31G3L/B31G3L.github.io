@@ -23,6 +23,7 @@ git push -u origin main
    - Dotlist: `https://b31g3l.github.io/dotlist/`
    - NexTime: `https://b31g3l.github.io/nextime/`
    - Leetspeak Generator: `https://b31g3l.github.io/leetspeak-generator/`
+   - Binary-Clock: `https://b31g3l.github.io/binary-clock/`
 
 ## Vor dem Veröffentlichen
 
