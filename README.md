@@ -62,3 +62,11 @@ Pixel-Schrift auf dunklem Grund, Ziffern in Terminal-Grün – passend zur Seite
 | `social-1200x630.png` | 1200 × 630 | Vorschaubild beim Teilen der Website (`og:image`) |
 | `wordmark-dark.*`, `wordmark-light.*` | 1312 × 224 | Schriftzug `B31G3L_` ohne Hintergrund (dark = für dunkle Flächen) |
 | `mark.svg`, `mark-192.png` | – | Kurzform „31“ für kleine Größen; liegt auch als `favicon.svg` im Wurzelordner |
+Es gibt vier Sätze mit jeweils denselben Dateinamen; eine Übersicht zeigt `brand/varianten.png`:
+
+| Ordner | Stil | Schriftzug |
+|---|---|---|
+| `brand/` | Pixel | `B31G3L_` (auf der Website im Einsatz) |
+| `brand/apps/` | Pixel | `B31G3L_APPS` |
+| `brand/led/` | LED-Punktmatrix | `B31G3L_` |
+| `brand/led-apps/` | LED-Punktmatrix | `B31G3L_APPS` |
