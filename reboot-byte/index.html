@@ -4,33 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy / Datenschutzerklärung – Reboot BYTE</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Privacy policy of the Android game Reboot BYTE: the game collects no personal data. Datenschutzerklärung auf Deutsch und Englisch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b7a4b'/%3E%3Ctext x='16' y='22' font-family='monospace' font-weight='700' font-size='15' text-anchor='middle' fill='%23fff'%3E31%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <header class="site">
   <div class="wrap">
-    <div class="brand">B31G3L<span>.dev</span></div>
-    <nav><a href="../">Alle Apps</a></nav>
+    <a class="brand" href="../">B31G3L<i>_</i></a>
+    <nav><a href="../" lang="de">Alle Apps</a></nav>
   </div>
 </header>
 
 <main>
   <div class="wrap">
-    <a class="back-link" href="../">← Zur Übersicht</a>
-    <div class="eyebrow">Reboot BYTE</div>
-    <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: 24 Oct 2026 · <a href="#de">Deutsche Fassung ↓</a></p>
+    <a class="back-link" href="../" lang="de">← Zur Übersicht</a>
+    <p class="eyebrow">Reboot BYTE</p>
+    <h1 class="page-title" id="en">Privacy Policy</h1>
+    <p class="meta">Last updated: 24 Oct 2026 <span class="lang-switch"><a href="#de">Deutsch ↓</a></span></p>
 
-    <article class="policy" id="en">
+    <div class="summary">
+      <h2>In short</h2>
+      <ul>
+        <li>Reboot BYTE does not collect, store on a server or transmit any personal data.</li>
+        <li>The game has no internet permission and works entirely offline.</li>
+        <li>No account, no ads, no tracking, no in-app purchases.</li>
+      </ul>
+    </div>
+
+    <article class="policy">
       <h2>1. Controller</h2>
-      <p>
+      <address>
         Christian Beigelbeck<br>
-        Lusie-Hainlen-Weg 2/3, 73312 Geislingen, GERMANY<br>
-        Email: beigel.dev@gmail.com
-      </p>
+        Lusie-Hainlen-Weg 2/3, 73312 Geislingen, Germany<br>
+        Email: <a href="mailto:beigel.dev@gmail.com">beigel.dev@gmail.com</a>
+      </address>
 
       <h2>2. Summary</h2>
       <p>
@@ -81,16 +90,18 @@
       <p>This policy may be updated when the app changes. The current version is always available on this page.</p>
     </article>
 
-    <h1 id="de" style="margin-top:56px">Datenschutzerklärung</h1>
-    <p class="meta">Stand: 24.10.2026 · <a href="#en">English version ↑</a></p>
+    <hr class="lang-divider">
 
-    <article class="policy">
+    <h1 class="page-title" id="de" lang="de">Datenschutzerklärung</h1>
+    <p class="meta" lang="de">Stand: 24.10.2026 <span class="lang-switch"><a href="#en">English ↑</a></span></p>
+
+    <article class="policy" lang="de">
       <h2>1. Verantwortlicher</h2>
-      <p>
+      <address>
         Christian Beigelbeck<br>
-        Lusie-Hainlen-Weg 2/3, 73312 Geislingen, GERMANY<br>
-        E-Mail: beigel.dev@gmail.com
-      </p>
+        Lusie-Hainlen-Weg 2/3, 73312 Geislingen, Deutschland<br>
+        E-Mail: <a href="mailto:beigel.dev@gmail.com">beigel.dev@gmail.com</a>
+      </address>
 
       <h2>2. Grundsatz</h2>
       <p>
@@ -143,7 +154,10 @@
 </main>
 
 <footer class="site">
-  <div class="wrap">© <span id="year"></span> B31G3L</div>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Christian Beigelbeck</span>
+    <span><a href="../impressum/" lang="de">Impressum &amp; Datenschutz dieser Website</a></span>
+  </div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
