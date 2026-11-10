@@ -15,9 +15,9 @@ Reines HTML und CSS, kein Build-Schritt. Die Seite lädt bewusst nichts von Drit
 | `/leetspeak-generator/` | Datenschutz Leetspeak Generator | DE |
 | `/binary-clock/` | Datenschutz Binary-Clock | DE |
 | `/housepot/` | Datenschutz Housepot, mit Löschanleitung unter `#konto-loeschen` | DE + EN |
-| `/list2share/` | Datenschutz List2Share (App wird eingestellt) | DE |
+| `/list2share/` | Datenschutz List2Share (App wird eingestellt; nicht mehr auf der Startseite verlinkt) | DE |
 | `/dotlist/` | Weiterleitung auf `/list2share/` (alter App-Name) | – |
-| `/reboot-byte/` | Datenschutz Reboot BYTE | EN + DE |
+| `/reboot-byte/` | Datenschutz Reboot BYTE (nicht mehr auf der Startseite verlinkt) | EN + DE |
 | `/bits-and-bolts/` | Datenschutz Bits & Bolts | DE + EN |
 | `/impressum/` | Impressum und Datenschutz der Website | DE |
 
