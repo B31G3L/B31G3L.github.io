@@ -54,7 +54,7 @@ Pixel-Schrift auf dunklem Grund, Ziffern in Terminal-Grün – passend zur Seite
 | Datei | Größe | Wofür |
 |---|---|---|
 | `play-icon-512.png` | 512 × 512 | Google Play: Entwicklerseite, Symbol |
-| `play-header-4096x2304.png` | 4096 × 2304 | Google Play: Entwicklerseite, Header-Bild |
+| `play-header-4096x2304.png` | 4096 × 2304 | Google Play: Entwicklerseite, Header-Bild (mit Schlagworten in Leet) |
 | `play-feature-1024x500.png` | 1024 × 500 | Google Play: Vorstellungsgrafik (neutral, ohne App-Bezug) |
 | `avatar-1024.png` | 1024 × 1024 | Profilbild (GitHub, Ko-fi, Google-Konto) – wird dort rund zugeschnitten |
 | `logo-512.png`, `logo.svg` | 512 × 512 | Logo mit runden Ecken, `logo-light.svg` für helle Flächen |
@@ -62,11 +62,3 @@ Pixel-Schrift auf dunklem Grund, Ziffern in Terminal-Grün – passend zur Seite
 | `social-1200x630.png` | 1200 × 630 | Vorschaubild beim Teilen der Website (`og:image`) |
 | `wordmark-dark.*`, `wordmark-light.*` | 1312 × 224 | Schriftzug `B31G3L_` ohne Hintergrund (dark = für dunkle Flächen) |
 | `mark.svg`, `mark-192.png` | – | Kurzform „31“ für kleine Größen; liegt auch als `favicon.svg` im Wurzelordner |
-Es gibt vier Sätze mit jeweils denselben Dateinamen; eine Übersicht zeigt `brand/varianten.png`:
-
-| Ordner | Stil | Schriftzug |
-|---|---|---|
-| `brand/` | Pixel | `B31G3L_` (auf der Website im Einsatz) |
-| `brand/apps/` | Pixel | `B31G3L_APPS` |
-| `brand/led/` | LED-Punktmatrix | `B31G3L_` |
-| `brand/led-apps/` | LED-Punktmatrix | `B31G3L_APPS` |
