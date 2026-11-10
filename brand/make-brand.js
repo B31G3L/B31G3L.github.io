@@ -26,6 +26,7 @@ const G = {
   C: ['.####', ...rep('#....', 5), '.####'],
   F: ['#####', '#....', '#....', '####.', '#....', '#....', '#....'],
   V: [...rep('#...#', 5), '.#.#.', '..#..'],
+  P: ['####.', '#...#', '#...#', '####.', '#....', '#....', '#....'],
   ' ': rep('...', 7),
 };
 
@@ -120,7 +121,7 @@ function banner(w, h, c, pal, tags, tc, bg = c) {
   return svg(w, h, body);
 }
 
-const TAGS = ['0HN3 W3RBUNG', 'M1T L31D3NSCH4FT', 'S0L0 D3V'];
+const TAGS = ['N0 4DS', 'M4D3 W1TH P4SS10N', 'S0L0 D3V'];
 
 const files = {
   'logo.svg': logo(DARK, true),
