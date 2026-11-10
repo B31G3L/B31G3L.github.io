@@ -173,16 +173,10 @@ footer.site a { color: var(--ink-soft); }
 
 .app-icon {
   flex: none;
-  display: grid;
-  place-items: center;
   width: 46px;
   height: 46px;
   border-radius: 12px;
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: #fff;
-  background: hsl(var(--h, 150) 45% 34%);
+  object-fit: cover;
 }
 
 .app-title { margin: 0; font-size: 1.08rem; }
