@@ -166,6 +166,16 @@ COLORS = {
 }
 
 
+## Familien (geplant für Bolt Buddies 1.1): Name, Bonus, Mitglieder
+FAMILIES = [
+    ("Zahlensysteme", "mehr Volltreffer", ["OKTA", "HEXA", "ASKI", "CHROMA", "PIXA", "NIBBLE"]),
+    ("Logikgatter", "mehr Panzerung", ["GATE", "XOR", "NULL", "PARI", "QUBIT", "MIRA"]),
+    ("Prozesse", "mehr Tempo", ["BYTE", "LOOP", "SHIFT", "DAEMON", "ROOT", "MORSE"]),
+    ("Störenfriede", "mehr Schaden, mehr Rost", ["VIRUS", "ERROR", "GLITCH", "PATCH"]),
+]
+FAMILY = {b: name for name, _, members in FAMILIES for b in members}
+
+
 def copy_sprites():
     """Holt die Sprites aus Bolt Buddies, wenn der Ordner daneben liegt. Sonst bleiben die vorhandenen."""
     src = os.path.join(OUT, "..", "Bolt-Buddies", "assets", "robots")
@@ -190,7 +200,7 @@ def bot_card(b):
     return f"""<li class="bot-card" id="{b.lower()}" style="--bot:#{COLORS[b]}">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/{b.lower()}.png" width="80" height="96" alt="{b}" loading="lazy"></div>
-    <div class="bot-name"><h3>{b}</h3><span class="bot-say">„{html.escape(SAYS[b])}“</span>{hero}</div>
+    <div class="bot-name"><h3>{b}</h3><span class="bot-say">„{html.escape(SAYS[b])}“</span><a class="bot-family" href="#familien">Familie: {FAMILY[b]}</a>{hero}</div>
   </div>
   <section class="bot-game bot-game-puzzle">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">{ROLE[b]}</span></h4>
@@ -248,6 +258,7 @@ write("", head("Archiv der Roboter", "Das Archiv",
 # Roboter
 cards = "\n".join(bot_card(b) for b in ORDER)
 index = "".join(f'<a href="#{b.lower()}" style="--bot:#{COLORS[b]}"><img src="bots/{b.lower()}.png" width="40" height="48" alt="" loading="lazy"><span>{b}</span></a>' for b in ORDER)
+assert sorted(FAMILY) == sorted(ORDER), "jeder Roboter braucht genau eine Familie"
 copy_sprites()
 write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
     "Alle 22 Roboter in der Reihenfolge, in der man sie in Bits &amp; Bolts freischaltet. Jeder bringt ins Rätsel eine eigene Fähigkeit mit und hat in Bolt Buddies eigene Kampfwerte.") + f"""
@@ -262,11 +273,7 @@ write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
       <section class="wiki-sec" id="familien" style="margin-top:40px">
         <h2>Familien <span class="badge badge-plan">Geplant</span></h2>
         <p>Geplant für Bolt Buddies 1.1: Zwei Roboter derselben Familie im Team geben einen kleinen Bonus, drei einen größeren.</p>
-        {table(["Familie", "Roboter", "Bonus"], [
-            ["<b>Zahlensysteme</b>", "OKTA, HEXA, ASKI, CHROMA, PIXA, NIBBLE", "mehr Volltreffer"],
-            ["<b>Logikgatter</b>", "GATE, XOR, NULL, PARI, QUBIT, MIRA", "mehr Panzerung"],
-            ["<b>Prozesse</b>", "BYTE, LOOP, SHIFT, DAEMON, ROOT, MORSE", "mehr Tempo"],
-            ["<b>Störenfriede</b>", "VIRUS, ERROR, GLITCH, PATCH", "mehr Schaden, mehr Rost"]])}
+        {table(["Familie", "Roboter", "Bonus"], [[f"<b>{name}</b>", " ".join(f'<a class="fam-bot" href="#{m.lower()}" style="--bot:#{COLORS[m]}"><img src="bots/{m.lower()}.png" width="20" height="24" alt="">{m}</a>' for m in members), bonus] for name, bonus, members in FAMILIES])}
       </section>
 """, "Alle 22 Roboter aus Bits & Bolts und Bolt Buddies: Rätselfähigkeit, Freischaltung, Kampfwerte und Eigenheit.")
 
