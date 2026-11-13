@@ -1,6 +1,6 @@
 # Erzeugt die Archiv-Seiten (Wiki zum Roboter-Universum) für B31G3L.github.io.
 # Aufruf aus dem Repo: python tools/make_archiv.py
-import os, sys, html
+import os, sys, html, shutil
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 STAND = "13.11.2026"
@@ -157,6 +157,26 @@ HERO = {"BYTE": "Bits & Bolts, Bolt Buddies", "LOOP": "Loop Runner (geplant)", "
         "SHIFT": "Loop Runner (geplant)", "QUBIT": "Loop Runner (geplant)"}
 ATTR = ["Leistung", "Takt", "Logik", "Gehäuse"]
 
+## Farben der Roboter wie in Bolt Buddies (ui/style.gd), für den Rahmen ums Sprite
+COLORS = {
+    "BYTE": "3DFF7A", "OKTA": "FF9E2C", "HEXA": "4DE8FF", "PIXA": "FF5CF0", "ASKI": "E8F0FF", "CHROMA": "7FB2FF",
+    "GATE": "FFD34D", "LOOP": "7CFFB0", "NULL": "B4BECC", "PARI": "2CE6B0", "MIRA": "C9A8FF", "SHIFT": "6FC3FF",
+    "XOR": "FF7A45", "GLITCH": "B07CFF", "PATCH": "5C8DFF", "NIBBLE": "C6FF3D", "QUBIT": "7DF9FF", "ROOT": "4CC26A",
+    "VIRUS": "8CFF4D", "ERROR": "FF4D4D", "DAEMON": "C04DFF", "MORSE": "FFC66B",
+}
+
+
+def copy_sprites():
+    """Holt die Sprites aus Bolt Buddies, wenn der Ordner daneben liegt. Sonst bleiben die vorhandenen."""
+    src = os.path.join(OUT, "..", "Bolt-Buddies", "assets", "robots")
+    dst = os.path.join(OUT, "archiv", "roboter", "bots")
+    if not os.path.isdir(src):
+        return
+    os.makedirs(dst, exist_ok=True)
+    for b in ORDER:
+        shutil.copyfile(os.path.join(src, b.lower() + ".png"), os.path.join(dst, b.lower() + ".png"))
+
+
 def bar(v):
     return f'<span class="pips" aria-label="{v} von 6">' + "".join(
         f'<i class="{"on" if i < v else ""}"></i>' for i in range(6)) + "</span>"
@@ -166,16 +186,22 @@ def bot_card(b):
     unlock = "von Anfang an" if not u else f"nach {u[0]} {'Sieg' if u[0] == 1 else 'Siegen'}, Stufe {u[1]} geschafft"
     stats = "".join(f"<div><dt>{a}</dt><dd>{bar(v)}<span class=\"num\">{v}</span></dd></div>"
                     for a, v in zip(ATTR, BASE[b]))
-    hero = f'<div><dt>Held in</dt><dd>{html.escape(HERO[b])}</dd></div>' if b in HERO else ""
-    return f"""<li class="bot-card" id="{b.lower()}">
-  <div class="bot-head"><h3>{b}</h3><span class="bot-say">„{html.escape(SAYS[b])}“</span></div>
-  <p class="bot-section">Bits &amp; Bolts · <span>{ROLE[b]}</span></p>
-  <p>{html.escape(PUZZLE[b])}</p>
-  <p class="bot-unlock">Freigeschaltet {unlock}</p>
-  <p class="bot-section">Bolt Buddies · <span>Eigenheit</span></p>
-  <p>{html.escape(TRAIT[b])}</p>
-  <dl class="bot-stats">{stats}</dl>
-  {f'<dl class="bot-stats bot-hero">{hero}</dl>' if hero else ''}
+    hero = f'<p class="bot-hero">Held in {html.escape(HERO[b])}</p>' if b in HERO and "geplant" in HERO[b] else ""
+    return f"""<li class="bot-card" id="{b.lower()}" style="--bot:#{COLORS[b]}">
+  <div class="bot-head">
+    <div class="bot-screen"><img src="bots/{b.lower()}.png" width="80" height="96" alt="{b}" loading="lazy"></div>
+    <div class="bot-name"><h3>{b}</h3><span class="bot-say">„{html.escape(SAYS[b])}“</span>{hero}</div>
+  </div>
+  <section class="bot-game bot-game-puzzle">
+    <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">{ROLE[b]}</span></h4>
+    <p>{html.escape(PUZZLE[b])}</p>
+    <p class="bot-unlock">Freigeschaltet {unlock}</p>
+  </section>
+  <section class="bot-game bot-game-fight">
+    <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
+    <p><b>Eigenheit:</b> {html.escape(TRAIT[b])}</p>
+    <dl class="bot-stats">{stats}</dl>
+  </section>
 </li>"""
 
 # ── Seiten ───────────────────────────────────────────────────────────────────
@@ -221,12 +247,13 @@ write("", head("Archiv der Roboter", "Das Archiv",
 
 # Roboter
 cards = "\n".join(bot_card(b) for b in ORDER)
-index = " · ".join(f'<a href="#{b.lower()}">{b}</a>' for b in ORDER)
+index = "".join(f'<a href="#{b.lower()}" style="--bot:#{COLORS[b]}"><img src="bots/{b.lower()}.png" width="40" height="48" alt="" loading="lazy"><span>{b}</span></a>' for b in ORDER)
+copy_sprites()
 write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
     "Alle 22 Roboter in der Reihenfolge, in der man sie in Bits &amp; Bolts freischaltet. Jeder bringt ins Rätsel eine eigene Fähigkeit mit und hat in Bolt Buddies eigene Kampfwerte.") + f"""
-      <p class="bot-index">{index}</p>
+      <nav class="bot-index" aria-label="Roboter">{index}</nav>
       <div class="callout wiki-note">
-        <b>So liest du die Karten:</b> Die Punkte zeigen die Grundwerte auf Stufe 1, zusammen immer 12. Je Stufe wächst jedes Attribut um 12 % seines Grundwerts, höchstens bis Stufe 20.
+        <b>So liest du die Karten:</b> Jede Karte zeigt, was der Roboter in beiden Spielen kann: oben in Bits &amp; Bolts, unten in Bolt Buddies. Die Punkte sind die Grundwerte auf Stufe 1, zusammen immer 12. Je Stufe wächst jedes Attribut um 12 % seines Grundwerts, höchstens bis Stufe 20.
         In Bolt Buddies findet man neue Roboter im Schrottschacht, nach Kampf 2, 5, 8 und so weiter.
       </div>
       <ul class="bot-grid">
