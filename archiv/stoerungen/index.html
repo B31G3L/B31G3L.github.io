@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Störungsprotokoll – Archiv der Roboter</title>
+<meta name="description" content="Gegner und Ereignisse im Roboter-Universum: Bug, Spam-Drohne, Firewall, Rostwurm, Bluescreen und acht Störungen.">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap wrap-wide">
+    <a class="brand" href="../../">B31G3L<i>_</i></a>
+    <nav><a href="../../#spiele">Spiele</a><a href="../../archiv/">Archiv</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap wrap-wide wiki">
+    <nav class="wiki-nav" aria-label="Archiv">
+      <p class="eyebrow">Archiv</p>
+      <ul>
+        <li><a href="../../archiv/">Das Archiv<small>Übersicht</small></a></li>
+        <li><a href="../../archiv/roboter/">Roboter-Register<small>Alle 22 Roboter</small></a></li>
+        <li><a href="../../archiv/einsaetze/">Einsatzorte<small>Die Spiele</small></a></li>
+        <li><a href="../../archiv/weltkarte/">Weltkarte<small>Orte der Welt</small></a></li>
+        <li><a href="../../archiv/regelwerk/">Regelwerk<small>Binär-Rätsel</small></a></li>
+        <li><a href="../../archiv/stoerungen/" aria-current="page">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
+        <li><a href="../../archiv/ersatzteile/">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
+        <li><a href="../../archiv/funk/">Funkverbindung<small>Spiele verbinden</small></a></li>
+      </ul>
+    </nav>
+    <article class="wiki-page">
+      <p class="eyebrow">Archiv · Störungsprotokoll</p>
+      <h1 class="page-title">Störungsprotokoll</h1>
+      <p class="wiki-lead">Alles, was im Rechner schiefgehen kann: Gegner, die im Schrottschacht angreifen, und Ereignisse, die Rätsel im Hauptrechner schwerer machen.</p>
+
+      <section class="wiki-sec">
+        <h2>Gegner im Schrottschacht</h2>
+        <p>Aus Bolt Buddies. Die Werte gelten für den ersten Auftritt, weiter unten werden Gegner stärker. In Block Invaders sollen dieselben Gegner die Werkstatt angreifen.</p>
+        <div class="wiki-table wiki-table-num"><table>
+<thead><tr><th>Gegner</th><th>Taucht auf</th><th>Leben</th><th>Schaden</th><th>Verhalten</th></tr></thead>
+<tbody>
+<tr><td><b>Bug</b></td><td>ab Kampf 1</td><td>12</td><td>3</td><td>Der häufigste Gegner. Schwach, aber oft in Gruppen.</td></tr>
+<tr><td><b>Spam-Drohne</b></td><td>ab Kampf 2</td><td>9</td><td>4</td><td>Fliegt über die vorderen Reihen hinweg und zielt auf den hintersten Roboter.</td></tr>
+<tr><td><b>Firewall</b></td><td>ab Kampf 3</td><td>12</td><td>8</td><td>Langsam, schießt aber wild und hart auf irgendwen im Team.</td></tr>
+<tr><td><b>Rostwurm</b></td><td>ab Kampf 4</td><td>34</td><td>7</td><td>Zäh und gepanzert. Hält lange durch.</td></tr>
+<tr><td><b>Bluescreen</b></td><td>jeder 5. Kampf</td><td>80</td><td>8</td><td>Der Boss. Trifft das ganze Team zugleich und hinterlässt ein seltenes Teil und einen Akku.</td></tr>
+</tbody>
+</table></div>
+
+      </section>
+      <section class="wiki-sec">
+        <h2>Ereignisse im Hauptrechner</h2>
+        <p>Aus Bits &amp; Bolts. Sie treffen Zwischenrechner, den Hauptrechner und auf hohen Stufen auch normale Rätsel. Vier davon bringen Roboter als Eigenart in jedes Rätsel mit, dafür haben sie mehr Ladung oder Tipps.</p>
+        <div class="wiki-table"><table>
+<thead><tr><th>Ereignis</th><th>Bringt mit</th><th>Wirkung</th></tr></thead>
+<tbody>
+<tr><td><b>Stromausfall</b></td><td>–</td><td>Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück.</td></tr>
+<tr><td><b>Überspannung</b></td><td>–</td><td>Ein Kurzschluss kostet 2 Ladungen statt 1.</td></tr>
+<tr><td><b>Wackelkontakt</b></td><td>–</td><td>Immer wieder erlischt eine deiner Ziffern und muss neu eingetragen werden.</td></tr>
+<tr><td><b>Störsignal</b></td><td>–</td><td>Immer wieder taucht eine falsche Notiz auf.</td></tr>
+<tr><td><b>Falsche Vorgabe</b></td><td><a href="../roboter/#error">ERROR</a></td><td>Eine Vorgabe zeigt die falsche Ziffer. Wische die andere Ziffer darauf. Wer eine richtige Vorgabe anzweifelt, bekommt einen Kurzschluss.</td></tr>
+<tr><td><b>Ansteckung</b></td><td><a href="../roboter/#virus">VIRUS</a></td><td>Bei einem Kurzschluss erlischt auch eine eingetragene Ziffer daneben.</td></tr>
+<tr><td><b>Zeitdruck</b></td><td><a href="../roboter/#daemon">DAEMON</a></td><td>Wer zu lange nichts Richtiges einträgt, verliert eine Ladung. Jede richtige Ziffer setzt die Uhr zurück.</td></tr>
+<tr><td><b>Nebel</b></td><td><a href="../roboter/#morse">MORSE</a></td><td>Klar zu sehen ist nur die Umgebung der zuletzt berührten Zelle.</td></tr>
+</tbody>
+</table></div>
+
+      </section>
+
+      <p class="meta wiki-stand">Stand der Einträge: 13.11.2026. Spiele mit „In Entwicklung“ oder „Geplant“ können sich noch ändern.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap wrap-wide">
+    <span>© 2026 Christian Beigelbeck</span>
+    <span><a href="../../impressum/">Impressum &amp; Datenschutz dieser Website</a></span>
+  </div>
+</footer>
+</body>
+</html>

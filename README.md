@@ -20,6 +20,7 @@ Reines HTML und CSS, kein Build-Schritt. Die Seite lädt bewusst nichts von Drit
 | `/reboot-byte/` | Datenschutz Reboot BYTE (nicht mehr auf der Startseite verlinkt) | EN + DE |
 | `/bits-and-bolts/` | Datenschutz Bits & Bolts | DE + EN |
 | `/impressum/` | Impressum und Datenschutz der Website | DE |
+| `/archiv/` | Archiv der Roboter: Wiki zum Roboter-Universum mit Unterseiten `roboter/`, `einsaetze/`, `weltkarte/`, `regelwerk/`, `stoerungen/`, `ersatzteile/`, `funk/` | DE |
 
 Die Links trägst du in der Play Console als „Link zur Datenschutzerklärung“ ein.
 Für Housepot eignet sich `https://b31g3l.github.io/housepot/#konto-loeschen` als URL für Löschanträge.
