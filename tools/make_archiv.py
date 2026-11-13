@@ -266,7 +266,7 @@ write("einsaetze", head("Archiv · Einsatzorte", "Einsatzorte",
          "Heimat aller Roboter: Stufen, Ausrüstung, Pflege", "Alle 22 Roboter, als Erster BYTE",
          '        <h3 class="wiki-sub">Was noch kommt</h3>\n'
          + table(["Feature", "Worum es geht", "Version"], [
-             ["<b>Schacht-Ebenen</b>", 'Alle 10 Kämpfe eine neue Ebene mit eigenen Gegnern und eigenem Boss, dazu Haltestellen zum Direkteinstieg. Siehe <a href="../weltkarte/#ebenen">Weltkarte</a>.', "1.0"],
+             ["<b>Schacht-Ebenen</b>", 'Umgesetzt: Alle 10 Kämpfe eine neue Ebene mit eigenen Gegnern und eigenem Wächter, dazu Haltestellen zum Direkteinstieg. Siehe <a href="../weltkarte/#ebenen">Weltkarte</a>.', "1.0"],
              ["<b>Werkstatt-Ausbau</b>", 'Ladeleiste, Ölbad, Spielecke, Werkbank und Funkantenne für Schrauben ausbauen. Siehe <a href="../ersatzteile/#ausbau">Ersatzteillager</a>.', "1.0"],
              ["<b>Werkbank</b>", "Teile zu Schrott zerlegen und damit andere Teile aufwerten.", "1.0"],
              ["<b>Tagesschacht</b>", "Einmal am Tag eine Expedition mit festem Seed und kleiner Vorgabe. Eine Serie zählt mit, ein verpasster Tag pausiert sie nur.", "1.0"],
@@ -311,12 +311,12 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
       </section>
       <section class="wiki-sec" id="ebenen">
         <h2>Die Ebenen des Schrottschachts</h2>
-        <p>Geplant für Bolt Buddies 1.0: Alle 10 Kämpfe beginnt eine neue Ebene. Wer eine Ebene einmal erreicht hat, kann an ihrer Haltestelle direkt einsteigen.</p>
+        <p>Kommt mit Bolt Buddies 1.0: Alle 10 Kämpfe beginnt eine neue Ebene, im letzten Kampf wartet ihr Wächter. Wer ihn besiegt, kann künftig an der Haltestelle der nächsten Ebene einsteigen und bekommt dafür von der Werkstatt Module mit.</p>
         <ul class="place-list">
-{place("Speicherkeller", "Kampf 1–10", "Bugs und Spam-Drohnen zwischen alten Speicherriegeln. Hier beginnt jede neue Werkstatt.", PLAN)}
-{place("Kabelschacht", "Kampf 11–20", "Enge Gänge voller Leitungen. Firewalls und Rostwürmer tauchen hier viel öfter auf.", PLAN)}
-{place("Kühlkreislauf", "Kampf 21–30", "Kalt, nass und laut. Hier lebt ein Gegner, den es weiter oben nicht gibt.", PLAN)}
-{place("Kernzone", "ab Kampf 31", "So tief ist noch kein Roboter gekommen.", PLAN)}
+{place("Speicherkeller", "Kampf 1–10 · Wächter: Bluescreen", "Bugs, Spam-Drohnen, Firewalls und Rostwürmer zwischen alten Speicherriegeln. Hier beginnt jede neue Werkstatt.", PLAN)}
+{place("Kabelschacht", "Kampf 11–20 · Wächter: Kurzschluss", "Enge Gänge voller Leitungen, der Boden schimmert kupfern. Firewalls und Rostwürmer tauchen hier doppelt so oft auf.", PLAN)}
+{place("Kühlkreislauf", "Kampf 21–30 · Wächter: Kältekern", "Kalt, nass und eisblau. Hier leben Frostbugs, deren Treffer die Roboter abkühlen.", PLAN)}
+{place("Kernzone", "ab Kampf 31 · Wächter wechseln", "Der rote Kern des Rechners. Alle Gegner gemischt, die drei Wächter wechseln sich ab, und es geht endlos weiter.", PLAN)}
         </ul>
       </section>
       <section class="wiki-sec">
@@ -407,7 +407,10 @@ ENEMIES = [
     ("Spam-Drohne", "ab Kampf 2", "9", "4", "Fliegt über die vorderen Reihen hinweg und zielt auf den hintersten Roboter."),
     ("Firewall", "ab Kampf 3", "12", "8", "Langsam, schießt aber wild und hart auf irgendwen im Team."),
     ("Rostwurm", "ab Kampf 4", "34", "7", "Zäh und gepanzert. Hält lange durch."),
-    ("Bluescreen", "jeder 5. Kampf", "80", "8", "Der Boss. Trifft das ganze Team zugleich und hinterlässt ein seltenes Teil und einen Akku."),
+    ("Bluescreen", "Kampf 5, 10, 15 …", "80", "8", "Der Boss. Trifft das ganze Team zugleich und hinterlässt ein seltenes Teil und einen Akku. Wächter des Speicherkellers."),
+    ("Frostbug", "ab Kampf 21 · 1.0", "16", "4", "Lebt im Kühlkreislauf. Seine Treffer kühlen ab: Wer getroffen wird, ist später wieder dran."),
+    ("Kurzschluss", "Kampf 20 · 1.0", "75", "9", "Wächter des Kabelschachts. Schnell, schlägt wild um sich und landet viele Volltreffer."),
+    ("Kältekern", "Kampf 30 · 1.0", "95", "7", "Wächter des Kühlkreislaufs. Trifft das ganze Team und kühlt alle zugleich ab."),
 ]
 EVENTS = [
     ("Stromausfall", "", "Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück."),
@@ -423,7 +426,7 @@ write("stoerungen", head("Archiv · Störungsprotokoll", "Störungsprotokoll",
     "Alles, was im Rechner schiefgehen kann: Gegner, die im Schrottschacht angreifen, und Ereignisse, die Rätsel im Hauptrechner schwerer machen.") + f"""
       <section class="wiki-sec">
         <h2>Gegner im Schrottschacht</h2>
-        <p>Aus Bolt Buddies. Die Werte gelten für den ersten Auftritt, weiter unten werden Gegner stärker. In Block Invaders sollen dieselben Gegner die Werkstatt angreifen.</p>
+        <p>Aus Bolt Buddies. Das sind die Grundwerte, mit jedem Kampf werden Gegner zäher und stärker. Frostbug, Kurzschluss und Kältekern kommen mit Bolt Buddies 1.0. In Block Invaders sollen dieselben Gegner die Werkstatt angreifen.</p>
         {table(["Gegner", "Taucht auf", "Leben", "Schaden", "Verhalten"], [[f"<b>{a}</b>", b, c, d, e] for a, b, c, d, e in ENEMIES], " wiki-table-num")}
       </section>
       <section class="wiki-sec">
