@@ -8,10 +8,10 @@ STAND = "13.11.2026"
 PAGES = [  # slug, Titel im Menü, Untertitel
     ("", "Das Archiv", "Übersicht"),
     ("roboter", "Roboter-Register", "Alle 22 Roboter"),
+    ("stoerungen", "Störungsprotokoll", "Gegner und Ereignisse"),
     ("einsaetze", "Einsatzorte", "Die Spiele"),
     ("weltkarte", "Weltkarte", "Orte der Welt"),
     ("regelwerk", "Regelwerk", "Binär-Rätsel"),
-    ("stoerungen", "Störungsprotokoll", "Gegner und Ereignisse"),
     ("ersatzteile", "Ersatzteillager", "Ausrüstung und Werte"),
     ("funk", "Funkverbindung", "Spiele verbinden"),
 ]
@@ -221,10 +221,10 @@ links = "\n".join(
     f'<li class="app-card"><a class="wiki-card-link" href="{s}/"><h3 class="app-title">{t}</h3><p class="app-desc">{d}</p></a></li>'
     for s, t, d in [
         ("roboter", "Roboter-Register", "Alle 22 Roboter mit Rätselfähigkeit, Kampfwerten, Eigenheit und Spruch."),
+        ("stoerungen", "Störungsprotokoll", "Alle Gegner mit Sprite, Werten und Beute, dazu die Ereignisse im Hauptrechner."),
         ("einsaetze", "Einsatzorte", "Die Spiele des Universums: was man dort tut und was es den Robotern bringt."),
         ("weltkarte", "Weltkarte", "Hauptrechner, Werkstatt, Schrottschacht und die Orte, die noch kommen."),
         ("regelwerk", "Regelwerk", "Die Binär-Regeln aus Bits & Bolts, alle Zusatzregeln und die Schwierigkeitsstufen."),
-        ("stoerungen", "Störungsprotokoll", "Bugs, Spam-Drohnen, Firewalls, Rostwürmer, der Bluescreen und alle Ereignisse."),
         ("ersatzteile", "Ersatzteillager", "Attribute, Ausrüstung, Seltenheiten, Module und Vorräte."),
         ("funk", "Funkverbindung", "Wie die Spiele später miteinander reden, damit Roboter überall stärker werden."),
     ])
@@ -447,39 +447,131 @@ write("regelwerk", head("Archiv · Regelwerk", "Regelwerk",
 """, "Regelwerk der Binär-Rätsel aus Bits & Bolts: Grundregeln, 18 Zusatzregeln, Lösungsschritte und Schwierigkeitsstufen.")
 
 # Störungsprotokoll
-ENEMIES = [
-    ("Bug", "ab Kampf 1", "12", "3", "Der häufigste Gegner. Schwach, aber oft in Gruppen."),
-    ("Spam-Drohne", "ab Kampf 2", "9", "4", "Fliegt über die vorderen Reihen hinweg und zielt auf den hintersten Roboter."),
-    ("Firewall", "ab Kampf 3", "12", "8", "Langsam, schießt aber wild und hart auf irgendwen im Team."),
-    ("Rostwurm", "ab Kampf 4", "34", "7", "Zäh und gepanzert. Hält lange durch."),
-    ("Bluescreen", "Kampf 5, 10, 15 …", "80", "8", "Der Boss. Trifft das ganze Team zugleich und hinterlässt ein seltenes Teil und einen Akku. Wächter des Speicherkellers."),
-    ("Frostbug", "ab Kampf 21 · 1.0", "16", "4", "Lebt im Kühlkreislauf. Seine Treffer kühlen ab: Wer getroffen wird, ist später wieder dran."),
-    ("Kurzschluss", "Kampf 20 · 1.0", "75", "9", "Wächter des Kabelschachts. Schnell, schlägt wild um sich und landet viele Volltreffer."),
-    ("Kältekern", "Kampf 30 · 1.0", "95", "7", "Wächter des Kühlkreislaufs. Trifft das ganze Team und kühlt alle zugleich ab."),
+## Gegner aus Bolt Buddies (core/battle.gd): Schlüssel der Grafik, Name, Art, Rahmenfarbe,
+## Leben, Schaden, Tempo, Schrauben, Erfahrung, wann, wo, Verhalten, neu mit 1.0, in Block Invaders
+FOES = [
+    ("bug", "Bug", "Gegner", "FF5252", 12, 3, 14, 3, 3, "ab Kampf 1", "alle Ebenen",
+     "Der häufigste Gegner. Schwach, aber oft in Gruppen. Steht vorn.", False, "Rückt in der Formation vor."),
+    ("drone", "Spam-Drohne", "Gegner", "B46CFF", 9, 4, 13, 4, 3, "ab Kampf 2", "alle Ebenen",
+     "Fliegt über die vorderen Reihen hinweg und zielt auf den hintersten Roboter.", False, "Fliegt mit und wirft Bomben."),
+    ("turret", "Firewall", "Gegner", "FF5252", 12, 8, 8, 6, 6, "ab Kampf 3", "alle Ebenen, im Kabelschacht doppelt so oft",
+     "Langsam, schießt aber wild und hart auf irgendwen im Team.", False, "Schießt auf zufällige Blöcke."),
+    ("worm", "Rostwurm", "Gegner", "D9773A", 34, 7, 7, 6, 6, "ab Kampf 4", "alle Ebenen, im Kabelschacht doppelt so oft",
+     "Zäh und gepanzert (1 Panzerung). Hält lange durch.", False, "Braucht mehrere Treffer."),
+    ("frost", "Frostbug", "Gegner", "4DE8FF", 16, 4, 11, 5, 5, "ab Kampf 21", "Kühlkreislauf (vor allem), Kernzone",
+     "Seine Treffer kühlen ab: Wer getroffen wird, ist später wieder dran.", True, ""),
+    ("boss", "Bluescreen", "Boss", "3B6BFF", 80, 8, 9, 25, 25, "Kampf 5, 10, 15, …", "Mitte jeder Ebene, Wächter des Speicherkellers",
+     "Trifft das ganze Team zugleich. Hinterlässt ein seltenes Teil und einen Akku.", False, "Boss-Welle alle 5 Wellen."),
+    ("short", "Kurzschluss", "Wächter", "FFB000", 75, 9, 14, 30, 30, "Kampf 20", "Wächter des Kabelschachts, in der Kernzone im Wechsel",
+     "Schnell, schlägt wild um sich und landet viele Volltreffer (25 %). Kommt mit zwei Spam-Drohnen.", True, ""),
+    ("chiller", "Kältekern", "Wächter", "4DE8FF", 95, 7, 8, 35, 35, "Kampf 30", "Wächter des Kühlkreislaufs, in der Kernzone im Wechsel",
+     "Trifft das ganze Team und kühlt alle zugleich ab. Kommt mit Frostbug und Bug.", True, ""),
 ]
+## Ereignisse aus Bits & Bolts: Name, Roboter, der es mitbringt, Störungscode ohne Roboter, Wirkung
 EVENTS = [
-    ("Stromausfall", "", "Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück."),
-    ("Überspannung", "", "Ein Kurzschluss kostet 2 Ladungen statt 1."),
-    ("Wackelkontakt", "", "Immer wieder erlischt eine deiner Ziffern und muss neu eingetragen werden."),
-    ("Störsignal", "", "Immer wieder taucht eine falsche Notiz auf."),
-    ("Falsche Vorgabe", "ERROR", "Eine Vorgabe zeigt die falsche Ziffer. Wische die andere Ziffer darauf. Wer eine richtige Vorgabe anzweifelt, bekommt einen Kurzschluss."),
-    ("Ansteckung", "VIRUS", "Bei einem Kurzschluss erlischt auch eine eingetragene Ziffer daneben."),
-    ("Zeitdruck", "DAEMON", "Wer zu lange nichts Richtiges einträgt, verliert eine Ladung. Jede richtige Ziffer setzt die Uhr zurück."),
-    ("Nebel", "MORSE", "Klar zu sehen ist nur die Umgebung der zuletzt berührten Zelle."),
+    ("Stromausfall", "", "0 V", "Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück."),
+    ("Überspannung", "", "!! V", "Ein Kurzschluss kostet 2 Ladungen statt 1."),
+    ("Wackelkontakt", "", "~ ~", "Immer wieder erlischt eine deiner Ziffern und muss neu eingetragen werden."),
+    ("Störsignal", "", "? !", "Immer wieder taucht eine falsche Notiz auf."),
+    ("Falsche Vorgabe", "ERROR", "", "Eine Vorgabe zeigt die falsche Ziffer. Wische die andere Ziffer darauf. Wer eine richtige Vorgabe anzweifelt, bekommt einen Kurzschluss."),
+    ("Ansteckung", "VIRUS", "", "Bei einem Kurzschluss erlischt auch eine eingetragene Ziffer daneben."),
+    ("Zeitdruck", "DAEMON", "", "Wer zu lange nichts Richtiges einträgt, verliert eine Ladung. Jede richtige Ziffer setzt die Uhr zurück."),
+    ("Nebel", "MORSE", "", "Klar zu sehen ist nur die Umgebung der zuletzt berührten Zelle."),
 ]
+
+
+def foe_sprites():
+    """Zeichnet die Gegner aus den Pixelkarten in Bolt Buddies (ui/pix.gd) als PNG. Ohne den Ordner bleiben die vorhandenen."""
+    src = os.path.join(OUT, "..", "Bolt-Buddies", "ui", "pix.gd")
+    if not os.path.isfile(src):
+        return
+    try:
+        from PIL import Image
+    except ImportError:
+        return
+    import re
+    text = open(src, encoding="utf-8").read()
+    pal = dict(re.findall(r'"(\w)": "([0-9A-Fa-f]{6})"', text[:text.index("const MAPS")]))
+    dst = os.path.join(OUT, "archiv", "stoerungen", "foes")
+    os.makedirs(dst, exist_ok=True)
+    for key, *_ in FOES:
+        block = re.search(r'"%s": \[(.*?)\]' % key, text[text.index("const MAPS"):], re.S).group(1)
+        rows = re.findall(r'"([^"]*)"', block)
+        img = Image.new("RGBA", (len(rows[0]), len(rows)), (0, 0, 0, 0))
+        for y, row in enumerate(rows):
+            for x, ch in enumerate(row):
+                if ch in pal:
+                    img.putpixel((x, y), tuple(int(pal[ch][i:i + 2], 16) for i in (0, 2, 4)) + (255,))
+        img.save(os.path.join(dst, key + ".png"))
+
+
+def foe_card(f):
+    key, name, kind, col, hp, atk, speed, bolts, xp, when, where, does, new, invaders = f
+    tag = f'<span class="foe-kind">{kind}</span>' + ('<span class="badge badge-plan">neu in 1.0</span>' if new else "")
+    stats = "".join(f'<div><dt>{a}</dt><dd>{v}</dd></div>' for a, v in [("Leben", hp), ("Schaden", atk), ("Tempo", speed)])
+    inv = f"""
+  <section class="bot-game bot-game-plan">
+    <h4>Block Invaders<span class="bot-role">geplant</span></h4>
+    <p>{html.escape(invaders)}</p>
+  </section>""" if invaders else ""
+    return f"""<li class="bot-card" id="{key}" style="--bot:#{col}">
+  <div class="bot-head">
+    <div class="bot-screen"><img src="foes/{key}.png" width="96" height="96" alt="{name}" loading="lazy"></div>
+    <div class="bot-name"><h3>{name}</h3><div class="foe-tags">{tag}</div></div>
+  </div>
+  <section class="bot-game bot-game-fight">
+    <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
+    <p>{html.escape(does)}</p>
+    <dl class="foe-stats">{stats}</dl>
+    <p class="bot-unlock"><b>{html.escape(when)}</b> · {html.escape(where)}</p>
+    <p class="bot-unlock">Beute: {bolts} Schrauben, {xp} Erfahrung</p>
+  </section>{inv}
+</li>"""
+
+
+def event_card(e):
+    name, bot, code, does = e
+    if bot:
+        screen = f'<div class="bot-screen" style="--bot:#{COLORS[bot]}"><img src="../roboter/bots/{bot.lower()}.png" width="80" height="96" alt="{bot}" loading="lazy"></div>'
+        sub = f'<a class="bot-family" href="../roboter/#{bot.lower()}">bringt {bot} mit</a>'
+    else:
+        screen = f'<div class="bot-screen event-code" style="--bot:#FFB000"><span>{html.escape(code)}</span></div>'
+        sub = '<span class="foe-kind">Ereignis</span>'
+    return f"""<li class="bot-card">
+  <div class="bot-head">
+    {screen}
+    <div class="bot-name"><h3>{name}</h3>{sub}</div>
+  </div>
+  <section class="bot-game bot-game-puzzle">
+    <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Hauptrechner</span></h4>
+    <p>{html.escape(does)}</p>
+  </section>
+</li>"""
+
+
+foe_sprites()
+foe_index = "".join(f'<a href="#{f[0]}" style="--bot:#{f[3]}"><img src="foes/{f[0]}.png" width="40" height="40" alt="" loading="lazy"><span>{f[1]}</span></a>' for f in FOES)
 write("stoerungen", head("Archiv · Störungsprotokoll", "Störungsprotokoll",
     "Alles, was im Rechner schiefgehen kann: Gegner, die im Schrottschacht angreifen, und Ereignisse, die Rätsel im Hauptrechner schwerer machen.") + f"""
+      <nav class="bot-index foe-index" aria-label="Gegner">{foe_index}</nav>
+      <div class="callout wiki-note">
+        <b>So liest du die Karten:</b> Leben, Schaden und Tempo sind Grundwerte. Mit jedem Kampf werden Gegner um 20 % zäher und 14 % stärker,
+        und je Ebene gibt es die Hälfte mehr Schrauben. Der blaue Kasten zeigt, was in Block Invaders geplant ist.
+      </div>
       <section class="wiki-sec">
         <h2>Gegner im Schrottschacht</h2>
-        <p>Aus Bolt Buddies. Das sind die Grundwerte, mit jedem Kampf werden Gegner zäher und stärker. Frostbug, Kurzschluss und Kältekern kommen mit Bolt Buddies 1.0. In Block Invaders sollen dieselben Gegner die Werkstatt angreifen.</p>
-        {table(["Gegner", "Taucht auf", "Leben", "Schaden", "Verhalten"], [[f"<b>{a}</b>", b, c, d, e] for a, b, c, d, e in ENEMIES], " wiki-table-num")}
+        <ul class="bot-grid">
+{chr(10).join(foe_card(f) for f in FOES)}
+        </ul>
       </section>
       <section class="wiki-sec">
         <h2>Ereignisse im Hauptrechner</h2>
         <p>Aus Bits &amp; Bolts. Sie treffen Zwischenrechner, den Hauptrechner und auf hohen Stufen auch normale Rätsel. Vier davon bringen Roboter als Eigenart in jedes Rätsel mit, dafür haben sie mehr Ladung oder Tipps.</p>
-        {table(["Ereignis", "Bringt mit", "Wirkung"], [[f"<b>{a}</b>", (f'<a href="../roboter/#{b.lower()}">{b}</a>' if b else "–"), c] for a, b, c in EVENTS])}
+        <ul class="bot-grid">
+{chr(10).join(event_card(e) for e in EVENTS)}
+        </ul>
       </section>
-""", "Gegner und Ereignisse im Roboter-Universum: Bug, Spam-Drohne, Firewall, Rostwurm, Bluescreen und acht Störungen.")
+""", "Gegner und Ereignisse im Roboter-Universum: Bug, Spam-Drohne, Firewall, Rostwurm, Frostbug, die Bosse und acht Störungen.")
 
 # Ersatzteillager
 ITEMS = [("Kreissäge", "Waffe", "Leistung"), ("Laser", "Waffe", "Leistung, Logik"), ("Taser", "Waffe", "Leistung, Takt"),

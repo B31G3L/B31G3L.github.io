@@ -380,6 +380,18 @@ article.policy address { font-style: normal; margin: 0 0 14px; }
 .pips i.on { background: var(--accent); border-color: var(--accent); }
 .bot-game-fight .pips i.on { background: var(--warn); border-color: var(--warn); }
 .num { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.bot-game-plan h4 { background: var(--plan-soft); color: var(--plan); }
+.foe-index img { width: 40px; height: 40px; }
+.foe-index a { width: 82px; }
+.foe-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.foe-kind { align-self: flex-start; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 8px; border-radius: 100px; background: var(--stop-soft); color: var(--stop); }
+.bot-screen img[src*="foes/"] { width: 96px; height: 96px; }
+.foe-stats { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.foe-stats div { background: var(--surface-2); border-radius: 8px; padding: 6px 8px; text-align: center; }
+.foe-stats dt { font-size: 0.7rem; color: var(--ink-soft); }
+.foe-stats dd { margin: 0; font-family: var(--mono); font-size: 1.05rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.event-code { width: 100px; height: 116px; display: flex; align-items: center; justify-content: center; }
+.event-code span { font-family: var(--mono); font-size: 1.4rem; font-weight: 700; color: #ffb000; text-shadow: 0 0 8px rgba(255, 176, 0, .5); }
 
 .game-head, .place-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .game-head h2 { margin: 0; }
