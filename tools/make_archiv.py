@@ -214,7 +214,7 @@ write("", head("Archiv der Roboter", "Das Archiv",
             ["Attribute", "Leistung, Takt, Logik, Gehäuse"],
             ["Gegner", "Bug, Spam-Drohne, Firewall, Rostwurm, Bluescreen"],
             ["Ereignisse", "8 Störungen im Hauptrechner, von Stromausfall bis Nebel"],
-            ["Währung", "Schrauben in der Werkstatt"],
+            ["Währung", "Schrauben und Schrott in der Werkstatt"],
         ], " wiki-table-plain")}
       </section>
 """, "Das Archiv der Roboter: Wiki zu Bits & Bolts, Bolt Buddies und allen Spielen im Roboter-Universum von B31G3L.")
@@ -267,8 +267,8 @@ write("einsaetze", head("Archiv · Einsatzorte", "Einsatzorte",
          '        <h3 class="wiki-sub">Was noch kommt</h3>\n'
          + table(["Feature", "Worum es geht", "Version"], [
              ["<b>Schacht-Ebenen</b>", 'Umgesetzt: Alle 10 Kämpfe eine neue Ebene mit eigenen Gegnern und eigenem Wächter, dazu Haltestellen zum Direkteinstieg. Siehe <a href="../weltkarte/#ebenen">Weltkarte</a>.', "1.0"],
-             ["<b>Werkstatt-Ausbau</b>", 'Ladeleiste, Ölbad, Spielecke, Werkbank und Funkantenne für Schrauben ausbauen. Siehe <a href="../ersatzteile/#ausbau">Ersatzteillager</a>.', "1.0"],
-             ["<b>Werkbank</b>", "Teile zu Schrott zerlegen und damit andere Teile aufwerten.", "1.0"],
+             ["<b>Werkstatt-Ausbau</b>", 'Umgesetzt: Ladeleiste, Ölbad, Spielecke und Werkbank in drei Stufen für Schrauben, die Funkantenne folgt mit dem Funk. Siehe <a href="../ersatzteile/#ausbau">Ersatzteillager</a>.', "1.0"],
+             ["<b>Werkbank</b>", 'Umgesetzt: Teile zu Schrott zerlegen und damit Teile aufwerten, auch angelegte. Siehe <a href="../ersatzteile/#werkbank">Ersatzteillager</a>.', "1.0"],
              ["<b>Tagesschacht</b>", "Einmal am Tag eine Expedition mit festem Seed und kleiner Vorgabe. Eine Serie zählt mit, ein verpasster Tag pausiert sie nur.", "1.0"],
              ["<b>Erinnerungen</b>", "Höchstens eine freundliche Meldung am Tag, etwa „BYTE ist ausgeschlafen“. Abschaltbar.", "1.0"],
              ["<b>Vertrauen</b>", "Jeder Roboter sammelt Vertrauen durch Pflege und Expeditionen. Es schaltet Sprüche, Lackierungen und eine stärkere Eigenheit frei.", "1.1"],
@@ -475,18 +475,31 @@ write("ersatzteile", head("Archiv · Ersatzteillager", "Ersatzteillager",
         <p>Werte sinken auch, wenn das Spiel zu ist, höchstens für 48 Stunden. Kaputt geht dabei nichts: Ein leerer Roboter schaltet ab und lädt an der Ladeleiste.</p>
       </section>
       <section class="wiki-sec" id="ausbau">
-        <h2>Werkstatt-Ausbau <span class="badge badge-plan">Geplant</span></h2>
-        <p>Geplant für Bolt Buddies 1.0. Jede Station lässt sich für Schrauben in drei Stufen ausbauen und ist in der Werkstatt zu sehen.</p>
-        {table(["Station", "Wirkung"], [
-            ["<b>Ladeleiste</b>", "Schlafende Roboter laden schneller."],
-            ["<b>Ölbad</b>", "Pflege sinkt langsamer."],
-            ["<b>Spielecke</b>", "Laune sinkt langsamer, Roboter spielen auch miteinander."],
-            ["<b>Werkbank</b>", "Teile zu Schrott zerlegen und mit Schrott andere Teile eine Seltenheit höher bringen, bis legendär."],
-            ["<b>Funkantenne</b>", 'Empfängt Post aus den anderen Spielen, siehe <a href="../funk/">Funkverbindung</a>.']])}
+        <h2>Werkstatt-Ausbau</h2>
+        <p>Kommt mit Bolt Buddies 1.0. Jede Station wird für Schrauben in drei Stufen ausgebaut und steht dann sichtbar in der Werkstatt. Sie machen die Pflege leichter, aber nie überflüssig: Auch ganz ausgebaut braucht ein Roboter nach zwei Tagen wieder etwas.</p>
+        {table(["Station", "Stufe 1 / 2 / 3", "Preis in Schrauben"], [
+            ["<b>Ladeleiste</b>", "Schlafende laden 35 / 70 / 100 % schneller", "60 / 180 / 450"],
+            ["<b>Ölbad</b>", "Pflege sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450"],
+            ["<b>Spielecke</b>", "Laune sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450"],
+            ["<b>Werkbank</b>", "zerlegen und aufwerten / 25 % günstiger / 50 % günstiger", "80 / 200 / 450"],
+            ["<b>Funkantenne</b>", 'Empfängt Post aus den anderen Spielen, siehe <a href="../funk/">Funkverbindung</a>. Kommt später.', "–"]])}
+        <p>Alles zusammen kostet 2830 Schrauben. Eine Expedition bringt je nach Stufe des Teams etwa 30 bis 250, für die erste Station reichen zwei frühe Expeditionen.</p>
+      </section>
+      <section class="wiki-sec" id="werkbank">
+        <h2>Werkbank</h2>
+        <p>An der Werkbank wird aus altem Kram ein Lieblingsteil. Zerlegen macht aus einem Teil im Lager Schrott. Aufwerten hebt ein Teil eine Seltenheit höher und gibt ihm 2 Punkte dazu, auch wenn es gerade ein Roboter trägt.</p>
+        {table(["Seltenheit", "Schrott beim Zerlegen", "Aufwerten zur nächsten"], [
+            ["<b>Schrott</b>", "1", "20 Schrauben, 3 Schrott"],
+            ["<b>solide</b>", "3", "50 Schrauben, 6 Schrott"],
+            ["<b>selten</b>", "5", "120 Schrauben, 12 Schrott"],
+            ["<b>legendär</b>", "7", "geht nicht höher"]])}
       </section>
       <section class="wiki-sec">
-        <h2>Schrauben</h2>
-        <p>Die Währung der Werkstatt. Es gibt sie im Schacht und für verkaufte Teile, ausgegeben werden sie im Shop für Akkus, Öl und Schrottkisten, später auch für den Werkstatt-Ausbau.</p>
+        <h2>Schrauben und Schrott</h2>
+        <ul class="plain-list">
+          <li><b>Schrauben</b> gibt es im Schacht und für verkaufte Teile. Je tiefer die Ebene, desto mehr: Jede Ebene bringt die Hälfte mehr als die darüber. Ausgegeben werden sie im Shop für Akkus, Öl und Schrottkisten und für den Werkstatt-Ausbau.</li>
+          <li><b>Schrott</b> gibt es nur an der Werkbank, aus zerlegten Teilen. Er wird zum Aufwerten gebraucht.</li>
+        </ul>
       </section>
 """, "Attribute, Ausrüstung, Seltenheiten, Module und Pflegewerte der Roboter in Bolt Buddies.")
 
