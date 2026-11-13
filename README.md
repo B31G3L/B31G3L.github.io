@@ -38,6 +38,7 @@ Für Housepot eignet sich `https://b31g3l.github.io/housepot/#konto-loeschen` al
 
 ## Aufbau
 
+- `tools/make_archiv.py` – erzeugt alle Seiten unter `archiv/` neu (`python tools/make_archiv.py`). Inhalte dort ändern, nicht im HTML.
 - `style.css` – ein Stylesheet für alle Seiten, helles und dunkles Farbschema über `prefers-color-scheme`.
 - Bausteine der Datenschutzseiten: `.summary` (Kurzfassung), `.callout` (Hinweis), `article.policy` (Text),
   `.lang-switch` und `.lang-divider` für zweisprachige Seiten.

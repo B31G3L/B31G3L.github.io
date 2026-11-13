@@ -392,3 +392,4 @@ article.policy address { font-style: normal; margin: 0 0 14px; }
   .wiki-nav a { border: 1px solid var(--line); border-radius: 100px; padding: 4px 12px; font-size: 0.85rem; }
   .wiki-nav a small { display: none; }
 }
+.wiki-sub { font-size: 1rem; margin: 18px 0 10px; }
