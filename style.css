@@ -385,7 +385,8 @@ article.policy address { font-style: normal; margin: 0 0 14px; }
 .foe-index a { width: 82px; }
 .foe-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .foe-kind { align-self: flex-start; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 8px; border-radius: 100px; background: var(--stop-soft); color: var(--stop); }
-.bot-screen img[src*="foes/"] { width: 96px; height: 96px; }
+.bot-screen img.foe-s { width: 80px; height: 80px; margin: 8px 0; }
+.bot-screen img.foe-l { width: 96px; height: 96px; }
 .foe-stats { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 .foe-stats div { background: var(--surface-2); border-radius: 8px; padding: 6px 8px; text-align: center; }
 .foe-stats dt { font-size: 0.7rem; color: var(--ink-soft); }

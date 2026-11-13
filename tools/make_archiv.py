@@ -481,28 +481,14 @@ EVENTS = [
 
 
 def foe_sprites():
-    """Zeichnet die Gegner aus den Pixelkarten in Bolt Buddies (ui/pix.gd) als PNG. Ohne den Ordner bleiben die vorhandenen."""
-    src = os.path.join(OUT, "..", "Bolt-Buddies", "ui", "pix.gd")
-    if not os.path.isfile(src):
+    """Holt die Gegner-Sprites aus Bolt Buddies (assets/foes, gezeichnet von tools/foe_art.py). Ohne den Ordner bleiben die vorhandenen."""
+    src = os.path.join(OUT, "..", "Bolt-Buddies", "assets", "foes")
+    if not os.path.isdir(src):
         return
-    try:
-        from PIL import Image
-    except ImportError:
-        return
-    import re
-    text = open(src, encoding="utf-8").read()
-    pal = dict(re.findall(r'"(\w)": "([0-9A-Fa-f]{6})"', text[:text.index("const MAPS")]))
     dst = os.path.join(OUT, "archiv", "stoerungen", "foes")
     os.makedirs(dst, exist_ok=True)
     for key, *_ in FOES:
-        block = re.search(r'"%s": \[(.*?)\]' % key, text[text.index("const MAPS"):], re.S).group(1)
-        rows = re.findall(r'"([^"]*)"', block)
-        img = Image.new("RGBA", (len(rows[0]), len(rows)), (0, 0, 0, 0))
-        for y, row in enumerate(rows):
-            for x, ch in enumerate(row):
-                if ch in pal:
-                    img.putpixel((x, y), tuple(int(pal[ch][i:i + 2], 16) for i in (0, 2, 4)) + (255,))
-        img.save(os.path.join(dst, key + ".png"))
+        shutil.copyfile(os.path.join(src, key + ".png"), os.path.join(dst, key + ".png"))
 
 
 def foe_card(f):
@@ -516,7 +502,7 @@ def foe_card(f):
   </section>""" if invaders else ""
     return f"""<li class="bot-card" id="{key}" style="--bot:#{col}">
   <div class="bot-head">
-    <div class="bot-screen"><img src="foes/{key}.png" width="96" height="96" alt="{name}" loading="lazy"></div>
+    <div class="bot-screen"><img class="{'foe-l' if kind != 'Gegner' else 'foe-s'}" src="foes/{key}.png" width="{96 if kind != 'Gegner' else 80}" height="{96 if kind != 'Gegner' else 80}" alt="{name}" loading="lazy"></div>
     <div class="bot-name"><h3>{name}</h3><div class="foe-tags">{tag}</div></div>
   </div>
   <section class="bot-game bot-game-fight">
