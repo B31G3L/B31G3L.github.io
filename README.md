@@ -19,6 +19,7 @@ Reines HTML und CSS, kein Build-Schritt. Die Seite lädt bewusst nichts von Drit
 | `/dotlist/` | Weiterleitung auf `/list2share/` (alter App-Name) | – |
 | `/reboot-byte/` | Datenschutz Reboot BYTE (nicht mehr auf der Startseite verlinkt) | EN + DE |
 | `/bits-and-bolts/` | Datenschutz Bits & Bolts | DE + EN |
+| `/bolt-buddies/` | Datenschutz Bolt Buddies (mit Erinnerungen) | DE + EN |
 | `/impressum/` | Impressum und Datenschutz der Website | DE |
 | `/archiv/` | Archiv der Roboter: Wiki zum Roboter-Universum mit Unterseiten `roboter/`, `einsaetze/`, `weltkarte/`, `regelwerk/`, `stoerungen/`, `ersatzteile/`, `funk/` | DE |
 

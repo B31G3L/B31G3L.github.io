@@ -269,13 +269,24 @@ write("einsaetze", head("Archiv · Einsatzorte", "Einsatzorte",
              ["<b>Schacht-Ebenen</b>", 'Umgesetzt: Alle 10 Kämpfe eine neue Ebene mit eigenen Gegnern und eigenem Wächter, dazu Haltestellen zum Direkteinstieg. Siehe <a href="../weltkarte/#ebenen">Weltkarte</a>.', "1.0"],
              ["<b>Werkstatt-Ausbau</b>", 'Umgesetzt: Ladeleiste, Ölbad, Spielecke und Werkbank in drei Stufen für Schrauben, die Funkantenne folgt mit dem Funk. Siehe <a href="../ersatzteile/#ausbau">Ersatzteillager</a>.', "1.0"],
              ["<b>Werkbank</b>", 'Umgesetzt: Teile zu Schrott zerlegen und damit Teile aufwerten, auch angelegte. Siehe <a href="../ersatzteile/#werkbank">Ersatzteillager</a>.', "1.0"],
-             ["<b>Tagesschacht</b>", "Einmal am Tag eine Expedition mit festem Seed und kleiner Vorgabe. Eine Serie zählt mit, ein verpasster Tag pausiert sie nur.", "1.0"],
-             ["<b>Erinnerungen</b>", "Höchstens eine freundliche Meldung am Tag, etwa „BYTE ist ausgeschlafen“. Abschaltbar.", "1.0"],
+             ["<b>Tagesschacht</b>", 'Umgesetzt: einmal am Tag eine Expedition mit Vorgabe des Tages und einem Teil als Belohnung. Siehe <a href="#tagesschacht">unten</a>.', "1.0"],
+             ["<b>Erste Schritte</b>", "Umgesetzt: BYTE zeigt Neuen der Reihe nach Akku, Ölen, Expedition, Ausrüstung und den ersten Ausbau. Jeder Hinweis erscheint erst, wenn er passt.", "1.0"],
+             ["<b>Erinnerungen</b>", 'Umgesetzt: höchstens eine Benachrichtigung am Tag, nur zwischen 10 und 20 Uhr, standardmäßig aus. Siehe <a href="#erinnerungen">unten</a>.', "1.0"],
              ["<b>Vertrauen</b>", "Jeder Roboter sammelt Vertrauen durch Pflege und Expeditionen. Es schaltet Sprüche, Lackierungen und eine stärkere Eigenheit frei.", "1.1"],
              ["<b>Team-Familien</b>", 'Zwei oder drei Roboter derselben Familie im Team geben einen Bonus. Siehe <a href="../roboter/#familien">Roboter-Register</a>.', "1.1"],
              ["<b>Funk</b>", 'Post aus den anderen Spielen. Siehe <a href="../funk/">Funkverbindung</a>.', "1.2"],
          ])
-         + '        <p><a href="../ersatzteile/">Zum Ersatzteillager →</a></p>\n') +
+         + '        <h3 class="wiki-sub" id="tagesschacht">Tagesschacht</h3>\n'
+         + '        <p>Einmal am Tag gibt es eine Expedition, die für alle gleich ist: Seed und Vorgabe hängen am Datum, Start ist immer bei Kampf 1. Der Versuch zählt ab dem Start. Gezählt werden die Tage im Tagesschacht, ein verpasster Tag setzt nichts zurück.</p>\n'
+         + table(["Vorgabe", "Was gilt"], [
+             ["<b>Keine Reparatur</b>", "Reparatur wird nie angeboten. Wer angeschlagen ist, bleibt es."],
+             ["<b>Allein</b>", "Nur der erste Roboter im Team darf mit."],
+             ["<b>Glaskanonen</b>", "30 % weniger Leben, 30 % mehr Schaden."],
+             ["<b>Schatzsuche</b>", "Keine Module, dafür doppelte Schrauben."]])
+         + '        <p>Als Belohnung gibt es ein Teil, auch nach einem Ausfall: ab Kampf 10 mindestens solide, ab Kampf 20 und an jedem 7. Tag mindestens selten.</p>\n'
+         + '        <h3 class="wiki-sub" id="erinnerungen">Erinnerungen</h3>\n'
+         + '        <p>In den Optionen lassen sich Erinnerungen einschalten. Beim Schließen plant das Spiel dann höchstens eine Benachrichtigung: wenn der erste Roboter ausgeschlafen ist oder etwas braucht, oder wenn der Tagesschacht wartet. Nie in den ersten zwei Stunden, nie nachts, höchstens eine am Tag. Alles läuft auf dem Handy, ohne Server.</p>\n'
+         + '        <p><a href="../ersatzteile/">Zum Ersatzteillager →</a> · <a href="../../bolt-buddies/">Datenschutz</a></p>\n') +
     game("block-invaders", "Block Invaders", PLAN, "Block-Puzzle gegen angreifende Störungen",
          "Bugs, Spam-Drohnen, Firewalls und Rostwürmer rücken auf die Werkstatt vor. Volle Reihen feuern Salven, volle Spalten Laser. Jede fünfte Welle bringt einen Bluescreen. Der gewählte Roboter steht als Geschütz unten und feuert mit seiner Eigenheit, zum Beispiel trifft OKTA die ganze Reihe.",
          "Leistung, Waffen-Teile", "Wählbar, je nach Eigenheit") +
