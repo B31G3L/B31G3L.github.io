@@ -510,29 +510,34 @@ article.policy address { font-style: normal; margin: 0 0 14px; }
 .rig-dim:hover, .rig-dim:focus-visible { opacity: 1; }
 .wiki-page > .game-head { margin: -6px 0 14px; }
 .wiki-page > .game-head .game-genre { margin: 0; }
-/* Archiv 2.0: der PC im Querschnitt. Mitte von oben nach unten, rechts die Orte, deren Lage noch offen ist. */
+/* Archiv 2.0: der PC im Querschnitt, nur auf Spielebene. Links oben der Aufstieg, darunter Werkstatt und Schacht,
+   rechts die Orte ohne Spiel. Jedes Feld springt zu seinem Abschnitt. */
 .rig.tower {
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  grid-template-areas:
-    "hauptrechner hauptrechner" "chipsatz festplatte" "knopfzelle grafikkarte" "arbeitsspeicher anschluesse"
-    "steckkarten ." "lbl-up lbl-up" "werkstatt werkstatt" "lbl-down lbl-down"
-    "schicht1 schicht1" "kabelsalat kabelsalat" "lueftergrund lueftergrund" "netzteil netzteil";
+  grid-template-areas: "bnb weitere" "bb weitere";
 }
-.tower-label { margin: 0; padding: 0 4px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
-.tower-faces { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
+.tower-cell { justify-content: flex-start; padding: 14px 16px; }
+.tower-cell b { font-size: 1.05rem; }
+.tower-places { margin-top: 4px; font-family: var(--mono); font-size: 0.7rem !important; }
+.tower-faces { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
 .tower-faces img { width: 16px; height: 19px; image-rendering: pixelated; }
 .mini-bot { display: inline-flex; align-items: center; gap: 4px; margin: 2px 4px 2px 0; padding: 1px 8px 1px 3px; border-radius: 100px;
   border: 1px solid color-mix(in srgb, var(--bot) 50%, var(--line)); font-family: var(--mono); font-size: 0.72rem; color: var(--ink); background: var(--surface-2); }
 .mini-bot img { width: 16px; height: 19px; image-rendering: pixelated; }
+.mini-bot img[height="16"] { width: 16px; height: 16px; }
+.chip-code { min-width: 16px; padding-left: 4px; font-weight: 700; color: var(--bot); }
 a.mini-bot:hover { text-decoration: none; border-color: var(--bot); }
-.place .place-bots { margin-top: 10px; font-size: 0.85rem; }
+.place-list-wide { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.place-detail { scroll-margin-top: 16px; }
+.place-detail:target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.place-facts { margin: 12px 0 0; display: grid; gap: 10px; font-size: 0.88rem; }
+.place-facts dt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.place-facts dd { margin: 2px 0 0; }
+.wiki-sec:target > h2 { color: var(--accent); }
 .bot-world { margin: 0; }
 .bot-more summary { cursor: pointer; font-size: 0.85rem; color: var(--accent); }
 .bot-more p { margin: 8px 0 0; font-size: 0.85rem; }
 @media (max-width: 640px) {
-  .rig.tower {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "hauptrechner" "chipsatz" "knopfzelle" "arbeitsspeicher" "steckkarten" "lbl-up" "werkstatt" "lbl-down"
-      "schicht1" "kabelsalat" "lueftergrund" "netzteil" "festplatte" "grafikkarte" "anschluesse";
-  }
+  .rig.tower { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bnb" "bb" "weitere"; }
+  .place-list-wide { grid-template-columns: minmax(0, 1fr); }
 }
