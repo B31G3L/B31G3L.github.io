@@ -510,17 +510,30 @@ article.policy address { font-style: normal; margin: 0 0 14px; }
 .rig-dim:hover, .rig-dim:focus-visible { opacity: 1; }
 .wiki-page > .game-head { margin: -6px 0 14px; }
 .wiki-page > .game-head .game-genre { margin: 0; }
-/* Archiv 2.0: der PC im Querschnitt, nur auf Spielebene. Links oben der Aufstieg, darunter Werkstatt und Schacht,
-   rechts die Orte ohne Spiel. Jedes Feld springt zu seinem Abschnitt. */
-.rig.tower {
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  grid-template-areas: "bnb weitere" "bb weitere";
-}
-.tower-cell { justify-content: flex-start; padding: 14px 16px; }
-.tower-cell b { font-size: 1.05rem; }
-.tower-places { margin-top: 4px; font-family: var(--mono); font-size: 0.7rem !important; }
-.tower-faces { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 6px; }
-.tower-faces img { width: 16px; height: 19px; image-rendering: pixelated; }
+/* Archiv 2.0: der PC im Querschnitt als SVG. Farbe nach Spiel, gestrichelt: noch in keinem Spiel.
+   Auf schmalen Bildschirmen bleibt die Zeichnung lesbar groß und lässt sich in ihrem Kasten seitlich schieben. */
+.pc-wrap { overflow-x: auto; margin: 0 0 8px; }
+.pc-svg { display: block; width: 100%; max-width: 640px; min-width: 460px; height: auto; margin: 0 auto; }
+.pc-case { fill: var(--surface-2); stroke: var(--line); stroke-width: 3; }
+.pc-board { fill: color-mix(in srgb, #0b7a4b 9%, var(--surface)); stroke: color-mix(in srgb, #0b7a4b 30%, var(--line)); stroke-width: 1.5; }
+.pc-bnb { --c: var(--accent); }
+.pc-bb { --c: var(--warn); }
+.pc-frei { --c: var(--ink-soft); }
+.pc-shape { fill: color-mix(in srgb, var(--c) 22%, var(--surface)); stroke: var(--c); stroke-width: 2.5; }
+.pc-frei .pc-shape { fill: var(--surface); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.pc-place:hover .pc-shape, .pc-place:focus-visible .pc-shape { fill: color-mix(in srgb, var(--c) 45%, var(--surface)); }
+.pc-place:focus-visible { outline: none; }
+.pc-deco { fill: none; stroke: var(--c); stroke-width: 1.5; opacity: 0.45; pointer-events: none; }
+.pc-label { fill: var(--ink); font: 600 14px var(--sans); text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.pc-frei .pc-label { fill: var(--ink-soft); font-weight: 400; }
+.pc-small { font-size: 12px; }
+.pc-hint { fill: var(--ink-soft); font: 12px var(--mono); }
+.pc-lift { stroke: var(--warn); stroke-width: 2.5; stroke-dasharray: 3 6; pointer-events: none; }
+.pc-lift-label { fill: var(--warn); }
+.pc-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 8px; font-size: 0.85rem; }
+.pc-key { display: inline-flex; align-items: center; gap: 6px; }
+.pc-key::before { content: ""; width: 16px; height: 12px; border-radius: 3px; border: 2px solid var(--c); background: color-mix(in srgb, var(--c) 22%, var(--surface)); }
+.pc-key.pc-frei::before { border-style: dashed; border-width: 1.5px; background: var(--surface); }
 .mini-bot { display: inline-flex; align-items: center; gap: 4px; margin: 2px 4px 2px 0; padding: 1px 8px 1px 3px; border-radius: 100px;
   border: 1px solid color-mix(in srgb, var(--bot) 50%, var(--line)); font-family: var(--mono); font-size: 0.72rem; color: var(--ink); background: var(--surface-2); }
 .mini-bot img { width: 16px; height: 19px; image-rendering: pixelated; }
@@ -538,6 +551,5 @@ a.mini-bot:hover { text-decoration: none; border-color: var(--bot); }
 .bot-more summary { cursor: pointer; font-size: 0.85rem; color: var(--accent); }
 .bot-more p { margin: 8px 0 0; font-size: 0.85rem; }
 @media (max-width: 640px) {
-  .rig.tower { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bnb" "bb" "weitere"; }
   .place-list-wide { grid-template-columns: minmax(0, 1fr); }
 }
