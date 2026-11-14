@@ -179,9 +179,9 @@ ROLE = {"OKTA": "Rätselhinweis", "HEXA": "Rätselhinweis", "ASKI": "Rätselhinw
         "LOOP": "Zusatzregel", "NIBBLE": "Zusatzregel", "QUBIT": "Zusatzregel", "ROOT": "Zusatzregel",
         "ERROR": "Ereignis", "VIRUS": "Ereignis", "DAEMON": "Ereignis", "MORSE": "Ereignis",
         "PATCH": "Fähigkeit", "BYTE": "Allrounder"}
-HERO = {"BYTE": "Bits & Bolts, Bolt Buddies", "LOOP": "Loop Runner (geplant)", "GATE": "Kippwelt (geplant)",
-        "ROOT": "Kippwelt (geplant)", "ERROR": "Zündkette (geplant)", "GLITCH": "Zündkette (geplant)",
-        "SHIFT": "Loop Runner (geplant)", "QUBIT": "Loop Runner (geplant)"}
+HERO = {"BYTE": "Bits & Bolts, Bolt Buddies", "LOOP": "Loop Echo (geplant)", "GATE": "Tilt Gate (geplant)",
+        "ROOT": "Tilt Gate (geplant)", "ERROR": "Surge Chain (geplant)", "GLITCH": "Surge Chain (geplant)",
+        "SHIFT": "Loop Echo (geplant)", "QUBIT": "Loop Echo (geplant)"}
 ATTR = ["Leistung", "Takt", "Logik", "Gehäuse"]
 ## Bolt Buddies: In welcher Ebene ein Roboter auf Rettung wartet (core/bots.gd HOME) und was er mitbringt (i18n ks_*)
 LAYERS = [("Speicherkeller", 1), ("Kabelschacht", 11), ("Kühlkreislauf", 21), ("Kernzone", 31)]
@@ -374,11 +374,11 @@ RIG = [
     ("l2", "Kabel", "Kabelschacht", "Kampf 11–20", "ebenen", "FF9A3D", False),
     ("l3", "Kühlung", "Kühlkreislauf", "Kampf 21–30", "ebenen", "4DE8FF", False),
     ("l4", "Kern", "Kernzone", "ab Kampf 31", "ebenen", "FF5252", False),
-    ("net", "Netzwerkanschluss", "Die Abwehrstellung", "Block Invaders", "block-invaders", "FF5252", True),
-    ("clock", "Taktgeber", "Das Schleifenlabor", "Loop Runner", "loop-runner", "7CFFB0", True),
-    ("psu", "Netzteil", "Das Kondensatorlager", "Zündkette", "zuendkette", "FF9A3D", True),
-    ("sensor", "Lagesensor", "Das Schwerkraft-Labor", "Kippwelt", "kippwelt", "FFD34D", True),
-    ("bus", "Datenbus und Anschlüsse", "Das Datenbus-Depot", "Snake Jam", "snake-jam", "B46CFF", True),
+    ("net", "Netzwerkanschluss", "Die Abwehrstellung", "Port Patrol", "port-patrol", "FF5252", True),
+    ("clock", "Taktgeber", "Das Schleifenlabor", "Loop Echo", "loop-echo", "7CFFB0", True),
+    ("psu", "Netzteil", "Das Kondensatorlager", "Surge Chain", "surge-chain", "FF9A3D", True),
+    ("sensor", "Lagesensor", "Das Schwerkraft-Labor", "Tilt Gate", "tilt-gate", "FFD34D", True),
+    ("bus", "Datenbus und Anschlüsse", "Das Datenbus-Depot", "Packet Rush", "packet-rush", "B46CFF", True),
 ]
 def rig_html(current=""):
     """Der Querschnitt. Jedes Feld führt zur Seite seines Spiels, die Ebenen zu den Ebenen von Bolt Buddies.
@@ -459,23 +459,23 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
          + '        <h3 class="wiki-sub" id="erinnerungen">Erinnerungen</h3>\n'
          + '        <p>In den Optionen lassen sich Erinnerungen einschalten. Beim Schließen plant das Spiel dann höchstens eine Benachrichtigung: wenn der erste Roboter ausgeschlafen ist oder etwas braucht, oder wenn der Tagesschacht wartet. Nie in den ersten zwei Stunden, nie nachts, höchstens eine am Tag. Alles läuft auf dem Handy, ohne Server.</p>\n'
          + '        <p><a href="../ersatzteile/">Zum Ersatzteillager →</a> · <a href="../../bolt-buddies/">Datenschutz</a></p>\n', "bb") +
-    game("block-invaders", "Netzwerkanschluss", "Block Invaders", PLAN, "Block-Puzzle gegen angreifende Störungen",
+    game("port-patrol", "Netzwerkanschluss", "Port Patrol", PLAN, "Block-Puzzle gegen angreifende Störungen",
          "Bugs, Spam-Drohnen, Firewalls und Rostwürmer rücken von außen auf die Werkstatt vor. Volle Reihen feuern Salven, volle Spalten Laser. Jede fünfte Welle bringt einen Bluescreen. Der gewählte Roboter steht als Geschütz unten und feuert mit seiner Eigenheit, zum Beispiel trifft OKTA die ganze Reihe.",
          "Leistung, Waffen-Teile", "Wählbar, je nach Eigenheit", [
              place("Die Abwehrstellung", "am Netzwerkanschluss", "Der Rand des Rechners, an dem Störungen aus dem Netz in Formation anrücken.", PLAN)]) +
-    game("loop-runner", "Taktgeber", "Loop Runner", PLAN, "Zeitschleifen-Plattformer",
+    game("loop-echo", "Taktgeber", "Loop Echo", PLAN, "Zeitschleifen-Plattformer",
          "LOOP hat 20 Sekunden und sich selbst als Team: Jede Schleife wird aufgezeichnet und läuft in der nächsten als Kopie mit. Zusammen halten sie Türen offen, graben Fallen und sammeln Bits, während Wachbots patrouillieren.",
          "Takt", "LOOP, später SHIFT und QUBIT", [
              place("Das Schleifenlabor", "im Taktgeber", "Ein Labor im Herzschlag des Rechners: Alle 20 Sekunden schlägt der Takt, und die Zeit beginnt von vorn.", PLAN)]) +
-    game("kippwelt", "Lagesensor", "Kippwelt", PLAN, "Plattformer ohne Springen",
+    game("tilt-gate", "Lagesensor", "Tilt Gate", PLAN, "Plattformer ohne Springen",
          "Der Roboter dreht die ganze Welt um 90 Grad, und alles Lose fällt nach unten. Erst den Zugangschip holen, dann zum Ausgang. Kisten zerquetschen Gegner, Stacheln sind gefährlich.",
          "Gehäuse, Rüstungsteile", "GATE oder ROOT, beide halten viel aus", [
              place("Das Schwerkraft-Labor", "im Lagesensor", "Räume, die sich drehen lassen. Unten ist immer da, wo der Sensor gerade unten meldet.", PLAN)]) +
-    game("zuendkette", "Netzteil", "Zündkette", PLAN, "Kettenreaktions-Rätsel",
+    game("surge-chain", "Netzteil", "Surge Chain", PLAN, "Kettenreaktions-Rätsel",
          "Ein einziger Überspannungsimpuls muss alle Viren erwischen. Kondensatoren geben die Ladung weiter, Schrottkisten brennen weg, Steine halten auf. Gesucht ist der eine Platz, von dem aus die Kette alles erreicht, nur den Roboter nicht.",
          "Schrottkisten mit zufälliger Ausrüstung", "ERROR oder GLITCH", [
              place("Das Kondensatorlager", "im Netzteil", "Hier wird der ganze Rechner mit Strom versorgt. Voller Kondensatoren und Schrottkisten, in denen sich Viren verstecken.", PLAN)]) +
-    game("snake-jam", "Datenbus und Anschlüsse", "Snake Jam", PLAN, "Schiebe-Rätsel mit wachsenden Bussen",
+    game("packet-rush", "Datenbus und Anschlüsse", "Packet Rush", PLAN, "Schiebe-Rätsel mit wachsenden Bussen",
          "Bunte Datenbusse müssen ihre Pakete einsammeln und zum Port hinausfahren. Jedes Paket macht den Bus länger, und lange Busse stehen sich selbst im Weg.",
          "Vorräte: Akkus, Öl, Schrauben", "Noch offen, eventuell bleibt das Spiel eigenständig", [
              place("Das Datenbus-Depot", "am Datenbus", "Ein voller Parkplatz für Datenbusse, nur eine Ausfahrt zum Port.", PLAN)]) + "        </ul>\n      </section>\n",
@@ -504,13 +504,18 @@ def redirect(slug, target, title):
 """)
 
 redirect("einsaetze", "../weltkarte/", "Weltkarte")
+# Die Prototypen hießen bis 14.11.2026 anders, ihre alten Seiten führen zu den neuen
+for old, new, name in [("block-invaders", "port-patrol", "Port Patrol"), ("loop-runner", "loop-echo", "Loop Echo"),
+                       ("kippwelt", "tilt-gate", "Tilt Gate"), ("zuendkette", "surge-chain", "Surge Chain"),
+                       ("snake-jam", "packet-rush", "Packet Rush")]:
+    redirect(old, f"../{new}/", name)
 
 # Regelwerk: gibt es nicht mehr, die alte Adresse führt zu Bits & Bolts auf der Weltkarte
 redirect("regelwerk", "../bits-and-bolts/", "Bits &amp; Bolts")
 
 # Störungsprotokoll
 ## Gegner aus Bolt Buddies (core/battle.gd): Schlüssel der Grafik, Name, Art, Rahmenfarbe,
-## Leben, Schaden, Tempo, Schrauben, Erfahrung, wann, wo, Verhalten, neu mit 1.0, in Block Invaders
+## Leben, Schaden, Tempo, Schrauben, Erfahrung, wann, wo, Verhalten, neu mit 1.0, in Port Patrol
 FOES = [
     ("bug", "Bug", "Gegner", "FF5252", 12, 3, 14, 3, 3, "ab Kampf 1", "alle Ebenen",
      "Der häufigste Gegner. Schwach, aber oft in Gruppen. Steht vorn.", False, "Rückt in der Formation vor."),
@@ -566,7 +571,7 @@ def foe_card(f):
     stats = "".join(f'<div><dt>{a}</dt><dd>{v}</dd></div>' for a, v in [("Leben", hp), ("Schaden", atk), ("Tempo", speed)])
     inv = f"""
   <section class="bot-game bot-game-plan"{g("plan")}>
-    <h4>Block Invaders<span class="bot-role">geplant</span></h4>
+    <h4>Port Patrol<span class="bot-role">geplant</span></h4>
     <p>{html.escape(invaders)}</p>
   </section>""" if invaders else ""
     return f"""<li class="bot-card" id="{key}" style="--bot:#{col}"{g("bb plan" if invaders else "bb")}>
@@ -646,7 +651,7 @@ write("stoerungen", head("Archiv · Störungsprotokoll", "Störungsprotokoll",
       <div class="callout wiki-note"{g("bb plan")}>
         <b>So liest du die Karten:</b> Leben, Schaden und Tempo sind Grundwerte. Mit jedem Kampf werden Gegner zäher und stärker, in tieferen Ebenen langsamer,
         dafür macht der erste Kampf jeder Ebene einen Sprung. Je Ebene gibt es die Hälfte mehr Schrauben, im Nebenschacht noch einmal 75 % mehr.
-        Der blaue Kasten zeigt, was in Block Invaders geplant ist.
+        Der blaue Kasten zeigt, was in Port Patrol geplant ist.
       </div>
       <section class="wiki-sec"{g("bb plan")}>
         <h2>Gegner im Schrottschacht</h2>
@@ -714,10 +719,10 @@ write("ersatzteile", head("Archiv · Ersatzteillager", "Ersatzteillager",
       <section class="wiki-sec"{g("bb")}>
         <h2>Attribute</h2>
         {table(["Attribut", "Wirkt auf", "Soll später kommen aus"], [
-            ["<b>Leistung</b>", "mehr Schaden", "Block Invaders"],
-            ["<b>Takt</b>", "öfter dran, weicht aus", "Loop Runner"],
+            ["<b>Leistung</b>", "mehr Schaden", "Port Patrol"],
+            ["<b>Takt</b>", "öfter dran, weicht aus", "Loop Echo"],
             ["<b>Logik</b>", "mehr Volltreffer", "Bits &amp; Bolts"],
-            ["<b>Gehäuse</b>", "mehr Leben", "Kippwelt"]])}
+            ["<b>Gehäuse</b>", "mehr Leben", "Tilt Gate"]])}
       </section>
       <section class="wiki-sec"{g("bb")}>
         <h2>Ausrüstung</h2>
@@ -781,11 +786,11 @@ write("funk", head("Archiv · Funkverbindung", "Funkverbindung",
         <h2>Wer funkt was</h2>
         {table(["Spiel", "Funkt an Bolt Buddies"], [
             ["<b>Bits &amp; Bolts</b>", "Erfahrung und Logik für den gespielten Roboter"],
-            ["<b>Block Invaders</b>", "Erfahrung, Leistung, Waffen-Teile"],
-            ["<b>Loop Runner</b>", "Erfahrung und Takt"],
-            ["<b>Kippwelt</b>", "Erfahrung, Gehäuse, Rüstungsteile"],
-            ["<b>Zündkette</b>", "Erfahrung, Schrottkisten"],
-            ["<b>Snake Jam</b>", "Akkus, Öl, Schrauben"]], "", ["bnb", "plan", "plan", "plan", "plan", "plan"])}
+            ["<b>Port Patrol</b>", "Erfahrung, Leistung, Waffen-Teile"],
+            ["<b>Loop Echo</b>", "Erfahrung und Takt"],
+            ["<b>Tilt Gate</b>", "Erfahrung, Gehäuse, Rüstungsteile"],
+            ["<b>Surge Chain</b>", "Erfahrung, Schrottkisten"],
+            ["<b>Packet Rush</b>", "Akkus, Öl, Schrauben"]], "", ["bnb", "plan", "plan", "plan", "plan", "plan"])}
         <p>Zurück funkt Bolt Buddies, welche Roboter schon gerettet sind. Die können dann auch in den anderen Spielen mitmachen.</p>
       </section>
       <section class="wiki-sec">
