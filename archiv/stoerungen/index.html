@@ -28,7 +28,6 @@
         <li><a href="../../archiv/roboter/">Roboter-Register<small>Alle 22 Roboter</small></a></li>
         <li><a href="../../archiv/stoerungen/" aria-current="page">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
         <li><a href="../../archiv/weltkarte/">Weltkarte<small>Der Rechner und seine Spiele</small></a></li>
-        <li><a href="../../archiv/regelwerk/">Regelwerk<small>Binär-Rätsel</small></a></li>
         <li><a href="../../archiv/ersatzteile/">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
         <li><a href="../../archiv/funk/">Funkverbindung<small>Spiele verbinden</small></a></li>
       </ul>
@@ -37,90 +36,91 @@
       <p class="eyebrow">Archiv · Störungsprotokoll</p>
       <h1 class="page-title">Störungsprotokoll</h1>
       <p class="wiki-lead">Alles, was im Rechner schiefgehen kann: Gegner, die im Schrottschacht angreifen, und Ereignisse, die Rätsel im Hauptrechner schwerer machen.</p>
+      <fieldset class="flt"><legend>Nach Spiel filtern</legend><input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label><input type="radio" name="flt" id="flt-bnb"><label for="flt-bnb">Bits &amp; Bolts</label><input type="radio" name="flt" id="flt-bb"><label for="flt-bb">Bolt Buddies</label><input type="radio" name="flt" id="flt-plan"><label for="flt-plan">Geplante Spiele</label></fieldset>
 
       <nav class="bot-index foe-index" aria-label="Gegner"><a href="#bug" style="--bot:#FF5252"><img src="foes/bug.png" width="40" height="40" alt="" loading="lazy"><span>Bug</span></a><a href="#drone" style="--bot:#B46CFF"><img src="foes/drone.png" width="40" height="40" alt="" loading="lazy"><span>Spam-Drohne</span></a><a href="#turret" style="--bot:#FF5252"><img src="foes/turret.png" width="40" height="40" alt="" loading="lazy"><span>Firewall</span></a><a href="#worm" style="--bot:#D9773A"><img src="foes/worm.png" width="40" height="40" alt="" loading="lazy"><span>Rostwurm</span></a><a href="#frost" style="--bot:#4DE8FF"><img src="foes/frost.png" width="40" height="40" alt="" loading="lazy"><span>Frostbug</span></a><a href="#spark" style="--bot:#FF9A3D"><img src="foes/spark.png" width="40" height="40" alt="" loading="lazy"><span>Wackelkontakt</span></a><a href="#heat" style="--bot:#FF5252"><img src="foes/heat.png" width="40" height="40" alt="" loading="lazy"><span>Überhitzer</span></a><a href="#boss" style="--bot:#3B6BFF"><img src="foes/boss.png" width="40" height="40" alt="" loading="lazy"><span>Bluescreen</span></a><a href="#short" style="--bot:#FFB000"><img src="foes/short.png" width="40" height="40" alt="" loading="lazy"><span>Kurzschluss</span></a><a href="#chiller" style="--bot:#4DE8FF"><img src="foes/chiller.png" width="40" height="40" alt="" loading="lazy"><span>Kältekern</span></a></nav>
-      <div class="callout wiki-note">
+      <div class="callout wiki-note" data-game="bb plan">
         <b>So liest du die Karten:</b> Leben, Schaden und Tempo sind Grundwerte. Mit jedem Kampf werden Gegner zäher und stärker, in tieferen Ebenen langsamer,
         dafür macht der erste Kampf jeder Ebene einen Sprung. Je Ebene gibt es die Hälfte mehr Schrauben, im Nebenschacht noch einmal 75 % mehr.
         Der blaue Kasten zeigt, was in Block Invaders geplant ist.
       </div>
-      <section class="wiki-sec">
+      <section class="wiki-sec" data-game="bb plan">
         <h2>Gegner im Schrottschacht</h2>
         <ul class="bot-grid">
-<li class="bot-card" id="bug" style="--bot:#FF5252">
+<li class="bot-card" id="bug" style="--bot:#FF5252" data-game="bb plan">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-s" src="foes/bug.png" width="80" height="80" alt="Bug" loading="lazy"></div>
     <div class="bot-name"><h3>Bug</h3><div class="foe-tags"><span class="foe-kind">Gegner</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Der häufigste Gegner. Schwach, aber oft in Gruppen. Steht vorn.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>12</dd></div><div><dt>Schaden</dt><dd>3</dd></div><div><dt>Tempo</dt><dd>14</dd></div></dl>
     <p class="bot-unlock"><b>ab Kampf 1</b> · alle Ebenen</p>
     <p class="bot-unlock">Beute: 3 Schrauben, 3 Erfahrung</p>
   </section>
-  <section class="bot-game bot-game-plan">
+  <section class="bot-game bot-game-plan" data-game="plan">
     <h4>Block Invaders<span class="bot-role">geplant</span></h4>
     <p>Rückt in der Formation vor.</p>
   </section>
 </li>
-<li class="bot-card" id="drone" style="--bot:#B46CFF">
+<li class="bot-card" id="drone" style="--bot:#B46CFF" data-game="bb plan">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-s" src="foes/drone.png" width="80" height="80" alt="Spam-Drohne" loading="lazy"></div>
     <div class="bot-name"><h3>Spam-Drohne</h3><div class="foe-tags"><span class="foe-kind">Gegner</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Fliegt über die vorderen Reihen hinweg und zielt auf den hintersten Roboter.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>9</dd></div><div><dt>Schaden</dt><dd>4</dd></div><div><dt>Tempo</dt><dd>13</dd></div></dl>
     <p class="bot-unlock"><b>ab Kampf 2</b> · alle Ebenen</p>
     <p class="bot-unlock">Beute: 4 Schrauben, 3 Erfahrung</p>
   </section>
-  <section class="bot-game bot-game-plan">
+  <section class="bot-game bot-game-plan" data-game="plan">
     <h4>Block Invaders<span class="bot-role">geplant</span></h4>
     <p>Fliegt mit und wirft Bomben.</p>
   </section>
 </li>
-<li class="bot-card" id="turret" style="--bot:#FF5252">
+<li class="bot-card" id="turret" style="--bot:#FF5252" data-game="bb plan">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-s" src="foes/turret.png" width="80" height="80" alt="Firewall" loading="lazy"></div>
     <div class="bot-name"><h3>Firewall</h3><div class="foe-tags"><span class="foe-kind">Gegner</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Langsam, schießt aber wild und hart auf irgendwen im Team.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>12</dd></div><div><dt>Schaden</dt><dd>8</dd></div><div><dt>Tempo</dt><dd>8</dd></div></dl>
     <p class="bot-unlock"><b>ab Kampf 3</b> · alle Ebenen</p>
     <p class="bot-unlock">Beute: 6 Schrauben, 6 Erfahrung</p>
   </section>
-  <section class="bot-game bot-game-plan">
+  <section class="bot-game bot-game-plan" data-game="plan">
     <h4>Block Invaders<span class="bot-role">geplant</span></h4>
     <p>Schießt auf zufällige Blöcke.</p>
   </section>
 </li>
-<li class="bot-card" id="worm" style="--bot:#D9773A">
+<li class="bot-card" id="worm" style="--bot:#D9773A" data-game="bb plan">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-s" src="foes/worm.png" width="80" height="80" alt="Rostwurm" loading="lazy"></div>
     <div class="bot-name"><h3>Rostwurm</h3><div class="foe-tags"><span class="foe-kind">Gegner</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Zäh und gepanzert (1 Panzerung). Hält lange durch.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>34</dd></div><div><dt>Schaden</dt><dd>7</dd></div><div><dt>Tempo</dt><dd>7</dd></div></dl>
     <p class="bot-unlock"><b>ab Kampf 4</b> · alle Ebenen, im Kabelschacht und in der Kernzone doppelt so oft</p>
     <p class="bot-unlock">Beute: 6 Schrauben, 6 Erfahrung</p>
   </section>
-  <section class="bot-game bot-game-plan">
+  <section class="bot-game bot-game-plan" data-game="plan">
     <h4>Block Invaders<span class="bot-role">geplant</span></h4>
     <p>Braucht mehrere Treffer.</p>
   </section>
 </li>
-<li class="bot-card" id="frost" style="--bot:#4DE8FF">
+<li class="bot-card" id="frost" style="--bot:#4DE8FF" data-game="bb">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-s" src="foes/frost.png" width="80" height="80" alt="Frostbug" loading="lazy"></div>
     <div class="bot-name"><h3>Frostbug</h3><div class="foe-tags"><span class="foe-kind">Gegner</span><span class="badge badge-plan">neu in 1.0</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Seine Treffer kühlen ab: Wer getroffen wird, ist später wieder dran.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>16</dd></div><div><dt>Schaden</dt><dd>4</dd></div><div><dt>Tempo</dt><dd>11</dd></div></dl>
@@ -128,12 +128,12 @@
     <p class="bot-unlock">Beute: 5 Schrauben, 5 Erfahrung</p>
   </section>
 </li>
-<li class="bot-card" id="spark" style="--bot:#FF9A3D">
+<li class="bot-card" id="spark" style="--bot:#FF9A3D" data-game="bb">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-s" src="foes/spark.png" width="80" height="80" alt="Wackelkontakt" loading="lazy"></div>
     <div class="bot-name"><h3>Wackelkontakt</h3><div class="foe-tags"><span class="foe-kind">Gegner</span><span class="badge badge-plan">neu in 1.0</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Schnell und geladen: Wer ihn trifft, bekommt einen Schlag zurück, der tiefer im Schacht stärker wird.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>11</dd></div><div><dt>Schaden</dt><dd>4</dd></div><div><dt>Tempo</dt><dd>16</dd></div></dl>
@@ -141,12 +141,12 @@
     <p class="bot-unlock">Beute: 5 Schrauben, 5 Erfahrung</p>
   </section>
 </li>
-<li class="bot-card" id="heat" style="--bot:#FF5252">
+<li class="bot-card" id="heat" style="--bot:#FF5252" data-game="bb">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-s" src="foes/heat.png" width="80" height="80" alt="Überhitzer" loading="lazy"></div>
     <div class="bot-name"><h3>Überhitzer</h3><div class="foe-tags"><span class="foe-kind">Gegner</span><span class="badge badge-plan">neu in 1.0</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Strahlt Hitze ab und trifft das ganze Team zugleich, jeden mit 60 % seines Schadens.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>18</dd></div><div><dt>Schaden</dt><dd>6</dd></div><div><dt>Tempo</dt><dd>9</dd></div></dl>
@@ -154,29 +154,29 @@
     <p class="bot-unlock">Beute: 7 Schrauben, 7 Erfahrung</p>
   </section>
 </li>
-<li class="bot-card" id="boss" style="--bot:#3B6BFF">
+<li class="bot-card" id="boss" style="--bot:#3B6BFF" data-game="bb plan">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-l" src="foes/boss.png" width="96" height="96" alt="Bluescreen" loading="lazy"></div>
     <div class="bot-name"><h3>Bluescreen</h3><div class="foe-tags"><span class="foe-kind">Boss</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Trifft das ganze Team zugleich. Hinterlässt ein seltenes Teil und einen Akku.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>80</dd></div><div><dt>Schaden</dt><dd>8</dd></div><div><dt>Tempo</dt><dd>9</dd></div></dl>
     <p class="bot-unlock"><b>Kampf 5, 10, 15</b> · Mitte von Speicherkeller und Kabelschacht (dort mit Wackelkontakten), Wächter des Speicherkellers, in der Kernzone im Wechsel</p>
     <p class="bot-unlock">Beute: 25 Schrauben, 25 Erfahrung</p>
   </section>
-  <section class="bot-game bot-game-plan">
+  <section class="bot-game bot-game-plan" data-game="plan">
     <h4>Block Invaders<span class="bot-role">geplant</span></h4>
     <p>Boss-Welle alle 5 Wellen.</p>
   </section>
 </li>
-<li class="bot-card" id="short" style="--bot:#FFB000">
+<li class="bot-card" id="short" style="--bot:#FFB000" data-game="bb">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-l" src="foes/short.png" width="96" height="96" alt="Kurzschluss" loading="lazy"></div>
     <div class="bot-name"><h3>Kurzschluss</h3><div class="foe-tags"><span class="foe-kind">Wächter</span><span class="badge badge-plan">neu in 1.0</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Schnell, schlägt wild um sich und landet viele Volltreffer (25 %). Kommt mit Wackelkontakt und Spam-Drohne.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>75</dd></div><div><dt>Schaden</dt><dd>9</dd></div><div><dt>Tempo</dt><dd>14</dd></div></dl>
@@ -184,12 +184,12 @@
     <p class="bot-unlock">Beute: 30 Schrauben, 30 Erfahrung</p>
   </section>
 </li>
-<li class="bot-card" id="chiller" style="--bot:#4DE8FF">
+<li class="bot-card" id="chiller" style="--bot:#4DE8FF" data-game="bb">
   <div class="bot-head">
     <div class="bot-screen"><img class="foe-l" src="foes/chiller.png" width="96" height="96" alt="Kältekern" loading="lazy"></div>
     <div class="bot-name"><h3>Kältekern</h3><div class="foe-tags"><span class="foe-kind">Wächter</span><span class="badge badge-plan">neu in 1.0</span></div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>Trifft das ganze Team und kühlt alle zugleich ab. Kommt mit Frostbug und Bug.</p>
     <dl class="foe-stats"><div><dt>Leben</dt><dd>95</dd></div><div><dt>Schaden</dt><dd>7</dd></div><div><dt>Tempo</dt><dd>8</dd></div></dl>
@@ -199,7 +199,7 @@
 </li>
         </ul>
       </section>
-      <section class="wiki-sec" id="ereignisse">
+      <section class="wiki-sec" id="ereignisse" data-game="bnb">
         <h2>Ereignisse im Hauptrechner</h2>
         <p>Aus Bits &amp; Bolts. Sie treffen Zwischenrechner, den Hauptrechner und auf hohen Stufen auch normale Rätsel. Vier davon bringen Roboter als Eigenart in jedes Rätsel mit, dafür haben sie mehr Ladung oder Tipps.</p>
         <ul class="bot-grid">

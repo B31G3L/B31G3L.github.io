@@ -28,7 +28,6 @@
         <li><a href="../../archiv/roboter/">Roboter-Register<small>Alle 22 Roboter</small></a></li>
         <li><a href="../../archiv/stoerungen/">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
         <li><a href="../../archiv/weltkarte/">Weltkarte<small>Der Rechner und seine Spiele</small></a></li>
-        <li><a href="../../archiv/regelwerk/">Regelwerk<small>Binär-Rätsel</small></a></li>
         <li><a href="../../archiv/ersatzteile/">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
         <li><a href="../../archiv/funk/" aria-current="page">Funkverbindung<small>Spiele verbinden</small></a></li>
       </ul>
@@ -37,6 +36,8 @@
       <p class="eyebrow">Archiv · Funkverbindung</p>
       <h1 class="page-title">Funkverbindung</h1>
       <p class="wiki-lead">Geplant: Die Spiele sollen sich später auf deinem Handy gegenseitig Bescheid geben. Was ein Roboter in einem Spiel erlebt, macht ihn dann in Bolt Buddies stärker.</p>
+      <fieldset class="flt"><legend>Nach Spiel filtern</legend><input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label><input type="radio" name="flt" id="flt-bnb"><label for="flt-bnb">Bits &amp; Bolts</label><input type="radio" name="flt" id="flt-bb"><label for="flt-bb">Bolt Buddies</label><input type="radio" name="flt" id="flt-plan"><label for="flt-plan">Geplante Spiele</label></fieldset>
+      <p class="flt-empty" data-empty="bb">Zu Bolt Buddies gibt es auf dieser Seite nichts.</p>
 
       <div class="callout wiki-note"><b>Noch nicht verfügbar.</b> Diese Seite beschreibt den Plan. Die Spiele funktionieren schon jetzt jedes für sich.</div>
       <section class="wiki-sec">
@@ -44,12 +45,12 @@
         <div class="wiki-table"><table>
 <thead><tr><th>Spiel</th><th>Funkt an Bolt Buddies</th></tr></thead>
 <tbody>
-<tr><td><b>Bits &amp; Bolts</b></td><td>Erfahrung und Logik für den gespielten Roboter</td></tr>
-<tr><td><b>Block Invaders</b></td><td>Erfahrung, Leistung, Waffen-Teile</td></tr>
-<tr><td><b>Loop Runner</b></td><td>Erfahrung und Takt</td></tr>
-<tr><td><b>Kippwelt</b></td><td>Erfahrung, Gehäuse, Rüstungsteile</td></tr>
-<tr><td><b>Zündkette</b></td><td>Erfahrung, Schrottkisten</td></tr>
-<tr><td><b>Snake Jam</b></td><td>Akkus, Öl, Schrauben</td></tr>
+<tr data-game="bnb"><td><b>Bits &amp; Bolts</b></td><td>Erfahrung und Logik für den gespielten Roboter</td></tr>
+<tr data-game="plan"><td><b>Block Invaders</b></td><td>Erfahrung, Leistung, Waffen-Teile</td></tr>
+<tr data-game="plan"><td><b>Loop Runner</b></td><td>Erfahrung und Takt</td></tr>
+<tr data-game="plan"><td><b>Kippwelt</b></td><td>Erfahrung, Gehäuse, Rüstungsteile</td></tr>
+<tr data-game="plan"><td><b>Zündkette</b></td><td>Erfahrung, Schrottkisten</td></tr>
+<tr data-game="plan"><td><b>Snake Jam</b></td><td>Akkus, Öl, Schrauben</td></tr>
 </tbody>
 </table></div>
 

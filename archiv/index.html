@@ -28,7 +28,6 @@
         <li><a href="../archiv/roboter/">Roboter-Register<small>Alle 22 Roboter</small></a></li>
         <li><a href="../archiv/stoerungen/">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
         <li><a href="../archiv/weltkarte/">Weltkarte<small>Der Rechner und seine Spiele</small></a></li>
-        <li><a href="../archiv/regelwerk/">Regelwerk<small>Binär-Rätsel</small></a></li>
         <li><a href="../archiv/ersatzteile/">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
         <li><a href="../archiv/funk/">Funkverbindung<small>Spiele verbinden</small></a></li>
       </ul>
@@ -37,6 +36,7 @@
       <p class="eyebrow">Archiv der Roboter</p>
       <h1 class="page-title">Das Archiv</h1>
       <p class="wiki-lead">Hier steht alles über die Welt von BYTE und seinen 21 Freunden: wer sie sind, wo sie unterwegs sind und was ihnen das Leben schwer macht.</p>
+      <fieldset class="flt"><legend>Nach Spiel filtern</legend><input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label><input type="radio" name="flt" id="flt-bnb"><label for="flt-bnb">Bits &amp; Bolts</label><input type="radio" name="flt" id="flt-bb"><label for="flt-bb">Bolt Buddies</label><input type="radio" name="flt" id="flt-plan"><label for="flt-plan">Geplante Spiele</label></fieldset>
 
       <section class="wiki-sec">
         <h2>Die Welt in drei Sätzen</h2>
@@ -46,12 +46,11 @@
       <section class="wiki-sec">
         <h2>Bereiche des Archivs</h2>
         <ul class="app-grid wiki-cards">
-<li class="app-card"><a class="wiki-card-link" href="roboter/"><h3 class="app-title">Roboter-Register</h3><p class="app-desc">Alle 22 Roboter mit Rätselfähigkeit, Kampfwerten, Eigenheit und Spruch.</p></a></li>
-<li class="app-card"><a class="wiki-card-link" href="stoerungen/"><h3 class="app-title">Störungsprotokoll</h3><p class="app-desc">Alle Gegner mit Sprite, Werten und Beute, dazu die Ereignisse im Hauptrechner.</p></a></li>
-<li class="app-card"><a class="wiki-card-link" href="weltkarte/"><h3 class="app-title">Weltkarte</h3><p class="app-desc">Die Welt ist ein alter Rechner: welches Spiel in welchem Bauteil spielt, was man dort tut und was es den Robotern bringt.</p></a></li>
-<li class="app-card"><a class="wiki-card-link" href="regelwerk/"><h3 class="app-title">Regelwerk</h3><p class="app-desc">Die Binär-Regeln aus Bits & Bolts, alle Zusatzregeln und die Schwierigkeitsstufen.</p></a></li>
-<li class="app-card"><a class="wiki-card-link" href="ersatzteile/"><h3 class="app-title">Ersatzteillager</h3><p class="app-desc">Attribute, Ausrüstung, Seltenheiten, Module und Vorräte.</p></a></li>
-<li class="app-card"><a class="wiki-card-link" href="funk/"><h3 class="app-title">Funkverbindung</h3><p class="app-desc">Wie die Spiele später miteinander reden, damit Roboter überall stärker werden.</p></a></li>
+<li class="app-card" data-game="bnb bb plan"><a class="wiki-card-link" href="roboter/"><h3 class="app-title">Roboter-Register</h3><p class="app-desc">Alle 22 Roboter mit Rätselfähigkeit, Kampfwerten, Eigenheit, Fundort und Spruch.</p></a></li>
+<li class="app-card" data-game="bnb bb plan"><a class="wiki-card-link" href="stoerungen/"><h3 class="app-title">Störungsprotokoll</h3><p class="app-desc">Alle Gegner mit Sprite, Werten und Beute, dazu die Ereignisse im Hauptrechner.</p></a></li>
+<li class="app-card" data-game="bnb bb plan"><a class="wiki-card-link" href="weltkarte/"><h3 class="app-title">Weltkarte</h3><p class="app-desc">Die Welt ist ein alter Rechner: welches Spiel in welchem Bauteil spielt, mit Bildern aller Orte.</p></a></li>
+<li class="app-card" data-game="bb"><a class="wiki-card-link" href="ersatzteile/"><h3 class="app-title">Ersatzteillager</h3><p class="app-desc">Ausrüstung, Module, Vorräte und Stationen der Werkstatt, mit Bild und Werten.</p></a></li>
+<li class="app-card" data-game="bnb bb plan"><a class="wiki-card-link" href="funk/"><h3 class="app-title">Funkverbindung</h3><p class="app-desc">Wie die Spiele später miteinander reden, damit Roboter überall stärker werden.</p></a></li>
         </ul>
       </section>
 
@@ -60,13 +59,13 @@
         <div class="wiki-table wiki-table-plain"><table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
-<tr><td>Roboter</td><td>22, alle mit eigener Rätselfähigkeit und Kampf-Eigenheit</td></tr>
+<tr data-game="bnb bb"><td>Roboter</td><td>22, alle mit eigener Rätselfähigkeit und Kampf-Eigenheit</td></tr>
 <tr><td>Spiele</td><td>1 im Play Store, 1 in Entwicklung, 5 geplant</td></tr>
-<tr><td>Attribute</td><td>Leistung, Takt, Logik, Gehäuse</td></tr>
+<tr data-game="bb"><td>Attribute</td><td>Leistung, Takt, Logik, Gehäuse</td></tr>
 <tr><td>Welt</td><td>ein alter Rechner, jedes Spiel spielt in einem Bauteil</td></tr>
-<tr><td>Gegner</td><td>Bug, Spam-Drohne, Firewall, Rostwurm, Frostbug, Wackelkontakt, Überhitzer und drei Bosse</td></tr>
-<tr><td>Ereignisse</td><td>8 Störungen im Hauptrechner, von Stromausfall bis Nebel</td></tr>
-<tr><td>Währung</td><td>Schrauben und Schrott in der Werkstatt</td></tr>
+<tr data-game="bb plan"><td>Gegner</td><td>Bug, Spam-Drohne, Firewall, Rostwurm, Frostbug, Wackelkontakt, Überhitzer und drei Bosse</td></tr>
+<tr data-game="bnb"><td>Ereignisse</td><td>8 Störungen im Hauptrechner, von Stromausfall bis Nebel</td></tr>
+<tr data-game="bb"><td>Währung</td><td>Schrauben und Schrott in der Werkstatt</td></tr>
 </tbody>
 </table></div>
 

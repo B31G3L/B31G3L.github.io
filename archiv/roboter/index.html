@@ -28,7 +28,6 @@
         <li><a href="../../archiv/roboter/" aria-current="page">Roboter-Register<small>Alle 22 Roboter</small></a></li>
         <li><a href="../../archiv/stoerungen/">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
         <li><a href="../../archiv/weltkarte/">Weltkarte<small>Der Rechner und seine Spiele</small></a></li>
-        <li><a href="../../archiv/regelwerk/">Regelwerk<small>Binär-Rätsel</small></a></li>
         <li><a href="../../archiv/ersatzteile/">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
         <li><a href="../../archiv/funk/">Funkverbindung<small>Spiele verbinden</small></a></li>
       </ul>
@@ -37,6 +36,7 @@
       <p class="eyebrow">Archiv · Roboter-Register</p>
       <h1 class="page-title">Roboter-Register</h1>
       <p class="wiki-lead">Alle 22 Roboter in der Reihenfolge, in der man sie in Bits &amp; Bolts freischaltet. Jeder bringt ins Rätsel eine eigene Fähigkeit mit und hat in Bolt Buddies eigene Kampfwerte.</p>
+      <fieldset class="flt"><legend>Nach Spiel filtern</legend><input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label><input type="radio" name="flt" id="flt-bnb"><label for="flt-bnb">Bits &amp; Bolts</label><input type="radio" name="flt" id="flt-bb"><label for="flt-bb">Bolt Buddies</label><input type="radio" name="flt" id="flt-plan"><label for="flt-plan">Geplante Spiele</label></fieldset>
 
       <nav class="bot-index" aria-label="Roboter"><a href="#byte" style="--bot:#3DFF7A"><img src="bots/byte.png" width="40" height="48" alt="" loading="lazy"><span>BYTE</span></a><a href="#okta" style="--bot:#FF9E2C"><img src="bots/okta.png" width="40" height="48" alt="" loading="lazy"><span>OKTA</span></a><a href="#gate" style="--bot:#FFD34D"><img src="bots/gate.png" width="40" height="48" alt="" loading="lazy"><span>GATE</span></a><a href="#null" style="--bot:#B4BECC"><img src="bots/null.png" width="40" height="48" alt="" loading="lazy"><span>NULL</span></a><a href="#hexa" style="--bot:#4DE8FF"><img src="bots/hexa.png" width="40" height="48" alt="" loading="lazy"><span>HEXA</span></a><a href="#pari" style="--bot:#2CE6B0"><img src="bots/pari.png" width="40" height="48" alt="" loading="lazy"><span>PARI</span></a><a href="#aski" style="--bot:#E8F0FF"><img src="bots/aski.png" width="40" height="48" alt="" loading="lazy"><span>ASKI</span></a><a href="#qubit" style="--bot:#7DF9FF"><img src="bots/qubit.png" width="40" height="48" alt="" loading="lazy"><span>QUBIT</span></a><a href="#chroma" style="--bot:#7FB2FF"><img src="bots/chroma.png" width="40" height="48" alt="" loading="lazy"><span>CHROMA</span></a><a href="#nibble" style="--bot:#C6FF3D"><img src="bots/nibble.png" width="40" height="48" alt="" loading="lazy"><span>NIBBLE</span></a><a href="#glitch" style="--bot:#B07CFF"><img src="bots/glitch.png" width="40" height="48" alt="" loading="lazy"><span>GLITCH</span></a><a href="#patch" style="--bot:#5C8DFF"><img src="bots/patch.png" width="40" height="48" alt="" loading="lazy"><span>PATCH</span></a><a href="#loop" style="--bot:#7CFFB0"><img src="bots/loop.png" width="40" height="48" alt="" loading="lazy"><span>LOOP</span></a><a href="#xor" style="--bot:#FF7A45"><img src="bots/xor.png" width="40" height="48" alt="" loading="lazy"><span>XOR</span></a><a href="#mira" style="--bot:#C9A8FF"><img src="bots/mira.png" width="40" height="48" alt="" loading="lazy"><span>MIRA</span></a><a href="#pixa" style="--bot:#FF5CF0"><img src="bots/pixa.png" width="40" height="48" alt="" loading="lazy"><span>PIXA</span></a><a href="#shift" style="--bot:#6FC3FF"><img src="bots/shift.png" width="40" height="48" alt="" loading="lazy"><span>SHIFT</span></a><a href="#root" style="--bot:#4CC26A"><img src="bots/root.png" width="40" height="48" alt="" loading="lazy"><span>ROOT</span></a><a href="#virus" style="--bot:#8CFF4D"><img src="bots/virus.png" width="40" height="48" alt="" loading="lazy"><span>VIRUS</span></a><a href="#error" style="--bot:#FF4D4D"><img src="bots/error.png" width="40" height="48" alt="" loading="lazy"><span>ERROR</span></a><a href="#daemon" style="--bot:#C04DFF"><img src="bots/daemon.png" width="40" height="48" alt="" loading="lazy"><span>DAEMON</span></a><a href="#morse" style="--bot:#FFC66B"><img src="bots/morse.png" width="40" height="48" alt="" loading="lazy"><span>MORSE</span></a></nav>
       <div class="callout wiki-note">
@@ -50,12 +50,12 @@
     <div class="bot-screen"><img src="bots/byte.png" width="80" height="96" alt="BYTE" loading="lazy"></div>
     <div class="bot-name"><h3>BYTE</h3><span class="bot-say">„Hallo!“</span><a class="bot-family" href="#familien">Familie: Prozesse</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Allrounder</span></h4>
     <p>Der Allrounder. 5 Ladungen, 3 Tipps, keine Besonderheiten.</p>
     <p class="bot-unlock">Freigeschaltet von Anfang an</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt 2 Leben je Zug</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
@@ -68,12 +68,12 @@
     <div class="bot-screen"><img src="bots/okta.png" width="80" height="96" alt="OKTA" loading="lazy"></div>
     <div class="bot-name"><h3>OKTA</h3><span class="bot-say">„Blubb!“</span><a class="bot-family" href="#familien">Familie: Zahlensysteme</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Liest Oktalzahlen an den Zeilen, startet aber mit 1 Ladung weniger.</p>
     <p class="bot-unlock">Freigeschaltet nach 1 Sieg, Stufe 0 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> trifft alle Gegner zugleich</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
@@ -84,14 +84,14 @@
 <li class="bot-card" id="gate" style="--bot:#FFD34D">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/gate.png" width="80" height="96" alt="GATE" loading="lazy"></div>
-    <div class="bot-name"><h3>GATE</h3><span class="bot-say">„Zutritt!“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a><p class="bot-hero">Held in Kippwelt (geplant)</p></div>
+    <div class="bot-name"><h3>GATE</h3><span class="bot-say">„Zutritt!“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a><p class="bot-hero" data-game="plan">Held in Kippwelt (geplant)</p></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Zusatzregel</span></h4>
     <p>Bringt in jedes Rätsel Zeichen zwischen Zellen: = heißt gleich, × heißt verschieden.</p>
     <p class="bot-unlock">Freigeschaltet nach 2 Siegen, Stufe 0 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> lenkt Angriffe auf sich, 2 Panzerung</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="6 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="num">6</span></dd></div></dl>
@@ -104,12 +104,12 @@
     <div class="bot-screen"><img src="bots/null.png" width="80" height="96" alt="NULL" loading="lazy"></div>
     <div class="bot-name"><h3>NULL</h3><span class="bot-say">„...“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Zeigt, wo in einer Linie die erste 0 steht, hat aber nur 2 Tipps.</p>
     <p class="bot-unlock">Freigeschaltet nach 3 Siegen, Stufe 1 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +20 % Ausweichen</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -122,12 +122,12 @@
     <div class="bot-screen"><img src="bots/hexa.png" width="80" height="96" alt="HEXA" loading="lazy"></div>
     <div class="bot-name"><h3>HEXA</h3><span class="bot-say">„0xF00D!“</span><a class="bot-family" href="#familien">Familie: Zahlensysteme</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Liest Hexzahlen an den Zeilen. 4 Tipps, aber 1 Ladung weniger.</p>
     <p class="bot-unlock">Freigeschaltet nach 4 Siegen, Stufe 1 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +20 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -140,12 +140,12 @@
     <div class="bot-screen"><img src="bots/pari.png" width="80" height="96" alt="PARI" loading="lazy"></div>
     <div class="bot-name"><h3>PARI</h3><span class="bot-say">„Halbe-halbe!“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Zusatzregel</span></h4>
     <p>Bringt in jedes Rätsel Blöcke mit gleich vielen Nullen und Einsen.</p>
     <p class="bot-unlock">Freigeschaltet nach 5 Siegen, Stufe 2 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt sich um 30 % des Schadens</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
@@ -158,12 +158,12 @@
     <div class="bot-screen"><img src="bots/aski.png" width="80" height="96" alt="ASKI" loading="lazy"></div>
     <div class="bot-name"><h3>ASKI</h3><span class="bot-say">„Hi :)“</span><a class="bot-family" href="#familien">Familie: Zahlensysteme</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Liest ASCII-Zeichen an den Zeilen. 5 Ladungen, aber nur 2 Tipps.</p>
     <p class="bot-unlock">Freigeschaltet nach 6 Siegen, Stufe 2 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +30 % Schrauben fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
@@ -174,14 +174,14 @@
 <li class="bot-card" id="qubit" style="--bot:#7DF9FF">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/qubit.png" width="80" height="96" alt="QUBIT" loading="lazy"></div>
-    <div class="bot-name"><h3>QUBIT</h3><span class="bot-say">„0 und 1!“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a><p class="bot-hero">Held in Loop Runner (geplant)</p></div>
+    <div class="bot-name"><h3>QUBIT</h3><span class="bot-say">„0 und 1!“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a><p class="bot-hero" data-game="plan">Held in Loop Runner (geplant)</p></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Zusatzregel</span></h4>
     <p>Verschränkt Zellen: Von zwei Zellen mit gleichem Buchstaben ist genau eine 1.</p>
     <p class="bot-unlock">Freigeschaltet nach 8 Siegen, Stufe 3 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +30 % Ausweichen</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div></dl>
@@ -194,12 +194,12 @@
     <div class="bot-screen"><img src="bots/chroma.png" width="80" height="96" alt="CHROMA" loading="lazy"></div>
     <div class="bot-name"><h3>CHROMA</h3><span class="bot-say">„Ooh, bunt!“</span><a class="bot-family" href="#familien">Familie: Zahlensysteme</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Liest Farbbalken an den Zeilen, hat aber nur 2 Tipps.</p>
     <p class="bot-unlock">Freigeschaltet nach 10 Siegen, Stufe 3 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +50 % Erfahrung fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -212,12 +212,12 @@
     <div class="bot-screen"><img src="bots/nibble.png" width="80" height="96" alt="NIBBLE" loading="lazy"></div>
     <div class="bot-name"><h3>NIBBLE</h3><span class="bot-say">„Happs!“</span><a class="bot-family" href="#familien">Familie: Zahlensysteme</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Zusatzregel</span></h4>
     <p>Zählt in Häppchen: Rahmen um vier Zellen sagen, wie viele Einsen darin stehen.</p>
     <p class="bot-unlock">Freigeschaltet nach 12 Siegen, Stufe 4 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt sich um 20 % des Schadens, +15 % Schrauben fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div></dl>
@@ -228,14 +228,14 @@
 <li class="bot-card" id="glitch" style="--bot:#B07CFF">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/glitch.png" width="80" height="96" alt="GLITCH" loading="lazy"></div>
-    <div class="bot-name"><h3>GLITCH</h3><span class="bot-say">„H#ll§!“</span><a class="bot-family" href="#familien">Familie: Störenfriede</a><p class="bot-hero">Held in Zündkette (geplant)</p></div>
+    <div class="bot-name"><h3>GLITCH</h3><span class="bot-say">„H#ll§!“</span><a class="bot-family" href="#familien">Familie: Störenfriede</a><p class="bot-hero" data-game="plan">Held in Zündkette (geplant)</p></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Zeigt zwei Zahlen an einer Linie, nur eine stimmt. 4 Tipps, aber 1 Ladung weniger.</p>
     <p class="bot-unlock">Freigeschaltet nach 14 Siegen, Stufe 4 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +30 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div></dl>
@@ -248,12 +248,12 @@
     <div class="bot-screen"><img src="bots/patch.png" width="80" height="96" alt="PATCH" loading="lazy"></div>
     <div class="bot-name"><h3>PATCH</h3><span class="bot-say">„Hält schon!“</span><a class="bot-family" href="#familien">Familie: Störenfriede</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Fähigkeit</span></h4>
     <p>Flickt sich selbst: Der erste Kurzschluss in jedem Rätsel kostet nichts. Dafür 2 Ladungen weniger.</p>
     <p class="bot-unlock">Freigeschaltet nach 16 Siegen, Stufe 4 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> blockt 2 Treffer je Kampf</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div></dl>
@@ -264,14 +264,14 @@
 <li class="bot-card" id="loop" style="--bot:#7CFFB0">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/loop.png" width="80" height="96" alt="LOOP" loading="lazy"></div>
-    <div class="bot-name"><h3>LOOP</h3><span class="bot-say">„Und nochmal!“</span><a class="bot-family" href="#familien">Familie: Prozesse</a><p class="bot-hero">Held in Loop Runner (geplant)</p></div>
+    <div class="bot-name"><h3>LOOP</h3><span class="bot-say">„Und nochmal!“</span><a class="bot-family" href="#familien">Familie: Prozesse</a><p class="bot-hero" data-game="plan">Held in Loop Runner (geplant)</p></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Zusatzregel</span></h4>
     <p>Seine Raster haben keinen Rand: Nie drei gleiche gilt auch über den Rand hinweg.</p>
     <p class="bot-unlock">Freigeschaltet nach 18 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +20 % Tempo</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -284,12 +284,12 @@
     <div class="bot-screen"><img src="bots/xor.png" width="80" height="96" alt="XOR" loading="lazy"></div>
     <div class="bot-name"><h3>XOR</h3><span class="bot-say">„Anders!“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Zählt, an wie vielen Stellen sich zwei Nachbarlinien unterscheiden. Dafür 4 Tipps.</p>
     <p class="bot-unlock">Freigeschaltet nach 20 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> zielt auf den hintersten Gegner, +15 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -302,12 +302,12 @@
     <div class="bot-screen"><img src="bots/mira.png" width="80" height="96" alt="MIRA" loading="lazy"></div>
     <div class="bot-name"><h3>MIRA</h3><span class="bot-say">„!ollaH“</span><a class="bot-family" href="#familien">Familie: Logikgatter</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Verbindet Linien, die Spiegelbilder sind. 5 Ladungen, 3 Tipps.</p>
     <p class="bot-unlock">Freigeschaltet nach 22 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> 3 Schaden an Angreifern</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div></dl>
@@ -320,12 +320,12 @@
     <div class="bot-screen"><img src="bots/pixa.png" width="80" height="96" alt="PIXA" loading="lazy"></div>
     <div class="bot-name"><h3>PIXA</h3><span class="bot-say">„Piep!“</span><a class="bot-family" href="#familien">Familie: Zahlensysteme</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Zeigt Pixelblöcke an Zeilen und Spalten. 5 Ladungen, 3 Tipps.</p>
     <p class="bot-unlock">Freigeschaltet nach 24 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt 3 Leben je Zug</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
@@ -336,14 +336,14 @@
 <li class="bot-card" id="shift" style="--bot:#6FC3FF">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/shift.png" width="80" height="96" alt="SHIFT" loading="lazy"></div>
-    <div class="bot-name"><h3>SHIFT</h3><span class="bot-say">„Rutsch rüber!“</span><a class="bot-family" href="#familien">Familie: Prozesse</a><p class="bot-hero">Held in Loop Runner (geplant)</p></div>
+    <div class="bot-name"><h3>SHIFT</h3><span class="bot-say">„Rutsch rüber!“</span><a class="bot-family" href="#familien">Familie: Prozesse</a><p class="bot-hero" data-game="plan">Held in Loop Runner (geplant)</p></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Rätselhinweis</span></h4>
     <p>Verbindet Nachbarlinien, die um eine Stelle verschoben sind. 5 Ladungen, 3 Tipps.</p>
     <p class="bot-unlock">Freigeschaltet nach 26 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> ist als Erster dran, +10 % Ausweichen</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -354,14 +354,14 @@
 <li class="bot-card" id="root" style="--bot:#4CC26A">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/root.png" width="80" height="96" alt="ROOT" loading="lazy"></div>
-    <div class="bot-name"><h3>ROOT</h3><span class="bot-say">„sudo hallo“</span><a class="bot-family" href="#familien">Familie: Prozesse</a><p class="bot-hero">Held in Kippwelt (geplant)</p></div>
+    <div class="bot-name"><h3>ROOT</h3><span class="bot-say">„sudo hallo“</span><a class="bot-family" href="#familien">Familie: Prozesse</a><p class="bot-hero" data-game="plan">Held in Kippwelt (geplant)</p></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Zusatzregel</span></h4>
     <p>Sieht auch schräg: Nie drei gleiche gilt bei ihm auch diagonal. Dafür 1 Tipp mehr.</p>
     <p class="bot-unlock">Freigeschaltet nach 28 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> 2 Panzerung</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
@@ -374,12 +374,12 @@
     <div class="bot-screen"><img src="bots/virus.png" width="80" height="96" alt="VIRUS" loading="lazy"></div>
     <div class="bot-name"><h3>VIRUS</h3><span class="bot-say">„Hatschi!“</span><a class="bot-family" href="#familien">Familie: Störenfriede</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Ereignis</span></h4>
     <p>Steckt an: Bei einem Kurzschluss erlischt auch eine Ziffer daneben. Dafür 1 Ladung mehr.</p>
     <p class="bot-unlock">Freigeschaltet nach 30 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> Getroffene rosten: 2 Schaden je Zug</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -390,14 +390,14 @@
 <li class="bot-card" id="error" style="--bot:#FF4D4D">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/error.png" width="80" height="96" alt="ERROR" loading="lazy"></div>
-    <div class="bot-name"><h3>ERROR</h3><span class="bot-say">„404!“</span><a class="bot-family" href="#familien">Familie: Störenfriede</a><p class="bot-hero">Held in Zündkette (geplant)</p></div>
+    <div class="bot-name"><h3>ERROR</h3><span class="bot-say">„404!“</span><a class="bot-family" href="#familien">Familie: Störenfriede</a><p class="bot-hero" data-game="plan">Held in Zündkette (geplant)</p></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Ereignis</span></h4>
     <p>Baut Fehler ein: Eine Vorgabe ist falsch. Dafür 1 Tipp mehr.</p>
     <p class="bot-unlock">Freigeschaltet nach 32 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> 2 Schaden an Angreifern, +10 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="6 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="num">6</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -410,12 +410,12 @@
     <div class="bot-screen"><img src="bots/daemon.png" width="80" height="96" alt="DAEMON" loading="lazy"></div>
     <div class="bot-name"><h3>DAEMON</h3><span class="bot-say">„Läuft…“</span><a class="bot-family" href="#familien">Familie: Prozesse</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Ereignis</span></h4>
     <p>Läuft im Hintergrund: Wer zu lange nichts Richtiges einträgt, verliert Ladung. Dafür 1 Ladung mehr.</p>
     <p class="bot-unlock">Freigeschaltet nach 34 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> ist als Erster dran, heilt sich um 15 % des Schadens</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -428,12 +428,12 @@
     <div class="bot-screen"><img src="bots/morse.png" width="80" height="96" alt="MORSE" loading="lazy"></div>
     <div class="bot-name"><h3>MORSE</h3><span class="bot-say">„·– ·–“</span><a class="bot-family" href="#familien">Familie: Prozesse</a></div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle" data-game="bnb">
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">Ereignis</span></h4>
     <p>Funkt im Nebel: Klar zu sehen ist nur die Umgebung der letzten Zelle. Dafür 1 Tipp mehr.</p>
     <p class="bot-unlock">Freigeschaltet nach 36 Siegen, Stufe 5 geschafft</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight" data-game="bb">
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> zielt auf den hintersten Gegner, +25 % Erfahrung fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
@@ -442,7 +442,7 @@
   </section>
 </li>
       </ul>
-      <section class="wiki-sec" id="familien" style="margin-top:40px">
+      <section class="wiki-sec" id="familien" style="margin-top:40px" data-game="bb">
         <h2>Familien <span class="badge badge-plan">Geplant</span></h2>
         <p>Geplant für Bolt Buddies 1.1: Zwei Roboter derselben Familie im Team geben einen kleinen Bonus, drei einen größeren.</p>
         <div class="wiki-table"><table>

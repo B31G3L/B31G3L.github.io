@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ersatzteillager – Archiv der Roboter</title>
-<meta name="description" content="Attribute, Ausrüstung, Seltenheiten, Module und Pflegewerte der Roboter in Bolt Buddies.">
+<meta name="description" content="Ausrüstung, Module, Shop, Pflegewerte und Werkstatt-Stationen der Roboter in Bolt Buddies, mit Bildern aus dem Spiel.">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -28,7 +28,6 @@
         <li><a href="../../archiv/roboter/">Roboter-Register<small>Alle 22 Roboter</small></a></li>
         <li><a href="../../archiv/stoerungen/">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
         <li><a href="../../archiv/weltkarte/">Weltkarte<small>Der Rechner und seine Spiele</small></a></li>
-        <li><a href="../../archiv/regelwerk/">Regelwerk<small>Binär-Rätsel</small></a></li>
         <li><a href="../../archiv/ersatzteile/" aria-current="page">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
         <li><a href="../../archiv/funk/">Funkverbindung<small>Spiele verbinden</small></a></li>
       </ul>
@@ -36,9 +35,12 @@
     <article class="wiki-page">
       <p class="eyebrow">Archiv · Ersatzteillager</p>
       <h1 class="page-title">Ersatzteillager</h1>
-      <p class="wiki-lead">Was einen Roboter in Bolt Buddies stark macht: vier Attribute, drei Ausrüstungsplätze, Module für eine Expedition und gute Pflege.</p>
+      <p class="wiki-lead">Was einen Roboter in Bolt Buddies stark macht: vier Attribute, drei Ausrüstungsplätze, Module für eine Expedition, Vorräte aus dem Shop und eine gut ausgebaute Werkstatt. Alle Bilder stammen direkt aus dem Spiel.</p>
+      <fieldset class="flt"><legend>Nach Spiel filtern</legend><input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label><input type="radio" name="flt" id="flt-bnb"><label for="flt-bnb">Bits &amp; Bolts</label><input type="radio" name="flt" id="flt-bb"><label for="flt-bb">Bolt Buddies</label><input type="radio" name="flt" id="flt-plan"><label for="flt-plan">Geplante Spiele</label></fieldset>
+      <p class="flt-empty" data-empty="bnb">Zu Bits &amp; Bolts gibt es auf dieser Seite nichts.</p>
+      <p class="flt-empty" data-empty="plan">Zu Geplante Spiele gibt es auf dieser Seite nichts.</p>
 
-      <section class="wiki-sec">
+      <section class="wiki-sec" data-game="bb">
         <h2>Attribute</h2>
         <div class="wiki-table"><table>
 <thead><tr><th>Attribut</th><th>Wirkt auf</th><th>Soll später kommen aus</th></tr></thead>
@@ -51,50 +53,60 @@
 </table></div>
 
       </section>
-      <section class="wiki-sec">
+      <section class="wiki-sec" data-game="bb">
         <h2>Ausrüstung</h2>
-        <p>Jeder Roboter hat drei Plätze: Waffe, Rüstung und Chip. Teile gibt es im Schacht, in Schrottkisten aus dem Shop und in Tresorkisten, die mindestens ein seltenes Teil enthalten. Überzählige Teile lassen sich für Schrauben verkaufen.</p>
-        <div class="wiki-table"><table>
-<thead><tr><th>Teil</th><th>Platz</th><th>Hebt</th></tr></thead>
-<tbody>
-<tr><td><b>Kreissäge</b></td><td>Waffe</td><td>Leistung</td></tr>
-<tr><td><b>Laser</b></td><td>Waffe</td><td>Leistung, Logik</td></tr>
-<tr><td><b>Taser</b></td><td>Waffe</td><td>Leistung, Takt</td></tr>
-<tr><td><b>Blechpanzer</b></td><td>Rüstung</td><td>Gehäuse</td></tr>
-<tr><td><b>Kühlkörper</b></td><td>Rüstung</td><td>Gehäuse, Takt</td></tr>
-<tr><td><b>Gummihülle</b></td><td>Rüstung</td><td>Gehäuse, Logik</td></tr>
-<tr><td><b>RAM-Riegel</b></td><td>Chip</td><td>Logik</td></tr>
-<tr><td><b>Taktquarz</b></td><td>Chip</td><td>Takt</td></tr>
-<tr><td><b>Turbolader</b></td><td>Chip</td><td>Leistung, Takt</td></tr>
-<tr><td><b>Zusatzakku</b></td><td>Chip</td><td>Gehäuse, Logik</td></tr>
-</tbody>
-</table></div>
-
-        <p>Jedes Teil hat eine von vier Seltenheiten. Je seltener, desto mehr Punkte bringt es:</p>
+        <p>Jeder Roboter hat drei Plätze: Waffe, Rüstung und Chip. Teile gibt es im Schacht, aus Kisten im Shop und als Belohnung im Tagesschacht. Überzählige Teile lassen sich verkaufen oder an der Werkbank zerlegen.</p>
+        <h3 class="wiki-sub part-head"><img src="img/pix_weapon.png" alt="">Waffe</h3>
+        <ul class="part-grid">
+          <li class="part"><img src="img/items/saw.png" alt="" loading="lazy"><div><h3>Kreissäge</h3><p class="game-genre">Waffe</p><p>hebt Leistung</p></div></li>
+          <li class="part"><img src="img/items/laser.png" alt="" loading="lazy"><div><h3>Laser</h3><p class="game-genre">Waffe</p><p>hebt Leistung, Logik</p></div></li>
+          <li class="part"><img src="img/items/taser.png" alt="" loading="lazy"><div><h3>Taser</h3><p class="game-genre">Waffe</p><p>hebt Leistung, Takt</p></div></li>
+        </ul>
+        <h3 class="wiki-sub part-head"><img src="img/pix_armor.png" alt="">Rüstung</h3>
+        <ul class="part-grid">
+          <li class="part"><img src="img/items/plate.png" alt="" loading="lazy"><div><h3>Blechpanzer</h3><p class="game-genre">Rüstung</p><p>hebt Gehäuse</p></div></li>
+          <li class="part"><img src="img/items/cooler.png" alt="" loading="lazy"><div><h3>Kühlkörper</h3><p class="game-genre">Rüstung</p><p>hebt Gehäuse, Takt</p></div></li>
+          <li class="part"><img src="img/items/shell.png" alt="" loading="lazy"><div><h3>Gummihülle</h3><p class="game-genre">Rüstung</p><p>hebt Gehäuse, Logik</p></div></li>
+        </ul>
+        <h3 class="wiki-sub part-head"><img src="img/pix_chip.png" alt="">Chip</h3>
+        <ul class="part-grid">
+          <li class="part"><img src="img/items/ram.png" alt="" loading="lazy"><div><h3>RAM-Riegel</h3><p class="game-genre">Chip</p><p>hebt Logik</p></div></li>
+          <li class="part"><img src="img/items/quartz.png" alt="" loading="lazy"><div><h3>Taktquarz</h3><p class="game-genre">Chip</p><p>hebt Takt</p></div></li>
+          <li class="part"><img src="img/items/turbo.png" alt="" loading="lazy"><div><h3>Turbolader</h3><p class="game-genre">Chip</p><p>hebt Leistung, Takt</p></div></li>
+          <li class="part"><img src="img/items/cell.png" alt="" loading="lazy"><div><h3>Zusatzakku</h3><p class="game-genre">Chip</p><p>hebt Gehäuse, Logik</p></div></li>
+        </ul>
+        <p>Jedes Teil hat eine von vier Seltenheiten. Je seltener, desto mehr Punkte bringt es, und tiefer im Schacht wird es öfter selten:</p>
         <p class="rarity"><span class="r0">Schrott</span><span class="r1">solide</span><span class="r2">selten</span><span class="r3">legendär</span></p>
       </section>
-      <section class="wiki-sec">
+      <section class="wiki-sec" data-game="bb">
         <h2>Module</h2>
-        <p>Nach jedem gewonnenen Kampf darf man eine Belohnung wählen. Ein Modul gilt für das ganze Team bis zum Ende der Expedition.</p>
-        <div class="wiki-table"><table>
-<thead><tr><th>Modul</th><th>Wirkung</th></tr></thead>
-<tbody>
-<tr><td><b>Übertakter</b></td><td>+15 % Tempo</td></tr>
-<tr><td><b>Schleifstein</b></td><td>+20 % Schaden</td></tr>
-<tr><td><b>Panzerplatten</b></td><td>+25 % Leben</td></tr>
-<tr><td><b>Zielhilfe</b></td><td>+15 % Volltreffer</td></tr>
-<tr><td><b>Tarnlack</b></td><td>+10 % Ausweichen</td></tr>
-<tr><td><b>Stacheln</b></td><td>2 Schaden an Angreifern</td></tr>
-<tr><td><b>Stromdieb</b></td><td>heilt sich um 15 % des Schadens</td></tr>
-<tr><td><b>Rostspray</b></td><td>Getroffene rosten: 2 Schaden je Zug</td></tr>
-<tr><td><b>Dickes Blech</b></td><td>1 Panzerung</td></tr>
-<tr><td><b>Nanobots</b></td><td>heilt 2 Leben je Zug</td></tr>
-</tbody>
-</table></div>
-
+        <p>Nach jedem gewonnenen Kampf darf man eine Belohnung wählen. Ein Modul gilt für das ganze Team bis zum Ende der Expedition, gleiche Module stapeln sich.</p>
+        <ul class="part-grid">
+          <li class="part part-small"><img src="img/mods/overclock.png" alt="" loading="lazy"><div><h3>Übertakter</h3><p class="game-genre">Modul</p><p>+15 % Tempo</p></div></li>
+          <li class="part part-small"><img src="img/mods/sharp.png" alt="" loading="lazy"><div><h3>Schleifstein</h3><p class="game-genre">Modul</p><p>+20 % Schaden</p></div></li>
+          <li class="part part-small"><img src="img/mods/plating.png" alt="" loading="lazy"><div><h3>Panzerplatten</h3><p class="game-genre">Modul</p><p>+25 % Leben</p></div></li>
+          <li class="part part-small"><img src="img/mods/target.png" alt="" loading="lazy"><div><h3>Zielhilfe</h3><p class="game-genre">Modul</p><p>+15 % Volltreffer</p></div></li>
+          <li class="part part-small"><img src="img/mods/ghost.png" alt="" loading="lazy"><div><h3>Tarnlack</h3><p class="game-genre">Modul</p><p>+10 % Ausweichen</p></div></li>
+          <li class="part part-small"><img src="img/mods/spikes.png" alt="" loading="lazy"><div><h3>Stacheln</h3><p class="game-genre">Modul</p><p>2 Schaden an Angreifern</p></div></li>
+          <li class="part part-small"><img src="img/mods/leech.png" alt="" loading="lazy"><div><h3>Stromdieb</h3><p class="game-genre">Modul</p><p>heilt sich um 15 % des Schadens</p></div></li>
+          <li class="part part-small"><img src="img/mods/toxin.png" alt="" loading="lazy"><div><h3>Rostspray</h3><p class="game-genre">Modul</p><p>Getroffene rosten: 2 Schaden je Zug</p></div></li>
+          <li class="part part-small"><img src="img/mods/armor.png" alt="" loading="lazy"><div><h3>Dickes Blech</h3><p class="game-genre">Modul</p><p>1 Panzerung</p></div></li>
+          <li class="part part-small"><img src="img/mods/nano.png" alt="" loading="lazy"><div><h3>Nanobots</h3><p class="game-genre">Modul</p><p>heilt 2 Leben je Zug</p></div></li>
+        </ul>
       </section>
-      <section class="wiki-sec">
-        <h2>Pflege und Vorräte</h2>
+      <section class="wiki-sec" id="shop" data-game="bb">
+        <h2>Shop und Vorräte</h2>
+        <p>Im Shop gibt es Vorräte für die Pflege und Kisten mit Ausrüstung. Trainingsdaten und Tresorkisten bleiben auch nach dem vollen Ausbau ein Ziel für Schrauben.</p>
+        <ul class="part-grid">
+          <li class="part part-small"><img src="img/pix_akku.png" alt="" loading="lazy"><div><h3>Akku</h3><p class="game-genre">12 Schrauben</p><p>+35 Energie</p></div></li>
+          <li class="part part-small"><img src="img/pix_oil.png" alt="" loading="lazy"><div><h3>Ölkanne</h3><p class="game-genre">10 Schrauben</p><p>+40 Pflege, +5 Laune</p></div></li>
+          <li class="part part-small"><img src="img/pix_armor.png" alt="" loading="lazy"><div><h3>Schrottkiste</h3><p class="game-genre">30 Schrauben</p><p>ein zufälliges Teil, je tiefer der Rekord, desto besser</p></div></li>
+          <li class="part part-small"><img src="img/pix_capsule.png" alt="" loading="lazy"><div><h3>Tresorkiste</h3><p class="game-genre">260 Schrauben</p><p>ein Teil, mindestens selten</p></div></li>
+          <li class="part part-small"><img src="img/pix_chip.png" alt="" loading="lazy"><div><h3>Trainingsdaten</h3><p class="game-genre">40 Schrauben, je Stufe 14 mehr</p><p>eine halbe Stufe Erfahrung für den gewählten Roboter, bis Stufe 20</p></div></li>
+        </ul>
+      </section>
+      <section class="wiki-sec" data-game="bb">
+        <h2>Pflege</h2>
         <div class="wiki-table"><table>
 <thead><tr><th>Wert</th><th>sinkt</th><th>steigt durch</th><th>Im Kampf</th></tr></thead>
 <tbody>
@@ -106,23 +118,24 @@
 
         <p>Werte sinken auch, wenn das Spiel zu ist, höchstens für 48 Stunden. Kaputt geht dabei nichts: Ein leerer Roboter schaltet ab und lädt an der Ladeleiste.</p>
       </section>
-      <section class="wiki-sec" id="ausbau">
+      <section class="wiki-sec" id="ausbau" data-game="bb">
         <h2>Werkstatt-Ausbau</h2>
-        <p>Kommt mit Bolt Buddies 1.0. Jede Station wird für Schrauben in drei Stufen ausgebaut und steht dann sichtbar in der Werkstatt. Sie machen die Pflege leichter, aber nie überflüssig: Auch ganz ausgebaut braucht ein Roboter nach zwei Tagen wieder etwas.</p>
-        <div class="wiki-table"><table>
-<thead><tr><th>Station</th><th>Stufe 1 / 2 / 3</th><th>Preis in Schrauben</th></tr></thead>
-<tbody>
-<tr><td><b>Ladeleiste</b></td><td>Schlafende laden 35 / 70 / 100 % schneller</td><td>60 / 180 / 450</td></tr>
-<tr><td><b>Ölbad</b></td><td>Pflege sinkt 15 / 30 / 45 % langsamer</td><td>60 / 180 / 450</td></tr>
-<tr><td><b>Spielecke</b></td><td>Laune sinkt 15 / 30 / 45 % langsamer</td><td>60 / 180 / 450</td></tr>
-<tr><td><b>Werkbank</b></td><td>zerlegen und aufwerten / 25 % günstiger / 50 % günstiger</td><td>80 / 200 / 450</td></tr>
-<tr><td><b>Funkantenne</b></td><td>Empfängt Post aus den anderen Spielen, siehe <a href="../funk/">Funkverbindung</a>. Kommt später.</td><td>–</td></tr>
-</tbody>
-</table></div>
-
+        <p>Kommt mit Bolt Buddies 1.0. Jede Station wird für Schrauben in drei Stufen ausgebaut und steht dann sichtbar in der Werkstatt, mit jeder Stufe größer. Sie machen die Pflege leichter, aber nie überflüssig: Auch ganz ausgebaut braucht ein Roboter nach zwei Tagen wieder etwas. Die Bilder zeigen Stufe 3.</p>
+        <ul class="station-grid">
+          <li class="station"><img src="img/station_dock.png" alt="Ladeleiste" loading="lazy"><div class="place-head"><h3>Ladeleiste</h3></div>
+            <p class="game-genre">60 / 180 / 450 Schrauben</p><p><b>Schlafende laden 35 / 70 / 100 % schneller</b></p><p>Schlafende stehen auf der Leiste, ihr Steckplatz leuchtet. Jede Stufe bringt mehr Kabel.</p></li>
+          <li class="station"><img src="img/station_bath.png" alt="Ölbad" loading="lazy"><div class="place-head"><h3>Ölbad</h3></div>
+            <p class="game-genre">60 / 180 / 450 Schrauben</p><p><b>Pflege sinkt 15 / 30 / 45 % langsamer</b></p><p>Eine Wanne mit schwappendem Öl und Blasen. Auf Stufe 3 glüht eine Heizspirale.</p></li>
+          <li class="station"><img src="img/station_play.png" alt="Spielecke" loading="lazy"><div class="place-head"><h3>Spielecke</h3></div>
+            <p class="game-genre">60 / 180 / 450 Schrauben</p><p><b>Laune sinkt 15 / 30 / 45 % langsamer</b></p><p>Ein Teppich mit Bauklötzen, ab Stufe 2 mit Ball, ab Stufe 3 mit Kreisel.</p></li>
+          <li class="station"><img src="img/station_bench.png" alt="Werkbank" loading="lazy"><div class="place-head"><h3>Werkbank</h3></div>
+            <p class="game-genre">80 / 200 / 450 Schrauben</p><p><b>zerlegen und aufwerten / 25 % / 50 % günstiger</b></p><p>Mit Schraubstock, ab Stufe 2 mit Lampe, ab Stufe 3 mit Bohrmaschine, die Funken sprüht.</p></li>
+          <li class="station"><img src="img/station_radio.png" alt="Funkantenne" loading="lazy"><div class="place-head"><h3>Funkantenne</h3><span class="badge badge-plan">Geplant</span></div>
+            <p class="game-genre">kommt später Schrauben</p><p><b>empfängt Post aus den anderen Spielen</b></p><p>Steht auf dem Regal und blinkt, siehe <a href="../funk/">Funkverbindung</a>.</p></li>
+        </ul>
         <p>Alles zusammen kostet 2830 Schrauben. Eine Expedition bringt je nach Stufe des Teams etwa 30 bis 290, für die erste Station reichen zwei frühe Expeditionen.</p>
       </section>
-      <section class="wiki-sec" id="werkbank">
+      <section class="wiki-sec" id="werkbank" data-game="bb">
         <h2>Werkbank</h2>
         <p>An der Werkbank wird aus altem Kram ein Lieblingsteil. Zerlegen macht aus einem Teil im Lager Schrott. Aufwerten hebt ein Teil eine Seltenheit höher und gibt ihm 2 Punkte dazu, auch wenn es gerade ein Roboter trägt.</p>
         <div class="wiki-table"><table>
@@ -136,11 +149,11 @@
 </table></div>
 
       </section>
-      <section class="wiki-sec">
+      <section class="wiki-sec" data-game="bb">
         <h2>Schrauben und Schrott</h2>
-        <ul class="plain-list">
-          <li><b>Schrauben</b> gibt es im Schacht und für verkaufte Teile. Je tiefer die Ebene, desto mehr: Jede Ebene bringt die Hälfte mehr als die darüber. Ausgegeben werden sie im Shop für Akkus, Öl, Schrottkisten (30) und Tresorkisten (260), für Trainingsdaten (eine halbe Stufe für den gewählten Roboter, 40 Schrauben plus 14 je Stufe) und für den Werkstatt-Ausbau. Training und Tresorkisten bleiben auch nach dem vollen Ausbau ein Ziel.</li>
-          <li><b>Schrott</b> gibt es nur an der Werkbank, aus zerlegten Teilen. Er wird zum Aufwerten gebraucht.</li>
+        <ul class="part-grid">
+          <li class="part part-small"><img src="img/pix_bolts.png" alt="" loading="lazy"><div><h3>Schrauben</h3><p class="game-genre">Währung</p><p>Gibt es im Schacht und für verkaufte Teile. Jede Ebene bringt die Hälfte mehr als die darüber, der Nebenschacht noch einmal 75 % mehr.</p></div></li>
+          <li class="part part-small"><img src="img/pix_scrap.png" alt="" loading="lazy"><div><h3>Schrott</h3><p class="game-genre">nur an der Werkbank</p><p>Entsteht beim Zerlegen und wird zum Aufwerten gebraucht.</p></div></li>
         </ul>
       </section>
 

@@ -10,7 +10,6 @@ PAGES = [  # slug, Titel im Menü, Untertitel
     ("roboter", "Roboter-Register", "Alle 22 Roboter"),
     ("stoerungen", "Störungsprotokoll", "Gegner und Ereignisse"),
     ("weltkarte", "Weltkarte", "Der Rechner und seine Spiele"),
-    ("regelwerk", "Regelwerk", "Binär-Rätsel"),
     ("ersatzteile", "Ersatzteillager", "Ausrüstung und Werte"),
     ("funk", "Funkverbindung", "Spiele verbinden"),
 ]
@@ -69,9 +68,33 @@ def page(slug, body, desc):
 </html>
 """
 
+## Filter nach Spiel: Jede Seite hat oben eine Leiste, die nur Inhalte eines Spiels zeigt.
+## Inhalte tragen data-game mit einem oder mehreren Kürzeln, ungetaggtes bleibt immer sichtbar.
+## Alles läuft über CSS (:has auf den Radioknöpfen), ohne Skript.
+GAMES = [("bnb", "Bits &amp; Bolts"), ("bb", "Bolt Buddies"), ("plan", "Geplante Spiele")]
+
+def g(tags):
+    """Attribut für Inhalte, die zu einem oder mehreren Spielen gehören."""
+    return f' data-game="{tags}"'
+
+def filter_bar(body):
+    """Die Leiste mit Alle und den Spielen. Für Spiele ohne Inhalt auf der Seite gibt es einen Hinweis."""
+    chips = ['<input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label>']
+    empty = []
+    for key, name in GAMES:
+        chips.append(f'<input type="radio" name="flt" id="flt-{key}"><label for="flt-{key}">{name}</label>')
+        tagged = [m for m in body.split('data-game="')[1:] if key in m.split('"')[0].split()]
+        if not tagged:
+            empty.append(f'<p class="flt-empty" data-empty="{key}">Zu {name} gibt es auf dieser Seite nichts.</p>')
+    return ('      <fieldset class="flt"><legend>Nach Spiel filtern</legend>' + "".join(chips) + "</fieldset>\n"
+            + "".join("      " + e + "\n" for e in empty))
+
 def write(slug, body, desc):
     d = os.path.join(OUT, "archiv", slug) if slug else os.path.join(OUT, "archiv")
     os.makedirs(d, exist_ok=True)
+    # Die Filterleiste steht direkt unter dem Einleitungstext
+    at = body.find("</p>", body.find('class="wiki-lead"')) + len("</p>\n")
+    body = body[:at] + filter_bar(body) + body[at:]
     with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(page(slug, body, desc))
 
@@ -81,9 +104,11 @@ def head(eyebrow, title, lead):
       <p class="wiki-lead">{lead}</p>
 """
 
-def table(cols, rows, cls=""):
+def table(cols, rows, cls="", tags=None):
+    """tags: je Zeile die Spiele für den Filter, leer heißt immer sichtbar."""
     th = "".join(f"<th>{c}</th>" for c in cols)
-    trs = "\n".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
+    tags = tags or [""] * len(rows)
+    trs = "\n".join(f"<tr{g(t) if t else ''}>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r, t in zip(rows, tags))
     return f'<div class="wiki-table{cls}"><table>\n<thead><tr>{th}</tr></thead>\n<tbody>\n{trs}\n</tbody>\n</table></div>\n'
 
 LIVE = '<span class="badge badge-dev">In Entwicklung</span>'
@@ -210,19 +235,19 @@ def bot_card(b):
     unlock = "von Anfang an" if not u else f"nach {u[0]} {'Sieg' if u[0] == 1 else 'Siegen'}, Stufe {u[1]} geschafft"
     stats = "".join(f"<div><dt>{a}</dt><dd>{bar(v)}<span class=\"num\">{v}</span></dd></div>"
                     for a, v in zip(ATTR, BASE[b]))
-    hero = f'<p class="bot-hero">Held in {html.escape(HERO[b])}</p>' if b in HERO and "geplant" in HERO[b] else ""
+    hero = f'<p class="bot-hero"{g("plan")}>Held in {html.escape(HERO[b])}</p>' if b in HERO and "geplant" in HERO[b] else ""
     home = "wartet schon in der Werkstatt" if b == "BYTE" else "{}, ab Kampf {}".format(*LAYERS[HOME[b]])
     return f"""<li class="bot-card" id="{b.lower()}" style="--bot:#{COLORS[b]}">
   <div class="bot-head">
     <div class="bot-screen"><img src="bots/{b.lower()}.png" width="80" height="96" alt="{b}" loading="lazy"></div>
     <div class="bot-name"><h3>{b}</h3><span class="bot-say">„{html.escape(SAYS[b])}“</span><a class="bot-family" href="#familien">Familie: {FAMILY[b]}</a>{hero}</div>
   </div>
-  <section class="bot-game bot-game-puzzle">
+  <section class="bot-game bot-game-puzzle"{g("bnb")}>
     <h4><img src="../../icons/bits-and-bolts.png" alt="" width="20" height="20">Bits &amp; Bolts<span class="bot-role">{ROLE[b]}</span></h4>
     <p>{html.escape(PUZZLE[b])}</p>
     <p class="bot-unlock">Freigeschaltet {unlock}</p>
   </section>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight"{g("bb")}>
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> {html.escape(TRAIT[b])}</p>
     <dl class="bot-stats">{stats}</dl>
@@ -235,14 +260,13 @@ def bot_card(b):
 
 # Übersicht
 links = "\n".join(
-    f'<li class="app-card"><a class="wiki-card-link" href="{s}/"><h3 class="app-title">{t}</h3><p class="app-desc">{d}</p></a></li>'
-    for s, t, d in [
-        ("roboter", "Roboter-Register", "Alle 22 Roboter mit Rätselfähigkeit, Kampfwerten, Eigenheit und Spruch."),
-        ("stoerungen", "Störungsprotokoll", "Alle Gegner mit Sprite, Werten und Beute, dazu die Ereignisse im Hauptrechner."),
-        ("weltkarte", "Weltkarte", "Die Welt ist ein alter Rechner: welches Spiel in welchem Bauteil spielt, was man dort tut und was es den Robotern bringt."),
-        ("regelwerk", "Regelwerk", "Die Binär-Regeln aus Bits & Bolts, alle Zusatzregeln und die Schwierigkeitsstufen."),
-        ("ersatzteile", "Ersatzteillager", "Attribute, Ausrüstung, Seltenheiten, Module und Vorräte."),
-        ("funk", "Funkverbindung", "Wie die Spiele später miteinander reden, damit Roboter überall stärker werden."),
+    f'<li class="app-card"{g(tags)}><a class="wiki-card-link" href="{s}/"><h3 class="app-title">{t}</h3><p class="app-desc">{d}</p></a></li>'
+    for s, t, d, tags in [
+        ("roboter", "Roboter-Register", "Alle 22 Roboter mit Rätselfähigkeit, Kampfwerten, Eigenheit, Fundort und Spruch.", "bnb bb plan"),
+        ("stoerungen", "Störungsprotokoll", "Alle Gegner mit Sprite, Werten und Beute, dazu die Ereignisse im Hauptrechner.", "bnb bb plan"),
+        ("weltkarte", "Weltkarte", "Die Welt ist ein alter Rechner: welches Spiel in welchem Bauteil spielt, mit Bildern aller Orte.", "bnb bb plan"),
+        ("ersatzteile", "Ersatzteillager", "Ausrüstung, Module, Vorräte und Stationen der Werkstatt, mit Bild und Werten.", "bb"),
+        ("funk", "Funkverbindung", "Wie die Spiele später miteinander reden, damit Roboter überall stärker werden.", "bnb bb plan"),
     ])
 write("", head("Archiv der Roboter", "Das Archiv",
     "Hier steht alles über die Welt von BYTE und seinen 21 Freunden: wer sie sind, wo sie unterwegs sind und was ihnen das Leben schwer macht.") + f"""
@@ -268,7 +292,7 @@ write("", head("Archiv der Roboter", "Das Archiv",
             ["Gegner", "Bug, Spam-Drohne, Firewall, Rostwurm, Frostbug, Wackelkontakt, Überhitzer und drei Bosse"],
             ["Ereignisse", "8 Störungen im Hauptrechner, von Stromausfall bis Nebel"],
             ["Währung", "Schrauben und Schrott in der Werkstatt"],
-        ], " wiki-table-plain")}
+        ], " wiki-table-plain", ["bnb bb", "", "bb", "", "bb plan", "bnb", "bb"])}
       </section>
 """, "Das Archiv der Roboter: Wiki zu Bits & Bolts, Bolt Buddies und allen Spielen im Roboter-Universum von B31G3L.")
 
@@ -289,7 +313,7 @@ write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
       <ul class="bot-grid">
 {cards}
       </ul>
-      <section class="wiki-sec" id="familien" style="margin-top:40px">
+      <section class="wiki-sec" id="familien" style="margin-top:40px"{g("bb")}>
         <h2>Familien <span class="badge badge-plan">Geplant</span></h2>
         <p>Geplant für Bolt Buddies 1.1: Zwei Roboter derselben Familie im Team geben einen kleinen Bonus, drei einen größeren.</p>
         {table(["Familie", "Roboter", "Bonus"], [[f"<b>{name}</b>", " ".join(f'<a class="fam-bot" href="#{m.lower()}" style="--bot:#{COLORS[m]}"><img src="bots/{m.lower()}.png" width="20" height="24" alt="">{m}</a>' for m in members), bonus] for name, bonus, members in FAMILIES])}
@@ -298,9 +322,9 @@ write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
 
 # Weltkarte: Die ganze Welt ist ein alter Rechner, jedes Spiel spielt in einem seiner Bauteile.
 # Früher gab es dafür zwei Seiten (Einsatzorte und Weltkarte), jetzt steht alles hier.
-def game(id_, part, name, status, genre, what, gives, bots, places, extra=""):
+def game(id_, part, name, status, genre, what, gives, bots, places, extra="", tags="plan"):
     """Ein Bauteil des Rechners mit seinem Spiel, den Orten darin und was das Spiel den Robotern bringt."""
-    return f"""      <section class="wiki-sec game" id="{id_}">
+    return f"""      <section class="wiki-sec game" id="{id_}"{g(tags)}>
         <p class="rig-part">Bauteil: {part}</p>
         <div class="game-head"><h2>{name}</h2>{status}</div>
         <p class="game-genre">{genre}</p>
@@ -315,8 +339,10 @@ def game(id_, part, name, status, genre, what, gives, bots, places, extra=""):
 {extra}      </section>
 """
 
-def place(name, game_, text, status=""):
-    return f"""        <li class="place"><div class="place-head"><h3>{name}</h3>{status}</div><p class="game-genre">{game_}</p><p>{text}</p></li>"""
+def place(name, game_, text, status="", img="", photo=False):
+    """Ein Ort. img: Bild unter img/, photo: Bildschirmfoto statt Pixelgrafik (wird nicht kantig vergrößert)."""
+    pic = f'<img class="place-img{" place-photo" if photo else ""}" src="img/{img}" alt="{name}" loading="lazy">' if img else ""
+    return f"""        <li class="place">{pic}<div class="place-head"><h3>{name}</h3>{status}</div><p class="game-genre">{game_}</p><p>{text}</p></li>"""
 
 ## Der Querschnitt: Feld, Bauteil, Ort, Spiel mit Stand, Ziel, Farbe, geplant
 RIG = [
@@ -335,7 +361,7 @@ RIG = [
     ("bus", "Datenbus und Anschlüsse", "Das Datenbus-Depot", "Snake Jam", "snake-jam", "B46CFF", True),
 ]
 rig = "\n".join(
-    f'          <a class="rig-cell{" rig-plan" if plan else ""}" href="#{to}" style="grid-area:{key};--c:#{col}">'
+    f'          <a class="rig-cell{" rig-plan" if plan else ""}" href="#{to}" style="grid-area:{key};--c:#{col}"{g("plan" if plan else ("bnb" if to == "bits-and-bolts" else "bb"))}>'
     f'<small>{part}</small><b>{where}</b><span>{game_}{" · geplant" if plan else ""}</span></a>'
     for key, part, where, game_, to, col, plan in RIG)
 
@@ -354,16 +380,16 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
     game("bits-and-bolts", "Prozessor", "Bits &amp; Bolts", STORE, "Binär-Rätsel als Roguelite",
          "Ein Roboter arbeitet sich durch zehn Stationen bis zum Hauptrechner und repariert unterwegs durchgebrannte Raster aus Nullen und Einsen. Jede falsche Ziffer ist ein Kurzschluss und kostet Ladung. Siege schalten neue Roboter und höhere Schwierigkeitsstufen frei.",
          "Logik", "Alle 22 Roboter, als Erster BYTE", [
-             place("Die Etagen", "Station 1–10", "Der Weg nach oben führt über zehn Stationen: sieben Rätsel und zwei Zwischenrechner an Station 4 und 7. Auf höheren Stufen treten unterwegs Ereignisse auf."),
-             place("Zwischenrechner", "Station 4 und 7", "Hier gelten verschärfte Bedingungen, ab Stufe 1 mit einem Ereignis."),
-             place("Hauptrechner", "Ziel jedes Runs", "Bis zu vier Sektoren: die äußeren Leitungen unter Spannung, ein Sektor mit Stromausfall, der innere Ring unter Überspannung und der Kern in 8×8. Nach jedem Sektor gibt es eine Ladung zurück."),
+             place("Die Etagen", "Station 1–10", "Der Weg nach oben führt über zehn Stationen: sieben Rätsel und zwei Zwischenrechner an Station 4 und 7. In jedem Rätsel gelten drei Grundregeln: nur 0 und 1, nie drei gleiche nebeneinander, in jeder Zeile und Spalte gleich viele. Dazu bringt jeder Roboter eigene Hinweise mit.", img="bnb_etagen.jpg", photo=True),
+             place("Zwischenrechner", "Station 4 und 7", "Hier gelten verschärfte Bedingungen, ab Stufe 1 mit einem Ereignis wie Nebel, Zeitdruck oder falschen Vorgaben.", img="bnb_ereignis.jpg", photo=True),
+             place("Hauptrechner", "Ziel jedes Runs", "Bis zu vier Sektoren: die äußeren Leitungen unter Spannung, ein Sektor mit Stromausfall, der innere Ring unter Überspannung und der Kern in 8×8. Nach jedem Sektor gibt es eine Ladung zurück.", img="bnb_haupt.jpg", photo=True),
          ],
-         '        <p><a href="../regelwerk/">Zum Regelwerk →</a> · <a href="../stoerungen/#ereignisse">Ereignisse →</a> · <a href="https://play.google.com/store/apps/details?id=com.beigel.bitsandbolts" target="_blank" rel="noopener">Play Store ↗</a> · <a href="../../bits-and-bolts/">Datenschutz</a></p>\n') +
+         '        <p><a href="../stoerungen/#ereignisse">Ereignisse →</a> · <a href="https://play.google.com/store/apps/details?id=com.beigel.bitsandbolts" target="_blank" rel="noopener">Play Store ↗</a> · <a href="../../bits-and-bolts/">Datenschutz</a></p>\n', "bnb") +
     game("bolt-buddies", "Gehäusemitte und Schacht", "Bolt Buddies", LIVE, "Roboter pflegen und Auto-Kämpfe",
          "Die Werkstatt ist das Zuhause aller geretteten Roboter. Sie brauchen Akku, Öl und Aufmerksamkeit. Ein Team aus bis zu drei Robotern zieht in den Schrottschacht, kämpft dort von selbst und bringt Schrauben, Ausrüstung und neue Freunde mit.",
          "Heimat aller Roboter: Stufen, Ausrüstung, Pflege", "Alle 22 Roboter, als Erster BYTE", [
-             place("Die Werkstatt", "Zuhause", "Hier wohnen alle geretteten Roboter. Sie laufen frei herum, wollen gestreichelt, geölt und geladen werden und schlafen an der Ladeleiste. Jeder Gerettete bringt ein persönliches Teil mit, so füllt sich der Raum mit jedem Roboter."),
-             place("Der Aufzug", "zwischen den Kämpfen", "Nach jedem Kampf: weiter nach unten oder mit der ganzen Beute nach Hause. Die nächsten Gegner sind schon zu sehen, und es gibt zwei Wege: den Hauptschacht und einen Nebenschacht mit zäheren Gegnern und 75 % mehr Schrauben."),
+             place("Die Werkstatt", "Zuhause", "Hier wohnen alle geretteten Roboter. Sie laufen frei herum, wollen gestreichelt, geölt und geladen werden und schlafen an der Ladeleiste. Jeder Gerettete bringt ein persönliches Teil mit, so füllt sich der Raum mit jedem Roboter.", img="workshop.png"),
+             place("Der Aufzug", "zwischen den Kämpfen", "Nach jedem Kampf: weiter nach unten oder mit der ganzen Beute nach Hause. Die nächsten Gegner sind schon zu sehen, und es gibt zwei Wege: den Hauptschacht und einen Nebenschacht mit zäheren Gegnern und 75 % mehr Schrauben.", img="lift.png"),
              place("Der Schrottschacht", "unter der Werkstatt", "Kampf für Kampf geht es tiefer. Dort liegen Schrauben, Akkus, Öl und Ausrüstung, und abgeschaltete Roboter warten in ihrer Ebene auf Rettung."),
          ],
          '        <h3 class="wiki-sub" id="ebenen">Die Ebenen des Schrottschachts</h3>\n'
@@ -371,10 +397,10 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
          'Wer ihn besiegt, kann künftig an der Haltestelle der nächsten Ebene einsteigen und bekommt dafür von der Werkstatt Module mit. Gegner und Werte stehen im <a href="../stoerungen/">Störungsprotokoll</a>.</p>\n'
          '        <ul class="place-list">\n'
          + "\n".join([
-             place("Speicherkeller", "Arbeitsspeicher · Kampf 1–10 · Wächter: Bluescreen", "Zwischen alten Speicherriegeln blinken Lämpchen, auf dem Boden wandern Datenpakete über die Leiterbahnen. Bugs, Spam-Drohnen, Firewalls und Rostwürmer. Hier warten 7 Roboter auf Rettung.", PLAN),
-             place("Kabelschacht", "Kabel · Kampf 11–20 · Wächter: Kurzschluss", "Durchhängende Kabelstränge, an den Haltern sprühen Funken. Hier leben die Wackelkontakte: Wer sie trifft, bekommt einen Schlag. 6 Roboter warten hier.", PLAN),
-             place("Kühlkreislauf", "Kühlung · Kampf 21–30 · Wächter: Kältekern", "Vereiste Rohre, ein großer Lüfter, Schnee fällt. Frostbugs kühlen mit ihren Treffern ab. In der Mitte kehrt der Kurzschluss zurück. 5 Roboter warten hier.", PLAN),
-             place("Kernzone", "Kern · ab Kampf 31 · Wächter wechseln", "Der Kern glüht rot, Hitze steigt auf. Überhitzer treffen das ganze Team, die drei Wächter wechseln sich ab, und es geht endlos weiter. Hier warten ROOT, ERROR und DAEMON.", PLAN),
+             place("Speicherkeller", "Arbeitsspeicher · Kampf 1–10 · Wächter: Bluescreen", "Zwischen alten Speicherriegeln blinken Lämpchen, auf dem Boden wandern Datenpakete über die Leiterbahnen. Bugs, Spam-Drohnen, Firewalls und Rostwürmer. Hier warten 7 Roboter auf Rettung.", PLAN, "layer_0.png"),
+             place("Kabelschacht", "Kabel · Kampf 11–20 · Wächter: Kurzschluss", "Durchhängende Kabelstränge, an den Haltern sprühen Funken. Hier leben die Wackelkontakte: Wer sie trifft, bekommt einen Schlag. 6 Roboter warten hier.", PLAN, "layer_1.png"),
+             place("Kühlkreislauf", "Kühlung · Kampf 21–30 · Wächter: Kältekern", "Vereiste Rohre, ein großer Lüfter, Schnee fällt. Frostbugs kühlen mit ihren Treffern ab. In der Mitte kehrt der Kurzschluss zurück. 5 Roboter warten hier.", PLAN, "layer_2.png"),
+             place("Kernzone", "Kern · ab Kampf 31 · Wächter wechseln", "Der Kern glüht rot, Hitze steigt auf. Überhitzer treffen das ganze Team, die drei Wächter wechseln sich ab, und es geht endlos weiter. Hier warten ROOT, ERROR und DAEMON.", PLAN, "layer_3.png"),
          ]) + "\n        </ul>\n"
          + '        <h3 class="wiki-sub">Was noch kommt</h3>\n'
          + table(["Feature", "Worum es geht", "Version"], [
@@ -400,7 +426,7 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
          + '        <p>Als Belohnung gibt es ein Teil, auch nach einem Ausfall: ab Kampf 10 mindestens solide, ab Kampf 20 und an jedem 7. Tag mindestens selten.</p>\n'
          + '        <h3 class="wiki-sub" id="erinnerungen">Erinnerungen</h3>\n'
          + '        <p>In den Optionen lassen sich Erinnerungen einschalten. Beim Schließen plant das Spiel dann höchstens eine Benachrichtigung: wenn der erste Roboter ausgeschlafen ist oder etwas braucht, oder wenn der Tagesschacht wartet. Nie in den ersten zwei Stunden, nie nachts, höchstens eine am Tag. Alles läuft auf dem Handy, ohne Server.</p>\n'
-         + '        <p><a href="../ersatzteile/">Zum Ersatzteillager →</a> · <a href="../../bolt-buddies/">Datenschutz</a></p>\n') +
+         + '        <p><a href="../ersatzteile/">Zum Ersatzteillager →</a> · <a href="../../bolt-buddies/">Datenschutz</a></p>\n', "bb") +
     game("block-invaders", "Netzwerkanschluss", "Block Invaders", PLAN, "Block-Puzzle gegen angreifende Störungen",
          "Bugs, Spam-Drohnen, Firewalls und Rostwürmer rücken von außen auf die Werkstatt vor. Volle Reihen feuern Salven, volle Spalten Laser. Jede fünfte Welle bringt einen Bluescreen. Der gewählte Roboter steht als Geschütz unten und feuert mit seiner Eigenheit, zum Beispiel trifft OKTA die ganze Reihe.",
          "Leistung, Waffen-Teile", "Wählbar, je nach Eigenheit", [
@@ -447,75 +473,8 @@ def redirect(slug, target, title):
 
 redirect("einsaetze", "../weltkarte/", "Weltkarte")
 
-# Regelwerk
-RULES = [
-    ("Zeichen", "GATE", "= heißt gleich, × heißt verschieden."),
-    ("Block", "PARI", "In jedem umrandeten Block stehen gleich viele Nullen und Einsen."),
-    ("Schleife", "LOOP", "Das Ende einer Linie grenzt an ihren Anfang: Auch über den Rand hinweg stehen nie drei gleiche zusammen."),
-    ("Summe", "NIBBLE", "Ein Rahmen umfasst vier Zellen einer Linie. Die Zahl am Rahmen sagt, wie viele Einsen darin stehen."),
-    ("Paare", "QUBIT", "Zwei Zellen mit demselben Buchstaben sind verschränkt: Genau eine von ihnen ist 1, die andere 0."),
-    ("Diagonale", "ROOT", "Nie drei gleiche gilt auch schräg."),
-    ("Oktal", "OKTA", "Jede Oktalziffer steht für drei Bits: 4, 2, 1. ? heißt: Diese Ziffer bleibt offen."),
-    ("Hex", "HEXA", "Jede Hexziffer steht für vier Bits: 8, 4, 2, 1. A bis F sind 10 bis 15."),
-    ("ASCII", "ASKI", "Das Zeichen neben einer Zeile ist die ganze Zeile in Bits. Seinen Wert findest du in der ASCII-Tabelle."),
-    ("Farbe", "CHROMA", "Drei Balken für Rot, Grün und Blau. Jede Höhe von 0 bis 3 steht für zwei Bits."),
-    ("Pixel", "PIXA", "Die Blöcke an einer Linie zeigen, wie ihre Einsen zusammenstehen, aber nicht wo."),
-    ("Nullstelle", "NULL", "Die Zahl zählt vom Hinweis aus bis zur ersten 0, davor stehen nur Einsen."),
-    ("Spiegel", "MIRA", "Die Klammer verbindet zwei Linien, die Spiegelbilder sind."),
-    ("Schieben", "SHIFT", "Die Linie mit dem Pfeil ist ihre Nachbarin, um eine Stelle geschoben. Was herausfällt, kommt vorn wieder herein."),
-    ("XOR", "XOR", "Die Zahl sagt, an wie vielen Stellen sich zwei Nachbarlinien unterscheiden."),
-    ("Glitch", "GLITCH", "Neben der Linie flackern zwei Dezimalzahlen, nur eine ist die Linie in Binär."),
-    ("Sensor", "ab Stufe 2", "Die kleine Zahl in einer Zelle zählt die Einsen direkt darüber, darunter, links und rechts."),
-    ("Einzigartig", "ab Stufe 3", "Keine zwei Zeilen und keine zwei Spalten sind gleich."),
-]
-LEVELS = [
-    ("0", "nur 6×6, leichtere Rätsel, 1 Regel je Rätsel, keine Ereignisse"),
-    ("1", "1 Tipp weniger, bis 2 Regeln je Rätsel, 1 Ereignis bei Rechnern"),
-    ("2", "Rätsel ohne Erleichterung, Sensoren"),
-    ("3", "Ereignisse ab Etage 5, bis 3 Regeln, Einzigartig, 2 Ereignisse im Hauptrechner"),
-    ("4", "8×8 ab Etage 7, Hauptrechner in 8×8, 1 Ladung weniger"),
-    ("5", "schwerere Rätsel, 8×8 ab Etage 4, Ereignisse ab Etage 3, bis 4 Regeln, noch 1 Tipp weniger"),
-]
-TECH = [("Zwilling", "Zwei gleiche nebeneinander: Die Zellen davor und danach bekommen die andere Ziffer."),
-        ("Lücke", "Zwei gleiche mit einer Zelle dazwischen: Die Lücke bekommt die andere Ziffer."),
-        ("Abzählen", "Hat eine Linie schon alle Nullen oder alle Einsen, ist der Rest klar."),
-        ("Durchdenken", "Eine Ziffer probeweise annehmen. Führt sie zu einem Widerspruch, gilt die andere."),
-        ("Hinweis übersetzen", "Hex, Oktal, ASCII oder Farbe in Bits umrechnen und eintragen.")]
-write("regelwerk", head("Archiv · Regelwerk", "Regelwerk",
-    "Die Regeln der Raster aus Bits &amp; Bolts. Drei gelten immer, alle anderen nur, wenn ein Rätsel sie ausdrücklich zeigt.") + f"""
-      <section class="wiki-sec">
-        <h2>Grundregeln</h2>
-        <ol class="rule-list">
-          <li>Jede Zelle bekommt eine 0 oder eine 1.</li>
-          <li>Nie drei gleiche Ziffern direkt nebeneinander oder untereinander.</li>
-          <li>Jede Zeile und jede Spalte hat gleich viele Nullen und Einsen.</li>
-        </ol>
-        <p class="muted-small">Bedienung: nach oben wischen setzt eine 1, nach unten eine 0, Tippen setzt eine Notiz.</p>
-      </section>
-      <section class="wiki-sec">
-        <h2>Zusatzregeln und Hinweise</h2>
-        <p>Die meisten Zusatzregeln gehören zu einem Roboter. Er bringt sie mit, wenn er im Run dabei ist, und erklärt sie beim ersten Mal in einem Probespiel.</p>
-        {table(["Regel", "Von", "Bedeutung"], [[f"<b>{n}</b>", (f'<a href="../roboter/#{o.lower()}">{o}</a>' if o.isupper() else o), d] for n, o, d in RULES])}
-      </section>
-      <section class="wiki-sec">
-        <h2>Werkzeugkasten</h2>
-        <p>Diese Denkschritte nennt BYTE, wenn er einen Tipp gibt.</p>
-        {table(["Schritt", "So geht's"], [[f"<b>{n}</b>", d] for n, d in TECH])}
-      </section>
-      <section class="wiki-sec">
-        <h2>Schwierigkeitsstufen</h2>
-        <p>Ein Sieg auf einer Stufe öffnet die nächste. Jede Stufe behält alles von den Stufen darunter.</p>
-        {table(["Stufe", "Was dazukommt"], [[f"<b>{n}</b>", d] for n, d in LEVELS])}
-      </section>
-      <section class="wiki-sec">
-        <h2>Ladung, Tipps und Bits</h2>
-        <ul class="plain-list">
-          <li><b>Ladung:</b> Ein Roboter startet mit 5 Ladungen, je nach Roboter mehr oder weniger. Jede falsche Ziffer ist ein Kurzschluss und kostet eine. Ist der Akku leer, ist der Run vorbei.</li>
-          <li><b>Tipps:</b> Jeder Roboter hat eine feste Zahl an Tipps, meist 3. Ein Tipp erklärt den nächsten Denkschritt, statt die Lösung zu verraten.</li>
-          <li><b>Seed:</b> Alles hängt am Seed des Runs. Ein fortgesetzter Run hat dieselben Rätsel und denselben Stand.</li>
-        </ul>
-      </section>
-""", "Regelwerk der Binär-Rätsel aus Bits & Bolts: Grundregeln, 18 Zusatzregeln, Lösungsschritte und Schwierigkeitsstufen.")
+# Regelwerk: gibt es nicht mehr, die alte Adresse führt zu Bits & Bolts auf der Weltkarte
+redirect("regelwerk", "../weltkarte/#bits-and-bolts", "Weltkarte")
 
 # Störungsprotokoll
 ## Gegner aus Bolt Buddies (core/battle.gd): Schlüssel der Grafik, Name, Art, Rahmenfarbe,
@@ -574,16 +533,16 @@ def foe_card(f):
     tag = f'<span class="foe-kind">{kind}</span>' + ('<span class="badge badge-plan">neu in 1.0</span>' if new else "")
     stats = "".join(f'<div><dt>{a}</dt><dd>{v}</dd></div>' for a, v in [("Leben", hp), ("Schaden", atk), ("Tempo", speed)])
     inv = f"""
-  <section class="bot-game bot-game-plan">
+  <section class="bot-game bot-game-plan"{g("plan")}>
     <h4>Block Invaders<span class="bot-role">geplant</span></h4>
     <p>{html.escape(invaders)}</p>
   </section>""" if invaders else ""
-    return f"""<li class="bot-card" id="{key}" style="--bot:#{col}">
+    return f"""<li class="bot-card" id="{key}" style="--bot:#{col}"{g("bb plan" if invaders else "bb")}>
   <div class="bot-head">
     <div class="bot-screen"><img class="{'foe-l' if kind != 'Gegner' else 'foe-s'}" src="foes/{key}.png" width="{96 if kind != 'Gegner' else 80}" height="{96 if kind != 'Gegner' else 80}" alt="{name}" loading="lazy"></div>
     <div class="bot-name"><h3>{name}</h3><div class="foe-tags">{tag}</div></div>
   </div>
-  <section class="bot-game bot-game-fight">
+  <section class="bot-game bot-game-fight"{g("bb")}>
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Schrottschacht</span></h4>
     <p>{html.escape(does)}</p>
     <dl class="foe-stats">{stats}</dl>
@@ -613,23 +572,53 @@ def event_card(e):
 </li>"""
 
 
+def copy_art():
+    """Holt Bilder aus den Spielen, wenn die Ordner daneben liegen, sonst bleiben die vorhandenen.
+    Bolt Buddies: Teile und Module (tools/item_art.py), gerenderte Ebenen, Werkstatt und Stationen (tools/archive_art.gd).
+    Bits & Bolts: Ausschnitte aus den Store-Screenshots."""
+    bb = os.path.join(OUT, "..", "Bolt-Buddies")
+    parts = os.path.join(OUT, "archiv", "ersatzteile", "img")
+    world = os.path.join(OUT, "archiv", "weltkarte", "img")
+    if os.path.isdir(os.path.join(bb, "assets", "items")):
+        for folder in ("items", "mods"):
+            shutil.copytree(os.path.join(bb, "assets", folder), os.path.join(parts, folder), dirs_exist_ok=True,
+                            ignore=shutil.ignore_patterns("*.import"))
+    art = os.path.join(bb, "docs", "archive")
+    if os.path.isdir(art):
+        os.makedirs(parts, exist_ok=True)
+        os.makedirs(world, exist_ok=True)
+        for name in os.listdir(art):
+            dst = world if name.startswith(("layer_", "workshop", "lift")) else parts
+            shutil.copyfile(os.path.join(art, name), os.path.join(dst, name))
+    shots = os.path.join(OUT, "..", "Bits-and-Bolts", "store", "de", "screenshots")
+    if os.path.isdir(shots):
+        from PIL import Image
+        os.makedirs(world, exist_ok=True)
+        # Der obere Teil des Handybilds: Titel und Raster, 16:10 wie die anderen Bilder
+        for num, name in (("06", "bnb_etagen"), ("05", "bnb_ereignis"), ("07", "bnb_haupt")):
+            im = Image.open(os.path.join(shots, num + ".png")).convert("RGB")
+            im = im.crop((40, 330, 1040, 955)).resize((640, 400), Image.LANCZOS)
+            im.save(os.path.join(world, name + ".jpg"), quality=82, optimize=True)
+
+
+copy_art()
 foe_sprites()
 foe_index = "".join(f'<a href="#{f[0]}" style="--bot:#{f[3]}"><img src="foes/{f[0]}.png" width="40" height="40" alt="" loading="lazy"><span>{f[1]}</span></a>' for f in FOES)
 write("stoerungen", head("Archiv · Störungsprotokoll", "Störungsprotokoll",
     "Alles, was im Rechner schiefgehen kann: Gegner, die im Schrottschacht angreifen, und Ereignisse, die Rätsel im Hauptrechner schwerer machen.") + f"""
       <nav class="bot-index foe-index" aria-label="Gegner">{foe_index}</nav>
-      <div class="callout wiki-note">
+      <div class="callout wiki-note"{g("bb plan")}>
         <b>So liest du die Karten:</b> Leben, Schaden und Tempo sind Grundwerte. Mit jedem Kampf werden Gegner zäher und stärker, in tieferen Ebenen langsamer,
         dafür macht der erste Kampf jeder Ebene einen Sprung. Je Ebene gibt es die Hälfte mehr Schrauben, im Nebenschacht noch einmal 75 % mehr.
         Der blaue Kasten zeigt, was in Block Invaders geplant ist.
       </div>
-      <section class="wiki-sec">
+      <section class="wiki-sec"{g("bb plan")}>
         <h2>Gegner im Schrottschacht</h2>
         <ul class="bot-grid">
 {chr(10).join(foe_card(f) for f in FOES)}
         </ul>
       </section>
-      <section class="wiki-sec" id="ereignisse">
+      <section class="wiki-sec" id="ereignisse"{g("bnb")}>
         <h2>Ereignisse im Hauptrechner</h2>
         <p>Aus Bits &amp; Bolts. Sie treffen Zwischenrechner, den Hauptrechner und auf hohen Stufen auch normale Rätsel. Vier davon bringen Roboter als Eigenart in jedes Rätsel mit, dafür haben sie mehr Ladung oder Tipps.</p>
         <ul class="bot-grid">
@@ -638,17 +627,54 @@ write("stoerungen", head("Archiv · Störungsprotokoll", "Störungsprotokoll",
       </section>
 """, "Gegner und Ereignisse im Roboter-Universum: Bug, Spam-Drohne, Firewall, Rostwurm, Frostbug, Wackelkontakt, Überhitzer, die Bosse und acht Störungen.")
 
-# Ersatzteillager
-ITEMS = [("Kreissäge", "Waffe", "Leistung"), ("Laser", "Waffe", "Leistung, Logik"), ("Taser", "Waffe", "Leistung, Takt"),
-         ("Blechpanzer", "Rüstung", "Gehäuse"), ("Kühlkörper", "Rüstung", "Gehäuse, Takt"), ("Gummihülle", "Rüstung", "Gehäuse, Logik"),
-         ("RAM-Riegel", "Chip", "Logik"), ("Taktquarz", "Chip", "Takt"), ("Turbolader", "Chip", "Leistung, Takt"), ("Zusatzakku", "Chip", "Gehäuse, Logik")]
-MODS = [("Übertakter", "+15 % Tempo"), ("Schleifstein", "+20 % Schaden"), ("Panzerplatten", "+25 % Leben"),
-        ("Zielhilfe", "+15 % Volltreffer"), ("Tarnlack", "+10 % Ausweichen"), ("Stacheln", "2 Schaden an Angreifern"),
-        ("Stromdieb", "heilt sich um 15 % des Schadens"), ("Rostspray", "Getroffene rosten: 2 Schaden je Zug"),
-        ("Dickes Blech", "1 Panzerung"), ("Nanobots", "heilt 2 Leben je Zug")]
+# Ersatzteillager: alles, was einen Roboter in Bolt Buddies stark macht, mit Bildern aus dem Spiel.
+## Ausrüstung (core/gear.gd): Grafik, Name, Platz, hebt
+ITEMS = [("saw", "Kreissäge", "weapon", "Leistung"), ("laser", "Laser", "weapon", "Leistung, Logik"), ("taser", "Taser", "weapon", "Leistung, Takt"),
+         ("plate", "Blechpanzer", "armor", "Gehäuse"), ("cooler", "Kühlkörper", "armor", "Gehäuse, Takt"), ("shell", "Gummihülle", "armor", "Gehäuse, Logik"),
+         ("ram", "RAM-Riegel", "chip", "Logik"), ("quartz", "Taktquarz", "chip", "Takt"), ("turbo", "Turbolader", "chip", "Leistung, Takt"),
+         ("cell", "Zusatzakku", "chip", "Gehäuse, Logik")]
+SLOTS = [("weapon", "Waffe"), ("armor", "Rüstung"), ("chip", "Chip")]
+## Module (core/battle.gd MODS)
+MODS = [("overclock", "Übertakter", "+15 % Tempo"), ("sharp", "Schleifstein", "+20 % Schaden"), ("plating", "Panzerplatten", "+25 % Leben"),
+        ("target", "Zielhilfe", "+15 % Volltreffer"), ("ghost", "Tarnlack", "+10 % Ausweichen"), ("spikes", "Stacheln", "2 Schaden an Angreifern"),
+        ("leech", "Stromdieb", "heilt sich um 15 % des Schadens"), ("toxin", "Rostspray", "Getroffene rosten: 2 Schaden je Zug"),
+        ("armor", "Dickes Blech", "1 Panzerung"), ("nano", "Nanobots", "heilt 2 Leben je Zug")]
+## Shop (autoload/game.gd PRICES): Symbol, Name, Preis, was man bekommt
+SHOP = [("akku", "Akku", "12 Schrauben", "+35 Energie"), ("oil", "Ölkanne", "10 Schrauben", "+40 Pflege, +5 Laune"),
+        ("armor", "Schrottkiste", "30 Schrauben", "ein zufälliges Teil, je tiefer der Rekord, desto besser"),
+        ("capsule", "Tresorkiste", "260 Schrauben", "ein Teil, mindestens selten"),
+        ("chip", "Trainingsdaten", "40 Schrauben, je Stufe 14 mehr", "eine halbe Stufe Erfahrung für den gewählten Roboter, bis Stufe 20")]
+## Stationen (core/base.gd): Bild, Name, Stufe 1 / 2 / 3, Preise, wie sie in der Werkstatt aussieht
+STATIONS = [
+    ("dock", "Ladeleiste", "Schlafende laden 35 / 70 / 100 % schneller", "60 / 180 / 450", "Schlafende stehen auf der Leiste, ihr Steckplatz leuchtet. Jede Stufe bringt mehr Kabel."),
+    ("bath", "Ölbad", "Pflege sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450", "Eine Wanne mit schwappendem Öl und Blasen. Auf Stufe 3 glüht eine Heizspirale."),
+    ("play", "Spielecke", "Laune sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450", "Ein Teppich mit Bauklötzen, ab Stufe 2 mit Ball, ab Stufe 3 mit Kreisel."),
+    ("bench", "Werkbank", "zerlegen und aufwerten / 25 % / 50 % günstiger", "80 / 200 / 450", "Mit Schraubstock, ab Stufe 2 mit Lampe, ab Stufe 3 mit Bohrmaschine, die Funken sprüht."),
+    ("radio", "Funkantenne", "empfängt Post aus den anderen Spielen", "kommt später", 'Steht auf dem Regal und blinkt, siehe <a href="../funk/">Funkverbindung</a>.'),
+]
+
+
+def part_card(img, name, sub, text, cls="part"):
+    return f"""          <li class="{cls}"><img src="img/{img}" alt="" loading="lazy"><div><h3>{name}</h3><p class="game-genre">{sub}</p><p>{text}</p></div></li>"""
+
+
+items_html = ""
+for slot, slot_name in SLOTS:
+    cards = "\n".join(part_card(f"items/{k}.png", n, slot_name, f"hebt {h}") for k, n, s, h in ITEMS if s == slot)
+    items_html += f"""        <h3 class="wiki-sub part-head"><img src="img/pix_{'weapon' if slot == 'weapon' else slot}.png" alt="">{slot_name}</h3>
+        <ul class="part-grid">
+{cards}
+        </ul>
+"""
+mods_html = "\n".join(part_card(f"mods/{k}.png", n, "Modul", w, "part part-small") for k, n, w in MODS)
+shop_html = "\n".join(part_card(f"pix_{k}.png", n, p, w, "part part-small") for k, n, p, w in SHOP)
+stations_html = "\n".join(f"""          <li class="station"><img src="img/station_{k}.png" alt="{n}" loading="lazy"><div class="place-head"><h3>{n}</h3>{PLAN if k == "radio" else ""}</div>
+            <p class="game-genre">{p} Schrauben</p><p><b>{e}</b></p><p>{look}</p></li>""" for k, n, e, p, look in STATIONS)
+
 write("ersatzteile", head("Archiv · Ersatzteillager", "Ersatzteillager",
-    "Was einen Roboter in Bolt Buddies stark macht: vier Attribute, drei Ausrüstungsplätze, Module für eine Expedition und gute Pflege.") + f"""
-      <section class="wiki-sec">
+    "Was einen Roboter in Bolt Buddies stark macht: vier Attribute, drei Ausrüstungsplätze, Module für eine Expedition, Vorräte aus dem Shop "
+    "und eine gut ausgebaute Werkstatt. Alle Bilder stammen direkt aus dem Spiel.") + f"""
+      <section class="wiki-sec"{g("bb")}>
         <h2>Attribute</h2>
         {table(["Attribut", "Wirkt auf", "Soll später kommen aus"], [
             ["<b>Leistung</b>", "mehr Schaden", "Block Invaders"],
@@ -656,38 +682,43 @@ write("ersatzteile", head("Archiv · Ersatzteillager", "Ersatzteillager",
             ["<b>Logik</b>", "mehr Volltreffer", "Bits &amp; Bolts"],
             ["<b>Gehäuse</b>", "mehr Leben", "Kippwelt"]])}
       </section>
-      <section class="wiki-sec">
+      <section class="wiki-sec"{g("bb")}>
         <h2>Ausrüstung</h2>
-        <p>Jeder Roboter hat drei Plätze: Waffe, Rüstung und Chip. Teile gibt es im Schacht, in Schrottkisten aus dem Shop und in Tresorkisten, die mindestens ein seltenes Teil enthalten. Überzählige Teile lassen sich für Schrauben verkaufen.</p>
-        {table(["Teil", "Platz", "Hebt"], [[f"<b>{a}</b>", b, c] for a, b, c in ITEMS])}
-        <p>Jedes Teil hat eine von vier Seltenheiten. Je seltener, desto mehr Punkte bringt es:</p>
+        <p>Jeder Roboter hat drei Plätze: Waffe, Rüstung und Chip. Teile gibt es im Schacht, aus Kisten im Shop und als Belohnung im Tagesschacht. Überzählige Teile lassen sich verkaufen oder an der Werkbank zerlegen.</p>
+{items_html}        <p>Jedes Teil hat eine von vier Seltenheiten. Je seltener, desto mehr Punkte bringt es, und tiefer im Schacht wird es öfter selten:</p>
         <p class="rarity"><span class="r0">Schrott</span><span class="r1">solide</span><span class="r2">selten</span><span class="r3">legendär</span></p>
       </section>
-      <section class="wiki-sec">
+      <section class="wiki-sec"{g("bb")}>
         <h2>Module</h2>
-        <p>Nach jedem gewonnenen Kampf darf man eine Belohnung wählen. Ein Modul gilt für das ganze Team bis zum Ende der Expedition.</p>
-        {table(["Modul", "Wirkung"], [[f"<b>{a}</b>", b] for a, b in MODS])}
+        <p>Nach jedem gewonnenen Kampf darf man eine Belohnung wählen. Ein Modul gilt für das ganze Team bis zum Ende der Expedition, gleiche Module stapeln sich.</p>
+        <ul class="part-grid">
+{mods_html}
+        </ul>
       </section>
-      <section class="wiki-sec">
-        <h2>Pflege und Vorräte</h2>
+      <section class="wiki-sec" id="shop"{g("bb")}>
+        <h2>Shop und Vorräte</h2>
+        <p>Im Shop gibt es Vorräte für die Pflege und Kisten mit Ausrüstung. Trainingsdaten und Tresorkisten bleiben auch nach dem vollen Ausbau ein Ziel für Schrauben.</p>
+        <ul class="part-grid">
+{shop_html}
+        </ul>
+      </section>
+      <section class="wiki-sec"{g("bb")}>
+        <h2>Pflege</h2>
         {table(["Wert", "sinkt", "steigt durch", "Im Kampf"], [
             ["<b>Energie</b>", "1 Punkt in 6 Minuten", "Akku (+35), Schlafen", "ab 70: +10 % Leben · unter 30: −20 % Leben"],
             ["<b>Laune</b>", "1 Punkt in 5 Minuten, rostig doppelt so schnell", "Spielen (+18), Streicheln, Expedition", "ab 70: +10 % Volltreffer · unter 30: −20 % Schaden"],
             ["<b>Pflege</b>", "1 Punkt in 8 Minuten", "Ölkanne (+40)", "ab 70: +10 % Ausweichen · unter 30: −20 % Tempo"]])}
         <p>Werte sinken auch, wenn das Spiel zu ist, höchstens für 48 Stunden. Kaputt geht dabei nichts: Ein leerer Roboter schaltet ab und lädt an der Ladeleiste.</p>
       </section>
-      <section class="wiki-sec" id="ausbau">
+      <section class="wiki-sec" id="ausbau"{g("bb")}>
         <h2>Werkstatt-Ausbau</h2>
-        <p>Kommt mit Bolt Buddies 1.0. Jede Station wird für Schrauben in drei Stufen ausgebaut und steht dann sichtbar in der Werkstatt. Sie machen die Pflege leichter, aber nie überflüssig: Auch ganz ausgebaut braucht ein Roboter nach zwei Tagen wieder etwas.</p>
-        {table(["Station", "Stufe 1 / 2 / 3", "Preis in Schrauben"], [
-            ["<b>Ladeleiste</b>", "Schlafende laden 35 / 70 / 100 % schneller", "60 / 180 / 450"],
-            ["<b>Ölbad</b>", "Pflege sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450"],
-            ["<b>Spielecke</b>", "Laune sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450"],
-            ["<b>Werkbank</b>", "zerlegen und aufwerten / 25 % günstiger / 50 % günstiger", "80 / 200 / 450"],
-            ["<b>Funkantenne</b>", 'Empfängt Post aus den anderen Spielen, siehe <a href="../funk/">Funkverbindung</a>. Kommt später.', "–"]])}
+        <p>Kommt mit Bolt Buddies 1.0. Jede Station wird für Schrauben in drei Stufen ausgebaut und steht dann sichtbar in der Werkstatt, mit jeder Stufe größer. Sie machen die Pflege leichter, aber nie überflüssig: Auch ganz ausgebaut braucht ein Roboter nach zwei Tagen wieder etwas. Die Bilder zeigen Stufe 3.</p>
+        <ul class="station-grid">
+{stations_html}
+        </ul>
         <p>Alles zusammen kostet 2830 Schrauben. Eine Expedition bringt je nach Stufe des Teams etwa 30 bis 290, für die erste Station reichen zwei frühe Expeditionen.</p>
       </section>
-      <section class="wiki-sec" id="werkbank">
+      <section class="wiki-sec" id="werkbank"{g("bb")}>
         <h2>Werkbank</h2>
         <p>An der Werkbank wird aus altem Kram ein Lieblingsteil. Zerlegen macht aus einem Teil im Lager Schrott. Aufwerten hebt ein Teil eine Seltenheit höher und gibt ihm 2 Punkte dazu, auch wenn es gerade ein Roboter trägt.</p>
         {table(["Seltenheit", "Schrott beim Zerlegen", "Aufwerten zur nächsten"], [
@@ -696,14 +727,14 @@ write("ersatzteile", head("Archiv · Ersatzteillager", "Ersatzteillager",
             ["<b>selten</b>", "5", "120 Schrauben, 12 Schrott"],
             ["<b>legendär</b>", "7", "geht nicht höher"]])}
       </section>
-      <section class="wiki-sec">
+      <section class="wiki-sec"{g("bb")}>
         <h2>Schrauben und Schrott</h2>
-        <ul class="plain-list">
-          <li><b>Schrauben</b> gibt es im Schacht und für verkaufte Teile. Je tiefer die Ebene, desto mehr: Jede Ebene bringt die Hälfte mehr als die darüber. Ausgegeben werden sie im Shop für Akkus, Öl, Schrottkisten (30) und Tresorkisten (260), für Trainingsdaten (eine halbe Stufe für den gewählten Roboter, 40 Schrauben plus 14 je Stufe) und für den Werkstatt-Ausbau. Training und Tresorkisten bleiben auch nach dem vollen Ausbau ein Ziel.</li>
-          <li><b>Schrott</b> gibt es nur an der Werkbank, aus zerlegten Teilen. Er wird zum Aufwerten gebraucht.</li>
+        <ul class="part-grid">
+{part_card("pix_bolts.png", "Schrauben", "Währung", "Gibt es im Schacht und für verkaufte Teile. Jede Ebene bringt die Hälfte mehr als die darüber, der Nebenschacht noch einmal 75 % mehr.", "part part-small")}
+{part_card("pix_scrap.png", "Schrott", "nur an der Werkbank", "Entsteht beim Zerlegen und wird zum Aufwerten gebraucht.", "part part-small")}
         </ul>
       </section>
-""", "Attribute, Ausrüstung, Seltenheiten, Module und Pflegewerte der Roboter in Bolt Buddies.")
+""", "Ausrüstung, Module, Shop, Pflegewerte und Werkstatt-Stationen der Roboter in Bolt Buddies, mit Bildern aus dem Spiel.")
 
 # Funkverbindung
 write("funk", head("Archiv · Funkverbindung", "Funkverbindung",
@@ -717,7 +748,7 @@ write("funk", head("Archiv · Funkverbindung", "Funkverbindung",
             ["<b>Loop Runner</b>", "Erfahrung und Takt"],
             ["<b>Kippwelt</b>", "Erfahrung, Gehäuse, Rüstungsteile"],
             ["<b>Zündkette</b>", "Erfahrung, Schrottkisten"],
-            ["<b>Snake Jam</b>", "Akkus, Öl, Schrauben"]])}
+            ["<b>Snake Jam</b>", "Akkus, Öl, Schrauben"]], "", ["bnb", "plan", "plan", "plan", "plan", "plan"])}
         <p>Zurück funkt Bolt Buddies, welche Roboter schon gerettet sind. Die können dann auch in den anderen Spielen mitmachen.</p>
       </section>
       <section class="wiki-sec">

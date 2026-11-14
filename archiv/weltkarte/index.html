@@ -28,7 +28,6 @@
         <li><a href="../../archiv/roboter/">Roboter-Register<small>Alle 22 Roboter</small></a></li>
         <li><a href="../../archiv/stoerungen/">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
         <li><a href="../../archiv/weltkarte/" aria-current="page">Weltkarte<small>Der Rechner und seine Spiele</small></a></li>
-        <li><a href="../../archiv/regelwerk/">Regelwerk<small>Binär-Rätsel</small></a></li>
         <li><a href="../../archiv/ersatzteile/">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
         <li><a href="../../archiv/funk/">Funkverbindung<small>Spiele verbinden</small></a></li>
       </ul>
@@ -37,27 +36,28 @@
       <p class="eyebrow">Archiv · Weltkarte</p>
       <h1 class="page-title">Weltkarte</h1>
       <p class="wiki-lead">Die ganze Welt ist ein einziger alter Rechner. Jedes Spiel spielt in einem seiner Bauteile: BYTE klettert über die Etagen nach oben zum Hauptrechner, in der Mitte liegt die Werkstatt, darunter führt der Schrottschacht in die Tiefe. Die geplanten Spiele besetzen die übrigen Bauteile. Bolt Buddies ist die Heimat, in die alle Roboter später mit Erfahrung und Beute zurückkehren, siehe <a href="../funk/">Funkverbindung</a>.</p>
+      <fieldset class="flt"><legend>Nach Spiel filtern</legend><input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label><input type="radio" name="flt" id="flt-bnb"><label for="flt-bnb">Bits &amp; Bolts</label><input type="radio" name="flt" id="flt-bb"><label for="flt-bb">Bolt Buddies</label><input type="radio" name="flt" id="flt-plan"><label for="flt-plan">Geplante Spiele</label></fieldset>
 
       <section class="wiki-sec">
         <h2>Der Rechner im Querschnitt</h2>
         <nav class="rig" aria-label="Querschnitt des Rechners">
-          <a class="rig-cell" href="#bits-and-bolts" style="grid-area:cpu;--c:#3DFF7A"><small>Prozessor</small><b>Hauptrechner</b><span>Bits &amp; Bolts</span></a>
-          <a class="rig-cell" href="#bits-and-bolts" style="grid-area:floors;--c:#3DFF7A"><small>Leiterbahnen</small><b>Die Etagen ↑</b><span>Bits &amp; Bolts</span></a>
-          <a class="rig-cell" href="#bolt-buddies" style="grid-area:shop;--c:#FFB000"><small>Gehäusemitte</small><b>Die Werkstatt</b><span>Bolt Buddies</span></a>
-          <a class="rig-cell" href="#bolt-buddies" style="grid-area:lift;--c:#FFB000"><small>Schacht</small><b>Der Aufzug ↕</b><span>Bolt Buddies</span></a>
-          <a class="rig-cell" href="#ebenen" style="grid-area:l1;--c:#3DFF7A"><small>Arbeitsspeicher</small><b>Speicherkeller</b><span>Kampf 1–10</span></a>
-          <a class="rig-cell" href="#ebenen" style="grid-area:l2;--c:#FF9A3D"><small>Kabel</small><b>Kabelschacht</b><span>Kampf 11–20</span></a>
-          <a class="rig-cell" href="#ebenen" style="grid-area:l3;--c:#4DE8FF"><small>Kühlung</small><b>Kühlkreislauf</b><span>Kampf 21–30</span></a>
-          <a class="rig-cell" href="#ebenen" style="grid-area:l4;--c:#FF5252"><small>Kern</small><b>Kernzone</b><span>ab Kampf 31</span></a>
-          <a class="rig-cell rig-plan" href="#block-invaders" style="grid-area:net;--c:#FF5252"><small>Netzwerkanschluss</small><b>Die Abwehrstellung</b><span>Block Invaders · geplant</span></a>
-          <a class="rig-cell rig-plan" href="#loop-runner" style="grid-area:clock;--c:#7CFFB0"><small>Taktgeber</small><b>Das Schleifenlabor</b><span>Loop Runner · geplant</span></a>
-          <a class="rig-cell rig-plan" href="#zuendkette" style="grid-area:psu;--c:#FF9A3D"><small>Netzteil</small><b>Das Kondensatorlager</b><span>Zündkette · geplant</span></a>
-          <a class="rig-cell rig-plan" href="#kippwelt" style="grid-area:sensor;--c:#FFD34D"><small>Lagesensor</small><b>Das Schwerkraft-Labor</b><span>Kippwelt · geplant</span></a>
-          <a class="rig-cell rig-plan" href="#snake-jam" style="grid-area:bus;--c:#B46CFF"><small>Datenbus und Anschlüsse</small><b>Das Datenbus-Depot</b><span>Snake Jam · geplant</span></a>
+          <a class="rig-cell" href="#bits-and-bolts" style="grid-area:cpu;--c:#3DFF7A" data-game="bnb"><small>Prozessor</small><b>Hauptrechner</b><span>Bits &amp; Bolts</span></a>
+          <a class="rig-cell" href="#bits-and-bolts" style="grid-area:floors;--c:#3DFF7A" data-game="bnb"><small>Leiterbahnen</small><b>Die Etagen ↑</b><span>Bits &amp; Bolts</span></a>
+          <a class="rig-cell" href="#bolt-buddies" style="grid-area:shop;--c:#FFB000" data-game="bb"><small>Gehäusemitte</small><b>Die Werkstatt</b><span>Bolt Buddies</span></a>
+          <a class="rig-cell" href="#bolt-buddies" style="grid-area:lift;--c:#FFB000" data-game="bb"><small>Schacht</small><b>Der Aufzug ↕</b><span>Bolt Buddies</span></a>
+          <a class="rig-cell" href="#ebenen" style="grid-area:l1;--c:#3DFF7A" data-game="bb"><small>Arbeitsspeicher</small><b>Speicherkeller</b><span>Kampf 1–10</span></a>
+          <a class="rig-cell" href="#ebenen" style="grid-area:l2;--c:#FF9A3D" data-game="bb"><small>Kabel</small><b>Kabelschacht</b><span>Kampf 11–20</span></a>
+          <a class="rig-cell" href="#ebenen" style="grid-area:l3;--c:#4DE8FF" data-game="bb"><small>Kühlung</small><b>Kühlkreislauf</b><span>Kampf 21–30</span></a>
+          <a class="rig-cell" href="#ebenen" style="grid-area:l4;--c:#FF5252" data-game="bb"><small>Kern</small><b>Kernzone</b><span>ab Kampf 31</span></a>
+          <a class="rig-cell rig-plan" href="#block-invaders" style="grid-area:net;--c:#FF5252" data-game="plan"><small>Netzwerkanschluss</small><b>Die Abwehrstellung</b><span>Block Invaders · geplant</span></a>
+          <a class="rig-cell rig-plan" href="#loop-runner" style="grid-area:clock;--c:#7CFFB0" data-game="plan"><small>Taktgeber</small><b>Das Schleifenlabor</b><span>Loop Runner · geplant</span></a>
+          <a class="rig-cell rig-plan" href="#zuendkette" style="grid-area:psu;--c:#FF9A3D" data-game="plan"><small>Netzteil</small><b>Das Kondensatorlager</b><span>Zündkette · geplant</span></a>
+          <a class="rig-cell rig-plan" href="#kippwelt" style="grid-area:sensor;--c:#FFD34D" data-game="plan"><small>Lagesensor</small><b>Das Schwerkraft-Labor</b><span>Kippwelt · geplant</span></a>
+          <a class="rig-cell rig-plan" href="#snake-jam" style="grid-area:bus;--c:#B46CFF" data-game="plan"><small>Datenbus und Anschlüsse</small><b>Das Datenbus-Depot</b><span>Snake Jam · geplant</span></a>
         </nav>
         <p class="muted-small">Jedes Feld führt zu seinem Bauteil. Gestrichelt: Spiele, die noch geplant sind.</p>
       </section>
-      <section class="wiki-sec game" id="bits-and-bolts">
+      <section class="wiki-sec game" id="bits-and-bolts" data-game="bnb">
         <p class="rig-part">Bauteil: Prozessor</p>
         <div class="game-head"><h2>Bits &amp; Bolts</h2><span class="badge badge-live">Im Play Store</span></div>
         <p class="game-genre">Binär-Rätsel als Roguelite</p>
@@ -67,13 +67,13 @@
           <div><dt>Bringt</dt><dd>Logik</dd></div>
         </dl>
         <ul class="place-list">
-        <li class="place"><div class="place-head"><h3>Die Etagen</h3></div><p class="game-genre">Station 1–10</p><p>Der Weg nach oben führt über zehn Stationen: sieben Rätsel und zwei Zwischenrechner an Station 4 und 7. Auf höheren Stufen treten unterwegs Ereignisse auf.</p></li>
-        <li class="place"><div class="place-head"><h3>Zwischenrechner</h3></div><p class="game-genre">Station 4 und 7</p><p>Hier gelten verschärfte Bedingungen, ab Stufe 1 mit einem Ereignis.</p></li>
-        <li class="place"><div class="place-head"><h3>Hauptrechner</h3></div><p class="game-genre">Ziel jedes Runs</p><p>Bis zu vier Sektoren: die äußeren Leitungen unter Spannung, ein Sektor mit Stromausfall, der innere Ring unter Überspannung und der Kern in 8×8. Nach jedem Sektor gibt es eine Ladung zurück.</p></li>
+        <li class="place"><img class="place-img place-photo" src="img/bnb_etagen.jpg" alt="Die Etagen" loading="lazy"><div class="place-head"><h3>Die Etagen</h3></div><p class="game-genre">Station 1–10</p><p>Der Weg nach oben führt über zehn Stationen: sieben Rätsel und zwei Zwischenrechner an Station 4 und 7. In jedem Rätsel gelten drei Grundregeln: nur 0 und 1, nie drei gleiche nebeneinander, in jeder Zeile und Spalte gleich viele. Dazu bringt jeder Roboter eigene Hinweise mit.</p></li>
+        <li class="place"><img class="place-img place-photo" src="img/bnb_ereignis.jpg" alt="Zwischenrechner" loading="lazy"><div class="place-head"><h3>Zwischenrechner</h3></div><p class="game-genre">Station 4 und 7</p><p>Hier gelten verschärfte Bedingungen, ab Stufe 1 mit einem Ereignis wie Nebel, Zeitdruck oder falschen Vorgaben.</p></li>
+        <li class="place"><img class="place-img place-photo" src="img/bnb_haupt.jpg" alt="Hauptrechner" loading="lazy"><div class="place-head"><h3>Hauptrechner</h3></div><p class="game-genre">Ziel jedes Runs</p><p>Bis zu vier Sektoren: die äußeren Leitungen unter Spannung, ein Sektor mit Stromausfall, der innere Ring unter Überspannung und der Kern in 8×8. Nach jedem Sektor gibt es eine Ladung zurück.</p></li>
         </ul>
-        <p><a href="../regelwerk/">Zum Regelwerk →</a> · <a href="../stoerungen/#ereignisse">Ereignisse →</a> · <a href="https://play.google.com/store/apps/details?id=com.beigel.bitsandbolts" target="_blank" rel="noopener">Play Store ↗</a> · <a href="../../bits-and-bolts/">Datenschutz</a></p>
+        <p><a href="../stoerungen/#ereignisse">Ereignisse →</a> · <a href="https://play.google.com/store/apps/details?id=com.beigel.bitsandbolts" target="_blank" rel="noopener">Play Store ↗</a> · <a href="../../bits-and-bolts/">Datenschutz</a></p>
       </section>
-      <section class="wiki-sec game" id="bolt-buddies">
+      <section class="wiki-sec game" id="bolt-buddies" data-game="bb">
         <p class="rig-part">Bauteil: Gehäusemitte und Schacht</p>
         <div class="game-head"><h2>Bolt Buddies</h2><span class="badge badge-dev">In Entwicklung</span></div>
         <p class="game-genre">Roboter pflegen und Auto-Kämpfe</p>
@@ -83,17 +83,17 @@
           <div><dt>Bringt</dt><dd>Heimat aller Roboter: Stufen, Ausrüstung, Pflege</dd></div>
         </dl>
         <ul class="place-list">
-        <li class="place"><div class="place-head"><h3>Die Werkstatt</h3></div><p class="game-genre">Zuhause</p><p>Hier wohnen alle geretteten Roboter. Sie laufen frei herum, wollen gestreichelt, geölt und geladen werden und schlafen an der Ladeleiste. Jeder Gerettete bringt ein persönliches Teil mit, so füllt sich der Raum mit jedem Roboter.</p></li>
-        <li class="place"><div class="place-head"><h3>Der Aufzug</h3></div><p class="game-genre">zwischen den Kämpfen</p><p>Nach jedem Kampf: weiter nach unten oder mit der ganzen Beute nach Hause. Die nächsten Gegner sind schon zu sehen, und es gibt zwei Wege: den Hauptschacht und einen Nebenschacht mit zäheren Gegnern und 75 % mehr Schrauben.</p></li>
+        <li class="place"><img class="place-img" src="img/workshop.png" alt="Die Werkstatt" loading="lazy"><div class="place-head"><h3>Die Werkstatt</h3></div><p class="game-genre">Zuhause</p><p>Hier wohnen alle geretteten Roboter. Sie laufen frei herum, wollen gestreichelt, geölt und geladen werden und schlafen an der Ladeleiste. Jeder Gerettete bringt ein persönliches Teil mit, so füllt sich der Raum mit jedem Roboter.</p></li>
+        <li class="place"><img class="place-img" src="img/lift.png" alt="Der Aufzug" loading="lazy"><div class="place-head"><h3>Der Aufzug</h3></div><p class="game-genre">zwischen den Kämpfen</p><p>Nach jedem Kampf: weiter nach unten oder mit der ganzen Beute nach Hause. Die nächsten Gegner sind schon zu sehen, und es gibt zwei Wege: den Hauptschacht und einen Nebenschacht mit zäheren Gegnern und 75 % mehr Schrauben.</p></li>
         <li class="place"><div class="place-head"><h3>Der Schrottschacht</h3></div><p class="game-genre">unter der Werkstatt</p><p>Kampf für Kampf geht es tiefer. Dort liegen Schrauben, Akkus, Öl und Ausrüstung, und abgeschaltete Roboter warten in ihrer Ebene auf Rettung.</p></li>
         </ul>
         <h3 class="wiki-sub" id="ebenen">Die Ebenen des Schrottschachts</h3>
         <p>Kommt mit Bolt Buddies 1.0: Alle 10 Kämpfe beginnt eine neue Ebene mit eigener Kulisse und einem eigenen Gegner. In der Mitte wartet ein Boss, im letzten Kampf ihr Wächter. Wer ihn besiegt, kann künftig an der Haltestelle der nächsten Ebene einsteigen und bekommt dafür von der Werkstatt Module mit. Gegner und Werte stehen im <a href="../stoerungen/">Störungsprotokoll</a>.</p>
         <ul class="place-list">
-        <li class="place"><div class="place-head"><h3>Speicherkeller</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Arbeitsspeicher · Kampf 1–10 · Wächter: Bluescreen</p><p>Zwischen alten Speicherriegeln blinken Lämpchen, auf dem Boden wandern Datenpakete über die Leiterbahnen. Bugs, Spam-Drohnen, Firewalls und Rostwürmer. Hier warten 7 Roboter auf Rettung.</p></li>
-        <li class="place"><div class="place-head"><h3>Kabelschacht</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Kabel · Kampf 11–20 · Wächter: Kurzschluss</p><p>Durchhängende Kabelstränge, an den Haltern sprühen Funken. Hier leben die Wackelkontakte: Wer sie trifft, bekommt einen Schlag. 6 Roboter warten hier.</p></li>
-        <li class="place"><div class="place-head"><h3>Kühlkreislauf</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Kühlung · Kampf 21–30 · Wächter: Kältekern</p><p>Vereiste Rohre, ein großer Lüfter, Schnee fällt. Frostbugs kühlen mit ihren Treffern ab. In der Mitte kehrt der Kurzschluss zurück. 5 Roboter warten hier.</p></li>
-        <li class="place"><div class="place-head"><h3>Kernzone</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Kern · ab Kampf 31 · Wächter wechseln</p><p>Der Kern glüht rot, Hitze steigt auf. Überhitzer treffen das ganze Team, die drei Wächter wechseln sich ab, und es geht endlos weiter. Hier warten ROOT, ERROR und DAEMON.</p></li>
+        <li class="place"><img class="place-img" src="img/layer_0.png" alt="Speicherkeller" loading="lazy"><div class="place-head"><h3>Speicherkeller</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Arbeitsspeicher · Kampf 1–10 · Wächter: Bluescreen</p><p>Zwischen alten Speicherriegeln blinken Lämpchen, auf dem Boden wandern Datenpakete über die Leiterbahnen. Bugs, Spam-Drohnen, Firewalls und Rostwürmer. Hier warten 7 Roboter auf Rettung.</p></li>
+        <li class="place"><img class="place-img" src="img/layer_1.png" alt="Kabelschacht" loading="lazy"><div class="place-head"><h3>Kabelschacht</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Kabel · Kampf 11–20 · Wächter: Kurzschluss</p><p>Durchhängende Kabelstränge, an den Haltern sprühen Funken. Hier leben die Wackelkontakte: Wer sie trifft, bekommt einen Schlag. 6 Roboter warten hier.</p></li>
+        <li class="place"><img class="place-img" src="img/layer_2.png" alt="Kühlkreislauf" loading="lazy"><div class="place-head"><h3>Kühlkreislauf</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Kühlung · Kampf 21–30 · Wächter: Kältekern</p><p>Vereiste Rohre, ein großer Lüfter, Schnee fällt. Frostbugs kühlen mit ihren Treffern ab. In der Mitte kehrt der Kurzschluss zurück. 5 Roboter warten hier.</p></li>
+        <li class="place"><img class="place-img" src="img/layer_3.png" alt="Kernzone" loading="lazy"><div class="place-head"><h3>Kernzone</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Kern · ab Kampf 31 · Wächter wechseln</p><p>Der Kern glüht rot, Hitze steigt auf. Überhitzer treffen das ganze Team, die drei Wächter wechseln sich ab, und es geht endlos weiter. Hier warten ROOT, ERROR und DAEMON.</p></li>
         </ul>
         <h3 class="wiki-sub">Was noch kommt</h3>
 <div class="wiki-table"><table>
@@ -128,7 +128,7 @@
         <p>In den Optionen lassen sich Erinnerungen einschalten. Beim Schließen plant das Spiel dann höchstens eine Benachrichtigung: wenn der erste Roboter ausgeschlafen ist oder etwas braucht, oder wenn der Tagesschacht wartet. Nie in den ersten zwei Stunden, nie nachts, höchstens eine am Tag. Alles läuft auf dem Handy, ohne Server.</p>
         <p><a href="../ersatzteile/">Zum Ersatzteillager →</a> · <a href="../../bolt-buddies/">Datenschutz</a></p>
       </section>
-      <section class="wiki-sec game" id="block-invaders">
+      <section class="wiki-sec game" id="block-invaders" data-game="plan">
         <p class="rig-part">Bauteil: Netzwerkanschluss</p>
         <div class="game-head"><h2>Block Invaders</h2><span class="badge badge-plan">Geplant</span></div>
         <p class="game-genre">Block-Puzzle gegen angreifende Störungen</p>
@@ -141,7 +141,7 @@
         <li class="place"><div class="place-head"><h3>Die Abwehrstellung</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">am Netzwerkanschluss</p><p>Der Rand des Rechners, an dem Störungen aus dem Netz in Formation anrücken.</p></li>
         </ul>
       </section>
-      <section class="wiki-sec game" id="loop-runner">
+      <section class="wiki-sec game" id="loop-runner" data-game="plan">
         <p class="rig-part">Bauteil: Taktgeber</p>
         <div class="game-head"><h2>Loop Runner</h2><span class="badge badge-plan">Geplant</span></div>
         <p class="game-genre">Zeitschleifen-Plattformer</p>
@@ -154,7 +154,7 @@
         <li class="place"><div class="place-head"><h3>Das Schleifenlabor</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">im Taktgeber</p><p>Ein Labor im Herzschlag des Rechners: Alle 20 Sekunden schlägt der Takt, und die Zeit beginnt von vorn.</p></li>
         </ul>
       </section>
-      <section class="wiki-sec game" id="kippwelt">
+      <section class="wiki-sec game" id="kippwelt" data-game="plan">
         <p class="rig-part">Bauteil: Lagesensor</p>
         <div class="game-head"><h2>Kippwelt</h2><span class="badge badge-plan">Geplant</span></div>
         <p class="game-genre">Plattformer ohne Springen</p>
@@ -167,7 +167,7 @@
         <li class="place"><div class="place-head"><h3>Das Schwerkraft-Labor</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">im Lagesensor</p><p>Räume, die sich drehen lassen. Unten ist immer da, wo der Sensor gerade unten meldet.</p></li>
         </ul>
       </section>
-      <section class="wiki-sec game" id="zuendkette">
+      <section class="wiki-sec game" id="zuendkette" data-game="plan">
         <p class="rig-part">Bauteil: Netzteil</p>
         <div class="game-head"><h2>Zündkette</h2><span class="badge badge-plan">Geplant</span></div>
         <p class="game-genre">Kettenreaktions-Rätsel</p>
@@ -180,7 +180,7 @@
         <li class="place"><div class="place-head"><h3>Das Kondensatorlager</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">im Netzteil</p><p>Hier wird der ganze Rechner mit Strom versorgt. Voller Kondensatoren und Schrottkisten, in denen sich Viren verstecken.</p></li>
         </ul>
       </section>
-      <section class="wiki-sec game" id="snake-jam">
+      <section class="wiki-sec game" id="snake-jam" data-game="plan">
         <p class="rig-part">Bauteil: Datenbus und Anschlüsse</p>
         <div class="game-head"><h2>Snake Jam</h2><span class="badge badge-plan">Geplant</span></div>
         <p class="game-genre">Schiebe-Rätsel mit wachsenden Bussen</p>
