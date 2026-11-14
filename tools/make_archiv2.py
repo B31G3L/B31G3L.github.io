@@ -344,7 +344,7 @@ write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entw
             ["Spiele", "Bits &amp; Bolts und Bolt Buddies bleiben"],
             ["Roboter", "alle 22 bleiben, mit Namen, Aussehen und Fähigkeiten"],
             ["Stil", "bleibt: Pixel, Retro-Terminal, Bildschirmflimmern"],
-            ["Neu offen", "alles andere, auch ob und wie die fünf geplanten Spiele in die Welt passen"],
+            ["Neu offen", "alles andere"],
         ], " wiki-table-plain")}
       </section>
 """)
@@ -401,7 +401,6 @@ write("welt", "Die Welt", "Die Welt der Roboter ist ein alter Tower-PC: oben der
       <section class="wiki-sec">
         <h2>Noch offen</h2>
         <ul class="plain-list">
-          <li>Die fünf geplanten Spiele: Port Patrol, Loop Echo, Tilt Gate, Surge Chain und Packet Rush. Bekommen sie einen Platz, werden sie umgebaut, oder fallen sie weg?</li>
           <li>Der Name der ersten Schicht im Schacht. Vorschlag: Schraubenhalde.</li>
           <li>Wo Festplatte, Grafikkarte und Anschlüsse liegen und ob ein Spiel dorthin führt.</li>
         </ul>
