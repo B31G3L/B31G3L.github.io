@@ -422,3 +422,35 @@ article.policy address { font-style: normal; margin: 0 0 14px; }
   .wiki-nav a small { display: none; }
 }
 .wiki-sub { font-size: 1rem; margin: 18px 0 10px; }
+
+/* Weltkarte: der Rechner im Querschnitt. Mitte von oben nach unten: Prozessor, Etagen, Werkstatt, Aufzug, Schacht.
+   Links und rechts die Bauteile der geplanten Spiele, unten der Datenbus. Auf schmalen Bildschirmen alles untereinander. */
+.rig {
+  display: grid; gap: 8px; margin: 0 0 10px; padding: 14px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-areas:
+    "net cpu clock" "net floors clock" "net shop clock" "psu lift sensor"
+    "psu l1 sensor" "psu l2 sensor" "psu l3 sensor" "psu l4 sensor" "bus bus bus";
+  border: 2px solid var(--line); border-radius: 14px;
+  background: repeating-linear-gradient(0deg, transparent 0 23px, var(--line) 23px 24px), var(--surface-2);
+}
+.rig-cell {
+  display: flex; flex-direction: column; justify-content: center; gap: 2px; min-width: 0;
+  padding: 10px 12px; border-radius: 10px; text-decoration: none; color: var(--ink);
+  background: color-mix(in srgb, var(--c) 14%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--c) 45%, var(--line)); border-left: 5px solid var(--c);
+}
+.rig-cell:hover, .rig-cell:focus-visible { background: color-mix(in srgb, var(--c) 26%, var(--surface)); }
+.rig-cell small { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.rig-cell b { font-size: 0.95rem; line-height: 1.2; }
+.rig-cell span { font-size: 0.8rem; color: var(--ink-soft); }
+.rig-plan { border-style: dashed; border-left-style: solid; background: color-mix(in srgb, var(--c) 7%, var(--surface)); }
+.rig-part { margin: 0 0 4px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.game > .rig-part { padding-top: 24px; border-top: 1px solid var(--line); max-width: none; }
+.game > .rig-part + .game-head { padding-top: 0; border-top: none; }
+@media (max-width: 640px) {
+  .rig {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "cpu" "floors" "shop" "lift" "l1" "l2" "l3" "l4" "net" "clock" "psu" "sensor" "bus";
+  }
+}
