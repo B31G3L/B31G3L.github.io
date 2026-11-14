@@ -198,7 +198,7 @@ write("", head("Archiv der Roboter", "Das Archiv",
             ["Spiele", "1 im Play Store, 1 in Entwicklung, 5 geplant"],
             ["Attribute", "Leistung, Takt, Logik, Gehäuse"],
             ["Welt", "ein alter Rechner, jedes Spiel spielt in einem Bauteil"],
-            ["Gegner", "Bug, Spam-Drohne, Firewall, Rostwurm, Frostbug, Wackelkontakt, Überhitzer und drei Bosse"],
+            ["Gegner", "Bug, Spam-Drohne, Firewall, Rostwurm, Frostbug, Wackelkontakt, Überhitzer und vier Bosse"],
             ["Ereignisse", "8 Störungen im Hauptrechner, von Stromausfall bis Nebel"],
             ["Währung", "Schrauben und Schrott in der Werkstatt"],
         ], " wiki-table-plain", ["bnb bb", "", "bb", "", "bb plan", "bnb", "bb"])}
@@ -216,7 +216,7 @@ write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
       <nav class="bot-index" aria-label="Roboter">{index}</nav>
       <div class="callout wiki-note">
         <b>So liest du die Karten:</b> Jede Karte zeigt, was der Roboter in beiden Spielen kann: oben in Bits &amp; Bolts, unten in Bolt Buddies. Die Punkte sind die Grundwerte auf Stufe 1, zusammen immer 12. Je Stufe wächst jedes Attribut um 12 % seines Grundwerts, höchstens bis Stufe 20.
-        In Bolt Buddies findet man neue Roboter im Schrottschacht, nach Kampf 2, 5, 8 und so weiter. Jeder wartet in seiner Ebene: Wer im Kühlkreislauf sitzt, lässt sich erst ab dort retten.
+        In Bolt Buddies findet man neue Roboter im Schrottschacht, nach Kampf 2, 5, 8 und so weiter. Jeder wartet in seiner Ebene: Wer im Lüftergrund sitzt, lässt sich erst ab dort retten.
         Jeder Gerettete bringt ein persönliches Teil mit, das ab dann in der Werkstatt steht.
       </div>
       <ul class="bot-grid">
@@ -276,10 +276,10 @@ RIG = [
     ("floors", "Leiterbahnen", "Die Etagen ↑", "Bits &amp; Bolts", "bits-and-bolts", "3DFF7A", False),
     ("shop", "Gehäusemitte", "Die Werkstatt", "Bolt Buddies", "bolt-buddies", "FFB000", False),
     ("lift", "Schacht", "Der Aufzug ↕", "Bolt Buddies", "bolt-buddies", "FFB000", False),
-    ("l1", "Arbeitsspeicher", "Speicherkeller", "Kampf 1–10", "ebenen", "3DFF7A", False),
-    ("l2", "Kabel", "Kabelschacht", "Kampf 11–20", "ebenen", "FF9A3D", False),
-    ("l3", "Kühlung", "Kühlkreislauf", "Kampf 21–30", "ebenen", "4DE8FF", False),
-    ("l4", "Kern", "Kernzone", "ab Kampf 31", "ebenen", "FF5252", False),
+    ("l1", "Unter den Laufwerken", "Schraubenhalde", "Kampf 1–10", "ebenen", "C9D3DC", False),
+    ("l2", "Kabel", "Kabelsalat", "Kampf 11–20", "ebenen", "FF9A3D", False),
+    ("l3", "Gehäuselüfter", "Lüftergrund", "Kampf 21–30", "ebenen", "4DE8FF", False),
+    ("l4", "Ganz unten", "Netzteil", "ab Kampf 31", "ebenen", "FF5252", False),
     ("net", "Netzwerkanschluss", "Die Abwehrstellung", "Port Patrol", "port-patrol", "FF5252", True),
     ("clock", "Taktgeber", "Das Schleifenlabor", "Loop Echo", "loop-echo", "7CFFB0", True),
     ("psu", "Netzteil", "Das Kondensatorlager", "Surge Chain", "surge-chain", "FF9A3D", True),
@@ -317,7 +317,7 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
     game("bits-and-bolts", "Prozessor", "Bits &amp; Bolts", STORE, "Binär-Rätsel als Roguelite",
          "Ein Roboter arbeitet sich durch zehn Stationen bis zum Hauptrechner und repariert unterwegs durchgebrannte Raster aus Nullen und Einsen. Jede falsche Ziffer ist ein Kurzschluss und kostet Ladung. Siege schalten neue Roboter und höhere Schwierigkeitsstufen frei.",
          "Logik", "Alle 22 Roboter, als Erster BYTE", [
-             place("Die Etagen", "Station 1–10", "Der Weg nach oben führt über zehn Stationen: sieben Rätsel und zwei Zwischenrechner an Station 4 und 7. In jedem Rätsel gelten drei Grundregeln: nur 0 und 1, nie drei gleiche nebeneinander, in jeder Zeile und Spalte gleich viele. Dazu bringt jeder Roboter eigene Hinweise mit.", img="bnb_etagen.jpg", photo=True),
+             place("Die Etagen", "Station 1–10", "Der Weg nach oben führt über zehn Stationen: sieben Rätsel und zwei Zwischenrechner an Station 4 und 7. Sie führen über die Platine durch vier Gegenden: Steckkarten (1–2), Knopfzelle (3–4), Chipsatz (5–7) und Arbeitsspeicher (8–9). Jede Gegend hat ihr Wetter, ein Fluch dort ist meist Wackelkontakt, Stromausfall, Überspannung oder Störsignal. In jedem Rätsel gelten drei Grundregeln: nur 0 und 1, nie drei gleiche nebeneinander, in jeder Zeile und Spalte gleich viele. Dazu bringt jeder Roboter eigene Hinweise mit.", img="bnb_etagen.jpg", photo=True),
              place("Zwischenrechner", "Station 4 und 7", "Hier gelten verschärfte Bedingungen, ab Stufe 1 mit einem Ereignis wie Nebel, Zeitdruck oder falschen Vorgaben.", img="bnb_ereignis.jpg", photo=True),
              place("Hauptrechner", "Ziel jedes Runs", "Bis zu vier Sektoren: die äußeren Leitungen unter Spannung, ein Sektor mit Stromausfall, der innere Ring unter Überspannung und der Kern in 8×8. Nach jedem Sektor gibt es eine Ladung zurück.", img="bnb_haupt.jpg", photo=True),
          ],
@@ -334,10 +334,10 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
          'Wer ihn besiegt, kann künftig an der Haltestelle der nächsten Ebene einsteigen und bekommt dafür von der Werkstatt Module mit. Gegner und Werte stehen im <a href="../stoerungen/">Störungsprotokoll</a>.</p>\n'
          '        <ul class="place-list">\n'
          + "\n".join([
-             place("Speicherkeller", "Arbeitsspeicher · Kampf 1–10 · Wächter: Bluescreen", "Zwischen alten Speicherriegeln blinken Lämpchen, auf dem Boden wandern Datenpakete über die Leiterbahnen. Bugs, Spam-Drohnen, Firewalls und Rostwürmer. Hier warten 7 Roboter auf Rettung.", PLAN, "layer_0.png"),
-             place("Kabelschacht", "Kabel · Kampf 11–20 · Wächter: Kurzschluss", "Durchhängende Kabelstränge, an den Haltern sprühen Funken. Hier leben die Wackelkontakte: Wer sie trifft, bekommt einen Schlag. 6 Roboter warten hier.", PLAN, "layer_1.png"),
-             place("Kühlkreislauf", "Kühlung · Kampf 21–30 · Wächter: Kältekern", "Vereiste Rohre, ein großer Lüfter, Schnee fällt. Frostbugs kühlen mit ihren Treffern ab. In der Mitte kehrt der Kurzschluss zurück. 5 Roboter warten hier.", PLAN, "layer_2.png"),
-             place("Kernzone", "Kern · ab Kampf 31 · Wächter wechseln", "Der Kern glüht rot, Hitze steigt auf. Überhitzer treffen das ganze Team, die drei Wächter wechseln sich ab, und es geht endlos weiter. Hier warten ROOT, ERROR und DAEMON.", PLAN, "layer_3.png"),
+             place("Schraubenhalde", "unter den Laufwerken · Kampf 1–10 · Wächter: Bluescreen", "Genietetes Blech, durch die Spalten fällt Licht aus der Werkstatt, und ab und zu fällt eine Schraube herunter. Der Boden liegt voller Schrauben. Bugs, Spam-Drohnen, Firewalls und Rostwürmer. Hier warten 7 Roboter auf Rettung.", PLAN, "layer_0.png"),
+             place("Kabelsalat", "Kabel · Kampf 11–20 · Wächter: Kurzschluss", "Durchhängende Kabelstränge, an den Haltern sprühen Funken. Hier leben die Wackelkontakte: Wer sie trifft, bekommt einen Schlag. 6 Roboter warten hier.", PLAN, "layer_1.png"),
+             place("Lüftergrund", "Gehäuselüfter · Kampf 21–30 · Wächter: Kältekern", "Vereiste Rohre, ein großer Lüfter, Schnee fällt. Frostbugs kühlen mit ihren Treffern ab. In der Mitte kehrt der Kurzschluss zurück. 5 Roboter warten hier.", PLAN, "layer_2.png"),
+             place("Netzteil", "ganz unten · ab Kampf 31 · Wächter: Brummtrafo", "Hinter dem Lüftungsgitter glüht es, an den Seiten stehen Kondensatoren und Kupferspulen. Überhitzer treffen das ganze Team. In Kampf 40 wartet der Brummtrafo, danach wechseln sich alle vier Wächter ab, und es geht endlos weiter. Hier warten ROOT, ERROR und DAEMON.", PLAN, "layer_3.png"),
          ]) + "\n        </ul>\n"
          + '        <h3 class="wiki-sub">Was noch kommt</h3>\n'
          + table(["Feature", "Worum es geht", "Version"], [
@@ -429,23 +429,26 @@ FOES = [
      "Fliegt über die vorderen Reihen hinweg und zielt auf den hintersten Roboter.", False, "Fliegt mit und wirft Bomben."),
     ("turret", "Firewall", "Gegner", "FF5252", 12, 8, 8, 6, 6, "ab Kampf 3", "alle Ebenen",
      "Langsam, schießt aber wild und hart auf irgendwen im Team.", False, "Schießt auf zufällige Blöcke."),
-    ("worm", "Rostwurm", "Gegner", "D9773A", 34, 7, 7, 6, 6, "ab Kampf 4", "alle Ebenen, im Kabelschacht und in der Kernzone doppelt so oft",
+    ("worm", "Rostwurm", "Gegner", "D9773A", 34, 7, 7, 6, 6, "ab Kampf 4", "alle Ebenen, im Kabelsalat und im Netzteil doppelt so oft",
      "Zäh und gepanzert (1 Panzerung). Hält lange durch.", False, "Braucht mehrere Treffer."),
-    ("frost", "Frostbug", "Gegner", "4DE8FF", 16, 4, 11, 5, 5, "ab Kampf 21", "Kühlkreislauf (vor allem), Kernzone",
+    ("frost", "Frostbug", "Gegner", "4DE8FF", 16, 4, 11, 5, 5, "ab Kampf 21", "Lüftergrund (vor allem), Netzteil",
      "Seine Treffer kühlen ab: Wer getroffen wird, ist später wieder dran.", True, ""),
-    ("spark", "Wackelkontakt", "Gegner", "FF9A3D", 11, 4, 16, 5, 5, "ab Kampf 11", "Kabelschacht (vor allem), Kühlkreislauf, Kernzone",
+    ("spark", "Wackelkontakt", "Gegner", "FF9A3D", 11, 4, 16, 5, 5, "ab Kampf 11", "Kabelsalat (vor allem), Lüftergrund, Netzteil",
      "Schnell und geladen: Wer ihn trifft, bekommt einen Schlag zurück, der tiefer im Schacht stärker wird.", True, ""),
-    ("heat", "Überhitzer", "Gegner", "FF5252", 18, 6, 9, 7, 7, "ab Kampf 31", "Kernzone (vor allem)",
+    ("heat", "Überhitzer", "Gegner", "FF5252", 18, 6, 9, 7, 7, "ab Kampf 31", "Netzteil (vor allem)",
      "Strahlt Hitze ab und trifft das ganze Team zugleich, jeden mit 60 % seines Schadens.", True, ""),
     ("boss", "Bluescreen", "Boss", "3B6BFF", 80, 8, 9, 25, 25, "Kampf 5, 10, 15",
-     "Mitte von Speicherkeller und Kabelschacht (dort mit Wackelkontakten), Wächter des Speicherkellers, in der Kernzone im Wechsel",
+     "Mitte von Schraubenhalde und Kabelsalat (dort mit Wackelkontakten), Wächter der Schraubenhalde, im Netzteil im Wechsel",
      "Trifft das ganze Team zugleich. Hinterlässt ein seltenes Teil und einen Akku.", False, "Boss-Welle alle 5 Wellen."),
     ("short", "Kurzschluss", "Wächter", "FFB000", 75, 9, 14, 30, 30, "Kampf 20, 25",
-     "Wächter des Kabelschachts, Boss in der Mitte des Kühlkreislaufs, in der Kernzone im Wechsel",
+     "Wächter des Kabelsalats, Boss in der Mitte des Lüftergrunds, im Netzteil im Wechsel",
      "Schnell, schlägt wild um sich und landet viele Volltreffer (25 %). Kommt mit Wackelkontakt und Spam-Drohne.", True, ""),
     ("chiller", "Kältekern", "Wächter", "4DE8FF", 95, 7, 8, 35, 35, "Kampf 30, 35",
-     "Wächter des Kühlkreislaufs, Boss in der Mitte der Kernzone, dort auch im Wechsel",
+     "Wächter des Lüftergrunds, Boss in der Mitte des Netzteils, dort auch im Wechsel",
      "Trifft das ganze Team und kühlt alle zugleich ab. Kommt mit Frostbug und Bug.", True, ""),
+    ("trafo", "Brummtrafo", "Wächter", "FF7A45", 110, 7, 7, 40, 40, "Kampf 40, danach im Wechsel",
+     "Wächter des Netzteils, dort im Wechsel mit den anderen drei",
+     "Brummt so laut, dass er das ganze Team zugleich trifft. Wer ihn trifft, verbrennt sich: 3 Schaden zurück. Kommt mit Überhitzer und Frostbug.", True, ""),
 ]
 ## Ereignisse aus Bits & Bolts: Name, Roboter, der es mitbringt, Störungscode ohne Roboter, Wirkung
 EVENTS = [

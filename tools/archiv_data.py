@@ -64,7 +64,7 @@ HERO = {"BYTE": "Bits & Bolts, Bolt Buddies", "LOOP": "Loop Echo (geplant)", "GA
         "SHIFT": "Loop Echo (geplant)", "QUBIT": "Loop Echo (geplant)"}
 ATTR = ["Leistung", "Takt", "Logik", "Gehäuse"]
 ## Bolt Buddies: In welcher Ebene ein Roboter auf Rettung wartet (core/bots.gd HOME) und was er mitbringt (i18n ks_*)
-LAYERS = [("Speicherkeller", 1), ("Kabelschacht", 11), ("Kühlkreislauf", 21), ("Kernzone", 31)]
+LAYERS = [("Schraubenhalde", 1), ("Kabelsalat", 11), ("Lüftergrund", 21), ("Netzteil", 31)]
 HOME = {
     "BYTE": 0, "OKTA": 0, "HEXA": 0, "ASKI": 0, "PIXA": 0, "NIBBLE": 0, "PARI": 0, "MIRA": 0,
     "GATE": 1, "LOOP": 1, "SHIFT": 1, "XOR": 1, "MORSE": 1, "PATCH": 1,

@@ -113,13 +113,13 @@ PLACES = {
         sound="Ein feines Pfeifen, wenn viel Strom fließt.",
         special="Hier wird der Strom aus dem Netzteil fein gemacht für den Prozessor. Wer hier durchgeht, ist fast am Ziel."),
     "arbeitsspeicher": dict(
-        name="Arbeitsspeicher", part="Platine · Etage 7–8, direkt neben dem Prozessor", game="Bits &amp; Bolts",
+        name="Arbeitsspeicher", part="Platine · Etage 8–9, direkt neben dem Prozessor", game="Bits &amp; Bolts",
         short="Speicherriegel wie Hochhäuser, immer Betrieb.",
         look="Die Riegel stehen in Reihen wie Hochhäuser, ihre kleinen Chips sind die Fenster. Dazwischen enge Gassen.",
         sound="Überall blinken Lämpchen, es wuselt und flüstert. Wenn der PC nachdenkt, wird es laut.",
         special="Hier ist alles nur vorübergehend: Was nicht gespeichert wird, ist beim Ausschalten weg. Die Bewohner sind gesellig, schnell und ein bisschen vergesslich."),
     "chipsatz": dict(
-        name="Chipsatz", part="Platine · Etage 5–6", game="Bits &amp; Bolts",
+        name="Chipsatz", part="Platine · Etage 5–7", game="Bits &amp; Bolts",
         short="Die Kreuzung, an der alle Leiterbahnen zusammenlaufen.",
         look="Ein flacher Chip mitten auf der Platine. Von allen Seiten laufen Leiterbahnen auf ihn zu wie Straßen auf einen Marktplatz.",
         sound="Hell und geschäftig. Ständig fließt etwas vorbei, es klickt und schaltet.",
@@ -209,11 +209,11 @@ PLACES = {
         sound="Von innen scheinen die Lämpchen wie zwei kleine Sonnen durch die Wand.",
         special="Der Einschaltknopf ist der Grund, warum alle wach sind. Aber keiner war je draußen und hat ihn gesehen."),
     "schicht1": dict(
-        name="Erste Schicht", part="Schacht · gleich unter der Werkstatt", game="Bolt Buddies",
-        short="Hier liegt, was zuletzt gefallen ist.",
+        name="Schraubenhalde", part="Schacht · gleich unter der Werkstatt", game="Bolt Buddies",
+        short="Hier liegt, was zuletzt gefallen ist.", img="layer_0.png",
         look="Ein Hang aus Schrauben, Klammern und Krümeln, der sich zwischen Platine und Laufwerken gesammelt hat.",
         sound="Von oben fällt noch etwas Licht. Bei jedem Schritt klimpern Schrauben.",
-        special="Hier liegen die meisten Verlorenen, weil sie nicht tief gefallen sind. Im Spiel heißt die Schicht heute Speicherkeller. Das passt nicht mehr, weil der Arbeitsspeicher oben auf der Platine liegt. Vorschlag: Schraubenhalde."),
+        special="Hier liegen die meisten Verlorenen, weil sie nicht tief gefallen sind."),
     "kabelsalat": dict(
         name="Kabelsalat", part="Schacht · unter der Platine", game="Bolt Buddies",
         short="Ein Dschungel aus alten Kabeln.", img="layer_1.png",
@@ -231,7 +231,7 @@ PLACES = {
         short="Ganz unten brummt und glüht es.", img="layer_3.png",
         look="Ein Blechkasten ganz unten, durch die Lüftungsschlitze glüht es orange. Drinnen stehen Spulen und Kondensatoren wie Türme.",
         sound="Rot und warm. Ein tiefes Brummen, das man im Bauch spürt.",
-        special="Von hier kommt der ganze Strom. Die ältesten und eigenwilligsten Roboter wohnen hier und mögen die Hitze, für Besucher ist es anstrengend. Im Spiel heißt die Schicht heute Kernzone, aber der Kern ist ja oben."),
+        special="Von hier kommt der ganze Strom. Die ältesten und eigenwilligsten Roboter wohnen hier und mögen die Hitze, für Besucher ist es anstrengend."),
 }
 GROUPS = [  # Abschnitt der Weltseite: Schlüssel, Titel, Orte
     ("bnb", "Bits &amp; Bolts: der Aufstieg", ["hauptrechner", "arbeitsspeicher", "chipsatz", "knopfzelle", "steckkarten"]),
@@ -264,7 +264,7 @@ SHAPES = {
     "festplatte": (("r", 482, 240, 138, 72), ["Festplatte"], (551, 276), False),
     "lautsprecher": (("c", 551, 500, 34), ["PC-Laut-", "sprecher"], (551, 500), False),
     "frontblende": (("r", 630, 40, 22, 700), ["Frontblende"], (641, 390), True),
-    "schicht1": (("r", 398, 190, 74, 200), ["Erste", "Schicht"], (435, 355), False),
+    "schicht1": (("r", 398, 190, 74, 200), ["Schrau-", "ben-", "halde"], (435, 345), False),
     "kabelsalat": (("p", "398,396 472,396 472,740 20,740 20,610 398,610"), ["Kabelsalat"], (210, 675), False),
     "lueftergrund": (("r", 482, 610, 138, 130), ["Lüftergrund"], (551, 722), False),
     "netzteil": (("r", 20, 752, 300, 126), ["Netzteil"], (170, 815), False),
@@ -379,6 +379,9 @@ STOER = {
     "chiller": ("waechter", "Kältekern", "chiller", "4DE8FF", ["lueftergrund"],
                 "Ein Klumpen aus Eis und Staub, der sich genau vor dem Lüfter festgesetzt hat.",
                 "Wächter des Lüftergrunds. Trifft das ganze Team und kühlt alle zugleich ab."),
+    "trafo": ("waechter", "Brummtrafo", "trafo", "FF7A45", ["netzteil"],
+              "Ein dicker Transformator mit Kupferspulen, der seit Jahren vor sich hin brummt. Er ist nicht böse, nur grantig, weil ihn das eigene Brummen nicht schlafen lässt.",
+              "Wächter des Netzteils, zuerst in Kampf 40. Trifft das ganze Team zugleich, und wer ihn trifft, verbrennt sich."),
     # Ideen für Orte, die noch keine Störung haben
     "fluse": ("idee", "Staubfluse", "≋", "B4BECC", ["lueftergrund"],
               "Treibt im Luftzug, bleibt überall hängen und verstopft die Wege. Völlig harmlos, nur lästig.", ""),
@@ -386,8 +389,6 @@ STOER = {
                 "Die Scheibe hat Kratzer. Wo der Lesearm darüberfährt, springt alles, und ein Stück Gespeichertes fehlt.", ""),
     "pixel": ("idee", "Pixelfehler", "▪ ▫", "FF5CF0", ["grafikkarte"],
               "Ein bunter Fleck, der einfach nicht weggeht. Manchmal wandert er.", ""),
-    "netzwaechter": ("idee", "Wächter des Netzteils", "?", "FF5252", ["netzteil"],
-                     "Das Netzteil hat noch keinen eigenen Wächter. Heute wechseln sich dort die drei anderen ab.", ""),
 }
 ## Eigenarten, die Roboter aus ihrer Heimat mitbringen (Ereignisse aus Bits & Bolts)
 QUIRKS = [
@@ -472,7 +473,7 @@ write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entw
 # ── Die Welt ─────────────────────────────────────────────────────────────────
 def group_section(key, title, keys):
     intro = {
-        "bnb": "<p>In Bits &amp; Bolts klettert ein Roboter Etage für Etage über das Mainboard nach oben. Heute sind die Etagen nur durchnummeriert. Künftig gehören jeweils zwei Etagen zu einer Gegend mit eigener Stimmung und eigenem Wetter. Kleinere Chips auf dem Weg sind die Zwischenrechner, Etappenziele vor dem Hauptrechner. Die Binärrätsel sind dabei wörtlich das, was die Roboter tun: alte Daten wieder zusammensetzen.</p>\n"
+        "bnb": "<p>In Bits &amp; Bolts klettert ein Roboter Etage für Etage über das Mainboard nach oben. Die Etagen gehören zu vier Gegenden mit eigener Stimmung und eigenem Wetter: Steckkarten (1–2), Knopfzelle (3–4), Chipsatz (5–7) und Arbeitsspeicher (8–9). Die Karte im Spiel zeigt, wo eine neue Gegend beginnt. Kleinere Chips auf dem Weg sind die Zwischenrechner, Etappenziele vor dem Hauptrechner. Die Binärrätsel sind dabei wörtlich das, was die Roboter tun: alte Daten wieder zusammensetzen.</p>\n"
                "        <p class=\"muted-small\">Die Reihenfolge folgt der echten Platine: unten die Steckkarten, oben neben dem Prozessor der Arbeitsspeicher.</p>",
         "bb": "<p>Die Werkstatt ist das Zuhause. Darunter liegt der Boden des Gehäuses, wo alles landet, was in all den Jahren heruntergefallen ist: Staub, verlorene Schrauben, abgebrochene Teile und die Roboter selbst. "
               "In Bolt Buddies steigt ein Team Schicht für Schicht hinab und holt sie zurück. Dass Schrauben die Währung sind, passt: In einem alten PC fallen genau die nach unten.</p>\n"
@@ -521,7 +522,6 @@ write("welt", "Die Welt", "Die Welt der Roboter ist ein alter Tower-PC: oben der
       <section class="wiki-sec">
         <h2>Noch offen</h2>
         <ul class="plain-list">
-          <li>Der Name der ersten Schicht im Schacht. Vorschlag: Schraubenhalde.</li>
           <li>Ob und wie die Orte, die noch in keinem Spiel vorkommen, einmal ins Spiel kommen.</li>
         </ul>
       </section>
@@ -583,7 +583,7 @@ write("stoerungen", "Störungen", "Störungen im alten PC: oben auf der Platine 
 
       <section class="wiki-sec" id="wetter">
         <h2>Wetter auf der Platine</h2>
-        <p>Jede Gegend hat ihr eigenes Wetter. Im Hauptrechner kommt alles zusammen: In seinen Sektoren zieht jedes Wetter einmal durch.</p>
+        <p>Jede Gegend hat ihr eigenes Wetter. Im Spiel ist ein Fluch dort in der Hälfte der Fälle ihr Wetter, sonst ein zufälliges Ereignis. Im Hauptrechner kommt alles zusammen.</p>
 {stoer_grid("wetter")}      </section>
 
       <section class="wiki-sec" id="getier">
