@@ -42,7 +42,7 @@
       <nav class="bot-index" aria-label="Roboter"><a href="#byte" style="--bot:#3DFF7A"><img src="bots/byte.png" width="40" height="48" alt="" loading="lazy"><span>BYTE</span></a><a href="#okta" style="--bot:#FF9E2C"><img src="bots/okta.png" width="40" height="48" alt="" loading="lazy"><span>OKTA</span></a><a href="#gate" style="--bot:#FFD34D"><img src="bots/gate.png" width="40" height="48" alt="" loading="lazy"><span>GATE</span></a><a href="#null" style="--bot:#B4BECC"><img src="bots/null.png" width="40" height="48" alt="" loading="lazy"><span>NULL</span></a><a href="#hexa" style="--bot:#4DE8FF"><img src="bots/hexa.png" width="40" height="48" alt="" loading="lazy"><span>HEXA</span></a><a href="#pari" style="--bot:#2CE6B0"><img src="bots/pari.png" width="40" height="48" alt="" loading="lazy"><span>PARI</span></a><a href="#aski" style="--bot:#E8F0FF"><img src="bots/aski.png" width="40" height="48" alt="" loading="lazy"><span>ASKI</span></a><a href="#qubit" style="--bot:#7DF9FF"><img src="bots/qubit.png" width="40" height="48" alt="" loading="lazy"><span>QUBIT</span></a><a href="#chroma" style="--bot:#7FB2FF"><img src="bots/chroma.png" width="40" height="48" alt="" loading="lazy"><span>CHROMA</span></a><a href="#nibble" style="--bot:#C6FF3D"><img src="bots/nibble.png" width="40" height="48" alt="" loading="lazy"><span>NIBBLE</span></a><a href="#glitch" style="--bot:#B07CFF"><img src="bots/glitch.png" width="40" height="48" alt="" loading="lazy"><span>GLITCH</span></a><a href="#patch" style="--bot:#5C8DFF"><img src="bots/patch.png" width="40" height="48" alt="" loading="lazy"><span>PATCH</span></a><a href="#loop" style="--bot:#7CFFB0"><img src="bots/loop.png" width="40" height="48" alt="" loading="lazy"><span>LOOP</span></a><a href="#xor" style="--bot:#FF7A45"><img src="bots/xor.png" width="40" height="48" alt="" loading="lazy"><span>XOR</span></a><a href="#mira" style="--bot:#C9A8FF"><img src="bots/mira.png" width="40" height="48" alt="" loading="lazy"><span>MIRA</span></a><a href="#pixa" style="--bot:#FF5CF0"><img src="bots/pixa.png" width="40" height="48" alt="" loading="lazy"><span>PIXA</span></a><a href="#shift" style="--bot:#6FC3FF"><img src="bots/shift.png" width="40" height="48" alt="" loading="lazy"><span>SHIFT</span></a><a href="#root" style="--bot:#4CC26A"><img src="bots/root.png" width="40" height="48" alt="" loading="lazy"><span>ROOT</span></a><a href="#virus" style="--bot:#8CFF4D"><img src="bots/virus.png" width="40" height="48" alt="" loading="lazy"><span>VIRUS</span></a><a href="#error" style="--bot:#FF4D4D"><img src="bots/error.png" width="40" height="48" alt="" loading="lazy"><span>ERROR</span></a><a href="#daemon" style="--bot:#C04DFF"><img src="bots/daemon.png" width="40" height="48" alt="" loading="lazy"><span>DAEMON</span></a><a href="#morse" style="--bot:#FFC66B"><img src="bots/morse.png" width="40" height="48" alt="" loading="lazy"><span>MORSE</span></a></nav>
       <div class="callout wiki-note">
         <b>So liest du die Karten:</b> Jede Karte zeigt, was der Roboter in beiden Spielen kann: oben in Bits &amp; Bolts, unten in Bolt Buddies. Die Punkte sind die Grundwerte auf Stufe 1, zusammen immer 12. Je Stufe wächst jedes Attribut um 12 % seines Grundwerts, höchstens bis Stufe 20.
-        In Bolt Buddies findet man neue Roboter im Schrottschacht, nach Kampf 2, 5, 8 und so weiter.
+        In Bolt Buddies findet man neue Roboter im Schrottschacht, nach Kampf 2, 5, 8 und so weiter. Jeder wartet in seiner Ebene: Wer im Kühlkreislauf sitzt, lässt sich erst ab dort retten.
       </div>
       <ul class="bot-grid">
 <li class="bot-card" id="byte" style="--bot:#3DFF7A">
@@ -59,6 +59,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt 2 Leben je Zug</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> wartet schon in der Werkstatt</p>
   </section>
 </li>
 <li class="bot-card" id="okta" style="--bot:#FF9E2C">
@@ -75,6 +76,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> trifft alle Gegner zugleich</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Speicherkeller, ab Kampf 1</p>
   </section>
 </li>
 <li class="bot-card" id="gate" style="--bot:#FFD34D">
@@ -91,6 +93,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> lenkt Angriffe auf sich, 2 Panzerung</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="6 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="num">6</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kabelschacht, ab Kampf 11</p>
   </section>
 </li>
 <li class="bot-card" id="null" style="--bot:#B4BECC">
@@ -107,6 +110,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +20 % Ausweichen</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kühlkreislauf, ab Kampf 21</p>
   </section>
 </li>
 <li class="bot-card" id="hexa" style="--bot:#4DE8FF">
@@ -123,6 +127,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +20 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Speicherkeller, ab Kampf 1</p>
   </section>
 </li>
 <li class="bot-card" id="pari" style="--bot:#2CE6B0">
@@ -139,6 +144,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt sich um 30 % des Schadens</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Speicherkeller, ab Kampf 1</p>
   </section>
 </li>
 <li class="bot-card" id="aski" style="--bot:#E8F0FF">
@@ -155,6 +161,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +30 % Schrauben fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Speicherkeller, ab Kampf 1</p>
   </section>
 </li>
 <li class="bot-card" id="qubit" style="--bot:#7DF9FF">
@@ -171,6 +178,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +30 % Ausweichen</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kühlkreislauf, ab Kampf 21</p>
   </section>
 </li>
 <li class="bot-card" id="chroma" style="--bot:#7FB2FF">
@@ -187,6 +195,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +50 % Erfahrung fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kühlkreislauf, ab Kampf 21</p>
   </section>
 </li>
 <li class="bot-card" id="nibble" style="--bot:#C6FF3D">
@@ -203,6 +212,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt sich um 20 % des Schadens, +15 % Schrauben fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Speicherkeller, ab Kampf 1</p>
   </section>
 </li>
 <li class="bot-card" id="glitch" style="--bot:#B07CFF">
@@ -219,6 +229,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +30 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kühlkreislauf, ab Kampf 21</p>
   </section>
 </li>
 <li class="bot-card" id="patch" style="--bot:#5C8DFF">
@@ -235,6 +246,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> blockt 2 Treffer je Kampf</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kabelschacht, ab Kampf 11</p>
   </section>
 </li>
 <li class="bot-card" id="loop" style="--bot:#7CFFB0">
@@ -251,6 +263,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> +20 % Tempo</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kabelschacht, ab Kampf 11</p>
   </section>
 </li>
 <li class="bot-card" id="xor" style="--bot:#FF7A45">
@@ -267,6 +280,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> zielt auf den hintersten Gegner, +15 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kabelschacht, ab Kampf 11</p>
   </section>
 </li>
 <li class="bot-card" id="mira" style="--bot:#C9A8FF">
@@ -283,6 +297,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> 3 Schaden an Angreifern</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Speicherkeller, ab Kampf 1</p>
   </section>
 </li>
 <li class="bot-card" id="pixa" style="--bot:#FF5CF0">
@@ -299,6 +314,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> heilt 3 Leben je Zug</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Speicherkeller, ab Kampf 1</p>
   </section>
 </li>
 <li class="bot-card" id="shift" style="--bot:#6FC3FF">
@@ -315,6 +331,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> ist als Erster dran, +10 % Ausweichen</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kabelschacht, ab Kampf 11</p>
   </section>
 </li>
 <li class="bot-card" id="root" style="--bot:#4CC26A">
@@ -331,6 +348,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> 2 Panzerung</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="5 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span><span class="num">5</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="1 von 6"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">1</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kernzone, ab Kampf 31</p>
   </section>
 </li>
 <li class="bot-card" id="virus" style="--bot:#8CFF4D">
@@ -347,6 +365,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> Getroffene rosten: 2 Schaden je Zug</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="3 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">3</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kühlkreislauf, ab Kampf 21</p>
   </section>
 </li>
 <li class="bot-card" id="error" style="--bot:#FF4D4D">
@@ -363,6 +382,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> 2 Schaden an Angreifern, +10 % Volltreffer</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="6 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="num">6</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kernzone, ab Kampf 31</p>
   </section>
 </li>
 <li class="bot-card" id="daemon" style="--bot:#C04DFF">
@@ -379,6 +399,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> ist als Erster dran, heilt sich um 15 % des Schadens</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kernzone, ab Kampf 31</p>
   </section>
 </li>
 <li class="bot-card" id="morse" style="--bot:#FFC66B">
@@ -395,6 +416,7 @@
     <h4><img src="../../icons/bolt-buddies.png" alt="" width="20" height="20">Bolt Buddies<span class="bot-role">Kampf</span></h4>
     <p><b>Eigenheit:</b> zielt auf den hintersten Gegner, +25 % Erfahrung fürs Team</p>
     <dl class="bot-stats"><div><dt>Leistung</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div><div><dt>Takt</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Logik</dt><dd><span class="pips" aria-label="4 von 6"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span><span class="num">4</span></dd></div><div><dt>Gehäuse</dt><dd><span class="pips" aria-label="2 von 6"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="num">2</span></dd></div></dl>
+    <p class="bot-unlock"><b>Fundort:</b> Kabelschacht, ab Kampf 11</p>
   </section>
 </li>
       </ul>
