@@ -1,6 +1,6 @@
 # Erzeugt die Archiv-Seiten (Wiki zum Roboter-Universum) für B31G3L.github.io.
 # Aufruf aus dem Repo: python tools/make_archiv.py
-import os, sys, html, shutil
+import os, re, sys, html, shutil
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 STAND = "14.11.2026"
@@ -14,13 +14,15 @@ PAGES = [  # slug, Titel im Menü, Untertitel
     ("funk", "Funkverbindung", "Spiele verbinden"),
 ]
 
-def page(slug, body, desc):
+def page(slug, body, desc, title=None, current=None):
+    """title und current für Seiten, die nicht im Menü stehen (die Spielseiten): current ist der Menüpunkt, der leuchtet."""
     depth = "../" if slug == "" else "../../"
-    title = next(p[1] for p in PAGES if p[0] == slug)
+    title = title or next(p[1] for p in PAGES if p[0] == slug)
+    current = slug if current is None else current
     nav = []
     for s, t, sub in PAGES:
         href = depth + "archiv/" + (s + "/" if s else "")
-        cur = ' aria-current="page"' if s == slug else ""
+        cur = ' aria-current="page"' if s == current else ""
         nav.append(f'<li><a href="{href}"{cur}>{t}<small>{sub}</small></a></li>')
     return f"""<!DOCTYPE html>
 <html lang="de">
@@ -89,14 +91,15 @@ def filter_bar(body):
     return ('      <fieldset class="flt"><legend>Nach Spiel filtern</legend>' + "".join(chips) + "</fieldset>\n"
             + "".join("      " + e + "\n" for e in empty))
 
-def write(slug, body, desc):
+def write(slug, body, desc, title=None, current=None, filt=True):
     d = os.path.join(OUT, "archiv", slug) if slug else os.path.join(OUT, "archiv")
     os.makedirs(d, exist_ok=True)
     # Die Filterleiste steht direkt unter dem Einleitungstext
-    at = body.find("</p>", body.find('class="wiki-lead"')) + len("</p>\n")
-    body = body[:at] + filter_bar(body) + body[at:]
+    if filt:
+        at = body.find("</p>", body.find('class="wiki-lead"')) + len("</p>\n")
+        body = body[:at] + filter_bar(body) + body[at:]
     with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as f:
-        f.write(page(slug, body, desc))
+        f.write(page(slug, body, desc, title, current))
 
 def head(eyebrow, title, lead):
     return f"""      <p class="eyebrow">{eyebrow}</p>
@@ -323,25 +326,42 @@ write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
 # Weltkarte: Die ganze Welt ist ein alter Rechner, jedes Spiel spielt in einem seiner Bauteile.
 # Früher gab es dafür zwei Seiten (Einsatzorte und Weltkarte), jetzt steht alles hier.
 def game(id_, part, name, status, genre, what, gives, bots, places, extra="", tags="plan"):
-    """Ein Bauteil des Rechners mit seinem Spiel, den Orten darin und was das Spiel den Robotern bringt."""
-    return f"""      <section class="wiki-sec game" id="{id_}"{g(tags)}>
-        <p class="rig-part">Bauteil: {part}</p>
-        <div class="game-head"><h2>{name}</h2>{status}</div>
-        <p class="game-genre">{genre}</p>
-        <p>{what}</p>
-        <dl class="app-meta game-meta">
-          <div><dt>Helden</dt><dd>{bots}</dd></div>
-          <div><dt>Bringt</dt><dd>{gives}</dd></div>
-        </dl>
+    """Ein Bauteil des Rechners mit seinem Spiel. Schreibt die eigene Seite des Spiels unter archiv/<id_>/
+    und liefert die Karte, mit der die Weltkarte dorthin führt."""
+    body = head(f'<a href="../">Archiv</a> · <a href="../weltkarte/">Weltkarte</a> · {part}', name, what) + f"""
+      <div class="game-head">{status}<span class="game-genre">{genre}</span></div>
+      <dl class="app-meta game-meta">
+        <div><dt>Bauteil</dt><dd>{part}</dd></div>
+        <div><dt>Helden</dt><dd>{bots}</dd></div>
+        <div><dt>Bringt</dt><dd>{gives}</dd></div>
+      </dl>
+      <section class="wiki-sec">
+        <h2>Orte</h2>
         <ul class="place-list">
 {chr(10).join(places)}
         </ul>
 {extra}      </section>
+      <section class="wiki-sec">
+        <h2>Lage im Rechner</h2>
+        <nav class="rig" aria-label="Querschnitt des Rechners">
+{rig_html(id_)}
+        </nav>
+        <p><a href="../weltkarte/">← Zur Weltkarte</a></p>
+      </section>
+"""
+    plain = re.sub("<[^>]+>", "", name)
+    write(id_, body, f"{plain} im Archiv der Roboter: {re.sub('<[^>]+>', '', genre)}, Orte, Helden und was das Spiel den Robotern bringt.",
+          title=plain, current="weltkarte", filt=False)
+    pic = re.search(r'src="([^"]+)"', "".join(places))
+    thumb = f'<img class="game-thumb{" place-photo" if pic and pic.group(1).endswith(".jpg") else ""}" src="{pic.group(1)}" alt="" loading="lazy">' if pic else '<span class="game-thumb game-thumb-empty">geplant</span>'
+    first = re.split(r"(?<=[.!?])\s", what, maxsplit=1)[0]
+    return f"""          <li class="game-card"{g(tags)}><a href="../{id_}/">{thumb}<div class="game-card-body"><small>{part}</small>
+            <div class="place-head"><h3>{name}</h3>{status}</div><p class="game-genre">{genre}</p><p>{first}</p><span class="game-more">Zur Spielseite →</span></div></a></li>
 """
 
 def place(name, game_, text, status="", img="", photo=False):
     """Ein Ort. img: Bild unter img/, photo: Bildschirmfoto statt Pixelgrafik (wird nicht kantig vergrößert)."""
-    pic = f'<img class="place-img{" place-photo" if photo else ""}" src="img/{img}" alt="{name}" loading="lazy">' if img else ""
+    pic = f'<img class="place-img{" place-photo" if photo else ""}" src="../weltkarte/img/{img}" alt="{name}" loading="lazy">' if img else ""
     return f"""        <li class="place">{pic}<div class="place-head"><h3>{name}</h3>{status}</div><p class="game-genre">{game_}</p><p>{text}</p></li>"""
 
 ## Der Querschnitt: Feld, Bauteil, Ort, Spiel mit Stand, Ziel, Farbe, geplant
@@ -360,10 +380,18 @@ RIG = [
     ("sensor", "Lagesensor", "Das Schwerkraft-Labor", "Kippwelt", "kippwelt", "FFD34D", True),
     ("bus", "Datenbus und Anschlüsse", "Das Datenbus-Depot", "Snake Jam", "snake-jam", "B46CFF", True),
 ]
-rig = "\n".join(
-    f'          <a class="rig-cell{" rig-plan" if plan else ""}" href="#{to}" style="grid-area:{key};--c:#{col}"{g("plan" if plan else ("bnb" if to == "bits-and-bolts" else "bb"))}>'
-    f'<small>{part}</small><b>{where}</b><span>{game_}{" · geplant" if plan else ""}</span></a>'
-    for key, part, where, game_, to, col, plan in RIG)
+def rig_html(current=""):
+    """Der Querschnitt. Jedes Feld führt zur Seite seines Spiels, die Ebenen zu den Ebenen von Bolt Buddies.
+    current: Auf einer Spielseite bleiben nur dessen Felder kräftig."""
+    cells = []
+    for key, part, where, game_, to, col, plan in RIG:
+        page_ = "bolt-buddies" if to == "ebenen" else to
+        href = f"../{page_}/" + ("#ebenen" if to == "ebenen" else "")
+        cls = "rig-cell" + (" rig-plan" if plan else "") + (" rig-dim" if current and page_ != current else "")
+        tag = "plan" if plan else ("bnb" if to == "bits-and-bolts" else "bb")
+        cells.append(f'          <a class="{cls}" href="{href}" style="grid-area:{key};--c:#{col}"{g(tag)}>'
+                     f'<small>{part}</small><b>{where}</b><span>{game_}{" · geplant" if plan else ""}</span></a>')
+    return "\n".join(cells)
 
 write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
     "Die ganze Welt ist ein einziger alter Rechner. Jedes Spiel spielt in einem seiner Bauteile: BYTE klettert über die Etagen nach oben zum Hauptrechner, "
@@ -372,10 +400,13 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
       <section class="wiki-sec">
         <h2>Der Rechner im Querschnitt</h2>
         <nav class="rig" aria-label="Querschnitt des Rechners">
-{rig}
+{rig_html()}
         </nav>
-        <p class="muted-small">Jedes Feld führt zu seinem Bauteil. Gestrichelt: Spiele, die noch geplant sind.</p>
+        <p class="muted-small">Jedes Feld führt zur Seite seines Spiels. Gestrichelt: Spiele, die noch geplant sind.</p>
       </section>
+      <section class="wiki-sec">
+        <h2>Die Spiele in ihren Bauteilen</h2>
+        <ul class="game-grid">
 """ +
     game("bits-and-bolts", "Prozessor", "Bits &amp; Bolts", STORE, "Binär-Rätsel als Roguelite",
          "Ein Roboter arbeitet sich durch zehn Stationen bis zum Hauptrechner und repariert unterwegs durchgebrannte Raster aus Nullen und Einsen. Jede falsche Ziffer ist ein Kurzschluss und kostet Ladung. Siege schalten neue Roboter und höhere Schwierigkeitsstufen frei.",
@@ -446,7 +477,7 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
     game("snake-jam", "Datenbus und Anschlüsse", "Snake Jam", PLAN, "Schiebe-Rätsel mit wachsenden Bussen",
          "Bunte Datenbusse müssen ihre Pakete einsammeln und zum Port hinausfahren. Jedes Paket macht den Bus länger, und lange Busse stehen sich selbst im Weg.",
          "Vorräte: Akkus, Öl, Schrauben", "Noch offen, eventuell bleibt das Spiel eigenständig", [
-             place("Das Datenbus-Depot", "am Datenbus", "Ein voller Parkplatz für Datenbusse, nur eine Ausfahrt zum Port.", PLAN)]),
+             place("Das Datenbus-Depot", "am Datenbus", "Ein voller Parkplatz für Datenbusse, nur eine Ausfahrt zum Port.", PLAN)]) + "        </ul>\n      </section>\n",
     "Die Welt der Roboter ist ein alter Rechner: Querschnitt mit allen Bauteilen, den Spielen darin und ihren Orten, von Bits & Bolts über Bolt Buddies bis zu den geplanten Spielen.")
 
 
@@ -474,7 +505,7 @@ def redirect(slug, target, title):
 redirect("einsaetze", "../weltkarte/", "Weltkarte")
 
 # Regelwerk: gibt es nicht mehr, die alte Adresse führt zu Bits & Bolts auf der Weltkarte
-redirect("regelwerk", "../weltkarte/#bits-and-bolts", "Weltkarte")
+redirect("regelwerk", "../bits-and-bolts/", "Bits &amp; Bolts")
 
 # Störungsprotokoll
 ## Gegner aus Bolt Buddies (core/battle.gd): Schlüssel der Grafik, Name, Art, Rahmenfarbe,
