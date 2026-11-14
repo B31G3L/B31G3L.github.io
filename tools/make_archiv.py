@@ -138,8 +138,7 @@ def bar(v):
         f'<i class="{"on" if i < v else ""}"></i>' for i in range(6)) + "</span>"
 
 def bot_card(b):
-    u = UNLOCK.get(b)
-    unlock = "von Anfang an" if not u else f"nach {u[0]} {'Sieg' if u[0] == 1 else 'Siegen'}, Stufe {u[1]} geschafft"
+    unlock = UNLOCK.get(b, "von Anfang an")
     stats = "".join(f"<div><dt>{a}</dt><dd>{bar(v)}<span class=\"num\">{v}</span></dd></div>"
                     for a, v in zip(ATTR, BASE[b]))
     hero = f'<p class="bot-hero"{g("plan")}>Held in {html.escape(HERO[b])}</p>' if b in HERO and "geplant" in HERO[b] else ""
@@ -212,7 +211,7 @@ assert sorted(FAMILY) == sorted(ORDER), "jeder Roboter braucht genau eine Famili
 assert sorted(HOME) == sorted(ORDER) and sorted(KEEPSAKE) == sorted(ORDER), "jeder Roboter braucht Fundort und Teil"
 copy_sprites()
 write("roboter", head("Archiv · Roboter-Register", "Roboter-Register",
-    "Alle 22 Roboter in der Reihenfolge, in der man sie in Bits &amp; Bolts freischaltet. Jeder bringt ins Rätsel eine eigene Fähigkeit mit und hat in Bolt Buddies eigene Kampfwerte.") + f"""
+    "Alle 22 Roboter. Die ersten sechs schaltet man in Bits &amp; Bolts mit Siegen frei, alle anderen mit dem, was man gespielt hat: Regeln, Ereignisse, 8×8. Jeder bringt ins Rätsel eine eigene Fähigkeit mit und hat in Bolt Buddies eigene Kampfwerte.") + f"""
       <nav class="bot-index" aria-label="Roboter">{index}</nav>
       <div class="callout wiki-note">
         <b>So liest du die Karten:</b> Jede Karte zeigt, was der Roboter in beiden Spielen kann: oben in Bits &amp; Bolts, unten in Bolt Buddies. Die Punkte sind die Grundwerte auf Stufe 1, zusammen immer 12. Je Stufe wächst jedes Attribut um 12 % seines Grundwerts, höchstens bis Stufe 20.

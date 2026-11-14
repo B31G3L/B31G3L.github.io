@@ -44,10 +44,17 @@ PUZZLE = {
     "DAEMON": "Läuft im Hintergrund: Wer zu lange nichts Richtiges einträgt, verliert Ladung. Dafür 1 Ladung mehr.",
     "MORSE": "Funkt im Nebel: Klar zu sehen ist nur die Umgebung der letzten Zelle. Dafür 1 Tipp mehr.",
 }
-UNLOCK = {"OKTA": (1, 0), "GATE": (2, 0), "NULL": (3, 1), "HEXA": (4, 1), "PARI": (5, 2), "ASKI": (6, 2),
-          "QUBIT": (8, 3), "CHROMA": (10, 3), "NIBBLE": (12, 4), "GLITCH": (14, 4), "PATCH": (16, 4),
-          "LOOP": (18, 5), "XOR": (20, 5), "MIRA": (22, 5), "PIXA": (24, 5), "SHIFT": (26, 5), "ROOT": (28, 5),
-          "VIRUS": (30, 5), "ERROR": (32, 5), "DAEMON": (34, 5), "MORSE": (36, 5)}
+## Freischaltung in Bits & Bolts (core/run_logic.gd UNLOCKS): die ersten sechs mit Siegen, alle anderen mit dem, was man gespielt hat
+UNLOCK = {
+    "OKTA": "nach 1 Sieg", "GATE": "nach 2 Siegen", "NULL": "nach 3 Siegen", "HEXA": "nach 4 Siegen",
+    "PARI": "nach 5 Siegen", "ASKI": "nach 6 Siegen",
+    "XOR": "nach 15 Rätseln mit Zeichen", "NIBBLE": "nach 15 Rätseln mit Blöcken", "QUBIT": "nach 15 Rätseln mit Sensoren",
+    "CHROMA": "nach 15 Rätseln mit Hex", "GLITCH": "nach 10 Rätseln mit Wackelkontakt oder Störsignal",
+    "MIRA": "nach 10 Rätseln mit Einzigartig", "PIXA": "nach 10 Rätseln mit Farbe", "SHIFT": "nach 10 Rätseln mit Spiegeln",
+    "PATCH": "nach 50 überstandenen Kurzschlüssen", "LOOP": "nach Siegen mit 6 verschiedenen Robotern",
+    "ROOT": "nach 10 Rätseln in 8×8", "ERROR": "nach 5 Rätseln mit falscher Vorgabe", "VIRUS": "nach 5 Rätseln mit Ansteckung",
+    "DAEMON": "nach 5 Rätseln mit Zeitdruck", "MORSE": "nach 5 Rätseln im Nebel",
+}
 SAYS = {"GATE": "Zutritt!", "LOOP": "Und nochmal!", "NULL": "...", "PARI": "Halbe-halbe!", "MIRA": "!ollaH",
         "SHIFT": "Rutsch rüber!", "XOR": "Anders!", "GLITCH": "H#ll§!", "BYTE": "Hallo!", "OKTA": "Blubb!",
         "HEXA": "0xF00D!", "ASKI": "Hi :)", "CHROMA": "Ooh, bunt!", "PIXA": "Piep!", "PATCH": "Hält schon!",
