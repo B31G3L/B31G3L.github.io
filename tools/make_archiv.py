@@ -419,8 +419,8 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
     game("bolt-buddies", "Gehäusemitte und Schacht", "Bolt Buddies", LIVE, "Roboter pflegen und Auto-Kämpfe",
          "Die Werkstatt ist das Zuhause aller geretteten Roboter. Sie brauchen Akku, Öl und Aufmerksamkeit. Ein Team aus bis zu drei Robotern zieht in den Schrottschacht, kämpft dort von selbst und bringt Schrauben, Ausrüstung und neue Freunde mit.",
          "Heimat aller Roboter: Stufen, Ausrüstung, Pflege", "Alle 22 Roboter, als Erster BYTE", [
-             place("Die Werkstatt", "Zuhause", "Hier wohnen alle geretteten Roboter. Sie laufen frei herum, wollen gestreichelt, geölt und geladen werden und schlafen an der Ladeleiste. Jeder Gerettete bringt ein persönliches Teil mit, so füllt sich der Raum mit jedem Roboter.", img="workshop.png"),
-             place("Der Aufzug", "zwischen den Kämpfen", "Nach jedem Kampf: weiter nach unten oder mit der ganzen Beute nach Hause. Die nächsten Gegner sind schon zu sehen, und es gibt zwei Wege: den Hauptschacht und einen Nebenschacht mit zäheren Gegnern und 75 % mehr Schrauben.", img="lift.png"),
+             place("Die Werkstatt", "Zuhause", "Hier wohnen alle geretteten Roboter. Das aktive Team läuft frei herum, will gestreichelt, geölt und geladen werden und schläft an der Ladeleiste. Alle anderen ruhen bei ihrem Teil und brauchen nichts. Jeder Gerettete bringt ein persönliches Teil mit, so füllt sich der Raum mit jedem Roboter.", img="workshop.png"),
+             place("Der Aufzug", "zwischen den Kämpfen", "Nach jedem Kampf: weiter nach unten oder mit der ganzen Beute nach Hause. Die nächsten Gegner sind schon zu sehen, und es gibt zwei Wege: den Hauptschacht und einen Nebenschacht mit zäheren Gegnern und 75 % mehr Schrauben. Ruhende Teams fahren hier für Stunden allein auf Auftrag.", img="lift.png"),
              place("Der Schrottschacht", "unter der Werkstatt", "Kampf für Kampf geht es tiefer. Dort liegen Schrauben, Akkus, Öl und Ausrüstung, und abgeschaltete Roboter warten in ihrer Ebene auf Rettung."),
          ],
          '        <h3 class="wiki-sub" id="ebenen">Die Ebenen des Schrottschachts</h3>\n'
@@ -436,6 +436,7 @@ write("weltkarte", head("Archiv · Weltkarte", "Weltkarte",
          + '        <h3 class="wiki-sub">Was noch kommt</h3>\n'
          + table(["Feature", "Worum es geht", "Version"], [
              ["<b>Schacht-Ebenen</b>", 'Umgesetzt: Alle 10 Kämpfe eine neue Ebene mit eigener Kulisse, eigenem Gegner, Boss und Wächter, dazu Haltestellen zum Direkteinstieg. Siehe <a href="#ebenen">oben</a>.', "1.0"],
+             ["<b>Teams und Aufträge</b>", "Umgesetzt: Bis zu sechs Teams, genau eines ist aktiv und wird gepflegt, alle anderen ruhen. Ruhende Teams gehen für 1, 4, 8 oder 12 Echtzeitstunden auf Auftrag und bringen danach Beute mit. Der Aufzug im Ausbau erlaubt mehr Aufträge gleichzeitig.", "1.0"],
              ["<b>Aufzug mit zwei Wegen</b>", "Umgesetzt: Vorschau auf die nächsten Gegner, dazu ein Nebenschacht mit zäheren Gegnern und mehr Schrauben.", "1.0"],
              ["<b>Rettung je Ebene</b>", 'Umgesetzt: Jeder Roboter wartet in seiner Ebene. Wo, steht im <a href="../roboter/">Roboter-Register</a>.', "1.0"],
              ["<b>Werkstatt</b>", 'Umgesetzt: eingerichtete Werkstatt, jeder Gerettete bringt ein persönliches Teil mit. Ladeleiste, Ölbad, Spielecke und Werkbank in drei Stufen, die Funkantenne folgt mit dem Funk. Siehe <a href="../ersatzteile/#ausbau">Ersatzteillager</a>.', "1.0"],
@@ -619,8 +620,12 @@ def copy_art():
         os.makedirs(parts, exist_ok=True)
         os.makedirs(world, exist_ok=True)
         for name in os.listdir(art):
+            if not name.endswith(".png"):
+                continue
             dst = world if name.startswith(("layer_", "workshop", "lift")) else parts
             shutil.copyfile(os.path.join(art, name), os.path.join(dst, name))
+            if name == "lift.png":
+                shutil.copyfile(os.path.join(art, name), os.path.join(parts, "station_lift.png"))
     shots = os.path.join(OUT, "..", "Bits-and-Bolts", "store", "de", "screenshots")
     if os.path.isdir(shots):
         from PIL import Image
@@ -681,6 +686,7 @@ STATIONS = [
     ("bath", "Ölbad", "Pflege sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450", "Eine Wanne mit schwappendem Öl und Blasen. Auf Stufe 3 glüht eine Heizspirale."),
     ("play", "Spielecke", "Laune sinkt 15 / 30 / 45 % langsamer", "60 / 180 / 450", "Ein Teppich mit Bauklötzen, ab Stufe 2 mit Ball, ab Stufe 3 mit Kreisel."),
     ("bench", "Werkbank", "zerlegen und aufwerten / 25 % / 50 % günstiger", "80 / 200 / 450", "Mit Schraubstock, ab Stufe 2 mit Lampe, ab Stufe 3 mit Bohrmaschine, die Funken sprüht."),
+    ("lift", "Aufzug", "2 / 3 Aufträge gleichzeitig", "250 / 600", "Seitlich an der Aufzugstür leuchtet je Stufe eine grüne Lampe. Nur zwei Stufen."),
     ("radio", "Funkantenne", "empfängt Post aus den anderen Spielen", "kommt später", 'Steht auf dem Regal und blinkt, siehe <a href="../funk/">Funkverbindung</a>.'),
 ]
 
@@ -747,7 +753,7 @@ write("ersatzteile", head("Archiv · Ersatzteillager", "Ersatzteillager",
         <ul class="station-grid">
 {stations_html}
         </ul>
-        <p>Alles zusammen kostet 2830 Schrauben. Eine Expedition bringt je nach Stufe des Teams etwa 30 bis 290, für die erste Station reichen zwei frühe Expeditionen.</p>
+        <p>Alles zusammen kostet 3650 Schrauben. Eine Expedition bringt je nach Stufe des Teams etwa 30 bis 290, für die erste Station reichen zwei frühe Expeditionen.</p>
       </section>
       <section class="wiki-sec" id="werkbank"{g("bb")}>
         <h2>Werkbank</h2>
