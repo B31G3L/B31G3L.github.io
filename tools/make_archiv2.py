@@ -483,7 +483,7 @@ def group_section(key, title, keys):
               "In Bolt Buddies steigt ein Team Schicht für Schicht hinab und holt sie zurück. Dass Schrauben die Währung sind, passt: In einem alten PC fallen genau die nach unten.</p>\n"
               "        <p class=\"muted-small\">Bilder: die heutigen Kulissen aus Bolt Buddies.</p>",
         "ff": "<p>Flux &amp; Flow ist das dritte Spiel und noch ein Prototyp. In den halb erwachten Laufwerken entsteht eine Fabrik: "
-              "Greifer holen Schrott aus den Haufen, Flachbandkabel tragen ihn weiter, Maschinen machen daraus Module und fertige Ausrüstung. "
+              "Schächte holen Schrott aus dem Schacht herauf, Flachbandkabel tragen ihn weiter, Maschinen machen daraus Module und fertige Ausrüstung. "
               "Dieselben wenigen Maschinen bauen alles, was herauskommt, hängt davon ab, was hineinkommt. "
               "Ziel ist, die Laufwerke nacheinander zu reparieren: erst die Festplatte, dann das CD-Laufwerk.</p>\n"
               "        <p>Die Roboter arbeiten mit: Sie tragen, was die Fabrik baut, und machen sie damit schneller. Besucher aus dem ganzen PC bringen Aufträge. "
@@ -626,7 +626,7 @@ write("stoerungen", "Störungen", "Störungen im alten PC: oben auf der Platine 
 ## Rolle in Flux & Flow: Arbeiter tragen Ausrüstung und machen etwas schneller, Besucher bringen Aufträge.
 FF_WORK = {
     "PATCH": "verlegt die Flachbandkabel und führt durch die erste Minute. Trägt ein Werkzeug: Die Bänder laufen schneller.",
-    "NULL": "trägt eine Rüstung: Die Greifer fördern schneller.",
+    "NULL": "trägt eine Rüstung: Die Schächte fördern schneller.",
     "GATE": "trägt einen Chip: Die Maschinen arbeiten schneller.",
     "XOR": "trägt ein Werkzeug: Polierer, Aufrüster und Presse arbeiten schneller.",
     "ASKI": "kehrt mit der reparierten Festplatte zurück. Trägt eine Rüstung: Aufträge bringen mehr Erfahrung.",
