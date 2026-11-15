@@ -108,11 +108,11 @@ PLACES = {
         sound="Ein gleichmäßiges Surren. Wenn der Hauptrechner nachdenkt, dreht er schneller.",
         special="Von seinem Rand hat man den weitesten Blick über die ganze Platine."),
     "spannungswandler": dict(
-        name="Spannungswandler", part="neben dem Prozessor", game="Flux &amp; Flow · der Strom der Fabrik",
+        name="Spannungswandler", part="neben dem Prozessor", game=NONE,
         short="Das Tor zum Hauptrechner.",
         look="Eine Reihe Kondensatoren wie Säulen, dazwischen kleine Spulen. Zusammen sehen sie aus wie ein Tor.",
         sound="Ein feines Pfeifen, wenn viel Strom fließt.",
-        special="Hier wird der Strom aus dem Netzteil fein gemacht für den Prozessor. Wer hier durchgeht, ist fast am Ziel. Kleine Wandler von hier versorgen auch die Fabrik in den Laufwerken: Reicht der Strom nicht, bleibt nichts stehen, aber alle Maschinen laufen langsamer."),
+        special="Hier wird der Strom aus dem Netzteil fein gemacht für den Prozessor. Wer hier durchgeht, ist fast am Ziel."),
     "arbeitsspeicher": dict(
         name="Arbeitsspeicher", part="Platine · Etage 8–9, direkt neben dem Prozessor", game="Bits &amp; Bolts",
         short="Speicherriegel wie Hochhäuser, immer Betrieb.",
@@ -237,8 +237,8 @@ PLACES = {
 GROUPS = [  # Abschnitt der Weltseite: Schlüssel, Titel, Orte
     ("bnb", "Bits &amp; Bolts: der Aufstieg", ["hauptrechner", "arbeitsspeicher", "chipsatz", "knopfzelle", "steckkarten"]),
     ("bb", "Bolt Buddies: Werkstatt und Schacht", ["werkstatt", "schicht1", "kabelsalat", "lueftergrund", "netzteil"]),
-    ("ff", f"Flux &amp; Flow: die Fabrik in den Laufwerken {PROTO}", ["festplatte", "cd", "flachband", "spannungswandler"]),
-    ("frei", "Noch in keinem Spiel", ["cpu_luefter", "bios", "grafikkarte", "soundkarte", "netzwerkkarte",
+    ("ff", f"Flux &amp; Flow: die Fabrik in den Laufwerken {PROTO}", ["festplatte", "cd", "flachband"]),
+    ("frei", "Noch in keinem Spiel", ["cpu_luefter", "spannungswandler", "bios", "grafikkarte", "soundkarte", "netzwerkkarte",
                                       "anschluesse", "diskette", "lautsprecher", "frontblende"]),
 ]
 assert sorted(k for g_ in GROUPS for k in g_[2]) == sorted(PLACES), "jeder Ort gehört in genau einen Abschnitt"
@@ -631,7 +631,7 @@ FF_WORK = {
     "XOR": "trägt ein Werkzeug: Polierer, Aufrüster und Presse arbeiten schneller.",
     "ASKI": "kehrt mit der reparierten Festplatte zurück. Trägt eine Rüstung: Aufträge bringen mehr Erfahrung.",
     "MIRA": "kehrt mit der reparierten Festplatte zurück. Trägt ein Werkzeug: Die Lötstation baut manchmal ein Teil doppelt.",
-    "SHIFT": "trägt einen Chip: Die Wandler liefern mehr Strom.",
+    "SHIFT": "trägt einen Chip: Die Schredder arbeiten schneller.",
 }
 FF_VISIT = ["BYTE", "OKTA", "HEXA", "PIXA", "CHROMA", "LOOP", "NIBBLE", "QUBIT", "ROOT", "MORSE", "PARI", "GLITCH"]
 assert all(b in ORDER for b in list(FF_WORK) + FF_VISIT) and not set(FF_WORK) & set(FF_VISIT)
