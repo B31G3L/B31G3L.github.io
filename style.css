@@ -518,6 +518,7 @@ article.policy address { font-style: normal; margin: 0 0 14px; }
 .pc-board { fill: color-mix(in srgb, #0b7a4b 9%, var(--surface)); stroke: color-mix(in srgb, #0b7a4b 30%, var(--line)); stroke-width: 1.5; }
 .pc-bnb { --c: var(--accent); }
 .pc-bb { --c: var(--warn); }
+.pc-ff { --c: color-mix(in srgb, #3b82f6 72%, var(--ink)); }
 .pc-frei { --c: var(--ink-soft); }
 .pc-shape { fill: color-mix(in srgb, var(--c) 22%, var(--surface)); stroke: var(--c); stroke-width: 2.5; }
 .pc-frei .pc-shape { fill: var(--surface); stroke-width: 1.5; stroke-dasharray: 5 4; }

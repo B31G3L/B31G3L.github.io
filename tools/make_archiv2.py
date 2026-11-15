@@ -5,7 +5,7 @@ import os, sys, html
 from archiv_data import ORDER, COLORS, SAYS, KEEPSAKE, PUZZLE, TRAIT, HOME
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-STAND = "14.11.2026"
+STAND = "15.11.2026"
 BOTS = "../../archiv/roboter/bots/"   # Die Sprites liegen schon im alten Archiv
 FOES = "../../archiv/stoerungen/foes/"
 ART = "../../archiv/weltkarte/img/"
@@ -13,6 +13,7 @@ ART = "../../archiv/weltkarte/img/"
 PAGES = [("", "Übersicht", "Was hier entsteht"), ("welt", "Die Welt", "Der alte PC und seine Orte"),
          ("stoerungen", "Störungen", "Wetter und Getier"), ("roboter", "Roboter", "Alle 22 und ihre Heimat")]
 DRAFT = '<span class="badge badge-plan">Entwurf</span>'
+PROTO = '<span class="badge badge-plan">Prototyp</span>'
 IDEA = '<span class="badge badge-plan">Idee</span>'
 CUR = ' aria-current="page"'
 
@@ -107,11 +108,11 @@ PLACES = {
         sound="Ein gleichmäßiges Surren. Wenn der Hauptrechner nachdenkt, dreht er schneller.",
         special="Von seinem Rand hat man den weitesten Blick über die ganze Platine."),
     "spannungswandler": dict(
-        name="Spannungswandler", part="neben dem Prozessor", game=NONE,
+        name="Spannungswandler", part="neben dem Prozessor", game="Flux &amp; Flow · der Strom der Fabrik",
         short="Das Tor zum Hauptrechner.",
         look="Eine Reihe Kondensatoren wie Säulen, dazwischen kleine Spulen. Zusammen sehen sie aus wie ein Tor.",
         sound="Ein feines Pfeifen, wenn viel Strom fließt.",
-        special="Hier wird der Strom aus dem Netzteil fein gemacht für den Prozessor. Wer hier durchgeht, ist fast am Ziel."),
+        special="Hier wird der Strom aus dem Netzteil fein gemacht für den Prozessor. Wer hier durchgeht, ist fast am Ziel. Kleine Wandler von hier versorgen auch die Fabrik in den Laufwerken: Reicht der Strom nicht, bleibt nichts stehen, aber alle Maschinen laufen langsamer."),
     "arbeitsspeicher": dict(
         name="Arbeitsspeicher", part="Platine · Etage 8–9, direkt neben dem Prozessor", game="Bits &amp; Bolts",
         short="Speicherriegel wie Hochhäuser, immer Betrieb.",
@@ -167,17 +168,17 @@ PLACES = {
         sound="Zugig. Durch manche Buchsen dringen fremde Signale.",
         special="Dahinter ist das Draußen, und keiner weiß, was dort ist. Von hier kommen die Spam-Drohnen herein."),
     "flachband": dict(
-        name="Flachbandkabel", part="zwischen Platine und Laufwerken", game=NONE,
+        name="Flachbandkabel", part="zwischen Platine und Laufwerken", game="Flux &amp; Flow · die Förderbänder",
         short="Brücken quer durchs Gehäuse.",
         look="Breite graue Bänder, die von der Platine hinüber zu den Laufwerken gespannt sind.",
         sound="Sie schwingen leise im Luftzug.",
-        special="Wer mutig ist, balanciert darüber, statt den langen Weg zu nehmen."),
+        special="Wer mutig ist, balanciert darüber, statt den langen Weg zu nehmen. In den Laufwerken sind sie die Förderbänder der Fabrik: Was man darauflegt, wandert von selbst zur nächsten Maschine. PATCH verlegt sie."),
     "cd": dict(
-        name="CD-Laufwerk", part="vorne oben, Nachbar der Werkstatt", game=NONE,
+        name="CD-Laufwerk", part="vorne oben, Nachbar der Werkstatt", game="Flux &amp; Flow · das zweite Laufwerk",
         short="Eine Schublade, die manchmal von selbst aufgeht.",
         look="Ein flacher Kasten mit Schublade. Drinnen liegt noch eine Scheibe, die im Licht in allen Regenbogenfarben schimmert.",
         sound="Still, bis die Scheibe anläuft. Dann heult es auf und vibriert durch die Wand bis in die Werkstatt.",
-        special="Manchmal geht die Schublade von selbst auf und wieder zu, und keiner weiß, warum. Was auf der Scheibe ist, hat noch niemand herausgefunden."),
+        special="Manchmal geht die Schublade von selbst auf und wieder zu, und keiner weiß, warum. Was auf der Scheibe ist, hat noch niemand herausgefunden. Seine Schublade ist die große Presse der Fabrik: Nur hier werden aus sehr guten Teilen Meisterstücke."),
     "werkstatt": dict(
         name="Werkstatt", part="vorne oben, leerer Laufwerksschacht", game="Bolt Buddies · Zuhause",
         short="Das Zuhause aller Geretteten.", img="workshop.png",
@@ -191,11 +192,11 @@ PLACES = {
         sound="Wenn es anläuft, rattert und klackert es wie eine alte Maschine.",
         special="Hier liegen vergessene Disketten, und auf manchen steht noch mit der Hand geschrieben, was einmal darauf war."),
     "festplatte": dict(
-        name="Festplatte", part="vorne im Laufwerkskäfig", game=NONE,
+        name="Festplatte", part="vorne im Laufwerkskäfig", game="Flux &amp; Flow · das erste Laufwerk",
         short="Eine alte Scheibe, die sich dreht.",
         look="Ein schwerer Kasten, darin eine spiegelnde Scheibe, über die ein Lesearm schwingt.",
         sound="Ruhig, bis die Scheibe anläuft. Dann surrt und klackert es.",
-        special="Alles, was je gespeichert wurde, liegt hier in endlosen Spuren, wie in einer Bibliothek. Anders als der Hauptrechner bewahrt sie Dinge auf, keine Erinnerungen."),
+        special="Alles, was je gespeichert wurde, liegt hier in endlosen Spuren, wie in einer Bibliothek. Anders als der Hauptrechner bewahrt sie Dinge auf, keine Erinnerungen. Beim Neustart ist sie nur halb erwacht. Die Fabrik liefert ihr Teil für Teil, was sie braucht, bis sie wieder läuft. Dann kehren ASKI und MIRA nach Hause zurück."),
     "lautsprecher": dict(
         name="PC-Lautsprecher", part="vorne unten", game=NONE,
         short="Die Stimme des PCs.",
@@ -236,8 +237,9 @@ PLACES = {
 GROUPS = [  # Abschnitt der Weltseite: Schlüssel, Titel, Orte
     ("bnb", "Bits &amp; Bolts: der Aufstieg", ["hauptrechner", "arbeitsspeicher", "chipsatz", "knopfzelle", "steckkarten"]),
     ("bb", "Bolt Buddies: Werkstatt und Schacht", ["werkstatt", "schicht1", "kabelsalat", "lueftergrund", "netzteil"]),
-    ("frei", "Noch in keinem Spiel", ["cpu_luefter", "spannungswandler", "bios", "grafikkarte", "soundkarte", "netzwerkkarte",
-                                      "anschluesse", "flachband", "cd", "diskette", "festplatte", "lautsprecher", "frontblende"]),
+    ("ff", f"Flux &amp; Flow: die Fabrik in den Laufwerken {PROTO}", ["festplatte", "cd", "flachband", "spannungswandler"]),
+    ("frei", "Noch in keinem Spiel", ["cpu_luefter", "bios", "grafikkarte", "soundkarte", "netzwerkkarte",
+                                      "anschluesse", "diskette", "lautsprecher", "frontblende"]),
 ]
 assert sorted(k for g_ in GROUPS for k in g_[2]) == sorted(PLACES), "jeder Ort gehört in genau einen Abschnitt"
 GAME_OF = {k: g_[0] for g_ in GROUPS for k in g_[2]}
@@ -308,7 +310,7 @@ def pc_svg():
 {svg}
           </svg>
         </div>
-        <p class="pc-legend"><span class="pc-key pc-bnb">Bits &amp; Bolts</span><span class="pc-key pc-bb">Bolt Buddies</span><span class="pc-key pc-frei">noch in keinem Spiel</span></p>
+        <p class="pc-legend"><span class="pc-key pc-bnb">Bits &amp; Bolts</span><span class="pc-key pc-bb">Bolt Buddies</span><span class="pc-key pc-ff">Flux &amp; Flow</span><span class="pc-key pc-frei">noch in keinem Spiel</span></p>
 """
 
 
@@ -449,6 +451,7 @@ write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entw
       <section class="wiki-sec">
         <h2>Die Welt in einem Satz</h2>
         <p>Ein alter Tower-PC wird wieder eingeschaltet, die Roboter wachen auf, und weil beim langen Stillstand alle heruntergefallen sind, holt man sie aus dem Schacht zurück und begleitet sie hinauf zum Hauptrechner, wo ihre Erinnerungen liegen.</p>
+        <p>Dazu kommt ein dritter Ort: In den Laufwerken bauen die Roboter eine Fabrik und bringen den PC Stück für Stück wieder in Ordnung.</p>
       </section>
 
       <section class="wiki-sec">
@@ -462,6 +465,7 @@ write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entw
         <h2>Was fest steht</h2>
         {table(["", ""], [
             ["Spiele", "Bits &amp; Bolts und Bolt Buddies bleiben"],
+            ["Neu", 'Flux &amp; Flow, ein Automatisierungsspiel in den Laufwerken, ist als Prototyp dazugekommen: <a href="welt/#ff">die Fabrik</a>'],
             ["Roboter", "alle 22 bleiben, mit Namen, Aussehen und Fähigkeiten"],
             ["Stil", "bleibt: Pixel, Retro-Terminal, Bildschirmflimmern"],
             ["Neu offen", "alles andere"],
@@ -478,6 +482,13 @@ def group_section(key, title, keys):
         "bb": "<p>Die Werkstatt ist das Zuhause. Darunter liegt der Boden des Gehäuses, wo alles landet, was in all den Jahren heruntergefallen ist: Staub, verlorene Schrauben, abgebrochene Teile und die Roboter selbst. "
               "In Bolt Buddies steigt ein Team Schicht für Schicht hinab und holt sie zurück. Dass Schrauben die Währung sind, passt: In einem alten PC fallen genau die nach unten.</p>\n"
               "        <p class=\"muted-small\">Bilder: die heutigen Kulissen aus Bolt Buddies.</p>",
+        "ff": "<p>Flux &amp; Flow ist das dritte Spiel und noch ein Prototyp. In den halb erwachten Laufwerken entsteht eine Fabrik: "
+              "Greifer holen Schrott aus den Haufen, Flachbandkabel tragen ihn weiter, Maschinen machen daraus Module und fertige Ausrüstung. "
+              "Dieselben wenigen Maschinen bauen alles, was herauskommt, hängt davon ab, was hineinkommt. "
+              "Ziel ist, die Laufwerke nacheinander zu reparieren: erst die Festplatte, dann das CD-Laufwerk.</p>\n"
+              "        <p>Die Roboter arbeiten mit: Sie tragen, was die Fabrik baut, und machen sie damit schneller. Besucher aus dem ganzen PC bringen Aufträge. "
+              "Gebaut werden genau die zehn Arten Ausrüstung, die es in Bolt Buddies gibt. Später sollen fertige Teile per Diskette hinunter in den Schacht gehen.</p>\n"
+              "        <p class=\"muted-small\">Diskettenlaufwerk und Frontblende sind als weitere Laufwerke geplant und stehen noch unter „Noch in keinem Spiel“.</p>",
         "frei": "<p>Diese Orte gibt es im PC, manche davon sind die Heimat von Robotern. In einem Spiel kommen sie noch nicht vor.</p>",
     }[key]
     return f"""      <section class="wiki-sec" id="{key}">
@@ -508,7 +519,7 @@ write("welt", "Die Welt", "Die Welt der Roboter ist ein alter Tower-PC: oben der
 
       <section class="wiki-sec">
         <h2>Der PC im Querschnitt</h2>
-        <p>Der Tower offen von der Seite: hinten links die Platine, über die es in Bits &amp; Bolts hinauf zum Hauptrechner geht. Vorne rechts die Laufwerke mit der Werkstatt. Dazwischen fährt der Aufzug hinunter in den Schacht von Bolt Buddies.</p>
+        <p>Der Tower offen von der Seite: hinten links die Platine, über die es in Bits &amp; Bolts hinauf zum Hauptrechner geht. Vorne rechts die Laufwerke mit der Werkstatt, daneben entsteht die Fabrik von Flux &amp; Flow. Dazwischen fährt der Aufzug hinunter in den Schacht von Bolt Buddies.</p>
 {pc_svg()}        <p class="muted-small">Antippen führt zum Ort weiter unten. Farbig: Orte, die schon in einem Spiel vorkommen. Gestrichelt: noch in keinem Spiel.</p>
       </section>
 
@@ -612,6 +623,28 @@ write("stoerungen", "Störungen", "Störungen im alten PC: oben auf der Platine 
 
 
 # ── Roboter ──────────────────────────────────────────────────────────────────
+## Rolle in Flux & Flow: Arbeiter tragen Ausrüstung und machen etwas schneller, Besucher bringen Aufträge.
+FF_WORK = {
+    "PATCH": "verlegt die Flachbandkabel und führt durch die erste Minute. Trägt ein Werkzeug: Die Bänder laufen schneller.",
+    "NULL": "trägt eine Rüstung: Die Greifer fördern schneller.",
+    "GATE": "trägt einen Chip: Die Maschinen arbeiten schneller.",
+    "XOR": "trägt ein Werkzeug: Polierer, Aufrüster und Presse arbeiten schneller.",
+    "ASKI": "kehrt mit der reparierten Festplatte zurück. Trägt eine Rüstung: Aufträge bringen mehr Erfahrung.",
+    "MIRA": "kehrt mit der reparierten Festplatte zurück. Trägt ein Werkzeug: Die Lötstation baut manchmal ein Teil doppelt.",
+    "SHIFT": "trägt einen Chip: Die Wandler liefern mehr Strom.",
+}
+FF_VISIT = ["BYTE", "OKTA", "HEXA", "PIXA", "CHROMA", "LOOP", "NIBBLE", "QUBIT", "ROOT", "MORSE", "PARI", "GLITCH"]
+assert all(b in ORDER for b in list(FF_WORK) + FF_VISIT) and not set(FF_WORK) & set(FF_VISIT)
+
+
+def ff_line(b):
+    if b in FF_WORK:
+        return f"\n    <p><b>Flux &amp; Flow:</b> Arbeitet in der Fabrik, {FF_WORK[b]}</p>"
+    if b in FF_VISIT:
+        return "\n    <p><b>Flux &amp; Flow:</b> Kommt zu Besuch und bringt Aufträge.</p>"
+    return ""
+
+
 def bot_card(b):
     home = PLACES[HOME_OF[b]]["name"]
     if b == "BYTE":
@@ -630,7 +663,7 @@ def bot_card(b):
   </dl>
   <details class="bot-more"><summary>In den Spielen</summary>
     <p><b>Bits &amp; Bolts:</b> {html.escape(PUZZLE[b])}</p>
-    <p><b>Bolt Buddies:</b> {html.escape(TRAIT[b][0].upper() + TRAIT[b][1:])}.</p>
+    <p><b>Bolt Buddies:</b> {html.escape(TRAIT[b][0].upper() + TRAIT[b][1:])}.</p>{ff_line(b)}
   </details>
 </li>"""
 
