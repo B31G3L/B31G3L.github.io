@@ -673,3 +673,35 @@ a.mini-bot:hover { text-decoration: none; border-color: var(--bot); }
   .babel-game-letter { width: 60px; height: 60px; font-size: 2.3rem; }
   .babel-game-head { gap: 14px; }
 }
+
+/* B.A.B.E.L.: ausführliche Spielseiten */
+.babel-game .pix, img.pix { image-rendering: pixelated; }
+.babel-game code { font-family: var(--mono); padding: 0 4px; background: var(--surface-2); border-radius: 4px; }
+.babel-table-wrap { overflow-x: auto; margin: 12px 0; }
+.babel-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.babel-table th, .babel-table td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.babel-table th { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-soft); font-weight: 400; }
+.babel-table td:first-child { font-weight: 600; white-space: nowrap; }
+.babel-shots { display: flex; gap: 12px; overflow-x: auto; padding: 4px 0 12px; scroll-snap-type: x mandatory; }
+.babel-shots figure { margin: 0; flex: none; width: 160px; scroll-snap-align: start; }
+.babel-shots img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.babel-shots figcaption, .babel-layers figcaption, .babel-hero-img figcaption { font-size: 0.8rem; color: var(--ink-soft); margin-top: 6px; }
+.babel-bots { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.babel-bot, .babel-foe { display: flex; gap: 12px; align-items: flex-start; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--bc); border-radius: 8px; }
+.babel-bot img, .babel-foe img { flex: none; width: 40px; height: auto; margin-top: 2px; }
+.babel-foe img { width: 48px; }
+.babel-bot b, .babel-foe b { font-family: var(--mono); }
+.babel-bot p, .babel-foe p { margin: 4px 0; font-size: 0.9rem; line-height: 1.45; }
+.babel-bot small, .babel-foe small { color: var(--ink-soft); font-size: 0.78rem; line-height: 1.4; display: block; }
+.babel-tag { font-size: 0.75rem; color: var(--ink-soft); }
+.babel-hero-img { margin: 24px 0 0; }
+.babel-hero-img img { width: 100%; height: auto; border-radius: 10px; display: block; }
+.babel-layers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.babel-layers figure { margin: 0; }
+.babel-layers img { width: 100%; height: auto; border-radius: 8px; display: block; }
+.babel-stations { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.babel-stations li { display: flex; gap: 12px; align-items: center; padding: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.babel-stations img { flex: none; width: 120px; height: auto; }
+.babel-stations p { margin: 2px 0; font-size: 0.88rem; line-height: 1.4; }
+.babel-stations small { color: var(--ink-soft); font-size: 0.78rem; }
+@media (max-width: 480px) { .babel-layers { grid-template-columns: 1fr; } .babel-stations img { width: 90px; } }

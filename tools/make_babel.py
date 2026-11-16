@@ -7,6 +7,8 @@ make_archiv.py und make_archiv2.py deshalb nicht mehr laufen lassen, sie würden
 """
 import os
 
+from babel_details import copy_images, extra
+
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
 # Reihenfolge wie im Wort: B, A, B, E, L
@@ -176,6 +178,8 @@ write("babel", skeleton("../", "B.A.B.E.L. – fünf Spiele in einem alten PC",
                         index_body))
 
 
+copy_images()
+
 # ── Seiten der Spiele ────────────────────────────────────────────────────────
 for i, g in enumerate(GAMES):
     cls, label = g["status"]
@@ -203,7 +207,7 @@ for i, g in enumerate(GAMES):
     <ul class="babel-places">
 {chr(10).join(f'      <li>{p}</li>' for p in g['places'])}
     </ul>
-
+{extra(g['slug'])}
     <nav class="babel-pager">
       <a href="../{prev_g['slug']}/" style="--c:{prev_g['color']}">← <b>{prev_g['letter']}</b> {prev_g['name']}</a>
       <a href="../{next_g['slug']}/" style="--c:{next_g['color']}"><b>{next_g['letter']}</b> {next_g['name']} →</a>

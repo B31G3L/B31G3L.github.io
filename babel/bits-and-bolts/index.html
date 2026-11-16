@@ -49,6 +49,99 @@
       <li>Hauptrechner</li>
     </ul>
 
+    <h2>Bilder</h2>
+    <div class="babel-shots">
+        <figure><img src="../img/bnb_01.jpg" alt="22 Roboter, jeder mit eigener Regel" width="180" height="360" loading="lazy"><figcaption>22 Roboter, jeder mit eigener Regel</figcaption></figure>
+        <figure><img src="../img/bnb_02.jpg" alt="Nur Nullen und Einsen" width="180" height="360" loading="lazy"><figcaption>Nur Nullen und Einsen</figcaption></figure>
+        <figure><img src="../img/bnb_03.jpg" alt="Tipps erklären statt verraten" width="180" height="360" loading="lazy"><figcaption>Tipps erklären statt verraten</figcaption></figure>
+        <figure><img src="../img/bnb_04.jpg" alt="Spiegel, Hex, Pixel und mehr" width="180" height="360" loading="lazy"><figcaption>Spiegel, Hex, Pixel und mehr</figcaption></figure>
+        <figure><img src="../img/bnb_05.jpg" alt="Ereignisse wie der Nebel" width="180" height="360" loading="lazy"><figcaption>Ereignisse wie der Nebel</figcaption></figure>
+        <figure><img src="../img/bnb_06.jpg" alt="10 Etagen bis zum Hauptrechner" width="180" height="360" loading="lazy"><figcaption>10 Etagen bis zum Hauptrechner</figcaption></figure>
+        <figure><img src="../img/bnb_07.jpg" alt="Der Hauptrechner" width="180" height="360" loading="lazy"><figcaption>Der Hauptrechner</figcaption></figure>
+        <figure><img src="../img/bnb_08.jpg" alt="Roboter wählen" width="180" height="360" loading="lazy"><figcaption>Roboter wählen</figcaption></figure>
+    </div>
+
+    <h2>Die Regeln</h2>
+    <p>Immer gilt:</p>
+    <ol class="babel-list">
+      <li>Jede Zelle bekommt eine 0 oder eine 1.</li>
+      <li>Nie drei gleiche Ziffern direkt nebeneinander oder untereinander.</li>
+      <li>Jede Zeile und jede Spalte hat gleich viele Nullen und Einsen.</li>
+    </ol>
+    <p>Nur wenn ein Rätsel es anzeigt: Keine zwei Zeilen und keine zwei Spalten sind gleich (Einzigartig), und Zeichen zwischen Zellen: <code>=</code> heißt gleich, <code>×</code> heißt verschieden. Jedes Rätsel hat genau eine Lösung und lässt sich ohne Raten lösen.</p>
+    <p><b>Bedienung:</b> nach oben wischen setzt eine 1, nach unten eine 0, Tippen setzt eine Notiz. Erst das Loslassen trägt ein, Zurückziehen bricht ab.</p>
+
+    <h2>Ein Run</h2>
+    <ul class="babel-list">
+      <li><b>Kurzschluss:</b> Eine falsche Ziffer wird nicht eingetragen, sie kostet eine Ladung, und BYTE sagt, warum sie falsch war. Ist der Akku leer, ist der Run vorbei.</li>
+      <li><b>Ladung und Tipps</b> hängen am Roboter, BYTE hat 5 Ladungen und 3 Tipps. Tipps erklären den nächsten Schritt, statt die Lösung zu verraten.</li>
+      <li><b>10 Etagen:</b> 7 Rätsel, 2 Zwischenrechner (Etage 4 und 7, schwerer, mit Ereignis, danach +2 Ladung oder +1 Tipp) und oben der Hauptrechner mit 1 bis 4 Sektoren.</li>
+      <li><b>Gastroboter:</b> Die ersten zwei Etagen kommen vom gewählten Roboter, danach mischen andere freigeschaltete Roboter mit ihren Regeln mit.</li>
+      <li>Ein unterbrochener Run geht genau so weiter, mit derselben Karte und denselben Rätseln.</li>
+    </ul>
+
+    <h2>Der Weg nach oben</h2>
+    <div class="babel-table-wrap"><table class="babel-table">
+        <thead><tr><th>Etage</th><th>Gegend</th><th>Wetter dort</th></tr></thead>
+        <tbody>
+        <tr><td>1–2</td><td>Steckkarten</td><td>Wackelkontakt: Immer wieder erlischt eine deiner Ziffern.</td></tr>
+        <tr><td>3–4</td><td>Knopfzelle</td><td>Stromausfall: Nach einem Countdown erlöschen die Vorgaben. Wer vorher eine Ziffer daneben setzt, hält sie an.</td></tr>
+        <tr><td>5–7</td><td>Chipsatz</td><td>Überspannung: Ein Kurzschluss kostet 2 Ladungen statt 1.</td></tr>
+        <tr><td>8–9</td><td>Arbeitsspeicher</td><td>Störsignal: Immer wieder taucht eine falsche Notiz auf.</td></tr>
+        <tr><td>10</td><td>Hauptrechner</td><td>Alles kommt zusammen. Jeder Sektor bringt eine Erinnerung zurück.</td></tr>
+        </tbody>
+      </table></div>
+    <p>Dazu bringen vier Roboter ihre eigenen Ereignisse mit: <b>Falsche Vorgabe</b> (ERROR), <b>Ansteckung</b> (VIRUS), <b>Zeitdruck</b> (DAEMON) und <b>Nebel</b> (MORSE).</p>
+
+    <h2>Sechs Stufen</h2>
+    <p>Jeder Sieg öffnet die nächste Stufe. Die Stufe ändert nicht Ladung und Tipps, sie macht die Rätsel schwerer.</p>
+    <div class="babel-table-wrap"><table class="babel-table">
+        <thead><tr><th>Stufe</th><th>Was dazukommt</th></tr></thead>
+        <tbody>
+        <tr><td>0</td><td>nur 6×6, leichtere Rätsel, 1 Regel je Rätsel, keine Ereignisse</td></tr>
+        <tr><td>1</td><td>bis 2 Regeln je Rätsel, 1 Ereignis bei den Rechnern</td></tr>
+        <tr><td>2</td><td>Rätsel ohne Erleichterung, Sensoren</td></tr>
+        <tr><td>3</td><td>Ereignisse und schwerere Rätsel ab Etage 4, bis 3 Regeln, Einzigartig, 2 Ereignisse im Hauptrechner</td></tr>
+        <tr><td>4</td><td>schwerere Rätsel ab Etage 5, 8×8 ab Etage 6, Hauptrechner in 8×8</td></tr>
+        <tr><td>5</td><td>schwerere Rätsel, 8×8 ab Etage 4, Ereignisse ab Etage 3, bis 2 Ereignisse je Rätsel, bis 4 Regeln, stärkerer Hauptrechner</td></tr>
+        </tbody>
+      </table></div>
+
+    <h2>Die 22 Roboter</h2>
+    <p>Jeder Roboter bringt einen Hinweis, eine Zusatzregel, ein Ereignis oder eine Fähigkeit mit. Die ersten sechs kommen mit den Siegen, alle anderen schaltet frei, was man gespielt hat.</p>
+    <ul class="babel-bots">
+        <li class="babel-bot" style="--bc:#3DFF7A"><img class="pix" src="../img/bots/byte.png" alt="" width="40" height="48" loading="lazy"><div><b>BYTE</b> <span class="babel-tag">Allrounder</span><p>Der Allrounder. 5 Ladungen, 3 Tipps, keine Besonderheiten.</p><small>Von Anfang an dabei</small></div></li>
+        <li class="babel-bot" style="--bc:#FF9E2C"><img class="pix" src="../img/bots/okta.png" alt="" width="40" height="48" loading="lazy"><div><b>OKTA</b> <span class="babel-tag">Rätselhinweis</span><p>Liest Oktalzahlen an den Zeilen, startet aber mit 1 Ladung weniger.</p><small>Frei nach 1 Sieg</small></div></li>
+        <li class="babel-bot" style="--bc:#FFD34D"><img class="pix" src="../img/bots/gate.png" alt="" width="40" height="48" loading="lazy"><div><b>GATE</b> <span class="babel-tag">Zusatzregel</span><p>Bringt in jedes Rätsel Zeichen zwischen Zellen: = heißt gleich, × heißt verschieden.</p><small>Frei nach 2 Siegen</small></div></li>
+        <li class="babel-bot" style="--bc:#B4BECC"><img class="pix" src="../img/bots/null.png" alt="" width="40" height="48" loading="lazy"><div><b>NULL</b> <span class="babel-tag">Rätselhinweis</span><p>Zeigt, wo in einer Linie die erste 0 steht, hat aber nur 2 Tipps.</p><small>Frei nach 3 Siegen</small></div></li>
+        <li class="babel-bot" style="--bc:#4DE8FF"><img class="pix" src="../img/bots/hexa.png" alt="" width="40" height="48" loading="lazy"><div><b>HEXA</b> <span class="babel-tag">Rätselhinweis</span><p>Liest Hexzahlen an den Zeilen. 4 Tipps, aber 1 Ladung weniger.</p><small>Frei nach 4 Siegen</small></div></li>
+        <li class="babel-bot" style="--bc:#2CE6B0"><img class="pix" src="../img/bots/pari.png" alt="" width="40" height="48" loading="lazy"><div><b>PARI</b> <span class="babel-tag">Zusatzregel</span><p>Bringt in jedes Rätsel Blöcke mit gleich vielen Nullen und Einsen.</p><small>Frei nach 5 Siegen</small></div></li>
+        <li class="babel-bot" style="--bc:#E8F0FF"><img class="pix" src="../img/bots/aski.png" alt="" width="40" height="48" loading="lazy"><div><b>ASKI</b> <span class="babel-tag">Rätselhinweis</span><p>Liest ASCII-Zeichen an den Zeilen. 5 Ladungen, aber nur 2 Tipps.</p><small>Frei nach 6 Siegen</small></div></li>
+        <li class="babel-bot" style="--bc:#7DF9FF"><img class="pix" src="../img/bots/qubit.png" alt="" width="40" height="48" loading="lazy"><div><b>QUBIT</b> <span class="babel-tag">Zusatzregel</span><p>Verschränkt Zellen: Von zwei Zellen mit gleichem Buchstaben ist genau eine 1.</p><small>Frei nach 15 Rätseln mit Sensoren</small></div></li>
+        <li class="babel-bot" style="--bc:#7FB2FF"><img class="pix" src="../img/bots/chroma.png" alt="" width="40" height="48" loading="lazy"><div><b>CHROMA</b> <span class="babel-tag">Rätselhinweis</span><p>Liest Farbbalken an den Zeilen, hat aber nur 2 Tipps.</p><small>Frei nach 15 Rätseln mit Hex</small></div></li>
+        <li class="babel-bot" style="--bc:#C6FF3D"><img class="pix" src="../img/bots/nibble.png" alt="" width="40" height="48" loading="lazy"><div><b>NIBBLE</b> <span class="babel-tag">Zusatzregel</span><p>Zählt in Häppchen: Rahmen um vier Zellen sagen, wie viele Einsen darin stehen.</p><small>Frei nach 15 Rätseln mit Blöcken</small></div></li>
+        <li class="babel-bot" style="--bc:#B07CFF"><img class="pix" src="../img/bots/glitch.png" alt="" width="40" height="48" loading="lazy"><div><b>GLITCH</b> <span class="babel-tag">Rätselhinweis</span><p>Zeigt zwei Zahlen an einer Linie, nur eine stimmt. 4 Tipps, aber 1 Ladung weniger.</p><small>Frei nach 10 Rätseln mit Wackelkontakt oder Störsignal</small></div></li>
+        <li class="babel-bot" style="--bc:#5C8DFF"><img class="pix" src="../img/bots/patch.png" alt="" width="40" height="48" loading="lazy"><div><b>PATCH</b> <span class="babel-tag">Fähigkeit</span><p>Flickt sich selbst: Der erste Kurzschluss in jedem Rätsel kostet nichts. Dafür 2 Ladungen weniger.</p><small>Frei nach 50 überstandenen Kurzschlüssen</small></div></li>
+        <li class="babel-bot" style="--bc:#7CFFB0"><img class="pix" src="../img/bots/loop.png" alt="" width="40" height="48" loading="lazy"><div><b>LOOP</b> <span class="babel-tag">Zusatzregel</span><p>Seine Raster haben keinen Rand: Nie drei gleiche gilt auch über den Rand hinweg.</p><small>Frei nach Siegen mit 6 verschiedenen Robotern</small></div></li>
+        <li class="babel-bot" style="--bc:#FF7A45"><img class="pix" src="../img/bots/xor.png" alt="" width="40" height="48" loading="lazy"><div><b>XOR</b> <span class="babel-tag">Rätselhinweis</span><p>Zählt, an wie vielen Stellen sich zwei Nachbarlinien unterscheiden. Dafür 4 Tipps.</p><small>Frei nach 15 Rätseln mit Zeichen</small></div></li>
+        <li class="babel-bot" style="--bc:#C9A8FF"><img class="pix" src="../img/bots/mira.png" alt="" width="40" height="48" loading="lazy"><div><b>MIRA</b> <span class="babel-tag">Rätselhinweis</span><p>Verbindet Linien, die Spiegelbilder sind. 5 Ladungen, 3 Tipps.</p><small>Frei nach 10 Rätseln mit Einzigartig</small></div></li>
+        <li class="babel-bot" style="--bc:#FF5CF0"><img class="pix" src="../img/bots/pixa.png" alt="" width="40" height="48" loading="lazy"><div><b>PIXA</b> <span class="babel-tag">Rätselhinweis</span><p>Zeigt Pixelblöcke an Zeilen und Spalten. 5 Ladungen, 3 Tipps.</p><small>Frei nach 10 Rätseln mit Farbe</small></div></li>
+        <li class="babel-bot" style="--bc:#6FC3FF"><img class="pix" src="../img/bots/shift.png" alt="" width="40" height="48" loading="lazy"><div><b>SHIFT</b> <span class="babel-tag">Rätselhinweis</span><p>Verbindet Nachbarlinien, die um eine Stelle verschoben sind. 5 Ladungen, 3 Tipps.</p><small>Frei nach 10 Rätseln mit Spiegeln</small></div></li>
+        <li class="babel-bot" style="--bc:#4CC26A"><img class="pix" src="../img/bots/root.png" alt="" width="40" height="48" loading="lazy"><div><b>ROOT</b> <span class="babel-tag">Zusatzregel</span><p>Sieht auch schräg: Nie drei gleiche gilt bei ihm auch auf den beiden langen Diagonalen. Dafür 1 Tipp mehr.</p><small>Frei nach 10 Rätseln in 8×8</small></div></li>
+        <li class="babel-bot" style="--bc:#8CFF4D"><img class="pix" src="../img/bots/virus.png" alt="" width="40" height="48" loading="lazy"><div><b>VIRUS</b> <span class="babel-tag">Ereignis</span><p>Steckt an: Bei einem Kurzschluss erlischt auch eine Ziffer daneben. Dafür 1 Ladung mehr.</p><small>Frei nach 5 Rätseln mit Ansteckung</small></div></li>
+        <li class="babel-bot" style="--bc:#FF4D4D"><img class="pix" src="../img/bots/error.png" alt="" width="40" height="48" loading="lazy"><div><b>ERROR</b> <span class="babel-tag">Ereignis</span><p>Baut Fehler ein: Eine Vorgabe ist falsch. Dafür 1 Tipp mehr.</p><small>Frei nach 5 Rätseln mit falscher Vorgabe</small></div></li>
+        <li class="babel-bot" style="--bc:#C04DFF"><img class="pix" src="../img/bots/daemon.png" alt="" width="40" height="48" loading="lazy"><div><b>DAEMON</b> <span class="babel-tag">Ereignis</span><p>Läuft im Hintergrund: Wer zu lange nichts Richtiges einträgt, verliert Ladung. Dafür 1 Ladung mehr.</p><small>Frei nach 5 Rätseln mit Zeitdruck</small></div></li>
+        <li class="babel-bot" style="--bc:#FFC66B"><img class="pix" src="../img/bots/morse.png" alt="" width="40" height="48" loading="lazy"><div><b>MORSE</b> <span class="babel-tag">Ereignis</span><p>Funkt im Nebel: Klar zu sehen ist nur die Umgebung der letzten Zelle, richtige Ziffern lichten ihn. Dafür 1 Tipp mehr.</p><small>Frei nach 5 Rätseln im Nebel</small></div></li>
+    </ul>
+
+    <h2>Erinnerungen und Archiv</h2>
+    <ul class="babel-list">
+      <li><b>66 Erinnerungen:</b> Der Hauptrechner ist das Gedächtnis des PCs. Jeder gelöste Sektor bringt eine Erinnerung des Roboters zurück, von dem er stammt, drei je Roboter.</li>
+      <li><b>24 Errungenschaften</b> im Spiel, ohne Konto. Wer mag, meldet sie zusätzlich bei Google Play Games.</li>
+      <li><b>Üben</b> in 6×6 und 8×8, auch mit mehreren Robotern zugleich, und ein Verlauf aller Runs.</li>
+      <li>Deutsch und Englisch, Töne und Musik im 8-Bit-Stil, alles abschaltbar. Keine Werbung, kein Konto, kein Internet nötig.</li>
+    </ul>
+
     <nav class="babel-pager">
       <a href="../amps-and-arcs/" style="--c:#ff5252">← <b>A</b> Amps &amp; Arcs</a>
       <a href="../echoes-and-encores/" style="--c:#c084fc"><b>E</b> Echoes &amp; Encores →</a>
