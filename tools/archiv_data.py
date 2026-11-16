@@ -46,8 +46,8 @@ PUZZLE = {
 }
 ## Freischaltung in Bits & Bolts (core/run_logic.gd UNLOCKS): die ersten sechs mit Siegen, alle anderen mit dem, was man gespielt hat
 UNLOCK = {
-    "OKTA": "nach 1 Sieg", "GATE": "nach 2 Siegen", "NULL": "nach 3 Siegen", "HEXA": "nach 4 Siegen",
-    "PARI": "nach 5 Siegen", "ASKI": "nach 6 Siegen",
+    "GATE": "nach 1 Sieg", "PARI": "nach 2 Siegen", "NULL": "nach 3 Siegen", "OKTA": "nach 4 Siegen",
+    "HEXA": "nach 5 Siegen", "ASKI": "nach 6 Siegen",
     "XOR": "nach 15 Rätseln mit Zeichen", "NIBBLE": "nach 15 Rätseln mit Blöcken", "QUBIT": "nach 15 Rätseln mit Sensoren",
     "CHROMA": "nach 15 Rätseln mit Hex", "GLITCH": "nach 10 Rätseln mit Wackelkontakt oder Störsignal",
     "MIRA": "nach 10 Rätseln mit Einzigartig", "PIXA": "nach 10 Rätseln mit Farbe", "SHIFT": "nach 10 Rätseln mit Spiegeln",

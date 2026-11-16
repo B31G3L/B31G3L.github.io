@@ -83,6 +83,7 @@ def bits_and_bolts():
       <li>Jede Zeile und jede Spalte hat gleich viele Nullen und Einsen.</li>
     </ol>
     <p>Nur wenn ein Rätsel es anzeigt: Keine zwei Zeilen und keine zwei Spalten sind gleich (Einzigartig), und Zeichen zwischen Zellen: <code>=</code> heißt gleich, <code>×</code> heißt verschieden. Jedes Rätsel hat genau eine Lösung und lässt sich ohne Raten lösen.</p>
+    <p><b>Zahlensysteme:</b> Zeigt ein Rätsel Oktal-, Hex- oder ASCII-Hinweise, stehen über den Spalten die Stellenwerte (4 2 1, 8 4 2 1 oder alle Zweierpotenzen). Umrechnen im Kopf ist nicht nötig.</p>
     <p><b>Bedienung:</b> nach oben wischen setzt eine 1, nach unten eine 0, Tippen setzt eine Notiz. Erst das Loslassen trägt ein, Zurückziehen bricht ab.</p>
 
     <h2>Ein Run</h2>
@@ -96,7 +97,7 @@ def bits_and_bolts():
 
     <h2>Der Weg nach oben</h2>
     {table(["Etage", "Gegend", "Wetter dort"], [
-        ["1–2", "Steckkarten", "Wackelkontakt: Immer wieder erlischt eine deiner Ziffern."],
+        ["1–2", "Steckkarten", "Wackelkontakt: Immer wieder wackelt eine deiner Ziffern. Tippst du sie schnell an, sitzt sie wieder fest, sonst erlischt sie."],
         ["3–4", "Knopfzelle", "Stromausfall: Nach einem Countdown erlöschen die Vorgaben. Wer vorher eine Ziffer daneben setzt, hält sie an."],
         ["5–7", "Chipsatz", "Überspannung: Ein Kurzschluss kostet 2 Ladungen statt 1."],
         ["8–9", "Arbeitsspeicher", "Störsignal: Immer wieder taucht eine falsche Notiz auf."],
