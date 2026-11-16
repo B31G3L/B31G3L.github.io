@@ -38,7 +38,7 @@ PUZZLE = {
     "MIRA": "Verbindet Linien, die Spiegelbilder sind. 5 Ladungen, 3 Tipps.",
     "PIXA": "Zeigt Pixelblöcke an Zeilen und Spalten. 5 Ladungen, 3 Tipps.",
     "SHIFT": "Verbindet Nachbarlinien, die um eine Stelle verschoben sind. 5 Ladungen, 3 Tipps.",
-    "ROOT": "Sieht auch schräg: Nie drei gleiche gilt bei ihm auch diagonal. Dafür 1 Tipp mehr.",
+    "ROOT": "Sieht auch schräg: Nie drei gleiche gilt bei ihm auch auf den beiden langen Diagonalen. Dafür 1 Tipp mehr.",
     "VIRUS": "Steckt an: Bei einem Kurzschluss erlischt auch eine Ziffer daneben. Dafür 1 Ladung mehr.",
     "ERROR": "Baut Fehler ein: Eine Vorgabe ist falsch. Dafür 1 Tipp mehr.",
     "DAEMON": "Läuft im Hintergrund: Wer zu lange nichts Richtiges einträgt, verliert Ladung. Dafür 1 Ladung mehr.",
