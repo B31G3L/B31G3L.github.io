@@ -168,13 +168,13 @@ PLACES = {
         sound="Zugig. Durch manche Buchsen dringen fremde Signale.",
         special="Dahinter ist das Draußen, und keiner weiß, was dort ist. Von hier kommen die Spam-Drohnen herein."),
     "flachband": dict(
-        name="Flachbandkabel", part="zwischen Platine und Laufwerken", game="Flux &amp; Flow · die Förderbänder",
+        name="Flachbandkabel", part="zwischen Platine und Laufwerken", game="Lines &amp; Loads · die Förderbänder",
         short="Brücken quer durchs Gehäuse.",
         look="Breite graue Bänder, die von der Platine hinüber zu den Laufwerken gespannt sind.",
         sound="Sie schwingen leise im Luftzug.",
         special="Wer mutig ist, balanciert darüber, statt den langen Weg zu nehmen. In den Laufwerken sind sie die Förderbänder der Fabrik: Was man darauflegt, wandert von selbst zur nächsten Maschine. PATCH verlegt sie."),
     "cd": dict(
-        name="CD-Laufwerk", part="vorne oben, Nachbar der Werkstatt", game="Flux &amp; Flow · das zweite Laufwerk",
+        name="CD-Laufwerk", part="vorne oben, Nachbar der Werkstatt", game="Lines &amp; Loads · das zweite Laufwerk",
         short="Eine Schublade, die manchmal von selbst aufgeht.",
         look="Ein flacher Kasten mit Schublade. Drinnen liegt noch eine Scheibe, die im Licht in allen Regenbogenfarben schimmert.",
         sound="Still, bis die Scheibe anläuft. Dann heult es auf und vibriert durch die Wand bis in die Werkstatt.",
@@ -192,7 +192,7 @@ PLACES = {
         sound="Wenn es anläuft, rattert und klackert es wie eine alte Maschine.",
         special="Hier liegen vergessene Disketten, und auf manchen steht noch mit der Hand geschrieben, was einmal darauf war."),
     "festplatte": dict(
-        name="Festplatte", part="vorne im Laufwerkskäfig", game="Flux &amp; Flow · das erste Laufwerk",
+        name="Festplatte", part="vorne im Laufwerkskäfig", game="Lines &amp; Loads · das erste Laufwerk",
         short="Eine alte Scheibe, die sich dreht.",
         look="Ein schwerer Kasten, darin eine spiegelnde Scheibe, über die ein Lesearm schwingt.",
         sound="Ruhig, bis die Scheibe anläuft. Dann surrt und klackert es.",
@@ -237,7 +237,7 @@ PLACES = {
 GROUPS = [  # Abschnitt der Weltseite: Schlüssel, Titel, Orte
     ("bnb", "Bits &amp; Bolts: der Aufstieg", ["hauptrechner", "arbeitsspeicher", "chipsatz", "knopfzelle", "steckkarten"]),
     ("bb", "Bolt Buddies: Werkstatt und Schacht", ["werkstatt", "schicht1", "kabelsalat", "lueftergrund", "netzteil"]),
-    ("ff", f"Flux &amp; Flow: die Fabrik in den Laufwerken {PROTO}", ["festplatte", "cd", "flachband"]),
+    ("ff", f"Lines &amp; Loads: die Fabrik in den Laufwerken {PROTO}", ["festplatte", "cd", "flachband"]),
     ("frei", "Noch in keinem Spiel", ["cpu_luefter", "spannungswandler", "bios", "grafikkarte", "soundkarte", "netzwerkkarte",
                                       "anschluesse", "diskette", "lautsprecher", "frontblende"]),
 ]
@@ -310,7 +310,7 @@ def pc_svg():
 {svg}
           </svg>
         </div>
-        <p class="pc-legend"><span class="pc-key pc-bnb">Bits &amp; Bolts</span><span class="pc-key pc-bb">Bolt Buddies</span><span class="pc-key pc-ff">Flux &amp; Flow</span><span class="pc-key pc-frei">noch in keinem Spiel</span></p>
+        <p class="pc-legend"><span class="pc-key pc-bnb">Bits &amp; Bolts</span><span class="pc-key pc-bb">Bolt Buddies</span><span class="pc-key pc-ff">Lines &amp; Loads</span><span class="pc-key pc-frei">noch in keinem Spiel</span></p>
 """
 
 
@@ -465,7 +465,7 @@ write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entw
         <h2>Was fest steht</h2>
         {table(["", ""], [
             ["Spiele", "Bits &amp; Bolts und Bolt Buddies bleiben"],
-            ["Neu", 'Flux &amp; Flow, ein Automatisierungsspiel in den Laufwerken, ist als Prototyp dazugekommen: <a href="welt/#ff">die Fabrik</a>'],
+            ["Neu", 'Lines &amp; Loads, ein Automatisierungsspiel in den Laufwerken, ist als Prototyp dazugekommen: <a href="welt/#ff">die Fabrik</a>'],
             ["Roboter", "alle 22 bleiben, mit Namen, Aussehen und Fähigkeiten"],
             ["Stil", "bleibt: Pixel, Retro-Terminal, Bildschirmflimmern"],
             ["Neu offen", "alles andere"],
@@ -482,7 +482,7 @@ def group_section(key, title, keys):
         "bb": "<p>Die Werkstatt ist das Zuhause. Darunter liegt der Boden des Gehäuses, wo alles landet, was in all den Jahren heruntergefallen ist: Staub, verlorene Schrauben, abgebrochene Teile und die Roboter selbst. "
               "In Bolt Buddies steigt ein Team Schicht für Schicht hinab und holt sie zurück. Dass Schrauben die Währung sind, passt: In einem alten PC fallen genau die nach unten.</p>\n"
               "        <p class=\"muted-small\">Bilder: die heutigen Kulissen aus Bolt Buddies.</p>",
-        "ff": "<p>Flux &amp; Flow ist das dritte Spiel und noch ein Prototyp. In den halb erwachten Laufwerken entsteht eine Fabrik: "
+        "ff": "<p>Lines &amp; Loads ist das dritte Spiel und noch ein Prototyp. In den halb erwachten Laufwerken entsteht eine Fabrik: "
               "Schächte holen Schrott aus dem Schacht herauf, Flachbandkabel tragen ihn weiter, Maschinen machen daraus Module und fertige Ausrüstung. "
               "Dieselben wenigen Maschinen bauen alles, was herauskommt, hängt davon ab, was hineinkommt. "
               "Ziel ist, die Laufwerke nacheinander zu reparieren: erst die Festplatte, dann das CD-Laufwerk.</p>\n"
@@ -502,12 +502,12 @@ def group_section(key, title, keys):
 
 write("welt", "Die Welt", "Die Welt der Roboter ist ein alter Tower-PC: oben der Hauptrechner als Gedächtnis, in der Mitte die Werkstatt, unten der Schrottschacht. Alle Orte im Detail.",
       head('<a href="../">Archiv 2.0</a> · Die Welt', "Die Welt",
-           "Die ganze Welt ist ein alter Tower-PC. Er stand jahrelang ausgeschaltet herum, jetzt läuft er wieder. "
+           "Die ganze Welt ist ein alter Tower-PC namens BABEL. Er stand jahrelang ausgeschaltet herum, jetzt läuft er wieder. "
            "Für die Roboter ist er riesig: hinten die Platine mit dem Hauptrechner ganz oben, vorne die Werkstatt zwischen den Laufwerken, unten der Schrottschacht.") + f"""
       <section class="wiki-sec">
         <h2>Grundsätze</h2>
         {table(["", ""], [
-            ["Schauplatz", "ein alter Tower-PC, sonst nichts"],
+            ["Schauplatz", "BABEL, ein alter Tower-PC, sonst nichts"],
             ["Anfang", "Der PC wird wieder eingeschaltet. Mit dem Strom wachen die Roboter auf, BYTE als Erster."],
             ["Menschen", "spielen keine Rolle. Wer den PC eingeschaltet hat, ist egal."],
             ["Bedrohung", "gibt es nicht. Kein Zeitdruck, kein Feind, der alles zerstören will."],
@@ -519,7 +519,7 @@ write("welt", "Die Welt", "Die Welt der Roboter ist ein alter Tower-PC: oben der
 
       <section class="wiki-sec">
         <h2>Der PC im Querschnitt</h2>
-        <p>Der Tower offen von der Seite: hinten links die Platine, über die es in Bits &amp; Bolts hinauf zum Hauptrechner geht. Vorne rechts die Laufwerke mit der Werkstatt, daneben entsteht die Fabrik von Flux &amp; Flow. Dazwischen fährt der Aufzug hinunter in den Schacht von Bolt Buddies.</p>
+        <p>Der Tower offen von der Seite: hinten links die Platine, über die es in Bits &amp; Bolts hinauf zum Hauptrechner geht. Vorne rechts die Laufwerke mit der Werkstatt, daneben entsteht die Fabrik von Lines &amp; Loads. Dazwischen fährt der Aufzug hinunter in den Schacht von Bolt Buddies.</p>
 {pc_svg()}        <p class="muted-small">Antippen führt zum Ort weiter unten. Farbig: Orte, die schon in einem Spiel vorkommen. Gestrichelt: noch in keinem Spiel.</p>
       </section>
 
@@ -623,7 +623,7 @@ write("stoerungen", "Störungen", "Störungen im alten PC: oben auf der Platine 
 
 
 # ── Roboter ──────────────────────────────────────────────────────────────────
-## Rolle in Flux & Flow: Arbeiter tragen Ausrüstung und machen etwas schneller, Besucher bringen Aufträge.
+## Rolle in Lines & Loads: Arbeiter tragen Ausrüstung und machen etwas schneller, Besucher bringen Aufträge.
 FF_WORK = {
     "PATCH": "verlegt die Flachbandkabel und führt durch die erste Minute. Trägt ein Werkzeug: Die Bänder laufen schneller.",
     "NULL": "trägt eine Rüstung: Die Schächte fördern schneller.",
@@ -639,9 +639,9 @@ assert all(b in ORDER for b in list(FF_WORK) + FF_VISIT) and not set(FF_WORK) & 
 
 def ff_line(b):
     if b in FF_WORK:
-        return f"\n    <p><b>Flux &amp; Flow:</b> Arbeitet in der Fabrik, {FF_WORK[b]}</p>"
+        return f"\n    <p><b>Lines &amp; Loads:</b> Arbeitet in der Fabrik, {FF_WORK[b]}</p>"
     if b in FF_VISIT:
-        return "\n    <p><b>Flux &amp; Flow:</b> Kommt zu Besuch und bringt Aufträge.</p>"
+        return "\n    <p><b>Lines &amp; Loads:</b> Kommt zu Besuch und bringt Aufträge.</p>"
     return ""
 
 
