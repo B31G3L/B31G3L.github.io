@@ -21,7 +21,8 @@ Reines HTML und CSS, kein Build-Schritt. Die Seite lädt bewusst nichts von Drit
 | `/bits-and-bolts/` | Datenschutz Bits & Bolts | DE + EN |
 | `/bolt-buddies/` | Datenschutz Bots & Buddies (mit Erinnerungen) | DE + EN |
 | `/impressum/` | Impressum und Datenschutz der Website | DE |
-| `/archiv/` | Archiv der Roboter: Wiki zum Roboter-Universum mit Unterseiten `roboter/`, `stoerungen/`, `weltkarte/` (der Rechner im Querschnitt, führt zu je einer Seite pro Spiel: `bits-and-bolts/`, `bolt-buddies/`, `block-invaders/`, `loop-runner/`, `kippwelt/`, `zuendkette/`, `snake-jam/`; `einsaetze/` und `regelwerk/` leiten weiter), `ersatzteile/`, `funk/`. Jede Seite lässt sich oben nach Spiel filtern (nur CSS, Inhalte tragen `data-game`). Bilder holt `tools/make_archiv.py` aus den Spielordnern daneben | DE |
+| `/babel/` | B.A.B.E.L.: Titel mit Kabeln zu den fünf Spielen, darunter die Welt. Je Spiel eine Seite (`bots-and-buddies/`, `amps-and-arcs/`, `bits-and-bolts/`, `echoes-and-encores/`, `lines-and-loads/`). Erzeugt von `tools/make_babel.py` | DE |
+| `/archiv/`, `/archiv2/` | Abgeschaltet: Jede alte Seite leitet auf `/babel/` weiter (ebenfalls von `tools/make_babel.py`). `make_archiv.py` und `make_archiv2.py` nicht mehr ausführen, sie würden die Archive zurückholen | – |
 
 Die Links trägst du in der Play Console als „Link zur Datenschutzerklärung“ ein.
 Für Housepot eignet sich `https://b31g3l.github.io/housepot/#konto-loeschen` als URL für Löschanträge.

@@ -2,91 +2,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weltkarte – Archiv der Roboter</title>
-<meta name="description" content="Die Welt der Roboter ist ein alter Rechner: Querschnitt mit allen Bauteilen, den Spielen darin und ihren Orten, von Bits &amp; Bolts über Bots &amp; Buddies bis zu den geplanten Spielen.">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-<link rel="stylesheet" href="../../style.css">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=../../babel/">
+<link rel="canonical" href="https://b31g3l.github.io/babel/">
+<title>Weitergeleitet zu B.A.B.E.L.</title>
 </head>
-<body>
-
-<header class="site">
-  <div class="wrap wrap-wide">
-    <a class="brand" href="../../">B31G3L<i>_</i></a>
-    <nav><a href="../../#spiele">Spiele</a><a href="../../archiv/">Archiv</a><a href="../../archiv2/">Archiv 2.0</a></nav>
-  </div>
-</header>
-
-<main>
-  <div class="wrap wrap-wide wiki">
-    <nav class="wiki-nav" aria-label="Archiv">
-      <p class="eyebrow">Archiv</p>
-      <ul>
-        <li><a href="../../archiv/">Das Archiv<small>Übersicht</small></a></li>
-        <li><a href="../../archiv/roboter/">Roboter-Register<small>Alle 22 Roboter</small></a></li>
-        <li><a href="../../archiv/stoerungen/">Störungsprotokoll<small>Gegner und Ereignisse</small></a></li>
-        <li><a href="../../archiv/weltkarte/" aria-current="page">Weltkarte<small>Der Rechner und seine Spiele</small></a></li>
-        <li><a href="../../archiv/ersatzteile/">Ersatzteillager<small>Ausrüstung und Werte</small></a></li>
-        <li><a href="../../archiv/funk/">Funkverbindung<small>Spiele verbinden</small></a></li>
-      </ul>
-    </nav>
-    <article class="wiki-page">
-      <p class="eyebrow">Archiv · Weltkarte</p>
-      <h1 class="page-title">Weltkarte</h1>
-      <p class="wiki-lead">Die ganze Welt ist ein einziger alter Rechner. Jedes Spiel spielt in einem seiner Bauteile: BYTE klettert über die Etagen nach oben zum Hauptrechner, in der Mitte liegt die Werkstatt, darunter führt der Schrottschacht in die Tiefe. Die geplanten Spiele besetzen die übrigen Bauteile. Bots &amp; Buddies ist die Heimat, in die alle Roboter später mit Erfahrung und Beute zurückkehren, siehe <a href="../funk/">Funkverbindung</a>.</p>
-      <fieldset class="flt"><legend>Nach Spiel filtern</legend><input type="radio" name="flt" id="flt-all" checked><label for="flt-all">Alle</label><input type="radio" name="flt" id="flt-bnb"><label for="flt-bnb">Bits &amp; Bolts</label><input type="radio" name="flt" id="flt-bb"><label for="flt-bb">Bots &amp; Buddies</label><input type="radio" name="flt" id="flt-plan"><label for="flt-plan">Geplante Spiele</label></fieldset>
-
-      <section class="wiki-sec">
-        <h2>Der Rechner im Querschnitt</h2>
-        <nav class="rig" aria-label="Querschnitt des Rechners">
-          <a class="rig-cell" href="../bits-and-bolts/" style="grid-area:cpu;--c:#3DFF7A" data-game="bnb"><small>Prozessor</small><b>Hauptrechner</b><span>Bits &amp; Bolts</span></a>
-          <a class="rig-cell" href="../bits-and-bolts/" style="grid-area:floors;--c:#3DFF7A" data-game="bnb"><small>Leiterbahnen</small><b>Die Etagen ↑</b><span>Bits &amp; Bolts</span></a>
-          <a class="rig-cell" href="../bolt-buddies/" style="grid-area:shop;--c:#FFB000" data-game="bb"><small>Gehäusemitte</small><b>Die Werkstatt</b><span>Bots &amp; Buddies</span></a>
-          <a class="rig-cell" href="../bolt-buddies/" style="grid-area:lift;--c:#FFB000" data-game="bb"><small>Schacht</small><b>Der Aufzug ↕</b><span>Bots &amp; Buddies</span></a>
-          <a class="rig-cell" href="../bolt-buddies/#ebenen" style="grid-area:l1;--c:#C9D3DC" data-game="bb"><small>Unter den Laufwerken</small><b>Schraubenhalde</b><span>Kampf 1–10</span></a>
-          <a class="rig-cell" href="../bolt-buddies/#ebenen" style="grid-area:l2;--c:#FF9A3D" data-game="bb"><small>Kabel</small><b>Kabelsalat</b><span>Kampf 11–20</span></a>
-          <a class="rig-cell" href="../bolt-buddies/#ebenen" style="grid-area:l3;--c:#4DE8FF" data-game="bb"><small>Gehäuselüfter</small><b>Lüftergrund</b><span>Kampf 21–30</span></a>
-          <a class="rig-cell" href="../bolt-buddies/#ebenen" style="grid-area:l4;--c:#FF5252" data-game="bb"><small>Ganz unten</small><b>Netzteil</b><span>ab Kampf 31</span></a>
-          <a class="rig-cell rig-plan" href="../port-patrol/" style="grid-area:net;--c:#FF5252" data-game="plan"><small>Netzwerkanschluss</small><b>Die Abwehrstellung</b><span>Port Patrol · geplant</span></a>
-          <a class="rig-cell rig-plan" href="../loop-echo/" style="grid-area:clock;--c:#7CFFB0" data-game="plan"><small>Taktgeber</small><b>Das Schleifenlabor</b><span>Loop Echo · geplant</span></a>
-          <a class="rig-cell rig-plan" href="../surge-chain/" style="grid-area:psu;--c:#FF9A3D" data-game="plan"><small>Netzteil</small><b>Das Kondensatorlager</b><span>Surge Chain · geplant</span></a>
-          <a class="rig-cell rig-plan" href="../tilt-gate/" style="grid-area:sensor;--c:#FFD34D" data-game="plan"><small>Lagesensor</small><b>Das Schwerkraft-Labor</b><span>Tilt Gate · geplant</span></a>
-          <a class="rig-cell rig-plan" href="../packet-rush/" style="grid-area:bus;--c:#B46CFF" data-game="plan"><small>Datenbus und Anschlüsse</small><b>Das Datenbus-Depot</b><span>Packet Rush · geplant</span></a>
-        </nav>
-        <p class="muted-small">Jedes Feld führt zur Seite seines Spiels. Gestrichelt: Spiele, die noch geplant sind.</p>
-      </section>
-      <section class="wiki-sec">
-        <h2>Die Spiele in ihren Bauteilen</h2>
-        <ul class="game-grid">
-          <li class="game-card" data-game="bnb"><a href="../bits-and-bolts/"><img class="game-thumb place-photo" src="../weltkarte/img/bnb_etagen.jpg" alt="" loading="lazy"><div class="game-card-body"><small>Prozessor</small>
-            <div class="place-head"><h3>Bits &amp; Bolts</h3><span class="badge badge-live">Im Play Store</span></div><p class="game-genre">Binär-Rätsel als Roguelite</p><p>Ein Roboter arbeitet sich durch zehn Stationen bis zum Hauptrechner und repariert unterwegs durchgebrannte Raster aus Nullen und Einsen.</p><span class="game-more">Zur Spielseite →</span></div></a></li>
-          <li class="game-card" data-game="bb"><a href="../bolt-buddies/"><img class="game-thumb" src="../weltkarte/img/workshop.png" alt="" loading="lazy"><div class="game-card-body"><small>Gehäusemitte und Schacht</small>
-            <div class="place-head"><h3>Bots &amp; Buddies</h3><span class="badge badge-dev">In Entwicklung</span></div><p class="game-genre">Roboter pflegen und Auto-Kämpfe</p><p>Die Werkstatt ist das Zuhause aller geretteten Roboter.</p><span class="game-more">Zur Spielseite →</span></div></a></li>
-          <li class="game-card" data-game="plan"><a href="../port-patrol/"><span class="game-thumb game-thumb-empty">geplant</span><div class="game-card-body"><small>Netzwerkanschluss</small>
-            <div class="place-head"><h3>Port Patrol</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Block-Puzzle gegen angreifende Störungen</p><p>Bugs, Spam-Drohnen, Firewalls und Rostwürmer rücken von außen auf die Werkstatt vor.</p><span class="game-more">Zur Spielseite →</span></div></a></li>
-          <li class="game-card" data-game="plan"><a href="../loop-echo/"><span class="game-thumb game-thumb-empty">geplant</span><div class="game-card-body"><small>Taktgeber</small>
-            <div class="place-head"><h3>Loop Echo</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Zeitschleifen-Plattformer</p><p>LOOP hat 20 Sekunden und sich selbst als Team: Jede Schleife wird aufgezeichnet und läuft in der nächsten als Kopie mit.</p><span class="game-more">Zur Spielseite →</span></div></a></li>
-          <li class="game-card" data-game="plan"><a href="../tilt-gate/"><span class="game-thumb game-thumb-empty">geplant</span><div class="game-card-body"><small>Lagesensor</small>
-            <div class="place-head"><h3>Tilt Gate</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Plattformer ohne Springen</p><p>Der Roboter dreht die ganze Welt um 90 Grad, und alles Lose fällt nach unten.</p><span class="game-more">Zur Spielseite →</span></div></a></li>
-          <li class="game-card" data-game="plan"><a href="../surge-chain/"><span class="game-thumb game-thumb-empty">geplant</span><div class="game-card-body"><small>Netzteil</small>
-            <div class="place-head"><h3>Surge Chain</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Kettenreaktions-Rätsel</p><p>Ein einziger Überspannungsimpuls muss alle Viren erwischen.</p><span class="game-more">Zur Spielseite →</span></div></a></li>
-          <li class="game-card" data-game="plan"><a href="../packet-rush/"><span class="game-thumb game-thumb-empty">geplant</span><div class="game-card-body"><small>Datenbus und Anschlüsse</small>
-            <div class="place-head"><h3>Packet Rush</h3><span class="badge badge-plan">Geplant</span></div><p class="game-genre">Schiebe-Rätsel mit wachsenden Bussen</p><p>Bunte Datenbusse müssen ihre Pakete einsammeln und zum Port hinausfahren.</p><span class="game-more">Zur Spielseite →</span></div></a></li>
-        </ul>
-      </section>
-
-      <p class="meta wiki-stand">Stand der Einträge: 14.11.2026. Spiele mit „In Entwicklung“ oder „Geplant“ können sich noch ändern.</p>
-    </article>
-  </div>
-</main>
-
-<footer class="site">
-  <div class="wrap wrap-wide">
-    <span>© 2026 Christian Beigelbeck</span>
-    <span><a href="../../impressum/">Impressum &amp; Datenschutz dieser Website</a></span>
-  </div>
-</footer>
-</body>
+<body><p>Das Archiv gibt es nicht mehr. Weiter zu <a href="../../babel/">B.A.B.E.L.</a></p></body>
 </html>
