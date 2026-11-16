@@ -451,7 +451,7 @@ FOES = [
 ]
 ## Ereignisse aus Bits & Bolts: Name, Roboter, der es mitbringt, Störungscode ohne Roboter, Wirkung
 EVENTS = [
-    ("Stromausfall", "", "0 V", "Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück."),
+    ("Stromausfall", "", "0 V", "Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück. Wer vorher schnell eine Ziffer daneben einträgt, hält die Vorgabe an."),
     ("Überspannung", "", "!! V", "Ein Kurzschluss kostet 2 Ladungen statt 1."),
     ("Wackelkontakt", "", "~ ~", "Immer wieder erlischt eine deiner Ziffern und muss neu eingetragen werden."),
     ("Störsignal", "", "? !", "Immer wieder taucht eine falsche Notiz auf."),

@@ -345,7 +345,7 @@ STOER = {
                "Immer wieder taucht eine falsche Notiz auf."),
     "strom": ("wetter", "Stromausfall", "0 V", "B4BECC", ["knopfzelle", "hauptrechner"],
               "Die Knopfzelle ist alt. Ab und zu flackert es, und dann wird es für einen Moment dunkel und still.",
-              "Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück."),
+              "Nach einem Countdown erlöschen die Vorgaben. Richtige Ziffern direkt daneben holen sie zurück. Wer vorher schnell eine Ziffer daneben einträgt, hält die Vorgabe an."),
     "spannung": ("wetter", "Überspannung", "!! V", "FFD34D", ["chipsatz", "hauptrechner"],
                  "Wo alle Leitungen zusammenlaufen, staut sich manchmal zu viel Strom. Dann knistert die Luft, und jeder Fehler tut doppelt weh.",
                  "Ein Kurzschluss kostet 2 Ladungen statt 1."),
