@@ -42,7 +42,7 @@ PUZZLE = {
     "VIRUS": "Steckt an: Bei einem Kurzschluss erlischt auch eine Ziffer daneben. Dafür 1 Ladung mehr.",
     "ERROR": "Baut Fehler ein: Eine Vorgabe ist falsch. Dafür 1 Tipp mehr.",
     "DAEMON": "Läuft im Hintergrund: Wer zu lange nichts Richtiges einträgt, verliert Ladung. Dafür 1 Ladung mehr.",
-    "MORSE": "Funkt im Nebel: Klar zu sehen ist nur die Umgebung der letzten Zelle. Dafür 1 Tipp mehr.",
+    "MORSE": "Funkt im Nebel: Klar zu sehen ist nur die Umgebung der letzten Zelle, richtige Ziffern lichten ihn. Dafür 1 Tipp mehr.",
 }
 ## Freischaltung in Bits & Bolts (core/run_logic.gd UNLOCKS): die ersten sechs mit Siegen, alle anderen mit dem, was man gespielt hat
 UNLOCK = {
