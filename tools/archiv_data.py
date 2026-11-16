@@ -66,11 +66,11 @@ ROLE = {"OKTA": "Rätselhinweis", "HEXA": "Rätselhinweis", "ASKI": "Rätselhinw
         "LOOP": "Zusatzregel", "NIBBLE": "Zusatzregel", "QUBIT": "Zusatzregel", "ROOT": "Zusatzregel",
         "ERROR": "Ereignis", "VIRUS": "Ereignis", "DAEMON": "Ereignis", "MORSE": "Ereignis",
         "PATCH": "Fähigkeit", "BYTE": "Allrounder"}
-HERO = {"BYTE": "Bits & Bolts, Bolt Buddies", "LOOP": "Loop Echo (geplant)", "GATE": "Tilt Gate (geplant)",
+HERO = {"BYTE": "Bits & Bolts, Bots & Buddies", "LOOP": "Loop Echo (geplant)", "GATE": "Tilt Gate (geplant)",
         "ROOT": "Tilt Gate (geplant)", "ERROR": "Surge Chain (geplant)", "GLITCH": "Surge Chain (geplant)",
         "SHIFT": "Loop Echo (geplant)", "QUBIT": "Loop Echo (geplant)"}
 ATTR = ["Leistung", "Takt", "Logik", "Gehäuse"]
-## Bolt Buddies: In welcher Ebene ein Roboter auf Rettung wartet (core/bots.gd HOME) und was er mitbringt (i18n ks_*)
+## Bots & Buddies: In welcher Ebene ein Roboter auf Rettung wartet (core/bots.gd HOME) und was er mitbringt (i18n ks_*)
 LAYERS = [("Schraubenhalde", 1), ("Kabelsalat", 11), ("Lüftergrund", 21), ("Netzteil", 31)]
 HOME = {
     "BYTE": 0, "OKTA": 0, "HEXA": 0, "ASKI": 0, "PIXA": 0, "NIBBLE": 0, "PARI": 0, "MIRA": 0,
@@ -86,7 +86,7 @@ KEEPSAKE = {
     "ROOT": "Chefsessel", "VIRUS": "Kaktus", "ERROR": "Warnschild 404", "DAEMON": "Kaffeemaschine", "MORSE": "Morsetaste",
 }
 
-## Farben der Roboter wie in Bolt Buddies (ui/style.gd), für den Rahmen ums Sprite
+## Farben der Roboter wie in Bots & Buddies (ui/style.gd), für den Rahmen ums Sprite
 COLORS = {
     "BYTE": "3DFF7A", "OKTA": "FF9E2C", "HEXA": "4DE8FF", "PIXA": "FF5CF0", "ASKI": "E8F0FF", "CHROMA": "7FB2FF",
     "GATE": "FFD34D", "LOOP": "7CFFB0", "NULL": "B4BECC", "PARI": "2CE6B0", "MIRA": "C9A8FF", "SHIFT": "6FC3FF",
@@ -95,7 +95,7 @@ COLORS = {
 }
 
 
-## Familien (geplant für Bolt Buddies 1.1): Name, Bonus, Mitglieder
+## Familien (geplant für Bots & Buddies 1.1): Name, Bonus, Mitglieder
 FAMILIES = [
     ("Zahlensysteme", "mehr Volltreffer", ["OKTA", "HEXA", "ASKI", "CHROMA", "PIXA", "NIBBLE"]),
     ("Logikgatter", "mehr Panzerung", ["GATE", "XOR", "NULL", "PARI", "QUBIT", "MIRA"]),

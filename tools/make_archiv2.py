@@ -180,7 +180,7 @@ PLACES = {
         sound="Still, bis die Scheibe anläuft. Dann heult es auf und vibriert durch die Wand bis in die Werkstatt.",
         special="Manchmal geht die Schublade von selbst auf und wieder zu, und keiner weiß, warum. Was auf der Scheibe ist, hat noch niemand herausgefunden. Seine Schublade ist die große Presse der Fabrik: Nur hier werden aus sehr guten Teilen Meisterstücke."),
     "werkstatt": dict(
-        name="Werkstatt", part="vorne oben, leerer Laufwerksschacht", game="Bolt Buddies · Zuhause",
+        name="Werkstatt", part="vorne oben, leerer Laufwerksschacht", game="Bots &amp; Buddies · Zuhause",
         short="Das Zuhause aller Geretteten.", img="workshop.png",
         look="Ein Blechkasten vorne im Gehäuse, in dem früher ein Laufwerk steckte. Durch den Schlitz in der alten Blende fällt Licht. Drinnen: Lochwand mit Werkzeug, Regal mit Teilekisten, Ladeleiste und die Andenken.",
         sound="Gemütliches Licht. Werkzeug klappert, jemand schnarcht an der Ladeleiste.",
@@ -210,25 +210,25 @@ PLACES = {
         sound="Von innen scheinen die Lämpchen wie zwei kleine Sonnen durch die Wand.",
         special="Der Einschaltknopf ist der Grund, warum alle wach sind. Aber keiner war je draußen und hat ihn gesehen."),
     "schicht1": dict(
-        name="Schraubenhalde", part="Schacht · gleich unter der Werkstatt", game="Bolt Buddies",
+        name="Schraubenhalde", part="Schacht · gleich unter der Werkstatt", game="Bots &amp; Buddies",
         short="Hier liegt, was zuletzt gefallen ist.", img="layer_0.png",
         look="Ein Hang aus Schrauben, Klammern und Krümeln, der sich zwischen Platine und Laufwerken gesammelt hat.",
         sound="Von oben fällt noch etwas Licht. Bei jedem Schritt klimpern Schrauben.",
         special="Hier liegen die meisten Verlorenen, weil sie nicht tief gefallen sind."),
     "kabelsalat": dict(
-        name="Kabelsalat", part="Schacht · unter der Platine", game="Bolt Buddies",
+        name="Kabelsalat", part="Schacht · unter der Platine", game="Bots &amp; Buddies",
         short="Ein Dschungel aus alten Kabeln.", img="layer_1.png",
         look="Dicke Kabelstränge hängen kreuz und quer, verknotet und mit Kabelbindern zusammengezurrt. Dazwischen hängen Staubfäden wie Lianen.",
         sound="Dämmrig, ab und zu blitzen Funken. Es knistert überall.",
         special="Man verläuft sich leicht. Die Kabel führen überallhin, auch dorthin, wo seit Jahren keiner mehr war."),
     "lueftergrund": dict(
-        name="Lüftergrund", part="Schacht · vor dem Frontlüfter", game="Bolt Buddies",
+        name="Lüftergrund", part="Schacht · vor dem Frontlüfter", game="Bots &amp; Buddies",
         short="Kalt und windig, Staubflusen treiben wie Schnee.", img="layer_2.png",
         look="Der Boden vor dem Gehäuselüfter. Staubflusen treiben wie Schnee, die Wände sind mit grauem Flaum bedeckt.",
         sound="Kühles, blasses Licht. Der Lüfter rauscht gleichmäßig wie Wind.",
         special="Es ist immer windig und kalt. Wer zu lange bleibt, wird langsam."),
     "netzteil": dict(
-        name="Netzteil", part="Schacht · ganz unten", game="Bolt Buddies",
+        name="Netzteil", part="Schacht · ganz unten", game="Bots &amp; Buddies",
         short="Ganz unten brummt und glüht es.", img="layer_3.png",
         look="Ein Blechkasten ganz unten, durch die Lüftungsschlitze glüht es orange. Drinnen stehen Spulen und Kondensatoren wie Türme.",
         sound="Rot und warm. Ein tiefes Brummen, das man im Bauch spürt.",
@@ -236,7 +236,7 @@ PLACES = {
 }
 GROUPS = [  # Abschnitt der Weltseite: Schlüssel, Titel, Orte
     ("bnb", "Bits &amp; Bolts: der Aufstieg", ["hauptrechner", "arbeitsspeicher", "chipsatz", "knopfzelle", "steckkarten"]),
-    ("bb", "Bolt Buddies: Werkstatt und Schacht", ["werkstatt", "schicht1", "kabelsalat", "lueftergrund", "netzteil"]),
+    ("bb", "Bots &amp; Buddies: Werkstatt und Schacht", ["werkstatt", "schicht1", "kabelsalat", "lueftergrund", "netzteil"]),
     ("ff", f"Lines &amp; Loads: die Fabrik in den Laufwerken {PROTO}", ["festplatte", "cd", "flachband"]),
     ("frei", "Noch in keinem Spiel", ["cpu_luefter", "spannungswandler", "bios", "grafikkarte", "soundkarte", "netzwerkkarte",
                                       "anschluesse", "diskette", "lautsprecher", "frontblende"]),
@@ -310,7 +310,7 @@ def pc_svg():
 {svg}
           </svg>
         </div>
-        <p class="pc-legend"><span class="pc-key pc-bnb">Bits &amp; Bolts</span><span class="pc-key pc-bb">Bolt Buddies</span><span class="pc-key pc-ff">Lines &amp; Loads</span><span class="pc-key pc-frei">noch in keinem Spiel</span></p>
+        <p class="pc-legend"><span class="pc-key pc-bnb">Bits &amp; Bolts</span><span class="pc-key pc-bb">Bots &amp; Buddies</span><span class="pc-key pc-ff">Lines &amp; Loads</span><span class="pc-key pc-frei">noch in keinem Spiel</span></p>
 """
 
 
@@ -328,7 +328,7 @@ HEIMAT = {
 }
 HOME_OF = {b: p for p, bots in HEIMAT.items() for b in bots}
 assert sorted(HOME_OF) == sorted(ORDER), "jeder Roboter braucht genau eine Heimat"
-## Die Schichten des Schachts in der Reihenfolge von Bolt Buddies (core/bots.gd HOME: 0 bis 3)
+## Die Schichten des Schachts in der Reihenfolge von Bots & Buddies (core/bots.gd HOME: 0 bis 3)
 SHAFT = ["schicht1", "kabelsalat", "lueftergrund", "netzteil"]
 
 
@@ -349,7 +349,7 @@ STOER = {
     "spannung": ("wetter", "Überspannung", "!! V", "FFD34D", ["chipsatz", "hauptrechner"],
                  "Wo alle Leitungen zusammenlaufen, staut sich manchmal zu viel Strom. Dann knistert die Luft, und jeder Fehler tut doppelt weh.",
                  "Ein Kurzschluss kostet 2 Ladungen statt 1."),
-    # Getier im Schacht (Gegner aus Bolt Buddies)
+    # Getier im Schacht (Gegner aus Bots & Buddies)
     "bug": ("getier", "Bug", "bug", "FF5252", ["schicht1", "kabelsalat", "lueftergrund", "netzteil"],
             "Kleine Käfer, die sich in alten Daten einnisten. Einzeln harmlos, aber selten allein.",
             "Der häufigste Gegner. Schwach, aber oft in Gruppen."),
@@ -444,7 +444,7 @@ cards = "\n".join(
         ("stoerungen", "Störungen", "Oben auf der Platine wie Wetter, unten im Schacht wie Getier. Keine Feinde, nur Ärgernisse eines alten PCs."),
         ("roboter", "Roboter", "Alle 22 Roboter mit ihrer Heimat im PC, ihrem Fundort im Schacht und ihrem Andenken."),
     ])
-write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entwurf zu Welt, Störungen und Robotern von Bits & Bolts und Bolt Buddies.",
+write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entwurf zu Welt, Störungen und Robotern von Bits & Bolts und Bots & Buddies.",
       head("Archiv 2.0", "Archiv 2.0",
            "Hier wird die Welt der Roboter von vorne gedacht, erst auf dem Papier. Was hier steht, ist ein Entwurf und kann sich noch ändern. "
            "Den heutigen Stand der Spiele zeigt weiter das <a href=\"../archiv/\">alte Archiv</a>.") + f"""
@@ -464,7 +464,7 @@ write("", "Übersicht", "Archiv 2.0: Die Welt der Roboter wird neu gedacht. Entw
       <section class="wiki-sec">
         <h2>Was fest steht</h2>
         {table(["", ""], [
-            ["Spiele", "Bits &amp; Bolts und Bolt Buddies bleiben"],
+            ["Spiele", "Bits &amp; Bolts und Bots &amp; Buddies bleiben"],
             ["Neu", 'Lines &amp; Loads, ein Automatisierungsspiel in den Laufwerken, ist als Prototyp dazugekommen: <a href="welt/#ff">die Fabrik</a>'],
             ["Roboter", "alle 22 bleiben, mit Namen, Aussehen und Fähigkeiten"],
             ["Stil", "bleibt: Pixel, Retro-Terminal, Bildschirmflimmern"],
@@ -480,14 +480,14 @@ def group_section(key, title, keys):
         "bnb": "<p>In Bits &amp; Bolts klettert ein Roboter Etage für Etage über das Mainboard nach oben. Die Etagen gehören zu vier Gegenden mit eigener Stimmung und eigenem Wetter: Steckkarten (1–2), Knopfzelle (3–4), Chipsatz (5–7) und Arbeitsspeicher (8–9). Die Karte im Spiel zeigt, wo eine neue Gegend beginnt. Kleinere Chips auf dem Weg sind die Zwischenrechner, Etappenziele vor dem Hauptrechner. Die Binärrätsel sind dabei wörtlich das, was die Roboter tun: alte Daten wieder zusammensetzen.</p>\n"
                "        <p class=\"muted-small\">Die Reihenfolge folgt der echten Platine: unten die Steckkarten, oben neben dem Prozessor der Arbeitsspeicher.</p>",
         "bb": "<p>Die Werkstatt ist das Zuhause. Darunter liegt der Boden des Gehäuses, wo alles landet, was in all den Jahren heruntergefallen ist: Staub, verlorene Schrauben, abgebrochene Teile und die Roboter selbst. "
-              "In Bolt Buddies steigt ein Team Schicht für Schicht hinab und holt sie zurück. Dass Schrauben die Währung sind, passt: In einem alten PC fallen genau die nach unten.</p>\n"
-              "        <p class=\"muted-small\">Bilder: die heutigen Kulissen aus Bolt Buddies.</p>",
+              "In Bots &amp; Buddies steigt ein Team Schicht für Schicht hinab und holt sie zurück. Dass Schrauben die Währung sind, passt: In einem alten PC fallen genau die nach unten.</p>\n"
+              "        <p class=\"muted-small\">Bilder: die heutigen Kulissen aus Bots &amp; Buddies.</p>",
         "ff": "<p>Lines &amp; Loads ist das dritte Spiel und noch ein Prototyp. In den halb erwachten Laufwerken entsteht eine Fabrik: "
               "Schächte holen Schrott aus dem Schacht herauf, Flachbandkabel tragen ihn weiter, Maschinen machen daraus Module und fertige Ausrüstung. "
               "Dieselben wenigen Maschinen bauen alles, was herauskommt, hängt davon ab, was hineinkommt. "
               "Ziel ist, die Laufwerke nacheinander zu reparieren: erst die Festplatte, dann das CD-Laufwerk.</p>\n"
               "        <p>Die Roboter arbeiten mit: Sie tragen, was die Fabrik baut, und machen sie damit schneller. Besucher aus dem ganzen PC bringen Aufträge. "
-              "Gebaut werden genau die zehn Arten Ausrüstung, die es in Bolt Buddies gibt. Später sollen fertige Teile per Diskette hinunter in den Schacht gehen.</p>\n"
+              "Gebaut werden genau die zehn Arten Ausrüstung, die es in Bots &amp; Buddies gibt. Später sollen fertige Teile per Diskette hinunter in den Schacht gehen.</p>\n"
               "        <p class=\"muted-small\">Diskettenlaufwerk und Frontblende sind als weitere Laufwerke geplant und stehen noch unter „Noch in keinem Spiel“.</p>",
         "frei": "<p>Diese Orte gibt es im PC, manche davon sind die Heimat von Robotern. In einem Spiel kommen sie noch nicht vor.</p>",
     }[key]
@@ -519,7 +519,7 @@ write("welt", "Die Welt", "Die Welt der Roboter ist ein alter Tower-PC: oben der
 
       <section class="wiki-sec">
         <h2>Der PC im Querschnitt</h2>
-        <p>Der Tower offen von der Seite: hinten links die Platine, über die es in Bits &amp; Bolts hinauf zum Hauptrechner geht. Vorne rechts die Laufwerke mit der Werkstatt, daneben entsteht die Fabrik von Lines &amp; Loads. Dazwischen fährt der Aufzug hinunter in den Schacht von Bolt Buddies.</p>
+        <p>Der Tower offen von der Seite: hinten links die Platine, über die es in Bits &amp; Bolts hinauf zum Hauptrechner geht. Vorne rechts die Laufwerke mit der Werkstatt, daneben entsteht die Fabrik von Lines &amp; Loads. Dazwischen fährt der Aufzug hinunter in den Schacht von Bots &amp; Buddies.</p>
 {pc_svg()}        <p class="muted-small">Antippen führt zum Ort weiter unten. Farbig: Orte, die schon in einem Spiel vorkommen. Gestrichelt: noch in keinem Spiel.</p>
       </section>
 
@@ -551,7 +551,7 @@ def stoer_card(key):
     places = " · ".join(f'<a href="../welt/#{p}">{PLACES[p]["name"]}</a>' for p in where)
     play = ""
     if game_:
-        icon, gname = ("bits-and-bolts", "Bits &amp; Bolts") if kind == "wetter" else ("bolt-buddies", "Bolt Buddies")
+        icon, gname = ("bits-and-bolts", "Bits &amp; Bolts") if kind == "wetter" else ("bolt-buddies", "Bots &amp; Buddies")
         cls = "bot-game-puzzle" if kind == "wetter" else "bot-game-fight"
         play = f"""
   <section class="bot-game {cls}">
@@ -590,7 +590,7 @@ write("stoerungen", "Störungen", "Störungen im alten PC: oben auf der Platine 
       head('<a href="../">Archiv 2.0</a> · Störungen', "Störungen",
            "In dieser Welt gibt es keine Feinde. Störungen gehören zu einem alten PC wie Wetter oder Ungeziefer: Sie sind lästig, manchmal anstrengend, aber nicht böse. "
            "Man vertreibt sie, man wartet sie ab, man räumt hinter ihnen auf.") + f"""
-      <div class="callout wiki-note"><b>Oben Wetter, unten Getier.</b> Auf der Platine sind Störungen Zustände, die über eine Gegend ziehen: Flackern, Rauschen, Stromstöße. Das sind die Ereignisse aus Bits &amp; Bolts. Unten im Schacht sind es Wesen, die dort leben. Das sind die Gegner aus Bolt Buddies. Jede Schicht hat außerdem einen Wächter.</div>
+      <div class="callout wiki-note"><b>Oben Wetter, unten Getier.</b> Auf der Platine sind Störungen Zustände, die über eine Gegend ziehen: Flackern, Rauschen, Stromstöße. Das sind die Ereignisse aus Bits &amp; Bolts. Unten im Schacht sind es Wesen, die dort leben. Das sind die Gegner aus Bots &amp; Buddies. Jede Schicht hat außerdem einen Wächter.</div>
 
       <section class="wiki-sec" id="wetter">
         <h2>Wetter auf der Platine</h2>
@@ -663,7 +663,7 @@ def bot_card(b):
   </dl>
   <details class="bot-more"><summary>In den Spielen</summary>
     <p><b>Bits &amp; Bolts:</b> {html.escape(PUZZLE[b])}</p>
-    <p><b>Bolt Buddies:</b> {html.escape(TRAIT[b][0].upper() + TRAIT[b][1:])}.</p>{ff_line(b)}
+    <p><b>Bots &amp; Buddies:</b> {html.escape(TRAIT[b][0].upper() + TRAIT[b][1:])}.</p>{ff_line(b)}
   </details>
 </li>"""
 
@@ -685,7 +685,7 @@ write("roboter", "Roboter", "Alle 22 Roboter in der Welt des alten PCs: Heimat, 
            "Alle 22 Roboter, sortiert nach ihrer Heimat im PC, von oben nach unten. Ihre Namen kommen aus der Computersprache, und meist verraten sie schon, wo sie zu Hause sind.") + f"""
       <nav class="bot-index" aria-label="Roboter">{index}</nav>
       <div class="callout wiki-note">
-        <b>Heimat und Fundort:</b> Jeder Roboter wohnt eigentlich irgendwo im PC. Als der PC ausging, sind aber alle in den Schrottschacht gefallen. Dort findet man sie in Bolt Buddies, je tiefer, desto später. Ihr Andenken stellen sie in der Werkstatt auf. <a href="../welt/#warum">Mehr dazu →</a>
+        <b>Heimat und Fundort:</b> Jeder Roboter wohnt eigentlich irgendwo im PC. Als der PC ausging, sind aber alle in den Schrottschacht gefallen. Dort findet man sie in Bots &amp; Buddies, je tiefer, desto später. Ihr Andenken stellen sie in der Werkstatt auf. <a href="../welt/#warum">Mehr dazu →</a>
       </div>
 {"".join(groups)}""")
 print("ok")

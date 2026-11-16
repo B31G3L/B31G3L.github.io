@@ -19,7 +19,7 @@ Reines HTML und CSS, kein Build-Schritt. Die Seite lädt bewusst nichts von Drit
 | `/dotlist/` | Weiterleitung auf `/list2share/` (alter App-Name) | – |
 | `/reboot-byte/` | Datenschutz Reboot BYTE (nicht mehr auf der Startseite verlinkt) | EN + DE |
 | `/bits-and-bolts/` | Datenschutz Bits & Bolts | DE + EN |
-| `/bolt-buddies/` | Datenschutz Bolt Buddies (mit Erinnerungen) | DE + EN |
+| `/bolt-buddies/` | Datenschutz Bots & Buddies (mit Erinnerungen) | DE + EN |
 | `/impressum/` | Impressum und Datenschutz der Website | DE |
 | `/archiv/` | Archiv der Roboter: Wiki zum Roboter-Universum mit Unterseiten `roboter/`, `stoerungen/`, `weltkarte/` (der Rechner im Querschnitt, führt zu je einer Seite pro Spiel: `bits-and-bolts/`, `bolt-buddies/`, `block-invaders/`, `loop-runner/`, `kippwelt/`, `zuendkette/`, `snake-jam/`; `einsaetze/` und `regelwerk/` leiten weiter), `ersatzteile/`, `funk/`. Jede Seite lässt sich oben nach Spiel filtern (nur CSS, Inhalte tragen `data-game`). Bilder holt `tools/make_archiv.py` aus den Spielordnern daneben | DE |
 
