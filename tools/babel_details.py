@@ -100,10 +100,10 @@ def bits_and_bolts():
         ["1–2", "Steckkarten", "Wackelkontakt: Immer wieder wackelt eine deiner Ziffern. Tippst du sie schnell an, sitzt sie wieder fest, sonst erlischt sie."],
         ["3–4", "Knopfzelle", "Stromausfall: Nach einem Countdown erlöschen die Vorgaben. Wer vorher eine Ziffer daneben setzt, hält sie an."],
         ["5–7", "Chipsatz", "Überspannung: Ein Kurzschluss kostet 2 Ladungen statt 1."],
-        ["8–9", "Arbeitsspeicher", "Störsignal: Immer wieder taucht eine falsche Notiz auf."],
+        ["8–9", "Arbeitsspeicher", "Störsignal: Immer wieder rauscht ein Feld aus vier Zellen ein paar Sekunden lang. Dort siehst du nichts und kannst nichts eintragen."],
         ["10", "Hauptrechner", "Alles kommt zusammen. Jeder Sektor bringt eine Erinnerung zurück."],
     ])}
-    <p>Dazu bringen vier Roboter ihre eigenen Ereignisse mit: <b>Falsche Vorgabe</b> (ERROR), <b>Ansteckung</b> (VIRUS), <b>Zeitdruck</b> (DAEMON) und <b>Nebel</b> (MORSE).</p>
+    <p>Dazu bringen vier Roboter ihre eigenen Ereignisse mit: <b>Falsche Vorgabe</b> (ERROR, Suchen kostet nichts), <b>Ansteckung</b> (VIRUS), <b>Zeitdruck</b> (DAEMON) und <b>Nebel</b> (MORSE).</p>
 
     <h2>Sechs Stufen</h2>
     <p>Jeder Sieg öffnet die nächste Stufe. Die Stufe ändert nicht Ladung und Tipps, sie macht die Rätsel schwerer.</p>
