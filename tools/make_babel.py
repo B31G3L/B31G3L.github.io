@@ -82,7 +82,7 @@ def skeleton(depth, title, desc, body, wide=True):
 <link rel="icon" href="{depth}favicon.svg" type="image/svg+xml">
 <link rel="icon" href="{depth}favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="{depth}apple-touch-icon.png">
-<link rel="stylesheet" href="{depth}style.css">
+<link rel="stylesheet" href="{depth}style.css?v=202611171215">
 </head>
 <body class="babel-page">
 
