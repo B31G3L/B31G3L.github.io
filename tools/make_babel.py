@@ -35,7 +35,7 @@ GAMES = [
                "Gesammelter Schrott füllt eine Leiste, dann wird eingebaut: Bauteile, Waffenstufen, Schaltungen und Überladungen.",
                "22 Roboter in vier Familien, jeder mit eigener Waffe. Stufen 0 bis 5 wie in Bits &amp; Bolts."],
          places=["Anschlüsse", "Netzwerkkarte", "Soundkarte", "Grafikkarte"],
-         links=[]),
+         links=[("Datenschutz / Privacy", "../../amps-and-arcs/")]),
     dict(slug="bits-and-bolts", letter="B", name="Bits &amp; Bolts", color="#ffb000", category="Rätsel-Roguelite",
          status=("live", "Im Play Store"),
          where="Platine bis zum Hauptrechner",
