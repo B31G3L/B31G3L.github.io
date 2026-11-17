@@ -21,7 +21,7 @@ Reines HTML und CSS, kein Build-Schritt. Die Seite lädt bewusst nichts von Drit
 | `/bits-and-bolts/` | Datenschutz Bits & Bolts | DE + EN |
 | `/bolt-buddies/` | Datenschutz Bots & Buddies (mit Erinnerungen) | DE + EN |
 | `/impressum/` | Impressum und Datenschutz der Website | DE |
-| `/babel/` | B.A.B.E.L.: Titel mit Kabeln zu den fünf Spielen, darunter die Welt. Je Spiel eine Seite (`bots-and-buddies/`, `amps-and-arcs/`, `bits-and-bolts/`, `echoes-and-encores/`, `lines-and-loads/`). Erzeugt von `tools/make_babel.py` | DE |
+| `/babel/` | B.A.B.E.L. (immer dunkel, Schrift VT323 aus `babel/fonts/`): Titel mit Kabeln zu den fünf Spielen, deren Kacheln (Logo, Kategorie, Akzentfarbe) über einem skizzierten PC sitzen, darunter die Welt, die Roboter und die Störungen. Logos und Gruppenbilder zeichnet `tools/babel_art.py`. Je Spiel eine Seite (`bots-and-buddies/`, `amps-and-arcs/`, `bits-and-bolts/`, `echoes-and-encores/`, `lines-and-loads/`). Erzeugt von `tools/make_babel.py` | DE |
 | `/archiv/`, `/archiv2/` | Abgeschaltet: Jede alte Seite leitet auf `/babel/` weiter (ebenfalls von `tools/make_babel.py`). `make_archiv.py` und `make_archiv2.py` nicht mehr ausführen, sie würden die Archive zurückholen | – |
 
 Die Links trägst du in der Play Console als „Link zur Datenschutzerklärung“ ein.
