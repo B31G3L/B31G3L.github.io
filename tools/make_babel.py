@@ -9,7 +9,7 @@ import os
 
 import babel_art
 from archiv_data import ORDER
-from babel_details import FOES, copy_images, extra
+from babel_details import FOES, copy_images, copy_amps_images, extra
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
@@ -26,14 +26,15 @@ GAMES = [
          places=["Werkstatt in einem leeren Laufwerksschacht", "Schraubenhalde", "Kabelsalat", "Lüftergrund", "Netzteil mit dem Brummtrafo"],
          links=[("Datenschutz / Privacy", "../../bolt-buddies/")]),
     dict(slug="amps-and-arcs", letter="A", name="Amps &amp; Arcs", color="#ff5252", category="Action-Roguelite",
-         status=("plan", "Konzept"),
-         where="Anschlüsse und Steckkarten",
+         status=("dev", "In Arbeit"),
+         where="Anschlüsse bis Grafikkarte",
          pitch="Ein actionreiches Roguelite. Über die Anschlüsse rieselt Rauschen in den PC: Störsignale, Datenmüll, Funken. "
-               "Ein Roboter läuft durch die Leitungen, entstört Welle um Welle und baut sich dabei Bauteil für Bauteil zu einer kleinen Störschutz-Maschine aus.",
-         play=["Mit einem Daumen laufen, gefeuert wird von selbst.",
-               "Alle paar Sekunden ein neues Bauteil aus dreien wählen: Kondensator, Spule, Diode, Quarz und mehr.",
-               "Am Ende jedes Abschnitts wartet ein großer Störer, der Torwächter."],
-         places=["Anschlüsse", "Netzwerkkarte", "Grafikkarte"],
+               "Ein Roboter läuft von selbst durch die Leitungen, entstört Welle um Welle und baut sich dabei Bauteil für Bauteil "
+               "zu einer kleinen Störschutz-Maschine aus, bis vier Torwächter besiegt sind.",
+         play=["Der Roboter läuft von selbst, der Daumen steuert nur seitlich. Gefeuert wird von selbst.",
+               "Gesammelter Schrott füllt eine Leiste, dann wird eingebaut: Bauteile, Waffenstufen, Schaltungen und Überladungen.",
+               "22 Roboter in vier Familien, jeder mit eigener Waffe. Stufen 0 bis 5 wie in Bits &amp; Bolts."],
+         places=["Anschlüsse", "Netzwerkkarte", "Soundkarte", "Grafikkarte"],
          links=[]),
     dict(slug="bits-and-bolts", letter="B", name="Bits &amp; Bolts", color="#ffb000", category="Rätsel-Roguelite",
          status=("live", "Im Play Store"),
@@ -273,6 +274,7 @@ index_body = f"""  <div class="wrap wrap-wide">
   </div>"""
 
 copy_images()
+copy_amps_images()
 babel_art.logos()
 babel_art.crowd(ORDER)
 babel_art.foes([f[0] for f in FOES])

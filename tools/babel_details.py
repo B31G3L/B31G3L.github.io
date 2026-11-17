@@ -225,7 +225,144 @@ def bots_and_buddies():
 """
 
 
-EXTRA = {"bits-and-bolts": bits_and_bolts, "bots-and-buddies": bots_and_buddies}
+# ── Amps & Arcs ──────────────────────────────────────────────────────────────
+AA_SHOTS = [("01", "Der Gang hinter dem Roboter"), ("02", "Torwächter Wackelstecker"), ("03", "Einbauen: Schaltung und Überladung"),
+            ("04", "Ausgebaut: Laser und Salve"), ("05", "Roboter wählen"), ("06", "VIRUS in der Soundkarte"),
+            ("07", "Errungenschaften"), ("08", "Ergebnis eines Runs")]
+AA_FAMILIES = [
+    ("Prozesse", "3DFF7A", "Takt", "Nach jedem entstörten Rauschen feuern die Waffen eine Sekunde lang schneller.",
+     [("BYTE", "Blaster", "Fernkampf", "Einzelschüsse auf das nächste Rauschen."),
+      ("LOOP", "Schleife", "Nahkampf", "Kugeln kreisen um ihn und schwingen hinaus."),
+      ("MORSE", "Funkspruch", "Fernkampf", "Punkt, Punkt, Strich, der Strich schlägt durch alles."),
+      ("SHIFT", "Bitschieber", "Streuung", "Schnelle Schüsse, Bit für Bit über die ganze Breite geschoben."),
+      ("DAEMON", "Hintergrunddienst", "Fernkampf", "Drohnen schweben vor ihm und schießen selbst."),
+      ("ROOT", "Wurzelbeben", "Nahkampf", "Eine breite Welle läuft vor ihm durch die Leitung.")]),
+    ("Zahlensysteme", "FF9E2C", "Präzision", "Mehr Volltreffer, und jeder Volltreffer sprüht Funken auf ein Rauschen daneben.",
+     [("OKTA", "Oktett", "Streuung", "Acht Schüsse im Ring um ihn herum."),
+      ("PIXA", "Pixelstreuung", "Streuung", "Ein Fächer aus Pixeln mit kurzer Reichweite."),
+      ("HEXA", "Hexschuss", "Fernkampf", "Ein sehr starker Schuss auf das zäheste Rauschen."),
+      ("ASKI", "Zeilenumbruch", "Fernkampf", "Ein Zeichen fliegt hinaus und trifft auf dem Rückweg noch einmal."),
+      ("CHROMA", "Prisma", "Streuung", "Farbige Strahlen im Fächer."),
+      ("NIBBLE", "Knabbern", "Nahkampf", "Beißt schnell in das nächste Rauschen.")]),
+    ("Logikgatter", "FFD34D", "Panzerung", "Jeder Treffer gegen dich wird kleiner, Funken der Torwächter noch mehr.",
+     [("GATE", "Schlagbaum", "Nahkampf", "Schwingt vorn einen Balken durch alles."),
+      ("XOR", "Kreuzfeuer", "Fernkampf", "Schüsse schräg nach vorn, die sich kreuzen."),
+      ("NULL", "Nullfeld", "Nahkampf", "Ein Feld um ihn trifft alles, was hineinkommt."),
+      ("PARI", "Paritätsbogen", "Fernkampf", "Ein Blitz springt durch mehrere Rauschen."),
+      ("QUBIT", "Überlagerung", "Streuung", "Schüsse tauchen direkt vor dem Rauschen auf."),
+      ("MIRA", "Spiegelschuss", "Fernkampf", "Schüsse prallen von den Wänden ab.")]),
+    ("Störenfriede", "FF5252", "Rost", "Jeder Treffer rostet nach, ein Viertel des Schadens kommt noch dazu.",
+     [("VIRUS", "Ansteckung", "Fernkampf", "Sporen rosten stark nach, der Rost springt beim Entstören weiter."),
+      ("ERROR", "Absturz", "Nahkampf", "Regelmäßig eine Explosion um ihn herum."),
+      ("GLITCH", "Bildfehler", "Streuung", "Sehr schnelle Schüsse in zufällige Richtungen."),
+      ("PATCH", "Flicken", "Fernkampf", "Langsame Flicken, die im Ring explodieren.")]),
+]
+AA_NOISE = [
+    ("Anschlüsse", "FF5252", ["flea", "dust", "crack"], "boss", "Wackelstecker"),
+    ("Netzwerkkarte", "4DA8FF", ["louse", "ping"], "storm", "Paketsturm"),
+    ("Soundkarte", "FF5CF0", ["hummer"], "feedback", "Rückkopplung"),
+    ("Grafikkarte", "4DE8FF", ["pixel", "stripe"], "artifact", "Artefakt"),
+]
+AA_NOISE_NAMES = {"flea": "Funkenfloh", "dust": "Staubflocke", "crack": "Knackser", "louse": "Paketlaus", "ping": "Ping",
+                  "hummer": "Brummer", "pixel": "Pixelfehler", "stripe": "Streifen"}
+
+
+def copy_amps_images():
+    """Bildschirmfotos und Rauschen aus dem Ordner Amps-and-Arcs daneben."""
+    from PIL import Image
+    src = os.path.join(OUT, "..", "Amps-and-Arcs")
+    shots = os.environ.get("AA_SHOTS", "")
+    if shots and os.path.isdir(shots):
+        for key, _ in AA_SHOTS:
+            p = os.path.join(shots, "aa_" + key + ".png")
+            if os.path.exists(p):
+                Image.open(p).convert("RGB").resize((360, 780), Image.LANCZOS).save(os.path.join(IMG, "aa_" + key + ".jpg"), quality=82)
+    noise = os.path.join(src, "assets", "noise")
+    os.makedirs(os.path.join(IMG, "aa_noise"), exist_ok=True)
+    for sec in AA_NOISE:
+        for kind in sec[2] + [sec[3]]:
+            p = os.path.join(noise, kind + ".png")
+            if os.path.exists(p):
+                im = Image.open(p).convert("RGBA")
+                im.resize((im.width * 3, im.height * 3), Image.NEAREST).save(os.path.join(IMG, "aa_noise", kind + ".png"))
+
+
+def amps_and_arcs():
+    shots = "\n".join(f'        <figure><img src="../img/aa_{k}.jpg" alt="{t}" width="180" height="390" loading="lazy"><figcaption>{t}</figcaption></figure>'
+                       for k, t in AA_SHOTS)
+    fams = ""
+    for name, col, trait, text, bots in AA_FAMILIES:
+        items = "\n".join(
+            f'        <li class="babel-bot" style="--bc:#{col}">{bot_img(b)}<div><b>{b}</b> <span class="babel-tag">{w} · {k}</span>'
+            f'<p>{t}</p></div></li>' for b, w, k, t in bots)
+        fams += f"""
+    <h3 style="color:#{col}">{name} · {trait}</h3>
+    <p>{text}</p>
+    <ul class="babel-bots">
+{items}
+    </ul>
+"""
+    noise = ""
+    for name, col, kinds, boss, boss_name in AA_NOISE:
+        items = "".join(
+            f'<li class="babel-foe" style="--bc:#{col}"><img class="pix" src="../img/aa_noise/{k}.png" alt="" loading="lazy"><div><b>{AA_NOISE_NAMES[k]}</b></div></li>'
+            for k in kinds)
+        items += f'<li class="babel-foe" style="--bc:#{col}"><img class="pix" src="../img/aa_noise/{boss}.png" alt="" loading="lazy"><div><b>{boss_name}</b> <span class="babel-tag">Torwächter</span></div></li>'
+        noise += f"""
+    <h3 style="color:#{col}">{name}</h3>
+    <ul class="babel-bots">{items}</ul>
+"""
+    return f"""
+    <h2>Bilder</h2>
+    <div class="babel-shots">
+{shots}
+    </div>
+
+    <h2>Ein Run im Detail</h2>
+    <ul class="babel-list">
+      <li><b>Hinter dem Roboter:</b> Er läuft von selbst durch einen Gang aus Leiterbahnen, der Daumen steuert nur nach links und rechts. Gefeuert wird von selbst.</li>
+      <li><b>Ein Run</b> führt durch vier Abschnitte, je etwa zwei Minuten. Am Ende jedes Abschnitts wartet ein Torwächter, danach lädt der Akku etwas auf.</li>
+      <li><b>Schrott</b> aus entstörtem Rauschen füllt eine Leiste. Ist sie voll, wird eins aus drei Angeboten eingebaut.</li>
+      <li><b>Ausgefallen</b> ist der Roboter, wenn sein Akku leer ist. Die Rüstung macht jeden Treffer schwächer.</li>
+    </ul>
+
+    <h2>Die vier Abschnitte</h2>
+    <p>Jeder Abschnitt hat eigenes Rauschen, spätere mischen das ältere mit.</p>
+{noise}
+
+    <h2>Einbauen</h2>
+    <ul class="babel-list">
+      <li><b>Bauteile</b> wachsen von Stufe I bis V, höchstens fünf verschiedene pro Run: Kondensator, Spule, Lüfter, Widerstand, Diode, Quarz, Sicherung, Kühlkörper.</li>
+      <li><b>Familienbauteile</b> nur für die eigene Familie: Taktgeber, Rechenwerk, Schutzschaltung, Säure.</li>
+      <li><b>Schaltungen:</b> Zwei Bauteile auf höchster Stufe verschmelzen. Blitzring, Laser, Kühlkreislauf, Schmelzsicherung.</li>
+      <li><b>Überladungen:</b> Jede Waffe hat eine Endform, wenn sie auf Mk III ist und ihr Partner-Bauteil auf Stufe III, zum Beispiel die Salve des Blasters oder die Seuche von VIRUS.</li>
+      <li><b>Schrott ausgeben:</b> neu würfeln oder eine Karte für später sperren. Einmal pro Run kommt die Waffe eines anderen Roboters als Zweitwaffe dazu.</li>
+    </ul>
+
+    <h2>Sechs Stufen</h2>
+    <p>Wie in Bits &amp; Bolts: Ein Sieg auf einer Stufe öffnet die nächste, mit jedem Roboter.</p>
+    {table(["Stufe", "Was dazukommt"], [
+        ["0", "Weniger und schwächeres Rauschen"],
+        ["1", "Normal"],
+        ["2", "Rauschen ist zäher"],
+        ["3", "Goldenes Elite-Rauschen: dreimal so zäh, dreimal so viel Schrott"],
+        ["4", "Dichter, und die Torwächter halten mehr aus"],
+        ["5", "Alles schneller, Berührungen schmerzen mehr"],
+    ])}
+
+    <h2>Die 22 Roboter in vier Familien</h2>
+    <p>Die Familien kommen aus Bots &amp; Buddies, jede bringt eine Eigenschaft mit. Jeder Roboter hat seine eigene Waffe, die Art (Nahkampf, Fernkampf oder Streuung) zeigt, wie sie trifft. BYTE ist von Anfang an da, alle anderen schaltet frei, was man spielt.</p>
+{fams}
+    <h2>Dazu</h2>
+    <ul class="babel-list">
+      <li><b>19 Errungenschaften</b> und eine Statistik über alle Runs, ohne Konto.</li>
+      <li><b>Üben</b> einzelner Abschnitte, ein Archiv mit Robotern, Rauschen und allem, was man gebaut hat, und ein Verlauf.</li>
+      <li>Eine kurze Einführung im ersten Run, Töne im 8-Bit-Stil, Vibration, alles abschaltbar.</li>
+    </ul>
+"""
+
+
+EXTRA = {"bits-and-bolts": bits_and_bolts, "bots-and-buddies": bots_and_buddies, "amps-and-arcs": amps_and_arcs}
 
 
 def extra(slug):
