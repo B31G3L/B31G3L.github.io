@@ -786,3 +786,38 @@ body.babel-page {
 .babel-game-logo { flex: none; width: 96px; height: 96px; }
 .babel-where { margin: 0 0 8px; font-family: var(--mono); font-size: 0.85rem; color: var(--c); }
 @media (max-width: 480px) { .babel-game-logo { width: 68px; height: 68px; } }
+
+/* Startseite: B.A.B.E.L. als ein Banner statt einzelner Spielkarten, im dunklen Look der Spiele */
+.babel-banner {
+  margin: 4px 0 20px;
+  padding: 28px 24px 22px;
+  text-align: center;
+  background: #070b08 repeating-linear-gradient(to bottom, rgba(184, 245, 200, 0.03) 0 1px, transparent 1px 4px);
+  border: 1px solid #1a3322;
+  border-radius: 14px;
+  color: #b8f5c8;
+}
+.babel-banner-title { margin: 0; font-family: "VT323", var(--mono); font-size: clamp(3.4rem, 12vw, 5.6rem); line-height: 1; letter-spacing: 0.02em; }
+.babel-banner-title i { font-style: normal; color: #7dbe8d; }
+.babel-banner-lead { max-width: 52ch; margin: 10px auto 22px; color: #7dbe8d; }
+.babel-banner-games { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.babel-banner-games a {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%;
+  padding: 12px 6px 10px; border: 2px solid var(--c); border-radius: 10px; background: #0c140e; color: #b8f5c8;
+  box-shadow: 0 0 18px -8px var(--c);
+}
+.babel-banner-games a:hover { text-decoration: none; box-shadow: 0 0 24px -4px var(--c); }
+.babel-banner-games img { width: 56px; height: 56px; image-rendering: pixelated; }
+.babel-banner-games b { font-family: "VT323", var(--mono); font-weight: 400; font-size: 1.3rem; line-height: 1; color: var(--c); }
+.babel-banner-games small { font-size: 0.7rem; color: #7dbe8d; }
+.babel-banner-go { display: inline-block; padding: 10px 18px; border-radius: 999px; background: #ffb000; color: #070b08; font-weight: 600; }
+.babel-banner-go:hover { text-decoration: none; filter: brightness(1.08); }
+.babel-banner-legal { margin: 16px 0 0; font-size: 0.8rem; color: #7dbe8d; }
+.babel-banner-legal a { color: #ffb000; }
+@media (max-width: 560px) {
+  .babel-banner { padding: 22px 12px 18px; }
+  .babel-banner-games { gap: 5px; }
+  .babel-banner-games img { width: 40px; height: 40px; }
+  .babel-banner-games b { font-size: 0.95rem; }
+  .babel-banner-games small { display: none; }
+}
