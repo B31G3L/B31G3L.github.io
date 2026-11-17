@@ -710,7 +710,7 @@ a.mini-bot:hover { text-decoration: none; border-color: var(--bot); }
 /* Schrift VT323 (SIL Open Font License, liegt unter babel/fonts/), selbst gehostet wie alles hier. */
 @font-face { font-family: "VT323"; src: url("babel/fonts/VT323-Regular.woff2") format("woff2"); font-display: swap; }
 
-body.babel-page {
+.babel-page main {
   --bg: #070b08;
   --surface: #0c140e;
   --surface-2: #101c14;
@@ -724,12 +724,13 @@ body.babel-page {
   --warn-soft: #2b2212;
   --shadow: none;
   color-scheme: dark;
+  padding: 1px 0 48px;
   background: var(--bg);
   color: var(--ink);
   /* Ganz leichte Zeilen wie auf einem alten Bildschirm */
   background-image: repeating-linear-gradient(to bottom, rgba(184, 245, 200, 0.025) 0 1px, transparent 1px 4px);
 }
-.babel-page .brand, .babel-page .section-title, .babel-page .page-title, .babel-page h2, .babel-page .babel-tile-name {
+.babel-page main .section-title, .babel-page main .page-title, .babel-page main h2, .babel-page .babel-tile-name {
   font-family: "VT323", var(--mono);
   letter-spacing: 0.02em;
   font-weight: 400;
@@ -737,8 +738,8 @@ body.babel-page {
 .babel-page .section-title { font-size: 2rem; }
 .babel-page .page-title { font-size: clamp(2.4rem, 7vw, 3.2rem); }
 .babel-page .babel-game h2 { font-size: 1.7rem; }
-.babel-page .eyebrow { color: var(--ink-soft); }
-.babel-page a { color: #ffb000; }
+.babel-page main .eyebrow { color: var(--ink-soft); }
+.babel-page main a { color: #ffb000; }
 .babel-page .badge-live { background: #12281c; color: #3dff7a; }
 .babel-page .badge-plan { background: #16201b; color: #7dbe8d; }
 .babel-letter, .babel-dot { font-family: "VT323", var(--mono); font-weight: 400; font-size: 150px; }
@@ -755,10 +756,14 @@ body.babel-page {
 .babel-tile {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 25%;
+  /* Feste Maße, die Kabel enden genau am Rand (TILE_HW und TILE_HH in make_babel.py) */
+  width: 29%;
+  height: 17.5%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   padding: 12px 8px 10px;
   text-align: center;
@@ -769,15 +774,15 @@ body.babel-page {
   color: var(--ink);
   transition: transform .15s ease, box-shadow .15s ease;
 }
-.babel-tile:hover { text-decoration: none; transform: translate(-50%, -52%); box-shadow: 0 0 30px -4px var(--c); }
-.babel-tile img { width: 46%; max-width: 88px; height: auto; }
+.babel-tile:hover { text-decoration: none; box-shadow: 0 0 30px -4px var(--c); }
+.babel-tile img { width: 38%; max-width: 80px; height: auto; }
 .babel-tile-name { font-size: clamp(1.05rem, 3.4vw, 1.6rem); line-height: 1; color: var(--c); }
 .babel-tile-cat { font-size: clamp(0.62rem, 1.8vw, 0.82rem); line-height: 1.3; color: var(--ink-soft); }
 .babel-tile .badge { font-size: clamp(0.5rem, 1.5vw, 0.68rem); padding: 2px 6px; margin-top: 2px; }
 @media (max-width: 520px) {
   /* Auf dem Handy nur Logo und Name, sonst stoßen die Kacheln aneinander */
-  .babel-tile { width: 29%; padding: 7px 4px 6px; border-radius: 9px; gap: 2px; }
-  .babel-tile img { width: 44%; }
+  .babel-tile { padding: 4px 3px; border-radius: 9px; gap: 2px; }
+  .babel-tile img { width: 36%; }
   .babel-tile .badge, .babel-tile-cat { display: none; }
 }
 

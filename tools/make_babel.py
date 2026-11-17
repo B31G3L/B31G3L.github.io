@@ -87,9 +87,14 @@ def skeleton(depth, title, desc, body, wide=True):
 <body class="babel-page">
 
 <header class="site">
-  <div class="wrap{' wrap-wide' if wide else ''}">
+  <div class="wrap wrap-wide">
     <a class="brand" href="{depth}">B31G3L<i>_</i></a>
-    <nav><a href="{depth}#spiele">Spiele</a><a href="{depth}babel/">B.A.B.E.L.</a></nav>
+    <nav>
+      <a href="{depth}#apps">Apps</a>
+      <a href="{depth}#spiele">Spiele</a>
+      <a href="{depth}babel/">B.A.B.E.L.</a>
+      <a href="https://github.com/B31G3L" target="_blank" rel="noopener">GitHub</a>
+    </nav>
   </div>
 </header>
 
@@ -125,10 +130,45 @@ LETTER_Y = 120
 SPOTS = {
     "bits-and-bolts": (330, 470),      # Platine, oben der Hauptrechner
     "lines-and-loads": (690, 440),     # Laufwerke vorn oben
-    "amps-and-arcs": (300, 860),       # Anschlüsse und Steckkarten hinten unten
+    "amps-and-arcs": (330, 860),       # Anschlüsse und Steckkarten hinten unten
     "echoes-and-encores": (705, 830),  # Lautsprecher in der Front
     "bots-and-buddies": (500, 1180),   # Werkstatt und Schacht ganz unten
 }
+# Jede Kachel ist gleich groß, in Einheiten des SVG: halbe Breite und halbe Höhe (siehe .babel-tile im CSS:
+# 29 % breit, 17.5 % hoch). So enden die Kabel genau am Rand, auf jeder Bildschirmbreite.
+TILE_HW, TILE_HH = 145, 117
+# Die Kabel laufen in eigenen Bahnen, damit sie keine Kachel kreuzen und sich nicht schneiden.
+# Je Kabel die Knickpunkte nach dem Lötpunkt unter dem Buchstaben, der letzte liegt am Rand der Kachel.
+ROUTES = {
+    # B: außen links ganz hinunter, dann von links in die Werkstatt
+    "bots-and-buddies": [(300, 185), (135, 185), (135, 1180), (500 - TILE_HW, 1180)],
+    # A: links innen hinunter, von links an die Anschlüsse
+    "amps-and-arcs": [(400, 225), (162, 225), (162, 860), (330 - TILE_HW, 860)],
+    # B: kurz nach links, von oben auf die Platine
+    "bits-and-bolts": [(500, 265), (330, 265), (330, 470 - TILE_HH)],
+    # E: durch die Mitte zwischen Platine und Laufwerken, von links an den Lautsprecher
+    "echoes-and-encores": [(600, 225), (512, 225), (512, 830), (705 - TILE_HW, 830)],
+    # L: gerade hinunter auf die Laufwerke
+    "lines-and-loads": [(700, 440 - TILE_HH)],
+}
+
+
+def route_path(x0, y0, pts, r=22):
+    """Pfad über die Knickpunkte mit abgerundeten Ecken."""
+    full = [(x0, y0)] + pts
+    d = f"M{x0} {y0}"
+    for k in range(1, len(full) - 1):
+        (ax, ay), (bx, by), (cx, cy) = full[k - 1], full[k], full[k + 1]
+        def toward(px, py, qx, qy, dist):
+            length = max(1.0, ((qx - px) ** 2 + (qy - py) ** 2) ** 0.5)
+            dd = min(dist, length / 2)
+            return px + (qx - px) / length * dd, py + (qy - py) / length * dd
+        p1 = toward(bx, by, ax, ay, r)
+        p2 = toward(bx, by, cx, cy, r)
+        d += f" L{p1[0]:.0f} {p1[1]:.0f} Q{bx} {by} {p2[0]:.0f} {p2[1]:.0f}"
+    ex, ey = full[-1]
+    d += f" L{ex} {ey}"
+    return d
 
 
 def pc_svg():
@@ -164,9 +204,8 @@ def pc_svg():
              '<path class="pc-trace" d="M190 1110 H330 M190 1150 H290 M700 1220 h110"/>']
     cables = []
     for i, g in enumerate(GAMES):
-        x0, x1 = LX[i], SPOTS[g["slug"]][0]
-        y1 = SPOTS[g["slug"]][1]
-        d = f"M{x0} {LETTER_Y + 30} C{x0} {LETTER_Y + 160} {x1} {y1 - 260} {x1} {y1}"
+        x0 = LX[i]
+        d = route_path(x0, LETTER_Y + 30, ROUTES[g["slug"]])
         cables.append(
             f'  <g style="--c:{g["color"]}">\n'
             f'    <path class="babel-cable" d="{d}" pathLength="100"/>\n'
