@@ -1,11 +1,9 @@
 """Ausführliche Abschnitte für die Seiten von Bits & Bolts und Bots & Buddies im Bereich B.A.B.E.L.
 
-Wird von make_babel.py benutzt. Bilder kopiert copy_images() nach babel/img/: Roboter, Gegner und Werkstatt aus den alten
-Archiv-Ordnern (die Dateien liegen dort weiter), Bildschirmfotos aus dem Ordner Bits-and-Bolts daneben.
+Wird von make_babel.py benutzt. Roboter, Gegner und Bilder aus Bots & Buddies liegen fest in babel/img/,
+copy_images() holt nur die Bildschirmfotos aus dem Ordner Bits-and-Bolts daneben.
 """
-import ast
 import os
-import shutil
 
 from archiv_data import ORDER, BASE, TRAIT, PUZZLE, UNLOCK, ROLE, ATTR, LAYERS, HOME, KEEPSAKE, COLORS, SAYS
 
@@ -13,16 +11,35 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 IMG = os.path.join(OUT, "babel", "img")
 
 
-def _foes():
-    """Liest FOES aus make_archiv.py, ohne es auszuführen (das würde die Archive wiederherstellen)."""
-    src = open(os.path.join(os.path.dirname(__file__), "make_archiv.py"), encoding="utf-8").read()
-    for node in ast.parse(src).body:
-        if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") == "FOES":
-            return ast.literal_eval(node.value)
-    return []
-
-
-FOES = _foes()
+## Gegner aus Bots & Buddies (früher in make_archiv.py)
+FOES = [
+    ("bug", "Bug", "Gegner", "FF5252", 12, 3, 14, 3, 3, "ab Kampf 1", "alle Ebenen",
+     "Der häufigste Gegner. Schwach, aber oft in Gruppen. Steht vorn.", False, "Rückt in der Formation vor."),
+    ("drone", "Spam-Drohne", "Gegner", "B46CFF", 9, 4, 13, 4, 3, "ab Kampf 2", "alle Ebenen",
+     "Fliegt über die vorderen Reihen hinweg und zielt auf den hintersten Roboter.", False, "Fliegt mit und wirft Bomben."),
+    ("turret", "Firewall", "Gegner", "FF5252", 12, 8, 8, 6, 6, "ab Kampf 3", "alle Ebenen",
+     "Langsam, schießt aber wild und hart auf irgendwen im Team.", False, "Schießt auf zufällige Blöcke."),
+    ("worm", "Rostwurm", "Gegner", "D9773A", 34, 7, 7, 6, 6, "ab Kampf 4", "alle Ebenen, im Kabelsalat und im Netzteil doppelt so oft",
+     "Zäh und gepanzert (1 Panzerung). Hält lange durch.", False, "Braucht mehrere Treffer."),
+    ("frost", "Frostbug", "Gegner", "4DE8FF", 16, 4, 11, 5, 5, "ab Kampf 21", "Lüftergrund (vor allem), Netzteil",
+     "Seine Treffer kühlen ab: Wer getroffen wird, ist später wieder dran.", True, ""),
+    ("spark", "Wackelkontakt", "Gegner", "FF9A3D", 11, 4, 16, 5, 5, "ab Kampf 11", "Kabelsalat (vor allem), Lüftergrund, Netzteil",
+     "Schnell und geladen: Wer ihn trifft, bekommt einen Schlag zurück, der tiefer im Schacht stärker wird.", True, ""),
+    ("heat", "Überhitzer", "Gegner", "FF5252", 18, 6, 9, 7, 7, "ab Kampf 31", "Netzteil (vor allem)",
+     "Strahlt Hitze ab und trifft das ganze Team zugleich, jeden mit 60 % seines Schadens.", True, ""),
+    ("boss", "Bluescreen", "Boss", "3B6BFF", 80, 8, 9, 25, 25, "Kampf 5, 10, 15",
+     "Mitte von Schraubenhalde und Kabelsalat (dort mit Wackelkontakten), Wächter der Schraubenhalde, im Netzteil im Wechsel",
+     "Trifft das ganze Team zugleich. Hinterlässt ein seltenes Teil und einen Akku.", False, "Boss-Welle alle 5 Wellen."),
+    ("short", "Kurzschluss", "Wächter", "FFB000", 75, 9, 14, 30, 30, "Kampf 20, 25",
+     "Wächter des Kabelsalats, Boss in der Mitte des Lüftergrunds, im Netzteil im Wechsel",
+     "Schnell, schlägt wild um sich und landet viele Volltreffer (25 %). Kommt mit Wackelkontakt und Spam-Drohne.", True, ""),
+    ("chiller", "Kältekern", "Wächter", "4DE8FF", 95, 7, 8, 35, 35, "Kampf 30, 35",
+     "Wächter des Lüftergrunds, Boss in der Mitte des Netzteils, dort auch im Wechsel",
+     "Trifft das ganze Team und kühlt alle zugleich ab. Kommt mit Frostbug und Bug.", True, ""),
+    ("trafo", "Brummtrafo", "Wächter", "FF7A45", 110, 7, 7, 40, 40, "Kampf 40, danach im Wechsel",
+     "Wächter des Netzteils, dort im Wechsel mit den anderen drei",
+     "Brummt so laut, dass er das ganze Team zugleich trifft. Wer ihn trifft, verbrennt sich: 3 Schaden zurück. Kommt mit Überhitzer und Frostbug.", True, ""),
+]
 
 SHOTS = [("01", "22 Roboter, jeder mit eigener Regel"), ("02", "Nur Nullen und Einsen"), ("03", "Tipps erklären statt verraten"),
          ("04", "Spiegel, Hex, Pixel und mehr"), ("05", "Ereignisse wie der Nebel"), ("06", "10 Etagen bis zum Hauptrechner"),
@@ -32,15 +49,7 @@ SHOTS = [("01", "22 Roboter, jeder mit eigener Regel"), ("02", "Nur Nullen und E
 def copy_images():
     os.makedirs(os.path.join(IMG, "bots"), exist_ok=True)
     os.makedirs(os.path.join(IMG, "foes"), exist_ok=True)
-    pairs = [(os.path.join(OUT, "archiv", "roboter", "bots", b.lower() + ".png"), os.path.join(IMG, "bots", b.lower() + ".png")) for b in ORDER]
-    pairs += [(os.path.join(OUT, "archiv", "stoerungen", "foes", f[0] + ".png"), os.path.join(IMG, "foes", f[0] + ".png")) for f in FOES]
-    for name in ("workshop.png", "layer_0.png", "layer_1.png", "layer_2.png", "layer_3.png", "lift.png"):
-        pairs.append((os.path.join(OUT, "archiv", "weltkarte", "img", name), os.path.join(IMG, "bb_" + name)))
-    for name in ("station_dock.png", "station_bath.png", "station_play.png", "station_bench.png", "station_lift.png", "station_radio.png"):
-        pairs.append((os.path.join(OUT, "archiv", "ersatzteile", "img", name), os.path.join(IMG, "bb_" + name)))
-    for a, b in pairs:
-        if os.path.exists(a):
-            shutil.copyfile(a, b)
+    # Roboter, Gegner und Bilder aus Bots & Buddies liegen fest in babel/img (bots/, foes/, bb_*.png)
     # Bildschirmfotos aus dem Store, verkleinert
     src = os.path.join(OUT, "..", "Bits-and-Bolts", "store", "de", "screenshots")
     if os.path.isdir(src):

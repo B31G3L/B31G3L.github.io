@@ -1,7 +1,6 @@
 """Baut den Bereich B.A.B.E.L.: babel/index.html (Titel, Kabel zu den fünf Spielen, die Welt) und je eine Seite pro Spiel.
 
-Außerdem schaltet es die beiden alten Archive ab: Jede Seite unter archiv/ und archiv2/ wird zu einer Weiterleitung auf babel/.
-make_archiv.py und make_archiv2.py deshalb nicht mehr laufen lassen, sie würden die Archive wieder herstellen.
+Die alten Archive (archiv/, archiv2/) gibt es nicht mehr. Die Welt steht in tools/babel_world_data.py.
 
     python tools/make_babel.py
 """
@@ -322,25 +321,4 @@ for i, g in enumerate(GAMES):
 
 
 # ── Alte Archive abschalten ──────────────────────────────────────────────────
-def redirect(depth):
-    return f"""<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url={depth}babel/">
-<link rel="canonical" href="https://b31g3l.github.io/babel/">
-<title>Weitergeleitet zu B.A.B.E.L.</title>
-</head>
-<body><p>Das Archiv gibt es nicht mehr. Weiter zu <a href="{depth}babel/">B.A.B.E.L.</a></p></body>
-</html>
-"""
-
-
-for root in ("archiv", "archiv2"):
-    for dp, dn, fn in os.walk(os.path.join(OUT, root)):
-        if "index.html" in fn:
-            depth = "../" * (os.path.relpath(dp, OUT).replace("\\", "/").count("/") + 1)
-            with open(os.path.join(dp, "index.html"), "w", encoding="utf-8", newline="\n") as f:
-                f.write(redirect(depth))
 print("ok")
