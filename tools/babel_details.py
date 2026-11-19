@@ -41,9 +41,9 @@ FOES = [
      "Brummt so laut, dass er das ganze Team zugleich trifft. Wer ihn trifft, verbrennt sich: 3 Schaden zurück. Kommt mit Überhitzer und Frostbug.", True, ""),
 ]
 
-SHOTS = [("01", "22 Roboter, jeder mit eigener Regel"), ("02", "Nur Nullen und Einsen"), ("03", "Tipps erklären statt verraten"),
-         ("04", "Spiegel, Hex, Pixel und mehr"), ("05", "Ereignisse wie der Nebel"), ("06", "10 Etagen bis zum Hauptrechner"),
-         ("07", "Der Hauptrechner"), ("08", "Roboter wählen")]
+SHOTS = [("01", "Nur Nullen und Einsen"), ("02", "10 Etagen bis zum Hauptrechner"), ("03", "Tipps erklären statt verraten"),
+         ("04", "Spiegel, Hex, Pixel und mehr"), ("05", "Der Hauptrechner"), ("06", "22 Roboter, jeder mit eigener Regel"),
+         ("07", "Werkstatt mit Meisterlacken"), ("08", "BABEL im Archiv")]
 
 
 def copy_images():
@@ -131,12 +131,19 @@ def bits_and_bolts():
 {bots}
     </ul>
 
+    <h2>Werkstatt und BABEL</h2>
+    <ul class="babel-list">
+      <li><b>Meisterlack:</b> Gewinnt ein Roboter einen Run auf Stufe 5, bekommt er die Bernsteinglut, einen Lack in der Farbe des Spiels mit leuchtendem Schein. Jeder Roboter verdient seinen eigenen. Angelegt wird er in der Werkstatt.</li>
+      <li><b>Zwischen den Spielen:</b> Ist auch Amps &amp; Arcs auf demselben Gerät, wandern die Meisterlacke hin und her. Die Bernsteinglut trägt der Roboter dann auch dort, die Rotglut aus Amps &amp; Arcs kommt hierher. Ohne Konto und ohne Internet. Spätere BABEL-Spiele machen mit.</li>
+      <li><b>BABEL:</b> Ein kurzes Intro stellt beim ersten Start den alten Tower-PC vor. Die Run-Karte zeigt auf einem kleinen Lageplan, wo man gerade klettert, das Archiv den ganzen PC mit den Wohnorten aller 22 Roboter.</li>
+    </ul>
+
     <h2>Erinnerungen und Archiv</h2>
     <ul class="babel-list">
       <li><b>66 Erinnerungen:</b> Der Hauptrechner ist das Gedächtnis des PCs. Jeder gelöste Sektor bringt eine Erinnerung des Roboters zurück, von dem er stammt, drei je Roboter.</li>
-      <li><b>24 Errungenschaften</b> im Spiel, ohne Konto. Wer mag, meldet sie zusätzlich bei Google Play Games.</li>
+      <li><b>27 Errungenschaften</b> im Spiel, ohne Konto. Wer mag, meldet sie zusätzlich bei Google Play Games.</li>
       <li><b>Üben</b> in 6×6 und 8×8, auch mit mehreren Robotern zugleich, und ein Verlauf aller Runs.</li>
-      <li>Deutsch und Englisch, Töne und Musik im 8-Bit-Stil, alles abschaltbar. Keine Werbung, kein Konto, kein Internet nötig.</li>
+      <li>Deutsch und Englisch. Musik im 8-Bit-Stil, voll produziert: ein ruhiger Leerlauf in den Menüs, im Run ein eigenes Stück mit Aufbau und Drop, im Hauptrechner noch eine Spur mehr. Alles abschaltbar. Keine Werbung, kein Konto, kein Internet nötig.</li>
     </ul>
 """
 
